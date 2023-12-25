@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Pivot.obj-cf9ed83e20ab46c2f3813f65814d0f5a.mesh"
+
+[deps]
+
+files=[ "res://.import/Pivot.obj-cf9ed83e20ab46c2f3813f65814d0f5a.mesh" ]
+
+source_file="res://Assets/Models/OBJ/Pivot.obj"
+dest_files=[ "res://.import/Pivot.obj-cf9ed83e20ab46c2f3813f65814d0f5a.mesh", "res://.import/Pivot.obj-cf9ed83e20ab46c2f3813f65814d0f5a.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

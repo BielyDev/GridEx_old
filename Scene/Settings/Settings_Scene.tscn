@@ -1,0 +1,138 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Script/Env_propriety.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Theme/Main.tres" type="Theme" id=2]
+[ext_resource path="res://Script/Spin_Config.gd" type="Script" id=4]
+
+[node name="WORLD" type="VBoxContainer"]
+anchor_right = 0.289844
+anchor_bottom = 0.309722
+mouse_filter = 2
+theme = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="ControllerPanel" type="PanelContainer" parent="."]
+margin_right = 371.0
+margin_bottom = 98.096
+
+[node name="Controller" type="VBoxContainer" parent="ControllerPanel"]
+margin_left = 5.808
+margin_top = 4.048
+margin_right = 365.192
+margin_bottom = 94.048
+
+[node name="Tittle" type="Label" parent="ControllerPanel/Controller"]
+margin_top = -1.0
+margin_right = 359.0
+margin_bottom = 24.04
+text = "CONTROLLER"
+
+[node name="HS" type="HSeparator" parent="ControllerPanel/Controller"]
+margin_top = 28.0
+margin_right = 359.0
+margin_bottom = 32.0
+
+[node name="Options" type="VBoxContainer" parent="ControllerPanel/Controller"]
+margin_top = 35.0
+margin_right = 359.0
+margin_bottom = 90.0
+
+[node name="CamSensi" type="HBoxContainer" parent="ControllerPanel/Controller/Options"]
+margin_right = 359.0
+margin_bottom = 26.0
+script = ExtResource( 4 )
+ValueNode_Path = NodePath("SpinBox")
+
+[node name="Tittle" type="Label" parent="ControllerPanel/Controller/Options/CamSensi"]
+margin_right = 103.04
+margin_bottom = 25.04
+text = "CAMERA SENSI"
+
+[node name="SpinBox" type="SpinBox" parent="ControllerPanel/Controller/Options/CamSensi"]
+margin_left = 237.384
+margin_right = 359.0
+margin_bottom = 26.096
+size_flags_horizontal = 10
+step = 0.5
+value = 50.0
+
+[node name="CamMovSensi" type="HBoxContainer" parent="ControllerPanel/Controller/Options"]
+margin_top = 29.0
+margin_right = 359.0
+margin_bottom = 55.0
+script = ExtResource( 4 )
+ValueNode_Path = NodePath("SpinBox")
+propriety = 1
+
+[node name="Tittle" type="Label" parent="ControllerPanel/Controller/Options/CamMovSensi"]
+margin_right = 175.04
+margin_bottom = 25.04
+text = "CAMERA MOVEMENT SENSI"
+
+[node name="SpinBox" type="SpinBox" parent="ControllerPanel/Controller/Options/CamMovSensi"]
+margin_left = 237.384
+margin_right = 359.0
+margin_bottom = 26.096
+size_flags_horizontal = 10
+step = 0.5
+value = 50.0
+
+[node name="GraphicPanel" type="PanelContainer" parent="."]
+margin_top = 101.0
+margin_right = 371.0
+margin_bottom = 225.096
+
+[node name="Graphic" type="VBoxContainer" parent="GraphicPanel"]
+margin_left = 5.808
+margin_top = 4.048
+margin_right = 365.192
+margin_bottom = 120.048
+
+[node name="Tittle" type="Label" parent="GraphicPanel/Graphic"]
+margin_top = -1.0
+margin_right = 359.0
+margin_bottom = 24.04
+text = "GRAPHIC"
+
+[node name="HS" type="HSeparator" parent="GraphicPanel/Graphic"]
+margin_top = 28.0
+margin_right = 359.0
+margin_bottom = 32.0
+
+[node name="Options" type="VBoxContainer" parent="GraphicPanel/Graphic"]
+margin_top = 35.0
+margin_right = 359.0
+margin_bottom = 116.0
+
+[node name="Glow" type="CheckBox" parent="GraphicPanel/Graphic/Options"]
+margin_right = 359.0
+margin_bottom = 25.04
+mouse_default_cursor_shape = 2
+pressed = true
+text = "GLOW"
+align = 1
+script = ExtResource( 1 )
+propriety = "glow_enabled"
+
+[node name="Filter" type="CheckBox" parent="GraphicPanel/Graphic/Options"]
+margin_top = 28.0
+margin_right = 359.0
+margin_bottom = 53.04
+mouse_default_cursor_shape = 2
+pressed = true
+text = "FILTER"
+align = 1
+script = ExtResource( 1 )
+propriety = "adjustment_enabled"
+
+[node name="Reflects" type="CheckBox" parent="GraphicPanel/Graphic/Options"]
+margin_top = 56.0
+margin_right = 359.0
+margin_bottom = 81.04
+mouse_default_cursor_shape = 2
+text = "REFLECTS"
+align = 1
+script = ExtResource( 1 )
+propriety = "ss_reflections_enabled"
