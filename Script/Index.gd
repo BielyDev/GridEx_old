@@ -1,10 +1,12 @@
 extends Node
 
 signal model_tile_selection(mesh)
+signal change_tile()
 
 enum SETT {CAM_SENSI,CAM_SENSI_MOVE}
-enum MODE {ADD,REMOVE}
+enum MODE {VOID,ADD,REMOVE}
 
+var block_view: bool = false
 var edit_node
 var mode
 var cam: Camera

@@ -1,6 +1,6 @@
 extends Button
 
-export(Index.MODE) var mode: int 
+export(int, "VOID","ADD","REMOVE") var mode: int 
 export(String) var key: String 
 
 func _pressed() -> void:

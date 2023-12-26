@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://Script/World.gd" type="Script" id=1]
 [ext_resource path="res://Scene/Resource/3D_View.tscn" type="PackedScene" id=2]
@@ -10,11 +10,16 @@
 [ext_resource path="res://Scene/Settings/Settings_Scene.tscn" type="PackedScene" id=8]
 [ext_resource path="res://default_env.tres" type="Environment" id=9]
 [ext_resource path="res://Script/Block.gd" type="Script" id=10]
-[ext_resource path="res://Script/Button_Call.gd" type="Script" id=11]
 [ext_resource path="res://Script/Mode.gd" type="Script" id=12]
 [ext_resource path="res://Script/Preview.gd" type="Script" id=13]
 [ext_resource path="res://Script/Lock_Value.gd" type="Script" id=14]
 [ext_resource path="res://Script/TILE_COLLISION.gd" type="Script" id=15]
+[ext_resource path="res://Script/Menu_button_propriety.gd" type="Script" id=16]
+[ext_resource path="res://Script/MenuBttScripts/New_project.gd" type="Script" id=17]
+[ext_resource path="res://Script/MenuBttScripts/Quit.gd" type="Script" id=18]
+[ext_resource path="res://Script/MenuBttScripts/Export_project_gltf.gd" type="Script" id=19]
+[ext_resource path="res://Script/MenuBttScripts/Export_project_godot.gd" type="Script" id=20]
+[ext_resource path="res://Script/Icon.gd" type="Script" id=21]
 
 [sub_resource type="SpatialMaterial" id=3]
 flags_transparent = true
@@ -22,7 +27,7 @@ flags_unshaded = true
 params_cull_mode = 2
 albedo_color = Color( 1, 1, 1, 0.129412 )
 albedo_texture = ExtResource( 3 )
-uv1_scale = Vector3( 34, 1, 34 )
+uv1_scale = Vector3( 132, 1, 132 )
 uv1_triplanar = true
 proximity_fade_enable = true
 proximity_fade_distance = 1.0
@@ -255,6 +260,7 @@ tracks/1/keys = {
 [sub_resource type="SpatialMaterial" id=3970]
 flags_transparent = true
 params_cull_mode = 2
+params_depth_draw_mode = 3
 albedo_color = Color( 0, 0.352941, 0.992157, 0.517647 )
 
 [node name="Edit" type="CanvasLayer"]
@@ -265,6 +271,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 theme = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Background" type="PanelContainer" parent="Local"]
 anchor_right = 1.0
@@ -275,85 +284,230 @@ mouse_filter = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-alignment = 1
+
+[node name="BarPanel" type="PanelContainer" parent="Local/Vbox"]
+margin_right = 1280.0
+margin_bottom = 34.096
+
+[node name="Modes" type="HBoxContainer" parent="Local/Vbox/BarPanel"]
+margin_left = 5.808
+margin_top = 4.048
+margin_right = 1274.19
+margin_bottom = 30.048
+
+[node name="File" type="MenuButton" parent="Local/Vbox/BarPanel/Modes"]
+margin_right = 43.616
+margin_bottom = 26.096
+mouse_default_cursor_shape = 2
+text = "FILE"
+items = [ "New project", null, 0, false, false, 0, 0, null, "", false, "Save project", null, 0, false, true, 1, 0, null, "", false, "Export project in GLTF", null, 0, false, false, 2, 0, null, "", false, "Export project to Godot", null, 0, false, false, 3, 0, null, "", false, "", null, 0, false, true, 4, 0, null, "", true, "Quit", null, 0, false, false, 5, 0, null, "", false ]
+script = ExtResource( 16 )
+Scripts = [ ExtResource( 17 ), null, ExtResource( 19 ), ExtResource( 20 ), null, ExtResource( 18 ) ]
+
+[node name="Edit" type="MenuButton" parent="Local/Vbox/BarPanel/Modes"]
+margin_left = 46.0
+margin_right = 89.616
+margin_bottom = 26.096
+focus_mode = 2
+mouse_default_cursor_shape = 2
+text = "EDIT"
+items = [ "Preview 2D", null, 1, true, false, 0, 0, null, "", false, "Preview 3D", null, 1, false, false, 1, 0, null, "", false, "Collision", null, 1, false, false, 2, 0, null, "", false, "Shadowns", null, 1, true, false, 3, 0, null, "", false, "Grid and Axis", null, 1, true, false, 4, 0, null, "", false ]
+
+[node name="Render" type="MenuButton" parent="Local/Vbox/BarPanel/Modes"]
+margin_left = 92.0
+margin_right = 151.616
+margin_bottom = 26.096
+focus_mode = 2
+mouse_default_cursor_shape = 2
+text = "RENDER"
+items = [ "Image render", null, 0, false, false, 0, 0, null, "", false ]
 
 [node name="ModePanel" type="PanelContainer" parent="Local/Vbox"]
-margin_top = 49.0
+margin_top = 37.0
 margin_right = 1280.0
-margin_bottom = 117.096
+margin_bottom = 79.096
 
 [node name="Modes" type="HBoxContainer" parent="Local/Vbox/ModePanel"]
 margin_left = 5.808
 margin_top = 4.048
 margin_right = 1274.19
-margin_bottom = 64.048
+margin_bottom = 38.048
 
-[node name="Add" type="Button" parent="Local/Vbox/ModePanel/Modes"]
+[node name="EditPanel" type="PanelContainer" parent="Local/Vbox/ModePanel/Modes"]
+margin_right = 181.616
+margin_bottom = 34.096
+
+[node name="Hb" type="HBoxContainer" parent="Local/Vbox/ModePanel/Modes/EditPanel"]
+margin_left = 5.808
+margin_top = 4.048
+margin_right = 175.808
+margin_bottom = 30.048
+
+[node name="Tittle" type="Label" parent="Local/Vbox/ModePanel/Modes/EditPanel/Hb"]
+margin_right = 87.04
+margin_bottom = 25.04
+text = "EDIT MODE:"
+
+[node name="Option" type="OptionButton" parent="Local/Vbox/ModePanel/Modes/EditPanel/Hb"]
+unique_name_in_owner = true
+margin_left = 90.0
+margin_right = 170.616
+margin_bottom = 26.096
+mouse_default_cursor_shape = 2
+text = "Replace"
+items = [ "Replace", null, false, 0, null, "Stop", null, false, 1, null, "Mix", null, false, 2, null, "Apenas Sobrepor", null, false, 3, null ]
+selected = 0
+
+[node name="MirrorPanel" type="PanelContainer" parent="Local/Vbox/ModePanel/Modes"]
+margin_left = 184.0
+margin_right = 357.616
+margin_bottom = 34.096
+
+[node name="Hb" type="HBoxContainer" parent="Local/Vbox/ModePanel/Modes/MirrorPanel"]
+margin_left = 5.808
+margin_top = 4.048
+margin_right = 167.808
+margin_bottom = 30.048
+
+[node name="Tittle" type="Label" parent="Local/Vbox/ModePanel/Modes/MirrorPanel/Hb"]
+margin_right = 103.04
+margin_bottom = 25.04
+text = "MIRROR MODE:"
+
+[node name="Mirror" type="OptionButton" parent="Local/Vbox/ModePanel/Modes/MirrorPanel/Hb"]
+unique_name_in_owner = true
+margin_left = 106.0
+margin_right = 162.616
+margin_bottom = 26.096
+mouse_default_cursor_shape = 2
+text = "None"
+items = [ "None", null, false, 0, null, "X", null, false, 1, null, "Y", null, false, 2, null, "X and Y", null, false, 3, null ]
+selected = 0
+
+[node name="Hbox" type="HBoxContainer" parent="Local/Vbox"]
+margin_top = 82.0
+margin_right = 1280.0
+margin_bottom = 720.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 15
+alignment = 1
+
+[node name="Options" type="PanelContainer" parent="Local/Vbox/Hbox"]
+margin_right = 71.616
+margin_bottom = 638.0
+size_flags_vertical = 7
+
+[node name="Vbox" type="VBoxContainer" parent="Local/Vbox/Hbox/Options"]
+margin_left = 5.808
+margin_top = 4.048
+margin_right = 65.808
+margin_bottom = 633.952
+
+[node name="Void" type="Button" parent="Local/Vbox/Hbox/Options/Vbox"]
 margin_right = 60.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 60, 60 )
-text = "+"
+mouse_default_cursor_shape = 2
+text = "V"
 script = ExtResource( 12 )
 key = "paint"
 
-[node name="Remove" type="Button" parent="Local/Vbox/ModePanel/Modes"]
-margin_left = 63.0
-margin_right = 123.0
-margin_bottom = 60.0
+[node name="Add" type="Button" parent="Local/Vbox/Hbox/Options/Vbox"]
+margin_top = 63.0
+margin_right = 60.0
+margin_bottom = 123.0
 rect_min_size = Vector2( 60, 60 )
-text = "-"
+mouse_default_cursor_shape = 2
+text = "+"
 script = ExtResource( 12 )
 mode = 1
+key = "paint"
+
+[node name="Remove" type="Button" parent="Local/Vbox/Hbox/Options/Vbox"]
+margin_top = 126.0
+margin_right = 60.0
+margin_bottom = 186.0
+rect_min_size = Vector2( 60, 60 )
+mouse_default_cursor_shape = 2
+text = "-"
+script = ExtResource( 12 )
+mode = 2
 key = "erase"
 
-[node name="Hbox" type="HBoxContainer" parent="Local/Vbox"]
-margin_top = 120.0
-margin_right = 1280.0
-margin_bottom = 671.0
-mouse_filter = 2
-alignment = 1
-
 [node name="Vbox2" type="VBoxContainer" parent="Local/Vbox/Hbox"]
+margin_left = 74.0
 margin_right = 994.0
-margin_bottom = 551.0
+margin_bottom = 638.0
 size_flags_horizontal = 3
+size_flags_vertical = 7
 
 [node name="ViewPanel" type="PanelContainer" parent="Local/Vbox/Hbox/Vbox2"]
-margin_right = 994.0
-margin_bottom = 500.0
+margin_right = 920.0
+margin_bottom = 587.0
 rect_min_size = Vector2( 900, 500 )
 mouse_filter = 2
 size_flags_horizontal = 9
-size_flags_vertical = 4
+size_flags_vertical = 3
 
 [node name="View" type="ViewportContainer" parent="Local/Vbox/Hbox/Vbox2/ViewPanel"]
 margin_left = 5.808
 margin_top = 4.048
-margin_right = 988.192
-margin_bottom = 495.952
+margin_right = 914.192
+margin_bottom = 582.952
 rect_min_size = Vector2( 700, 400 )
 mouse_filter = 2
 size_flags_horizontal = 9
-size_flags_vertical = 7
+size_flags_vertical = 3
 stretch = true
 
 [node name="Viewport" type="Viewport" parent="Local/Vbox/Hbox/Vbox2/ViewPanel/View"]
-size = Vector2( 982, 491 )
+size = Vector2( 908, 578 )
 handle_input_locally = false
 render_target_update_mode = 3
 shadow_atlas_size = 1024
 
 [node name="3D_View" parent="Local/Vbox/Hbox/Vbox2/ViewPanel/View/Viewport" instance=ExtResource( 2 )]
 
+[node name="Preview2D" type="Control" parent="Local/Vbox/Hbox/Vbox2/ViewPanel"]
+margin_left = 5.808
+margin_top = 4.048
+margin_right = 914.192
+margin_bottom = 582.952
+
+[node name="Hbox" type="HBoxContainer" parent="Local/Vbox/Hbox/Vbox2/ViewPanel/Preview2D"]
+anchor_right = 1.0
+margin_bottom = 99.0
+alignment = 2
+
+[node name="TexPanel" type="PanelContainer" parent="Local/Vbox/Hbox/Vbox2/ViewPanel/Preview2D/Hbox"]
+self_modulate = Color( 1, 1, 1, 0.658824 )
+margin_left = 808.0
+margin_right = 908.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Icon" type="TextureRect" parent="Local/Vbox/Hbox/Vbox2/ViewPanel/Preview2D/Hbox/TexPanel"]
+margin_left = 5.808
+margin_top = 4.048
+margin_right = 94.192
+margin_bottom = 95.952
+expand = true
+script = ExtResource( 21 )
+
 [node name="OptionsPanel" type="PanelContainer" parent="Local/Vbox/Hbox/Vbox2"]
-margin_top = 503.0
-margin_right = 994.0
-margin_bottom = 551.096
+margin_top = 589.904
+margin_right = 920.0
+margin_bottom = 638.0
+size_flags_vertical = 8
 
 [node name="Hbox" type="HBoxContainer" parent="Local/Vbox/Hbox/Vbox2/OptionsPanel"]
 margin_left = 5.808
 margin_top = 4.048
-margin_right = 988.192
+margin_right = 914.192
 margin_bottom = 44.048
 
 [node name="Collision" type="CheckBox" parent="Local/Vbox/Hbox/Vbox2/OptionsPanel/Hbox"]
@@ -364,9 +518,26 @@ text = "COLLISION"
 align = 1
 script = ExtResource( 15 )
 
-[node name="Shadown" type="CheckBox" parent="Local/Vbox/Hbox/Vbox2/OptionsPanel/Hbox"]
+[node name="Preview" type="CheckBox" parent="Local/Vbox/Hbox/Vbox2/OptionsPanel/Hbox"]
 margin_left = 133.0
 margin_right = 263.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 130, 40 )
+text = "PREVIEW 3D"
+align = 1
+script = ExtResource( 14 )
+Node_Path = NodePath("../../../../../../../World/Selection3D/Preview")
+my_propriety = "pressed"
+his_propriety = "visible"
+
+[node name="Sep" type="VSeparator" parent="Local/Vbox/Hbox/Vbox2/OptionsPanel/Hbox"]
+margin_left = 266.0
+margin_right = 270.0
+margin_bottom = 40.0
+
+[node name="Shadown" type="CheckBox" parent="Local/Vbox/Hbox/Vbox2/OptionsPanel/Hbox"]
+margin_left = 273.0
+margin_right = 403.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 130, 40 )
 pressed = true
@@ -377,21 +548,9 @@ Node_Path = NodePath("../../../../../../../World/DirectionalLight")
 my_propriety = "pressed"
 his_propriety = "shadow_enabled"
 
-[node name="Preview" type="CheckBox" parent="Local/Vbox/Hbox/Vbox2/OptionsPanel/Hbox"]
-margin_left = 266.0
-margin_right = 396.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 130, 40 )
-text = "PREVIEW 3D"
-align = 1
-script = ExtResource( 14 )
-Node_Path = NodePath("../../../../../../../World/Selection3D/Preview")
-my_propriety = "pressed"
-his_propriety = "visible"
-
 [node name="Grid" type="CheckBox" parent="Local/Vbox/Hbox/Vbox2/OptionsPanel/Hbox"]
-margin_left = 399.0
-margin_right = 529.0
+margin_left = 406.0
+margin_right = 536.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 130, 40 )
 pressed = true
@@ -403,8 +562,8 @@ my_propriety = "pressed"
 his_propriety = "visible"
 
 [node name="Axis" type="CheckBox" parent="Local/Vbox/Hbox/Vbox2/OptionsPanel/Hbox"]
-margin_left = 532.0
-margin_right = 662.0
+margin_left = 539.0
+margin_right = 669.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 130, 40 )
 pressed = true
@@ -415,36 +574,14 @@ Node_Path = NodePath("../../../../../../../World/Axis")
 my_propriety = "pressed"
 his_propriety = "visible"
 
-[node name="Sep" type="VSeparator" parent="Local/Vbox/Hbox/Vbox2/OptionsPanel/Hbox"]
-margin_left = 665.0
-margin_right = 669.0
-margin_bottom = 40.0
-
-[node name="Export" type="Button" parent="Local/Vbox/Hbox/Vbox2/OptionsPanel/Hbox"]
-margin_left = 672.0
-margin_right = 771.616
-margin_bottom = 40.0
-text = "EXPORT GLTF"
-script = ExtResource( 11 )
-Node_Path = NodePath("../../../../../../../World")
-fuction = "export_scene_gltf"
-
-[node name="Export_scene" type="Button" parent="Local/Vbox/Hbox/Vbox2/OptionsPanel/Hbox"]
-margin_left = 774.0
-margin_right = 881.616
-margin_bottom = 40.0
-text = "EXPORT SCENE"
-script = ExtResource( 11 )
-Node_Path = NodePath("../../../../../../../World")
-fuction = "export_scene"
-
 [node name="Vbox" type="VBoxContainer" parent="Local/Vbox/Hbox"]
 margin_left = 997.0
 margin_right = 1280.0
-margin_bottom = 551.0
+margin_bottom = 638.0
 rect_min_size = Vector2( 283, 0 )
 mouse_filter = 2
 size_flags_horizontal = 9
+size_flags_vertical = 7
 
 [node name="TileMain" type="PanelContainer" parent="Local/Vbox/Hbox/Vbox"]
 margin_right = 283.0
@@ -487,19 +624,22 @@ View_path = NodePath("../Local/Vbox/Hbox/Vbox2/ViewPanel/View")
 script = ExtResource( 10 )
 
 [node name="Grid" type="MeshInstance" parent="World"]
-transform = Transform( 34, 0, 0, 0, 34, 0, 0, 0, 34, 0, 0, 0 )
+transform = Transform( 146.329, 0, 0, 0, 34, 0, 0, 0, 146.329, 0, 0, 0 )
 material_override = SubResource( 3 )
+cast_shadow = 0
 mesh = SubResource( 8 )
 skeleton = NodePath("../..")
 
 [node name="Area" type="Area" parent="World/Grid"]
 transform = Transform( 0.0294118, 0, 0, 0, 0.0294118, 0, 0, 0, 0.0294118, 0, 0, 0 )
+collision_mask = 0
 
 [node name="CollisionShape" type="CollisionShape" parent="World/Grid/Area"]
 shape = SubResource( 3956 )
 
 [node name="Axis" type="MeshInstance" parent="World"]
 transform = Transform( 1.49952, 0, 0, 0, 1.49952, 0, 0, 0, 1.49952, 0, 0, 0 )
+cast_shadow = 0
 mesh = ExtResource( 5 )
 material/0 = SubResource( 3950 )
 material/1 = SubResource( 3951 )

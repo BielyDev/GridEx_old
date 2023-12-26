@@ -21,7 +21,7 @@ func _ready() -> void:
 
 
 func _input(_event: InputEvent) -> void:
-	if state == STATE.BLOCK:
+	if state == STATE.BLOCK or Index.block_view:
 		return
 	
 	if _event is InputEventKey:
@@ -29,10 +29,10 @@ func _input(_event: InputEvent) -> void:
 		speed_vel = (Index.settings[Index.SETT.CAM_SENSI_MOVE] * 0.0003) * (int(Input.is_action_pressed("speed")) + 1)
 		
 		if Input.is_action_pressed("reset_cam"):
-			rotation_degrees = Vector3(-45,0,0)
+			rotation_degrees = Vector3(45,-180,0)
 			global_transform.origin = Vector3()
-			Cam.transform.origin = Vector3(0,0,10)
-			Cam.rotation_degrees = Vector3()
+			Cam.transform.origin = Vector3(0,0,-10)
+			Cam.rotation_degrees = Vector3(0,-180,0)
 			_reset_pos_cam()
 	
 	
@@ -71,6 +71,9 @@ func _input(_event: InputEvent) -> void:
 
 
 func _physics_process(_delta: float) -> void:
+	if Index.block_view:
+		return
+	
 	if state == STATE.FIRST_PERSON:
 		_translate_cam()
 	velocity =  velocity.linear_interpolate(Vector3(),0.1)

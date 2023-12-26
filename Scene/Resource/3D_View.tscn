@@ -6,7 +6,7 @@
 [sub_resource type="SpatialMaterial" id=9]
 flags_transparent = true
 flags_unshaded = true
-albedo_color = Color( 1, 1, 1, 0.364706 )
+albedo_color = Color( 0.658824, 0, 1, 0.364706 )
 
 [node name="3D_View" type="Spatial"]
 
@@ -33,6 +33,6 @@ transform = Transform( 1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0, 2.5332
 
 [node name="Ray" type="RayCast" parent="Pos/Camera"]
 enabled = true
-cast_to = Vector3( 0, 0, -70 )
+cast_to = Vector3( 0, 0, -150 )
 collide_with_areas = true
 collide_with_bodies = false

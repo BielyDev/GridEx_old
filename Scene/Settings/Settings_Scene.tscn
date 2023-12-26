@@ -82,13 +82,13 @@ value = 50.0
 [node name="GraphicPanel" type="PanelContainer" parent="."]
 margin_top = 101.0
 margin_right = 371.0
-margin_bottom = 225.096
+margin_bottom = 253.096
 
 [node name="Graphic" type="VBoxContainer" parent="GraphicPanel"]
 margin_left = 5.808
 margin_top = 4.048
 margin_right = 365.192
-margin_bottom = 120.048
+margin_bottom = 148.048
 
 [node name="Tittle" type="Label" parent="GraphicPanel/Graphic"]
 margin_top = -1.0
@@ -104,7 +104,7 @@ margin_bottom = 32.0
 [node name="Options" type="VBoxContainer" parent="GraphicPanel/Graphic"]
 margin_top = 35.0
 margin_right = 359.0
-margin_bottom = 116.0
+margin_bottom = 144.0
 
 [node name="Glow" type="CheckBox" parent="GraphicPanel/Graphic/Options"]
 margin_right = 359.0
@@ -121,16 +121,25 @@ margin_top = 28.0
 margin_right = 359.0
 margin_bottom = 53.04
 mouse_default_cursor_shape = 2
-pressed = true
 text = "FILTER"
 align = 1
 script = ExtResource( 1 )
 propriety = "adjustment_enabled"
 
-[node name="Reflects" type="CheckBox" parent="GraphicPanel/Graphic/Options"]
+[node name="Fog" type="CheckBox" parent="GraphicPanel/Graphic/Options"]
 margin_top = 56.0
 margin_right = 359.0
 margin_bottom = 81.04
+mouse_default_cursor_shape = 2
+text = "FOG"
+align = 1
+script = ExtResource( 1 )
+propriety = "fog_enabled"
+
+[node name="Reflects" type="CheckBox" parent="GraphicPanel/Graphic/Options"]
+margin_top = 84.0
+margin_right = 359.0
+margin_bottom = 109.04
 mouse_default_cursor_shape = 2
 text = "REFLECTS"
 align = 1

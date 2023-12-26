@@ -1,9 +1,19 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Assets/Models/GLTF/Basic_T/Materiais_003.material" type="Material" id=1]
-[ext_resource path="res://Assets/Models/GLTF/Basic_T/Materiais_004.material" type="Material" id=2]
+[sub_resource type="SpatialMaterial" id=3]
+resource_name = "Materiais.003"
+vertex_color_use_as_albedo = true
+albedo_color = Color( 0.906332, 0.41013, 0.258602, 1 )
+roughness = 0.5
 
-[sub_resource type="ArrayMesh" id=1]
+[sub_resource type="SpatialMaterial" id=4]
+resource_name = "Materiais.004"
+vertex_color_use_as_albedo = true
+params_cull_mode = 2
+albedo_color = Color( 1, 0.604937, 0.260391, 1 )
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id=5]
 resource_name = "Map_Cubo002"
 surfaces/0 = {
 "aabb": AABB( -1, -1, -1, 2, 2, 2.00001 ),
@@ -12,7 +22,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194711,
 "index_count": 462,
-"material": ExtResource( 1 ),
+"material": SubResource( 3 ),
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 308
@@ -24,7 +34,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 2194711,
 "index_count": 30,
-"material": ExtResource( 2 ),
+"material": SubResource( 4 ),
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 20
@@ -33,11 +43,10 @@ surfaces/1 = {
 [sub_resource type="BoxShape" id=2]
 
 [node name="Loot" type="MeshInstance"]
-mesh = SubResource( 1 )
+mesh = SubResource( 5 )
 
-[node name="Area" type="Area" parent="."]
-collision_layer = 2
+[node name="Body" type="StaticBody" parent="."]
 collision_mask = 0
 
-[node name="CollisionShape" type="CollisionShape" parent="Area"]
+[node name="CollisionShape" type="CollisionShape" parent="Body"]
 shape = SubResource( 2 )
