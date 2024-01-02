@@ -134,7 +134,7 @@ void light() {
 
 }
 "
-graph_offset = Vector2( -99.3198, 488.827 )
+graph_offset = Vector2( 284.148, 138.278 )
 nodes/fragment/0/position = Vector2( 600, 280 )
 nodes/fragment/2/node = SubResource( 3957 )
 nodes/fragment/2/position = Vector2( -80, 140 )
@@ -175,7 +175,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+"values": [ Color( 1, 0.34902, 0.784314, 1 ), Color( 1, 0.34902, 0.784314, 0 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:material/0:shader_param/Glow")
@@ -188,6 +188,18 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ 0.415, 0.894, 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Vector3( 1.1, 1.1, 1.1 ), Vector3( 1.2, 1.2, 1.2 ), Vector3( 1.1, 1.1, 1.1 ) ]
 }
 
 [sub_resource type="Animation" id=3968]
@@ -215,6 +227,18 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1.1, 1.1, 1.1 ) ]
 }
 
 [sub_resource type="Animation" id=3969]
@@ -306,6 +330,3 @@ script = ExtResource( 2 )
 [node name="Light" type="DirectionalLight" parent="."]
 transform = Transform( 0.866025, 0.353553, -0.353553, 0, 0.707107, 0.707107, 0.5, -0.612372, 0.612372, 0, 1, 0 )
 visible = false
-shadow_enabled = true
-
-[node name="Tween" type="Tween" parent="."]

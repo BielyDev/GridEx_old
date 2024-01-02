@@ -75,7 +75,6 @@ func instance_block(item_scene: PackedScene,pos_in: Vector3,rot: Vector3,undo: b
 	item_ins.global_transform.origin = pos_in
 	item_ins.rotation_degrees = rot
 	
-	
 	block_pos.append({pos = pos_in, path = item_scene.resource_path})
 	if undo: Index.undo.append({pos = pos_in,add = true,path = item_scene.resource_path})
 

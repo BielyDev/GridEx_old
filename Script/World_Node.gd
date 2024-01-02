@@ -33,6 +33,7 @@ func _input(event: InputEvent) -> void:
 	if Input.is_action_just_released("click_left"):
 		pos_save = Vector3(0,999,0)
 
+
 func _selection_moviment() -> void:
 	var mouse2d = View.get_local_mouse_position() #+ Vector2(-40,0)
 	var project = Index.cam.project_position(mouse2d,40)
@@ -57,8 +58,8 @@ func _add_block() -> void:
 		Index.MODE.ADD:
 			if Index.tile.path != "":
 				add_block_settings()
-				if Index.edit.enabled == true:
-					Index.call_edit()
+				if IndexLayer.edit.enabled == true:
+					IndexLayer.call_edit()
 		Index.MODE.REMOVE:
 			Add.remove_block_settings()
 

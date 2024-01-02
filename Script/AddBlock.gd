@@ -5,7 +5,7 @@ onready var Par := get_parent()
 onready var Cont: Node = $"../Controller"
 var pos
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pos = Par.pos
 
 

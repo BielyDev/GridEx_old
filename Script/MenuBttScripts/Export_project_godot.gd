@@ -7,7 +7,7 @@ var expr = ("res://Scene/Popups/Export_Godot_config.tscn")
 func start() -> void:
 	Index.block_view = true
 	
-	Index.edit_node.file_explore(
+	IndexLayer.file_explore(
 		["tscn"],
 		self,
 		"ok",
@@ -15,7 +15,7 @@ func start() -> void:
 	)
 
 func ok(dir):
-	Index.call_export(expr,dir,self,"final")
+	IndexLayer.call_export(expr,dir,self,"final")
 	Index.block_view = true
 
 func final():

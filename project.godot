@@ -10,11 +10,17 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Button",
+"class": "AnimationButtonClass",
+"language": "GDScript",
+"path": "res://Script/Class/AnimationButtonClass.gd"
+}, {
+"base": "AnimationButtonClass",
 "class": "TileButton",
 "language": "GDScript",
-"path": "res://Script/TileButtonClass.gd"
+"path": "res://Script/Class/TileButtonClass.gd"
 } ]
 _global_script_class_icons={
+"AnimationButtonClass": "",
 "TileButton": ""
 }
 
@@ -22,24 +28,29 @@ _global_script_class_icons={
 
 config/name="GridEx"
 run/main_scene="res://Scene/World.tscn"
+boot_splash/image="res://Assets/Others/GridEx_Splash.png"
+boot_splash/bg_color=Color( 0.141176, 0.141176, 0.141176, 0 )
 config/icon="res://icon.svg"
 config/windows_native_icon="res://icon(1).ico"
 
 [autoload]
 
-Index="*res://Script/Index.gd"
+Index="*res://Script/Singleton/Index.gd"
+IndexLayer="*res://Scene/Singleton/IndexLayer.tscn"
 
 [display]
 
 window/size/width=1280
 window/size/height=720
+window/per_pixel_transparency/allowed=true
+window/per_pixel_transparency/enabled=true
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
-theme/custom="res://Assets/Theme/Main.tres"
+theme/custom="res://Assets/Theme/Dark.tres"
 
 [input]
 

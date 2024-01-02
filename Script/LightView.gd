@@ -1,13 +1,13 @@
 extends PanelContainer
 
 onready var Pos: Position3D = $View/View/Pos
-onready var light__control: Control = $"../../../../../.."
+onready var LightControl: Control = $"../../../../../.."
 
 var mouse_enabled: bool = false
 
 
 func _ready() -> void:
-	Pos.global_transform.origin = light__control.light.global_transform.origin
+	Pos.global_transform.origin = LightControl.light.global_transform.origin
 
 
 func _on_PanelView_mouse_entered() -> void:

@@ -3,7 +3,6 @@ extends Node
 onready var Block: Spatial = $"../Block"
 onready var Grid: MeshInstance = $"../Grid"
 onready var Selection: MeshInstance = $"../Selection3D"
-onready var Tw: Tween = $"../Tween"
 
 var rot: Vector3
 
@@ -45,18 +44,15 @@ func _rotation_selection() -> void:
 		Selection.rotation_degrees.x = rot.x
 		rot.x += 90
 		
-		Tw.interpolate_property(Selection,"rotation_degrees:x",Selection.rotation_degrees.x,rot.x,0.5,Tween.TRANS_BACK)
-		Tw.start()
+		Index.animated_tween_ui(Selection,"rotation_degrees:x",Selection.rotation_degrees.x,rot.x,0.5)
 	if Input.is_action_just_pressed("rot_y"):
 		Selection.rotation_degrees.y = rot.y
 		rot.y += 90
 		
-		Tw.interpolate_property(Selection,"rotation_degrees:y",Selection.rotation_degrees.y,rot.y,0.5,Tween.TRANS_BACK)
-		Tw.start()
+		Index.animated_tween_ui(Selection,"rotation_degrees:y",Selection.rotation_degrees.y,rot.y,0.5)
 	if Input.is_action_just_pressed("rot_z"):
 		Selection.rotation_degrees.z = rot.z
 		rot.z += 90
 		
-		Tw.interpolate_property(Selection,"rotation_degrees:z",Selection.rotation_degrees.z,rot.z,0.5,Tween.TRANS_BACK)
-		Tw.start()
+		Index.animated_tween_ui(Selection,"rotation_degrees:z",Selection.rotation_degrees.z,rot.z,0.5)
 

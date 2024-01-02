@@ -14,7 +14,7 @@ func _ready() -> void:
 	Filex.show_hidden_files = false
 	Filex.dialog_text = str(Filex.current_file,".",files[0])
 
-func _unhandled_key_input(event: InputEventKey) -> void:
+func _unhandled_key_input(_event: InputEventKey) -> void:
 	Filex.dialog_text = str(Filex.current_file,".",files[0])
 
 

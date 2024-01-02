@@ -1,3 +1,63 @@
-[gd_scene format=2]
+[gd_scene load_steps=3 format=2]
 
-[node name="Import_Config" type="CanvasLayer"]
+[sub_resource type="Environment" id=1]
+background_mode = 1
+background_color = Color( 0.188235, 0.188235, 0.188235, 1 )
+
+[sub_resource type="CubeMesh" id=2]
+
+[node name="Import_Config" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Background" type="PanelContainer" parent="."]
+modulate = Color( 1, 1, 1, 0.647059 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Screen" type="PanelContainer" parent="."]
+anchor_left = 0.0777344
+anchor_top = 0.0777778
+anchor_right = 0.922266
+anchor_bottom = 0.922222
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Vbox" type="VBoxContainer" parent="Screen"]
+margin_left = 5.808
+margin_top = 4.048
+margin_right = 1075.19
+margin_bottom = 603.952
+
+[node name="View" type="ViewportContainer" parent="Screen/Vbox"]
+margin_right = 1069.0
+margin_bottom = 599.0
+size_flags_vertical = 3
+stretch = true
+
+[node name="Viewport" type="Viewport" parent="Screen/Vbox/View"]
+size = Vector2( 1069, 599 )
+size_override_stretch = true
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="World3D" type="Spatial" parent="Screen/Vbox/View/Viewport"]
+
+[node name="Pos" type="Position3D" parent="Screen/Vbox/View/Viewport/World3D"]
+transform = Transform( 1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0 )
+
+[node name="Camera" type="Camera" parent="Screen/Vbox/View/Viewport/World3D/Pos"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8 )
+environment = SubResource( 1 )
+
+[node name="Models" type="Spatial" parent="Screen/Vbox/View/Viewport/World3D"]
+
+[node name="Cube" type="MeshInstance" parent="Screen/Vbox/View/Viewport/World3D/Models"]
+mesh = SubResource( 2 )
+skeleton = NodePath("../..")
+
+[node name="Settings" type="Spatial" parent="Screen/Vbox/View/Viewport/World3D"]
+
+[node name="DirectionalLight" type="DirectionalLight" parent="Screen/Vbox/View/Viewport/World3D/Settings"]
+transform = Transform( 0.866025, 0.25, 0.433013, -0.5, 0.433013, 0.75, 0, -0.866025, 0.5, 0, 2.72987, 0 )

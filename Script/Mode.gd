@@ -1,15 +1,16 @@
-extends Button
+extends AnimationButtonClass
 
 export(int, "VOID","ADD","REMOVE") var mode: int 
 export(String) var key: String 
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	if Index.mode == mode:
 		modulate = Color.purple
 	else:
 		modulate = Color.white
 
 func _pressed() -> void:
+	button_animated()
 	Index.mode = mode
 
 func _unhandled_key_input(_event: InputEventKey) -> void:

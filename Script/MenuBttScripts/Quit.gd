@@ -4,7 +4,7 @@ signal finished()
 
 func start() -> void:
 	Index.block_view = true
-	Index.edit_node.warning_pc(
+	IndexLayer.warning_pc(
 		"DESEJA MESMO SAIR?",
 		self,
 		"ok",
