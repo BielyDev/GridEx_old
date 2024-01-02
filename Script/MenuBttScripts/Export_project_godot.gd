@@ -2,6 +2,8 @@ extends Node
 
 signal finished()
 
+var expr = ("res://Scene/Popups/Export_Godot_config.tscn")
+
 func start() -> void:
 	Index.block_view = true
 	
@@ -13,7 +15,10 @@ func start() -> void:
 	)
 
 func ok(dir):
-	Index.edit_node.World3D.export_scene(str(dir,".tscn"))
+	Index.call_export(expr,dir,self,"final")
+	Index.block_view = true
+
+func final():
 	emit_signal("finished")
 	Index.block_view = false
 

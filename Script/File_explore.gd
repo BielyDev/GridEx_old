@@ -6,6 +6,7 @@ signal CANCEL()
 onready var Filex: FileDialog = $FileDialog
 
 var files: Array = []
+var exporting: bool = false
 
 func _ready() -> void:
 	Filex.show()
@@ -18,15 +19,23 @@ func _unhandled_key_input(event: InputEventKey) -> void:
 
 
 func _on_FileDialog_confirmed() -> void:
-	var so = str(Filex.current_dir,"/",Filex.current_file)
+	if exporting:
+		return
+	exporting = true
 	
-	emit_signal("OK",so)
+	var dir = str(Filex.current_dir,"/",Filex.current_file)
+	
+	emit_signal("OK",dir)
 	queue_free()
 
 func _on_FileDialog_file_selected(path: String) -> void:
-	var so = str(Filex.current_dir,"/",Filex.current_file)
+	if exporting:
+		return
+	exporting = true
 	
-	emit_signal("OK",so)
+	var dir = str(Filex.current_dir,"/",Filex.current_file)
+	
+	emit_signal("OK",dir)
 	queue_free()
 
 func _on_FileDialog_popup_hide() -> void:

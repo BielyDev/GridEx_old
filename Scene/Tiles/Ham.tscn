@@ -1,10 +1,24 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Assets/Models/GLTF/Basic_T/Materiais_002.material" type="Material" id=1]
-[ext_resource path="res://Assets/Models/GLTF/Basic_T/Materiais_001.material" type="Material" id=2]
-[ext_resource path="res://Assets/Models/GLTF/Basic_T/Materiais.material" type="Material" id=3]
+[sub_resource type="SpatialMaterial" id=5]
+resource_name = "Materiais"
+vertex_color_use_as_albedo = true
+params_cull_mode = 2
+albedo_color = Color( 0.905883, 0.368627, 0.298039, 1 )
 
-[sub_resource type="ArrayMesh" id=1]
+[sub_resource type="SpatialMaterial" id=6]
+resource_name = "Materiais.001"
+vertex_color_use_as_albedo = true
+params_cull_mode = 2
+albedo_color = Color( 0.906332, 0.123545, 0.239406, 1 )
+
+[sub_resource type="SpatialMaterial" id=7]
+resource_name = "Materiais.002"
+vertex_color_use_as_albedo = true
+params_cull_mode = 2
+albedo_color = Color( 1, 0.559951, 0.271643, 1 )
+
+[sub_resource type="ArrayMesh" id=8]
 resource_name = "Map_Cubo"
 surfaces/0 = {
 "aabb": AABB( -1, -1, -1, 2, 1.81139, 2 ),
@@ -13,7 +27,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194711,
 "index_count": 234,
-"material": ExtResource( 3 ),
+"material": SubResource( 5 ),
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 84
@@ -25,7 +39,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 2194711,
 "index_count": 48,
-"material": ExtResource( 2 ),
+"material": SubResource( 6 ),
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 18
@@ -37,7 +51,7 @@ surfaces/2 = {
 "blend_shape_data": [  ],
 "format": 2194711,
 "index_count": 42,
-"material": ExtResource( 1 ),
+"material": SubResource( 7 ),
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 12
@@ -46,7 +60,7 @@ surfaces/2 = {
 [sub_resource type="BoxShape" id=4]
 
 [node name="Ham" type="MeshInstance"]
-mesh = SubResource( 1 )
+mesh = SubResource( 8 )
 
 [node name="Body" type="StaticBody" parent="."]
 collision_mask = 0

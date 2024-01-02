@@ -1,0 +1,303 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Script/Lock_Value.gd" type="Script" id=1]
+[ext_resource path="res://Script/Light_Control.gd" type="Script" id=2]
+[ext_resource path="res://Script/SpinBox_value.gd" type="Script" id=3]
+[ext_resource path="res://Script/Color_value.gd" type="Script" id=4]
+[ext_resource path="res://Script/LightView.gd" type="Script" id=5]
+
+[node name="Gui" type="CanvasLayer"]
+layer = 5
+
+[node name="Light_Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="Background" type="PanelContainer" parent="Light_Control"]
+modulate = Color( 1, 1, 1, 0.627451 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="LightPanel" type="PanelContainer" parent="Light_Control"]
+self_modulate = Color( 0.509804, 0.509804, 0.509804, 1 )
+anchor_left = 0.278125
+anchor_top = 0.201389
+anchor_right = 0.722656
+anchor_bottom = 0.8
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Vbox" type="VBoxContainer" parent="Light_Control/LightPanel"]
+margin_left = 5.808
+margin_top = 4.048
+margin_right = 563.192
+margin_bottom = 426.952
+mouse_filter = 2
+
+[node name="Tittle" type="Label" parent="Light_Control/LightPanel/Vbox"]
+margin_top = -1.0
+margin_right = 557.0
+margin_bottom = 24.04
+text = "LIGHT MENU"
+align = 1
+valign = 1
+
+[node name="Panel" type="PanelContainer" parent="Light_Control/LightPanel/Vbox"]
+margin_top = 28.0
+margin_right = 557.616
+margin_bottom = 422.0
+mouse_filter = 2
+size_flags_vertical = 3
+
+[node name="Vbox" type="VBoxContainer" parent="Light_Control/LightPanel/Vbox/Panel"]
+margin_left = 5.808
+margin_top = 4.048
+margin_right = 551.808
+margin_bottom = 389.952
+mouse_filter = 2
+
+[node name="Hs" type="HSeparator" parent="Light_Control/LightPanel/Vbox/Panel/Vbox"]
+margin_right = 546.0
+margin_bottom = 4.0
+
+[node name="Energy" type="HBoxContainer" parent="Light_Control/LightPanel/Vbox/Panel/Vbox"]
+margin_top = 7.0
+margin_right = 546.0
+margin_bottom = 33.0
+alignment = 1
+
+[node name="Tittle" type="Label" parent="Light_Control/LightPanel/Vbox/Panel/Vbox/Energy"]
+margin_right = 422.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "LIGHT ENERGY"
+
+[node name="Value" type="SpinBox" parent="Light_Control/LightPanel/Vbox/Panel/Vbox/Energy"]
+margin_left = 425.0
+margin_right = 546.616
+margin_bottom = 26.096
+mouse_default_cursor_shape = 2
+max_value = 25.0
+value = 1.0
+script = ExtResource( 3 )
+his_propriety = "light_energy"
+
+[node name="Hs2" type="HSeparator" parent="Light_Control/LightPanel/Vbox/Panel/Vbox"]
+margin_top = 36.0
+margin_right = 546.0
+margin_bottom = 40.0
+
+[node name="Size" type="HBoxContainer" parent="Light_Control/LightPanel/Vbox/Panel/Vbox"]
+margin_top = 43.0
+margin_right = 546.0
+margin_bottom = 69.0
+alignment = 1
+
+[node name="Tittle" type="Label" parent="Light_Control/LightPanel/Vbox/Panel/Vbox/Size"]
+margin_right = 422.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "LIGHT SIZE"
+
+[node name="Value" type="SpinBox" parent="Light_Control/LightPanel/Vbox/Panel/Vbox/Size"]
+margin_left = 425.0
+margin_right = 546.616
+margin_bottom = 26.096
+mouse_default_cursor_shape = 2
+value = 5.0
+script = ExtResource( 3 )
+his_propriety = "omni_range"
+
+[node name="Hs3" type="HSeparator" parent="Light_Control/LightPanel/Vbox/Panel/Vbox"]
+margin_top = 72.0
+margin_right = 546.0
+margin_bottom = 76.0
+
+[node name="Attenuation" type="HBoxContainer" parent="Light_Control/LightPanel/Vbox/Panel/Vbox"]
+margin_top = 79.0
+margin_right = 546.0
+margin_bottom = 105.0
+alignment = 1
+
+[node name="Tittle" type="Label" parent="Light_Control/LightPanel/Vbox/Panel/Vbox/Attenuation"]
+margin_right = 422.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "LIGHT ATTENUATION"
+
+[node name="Value" type="SpinBox" parent="Light_Control/LightPanel/Vbox/Panel/Vbox/Attenuation"]
+margin_left = 425.0
+margin_right = 546.616
+margin_bottom = 26.096
+mouse_default_cursor_shape = 2
+max_value = 1000.0
+value = 1.0
+script = ExtResource( 3 )
+his_propriety = "omni_attenuation"
+
+[node name="Hs4" type="HSeparator" parent="Light_Control/LightPanel/Vbox/Panel/Vbox"]
+margin_top = 108.0
+margin_right = 546.0
+margin_bottom = 112.0
+
+[node name="Hs7" type="HSeparator" parent="Light_Control/LightPanel/Vbox/Panel/Vbox"]
+margin_top = 115.0
+margin_right = 546.0
+margin_bottom = 119.0
+
+[node name="View" type="HBoxContainer" parent="Light_Control/LightPanel/Vbox/Panel/Vbox"]
+margin_top = 122.0
+margin_right = 546.0
+margin_bottom = 349.0
+mouse_filter = 2
+size_flags_vertical = 3
+
+[node name="PanelView" type="PanelContainer" parent="Light_Control/LightPanel/Vbox/Panel/Vbox/View"]
+margin_right = 405.0
+margin_bottom = 227.0
+rect_min_size = Vector2( 405, 0 )
+mouse_default_cursor_shape = 2
+script = ExtResource( 5 )
+
+[node name="View" type="ViewportContainer" parent="Light_Control/LightPanel/Vbox/Panel/Vbox/View/PanelView"]
+margin_left = 5.808
+margin_top = 4.048
+margin_right = 399.192
+margin_bottom = 222.952
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="View" type="Viewport" parent="Light_Control/LightPanel/Vbox/Panel/Vbox/View/PanelView/View"]
+size = Vector2( 393, 218 )
+size_override_stretch = true
+handle_input_locally = false
+render_target_update_mode = 3
+shadow_atlas_size = 3072
+shadow_atlas_quad_1 = 3
+shadow_atlas_quad_2 = 4
+shadow_atlas_quad_3 = 5
+
+[node name="Pos" type="Position3D" parent="Light_Control/LightPanel/Vbox/Panel/Vbox/View/PanelView/View/View"]
+
+[node name="Cam" type="ClippedCamera" parent="Light_Control/LightPanel/Vbox/Panel/Vbox/View/PanelView/View/View/Pos"]
+transform = Transform( 1, 1.02332e-08, 4.28272e-09, -1.10035e-08, 0.964003, 0.265893, -1.40763e-09, -0.265893, 0.964003, 0, 0.858086, 3.19771 )
+
+[node name="Vbox" type="VBoxContainer" parent="Light_Control/LightPanel/Vbox/Panel/Vbox/View"]
+margin_left = 408.0
+margin_right = 546.0
+margin_bottom = 227.0
+size_flags_horizontal = 3
+
+[node name="ColorPanel" type="PanelContainer" parent="Light_Control/LightPanel/Vbox/Panel/Vbox/View/Vbox"]
+margin_right = 138.616
+margin_bottom = 227.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Vbox" type="VBoxContainer" parent="Light_Control/LightPanel/Vbox/Panel/Vbox/View/Vbox/ColorPanel"]
+margin_left = 5.808
+margin_top = 4.048
+margin_right = 132.808
+margin_bottom = 222.952
+
+[node name="Tittle" type="Label" parent="Light_Control/LightPanel/Vbox/Panel/Vbox/View/Vbox/ColorPanel/Vbox"]
+margin_top = -1.0
+margin_right = 127.0
+margin_bottom = 24.04
+text = "LIGHT COLOR"
+align = 1
+valign = 1
+
+[node name="Color" type="ColorPickerButton" parent="Light_Control/LightPanel/Vbox/Panel/Vbox/View/Vbox/ColorPanel/Vbox"]
+margin_top = 28.0
+margin_right = 127.0
+margin_bottom = 54.096
+mouse_default_cursor_shape = 2
+color = Color( 1, 1, 1, 1 )
+script = ExtResource( 4 )
+his_propriety = "light_color"
+
+[node name="Hs" type="HSeparator" parent="Light_Control/LightPanel/Vbox/Panel/Vbox/View/Vbox/ColorPanel/Vbox"]
+margin_top = 57.0
+margin_right = 127.0
+margin_bottom = 61.0
+
+[node name="Shadowns" type="HBoxContainer" parent="Light_Control/LightPanel/Vbox/Panel/Vbox/View/Vbox/ColorPanel/Vbox"]
+margin_top = 64.0
+margin_right = 127.0
+margin_bottom = 117.0
+alignment = 1
+
+[node name="Vbox" type="VBoxContainer" parent="Light_Control/LightPanel/Vbox/Panel/Vbox/View/Vbox/ColorPanel/Vbox/Shadowns"]
+margin_right = 127.0
+margin_bottom = 53.0
+
+[node name="Tittle" type="Label" parent="Light_Control/LightPanel/Vbox/Panel/Vbox/View/Vbox/ColorPanel/Vbox/Shadowns/Vbox"]
+margin_right = 127.04
+margin_bottom = 25.04
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "SHADOWNS ENABLE"
+
+[node name="Value" type="CheckBox" parent="Light_Control/LightPanel/Vbox/Panel/Vbox/View/Vbox/ColorPanel/Vbox/Shadowns/Vbox"]
+margin_top = 28.0
+margin_right = 127.0
+margin_bottom = 53.04
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 7
+align = 1
+icon_align = 1
+script = ExtResource( 1 )
+my_propriety = "pressed"
+his_propriety = "shadow_enabled"
+
+[node name="ShadownsColor" type="HBoxContainer" parent="Light_Control/LightPanel/Vbox/Panel/Vbox/View/Vbox/ColorPanel/Vbox"]
+margin_top = 120.0
+margin_right = 127.0
+margin_bottom = 174.0
+alignment = 1
+
+[node name="Vbox" type="VBoxContainer" parent="Light_Control/LightPanel/Vbox/Panel/Vbox/View/Vbox/ColorPanel/Vbox/ShadownsColor"]
+margin_left = 3.0
+margin_right = 124.0
+margin_bottom = 54.0
+
+[node name="Tittle" type="Label" parent="Light_Control/LightPanel/Vbox/Panel/Vbox/View/Vbox/ColorPanel/Vbox/ShadownsColor/Vbox"]
+margin_right = 121.0
+margin_bottom = 25.04
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "SHADOWNS COLOR"
+
+[node name="Value" type="ColorPickerButton" parent="Light_Control/LightPanel/Vbox/Panel/Vbox/View/Vbox/ColorPanel/Vbox/ShadownsColor/Vbox"]
+margin_top = 28.0
+margin_right = 121.616
+margin_bottom = 54.096
+rect_min_size = Vector2( 121.616, 0 )
+mouse_default_cursor_shape = 2
+script = ExtResource( 4 )
+his_propriety = "shadow_color"
+
+[node name="Hs5" type="HSeparator" parent="Light_Control/LightPanel/Vbox/Panel/Vbox"]
+margin_top = 352.0
+margin_right = 546.0
+margin_bottom = 356.0
+
+[node name="Ok" type="Button" parent="Light_Control/LightPanel/Vbox/Panel/Vbox"]
+margin_top = 359.0
+margin_right = 546.0
+margin_bottom = 385.096
+mouse_default_cursor_shape = 2
+text = "OK"
+
+[connection signal="mouse_entered" from="Light_Control/LightPanel/Vbox/Panel/Vbox/View/PanelView" to="Light_Control/LightPanel/Vbox/Panel/Vbox/View/PanelView" method="_on_PanelView_mouse_entered"]
+[connection signal="mouse_exited" from="Light_Control/LightPanel/Vbox/Panel/Vbox/View/PanelView" to="Light_Control/LightPanel/Vbox/Panel/Vbox/View/PanelView" method="_on_PanelView_mouse_exited"]
+[connection signal="pressed" from="Light_Control/LightPanel/Vbox/Panel/Vbox/Ok" to="Light_Control" method="_on_Ok_pressed"]

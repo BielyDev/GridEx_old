@@ -48,38 +48,16 @@ margin_top = 35.0
 margin_right = 260.0
 margin_bottom = 234.596
 rect_min_size = Vector2( 0, 199.596 )
+scroll_vertical = 112
 
 [node name="Tiles" type="HFlowContainer" parent="Info/ScrollContainer"]
+margin_top = -112.404
 margin_right = 250.0
-margin_bottom = 312.0
+margin_bottom = 199.596
 size_flags_horizontal = 3
 
-[node name="Button_Tile" type="Button" parent="Info/ScrollContainer/Tiles"]
-margin_right = 60.0
-margin_bottom = 60.0
-rect_min_size = Vector2( 60, 60 )
-mouse_default_cursor_shape = 2
-size_flags_horizontal = 0
-icon = ExtResource( 1 )
-expand_icon = true
-script = ExtResource( 2 )
-Block_scene = "res://Scene/Tiles/Terrain.tscn"
-
-[node name="Button_Tile5" type="Button" parent="Info/ScrollContainer/Tiles"]
-margin_left = 63.0
-margin_right = 123.0
-margin_bottom = 60.0
-rect_min_size = Vector2( 60, 60 )
-mouse_default_cursor_shape = 2
-size_flags_horizontal = 0
-icon = ExtResource( 15 )
-expand_icon = true
-script = ExtResource( 2 )
-Block_scene = "res://Scene/Tiles/Floor_ice.tscn"
-
 [node name="Button_Tile2" type="Button" parent="Info/ScrollContainer/Tiles"]
-margin_left = 126.0
-margin_right = 186.0
+margin_right = 60.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 60, 60 )
 mouse_default_cursor_shape = 2
@@ -90,8 +68,8 @@ script = ExtResource( 2 )
 Block_scene = "res://Scene/Tiles/Floor.tscn"
 
 [node name="Button_Tile6" type="Button" parent="Info/ScrollContainer/Tiles"]
-margin_left = 189.0
-margin_right = 249.0
+margin_left = 63.0
+margin_right = 123.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 60, 60 )
 mouse_default_cursor_shape = 2
@@ -100,6 +78,30 @@ icon = ExtResource( 14 )
 expand_icon = true
 script = ExtResource( 2 )
 Block_scene = "res://Scene/Tiles/Floor_ice.tscn"
+
+[node name="Button_Tile" type="Button" parent="Info/ScrollContainer/Tiles"]
+margin_left = 126.0
+margin_right = 186.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 60, 60 )
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 0
+icon = ExtResource( 1 )
+expand_icon = true
+script = ExtResource( 2 )
+Block_scene = "res://Scene/Tiles/Terrain.tscn"
+
+[node name="Button_Tile5" type="Button" parent="Info/ScrollContainer/Tiles"]
+margin_left = 189.0
+margin_right = 249.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 60, 60 )
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 0
+icon = ExtResource( 15 )
+expand_icon = true
+script = ExtResource( 2 )
+Block_scene = "res://Scene/Tiles/Terrain_ice.tscn"
 
 [node name="Button_Tile3" type="Button" parent="Info/ScrollContainer/Tiles"]
 margin_top = 63.0
@@ -124,7 +126,7 @@ size_flags_horizontal = 0
 icon = ExtResource( 10 )
 expand_icon = true
 script = ExtResource( 2 )
-Block_scene = "res://Scene/Tiles/Plant.tscn"
+Block_scene = "res://Scene/Tiles/Plant_ice.tscn"
 
 [node name="Button_Tile4" type="Button" parent="Info/ScrollContainer/Tiles"]
 margin_left = 126.0
@@ -201,7 +203,7 @@ size_flags_horizontal = 0
 icon = ExtResource( 8 )
 expand_icon = true
 script = ExtResource( 2 )
-Block_scene = "res://Scene/Tiles/Loot.tscn"
+Block_scene = "res://Scene/Tiles/Stone.tscn"
 
 [node name="Button_Tile11" type="Button" parent="Info/ScrollContainer/Tiles"]
 margin_top = 189.0
@@ -213,7 +215,7 @@ size_flags_horizontal = 0
 icon = ExtResource( 6 )
 expand_icon = true
 script = ExtResource( 2 )
-Block_scene = "res://Scene/Tiles/Terrain.tscn"
+Block_scene = "res://Scene/Tiles/Gear.tscn"
 
 [node name="Button_Tile13" type="Button" parent="Info/ScrollContainer/Tiles"]
 margin_left = 63.0
@@ -226,7 +228,7 @@ size_flags_horizontal = 0
 icon = ExtResource( 16 )
 expand_icon = true
 script = ExtResource( 2 )
-Block_scene = "res://Scene/Tiles/Floor.tscn"
+Block_scene = "res://Scene/Tiles/Gear_de3.tscn"
 
 [node name="Button_Tile14" type="Button" parent="Info/ScrollContainer/Tiles"]
 margin_left = 126.0

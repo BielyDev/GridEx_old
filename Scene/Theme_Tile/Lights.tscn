@@ -1,0 +1,80 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Script/Button_Light.gd" type="Script" id=1]
+[ext_resource path="res://Assets/2D/SVG/UI.svg" type="Texture" id=2]
+[ext_resource path="res://Script/Button_Light_edit.gd" type="Script" id=3]
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 23
+atlas = ExtResource( 2 )
+region = Rect2( 153, 158, 130, 130 )
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 23
+atlas = ExtResource( 2 )
+region = Rect2( 3, 2, 129, 130 )
+
+[node name="Lights" type="PanelContainer"]
+margin_top = 252.0
+margin_right = 262.0
+margin_bottom = 501.096
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Info" type="VBoxContainer" parent="."]
+margin_left = 5.808
+margin_top = 4.048
+margin_right = 256.192
+margin_bottom = 245.048
+
+[node name="Tittle" type="Label" parent="Info"]
+margin_top = -1.0
+margin_right = 250.0
+margin_bottom = 24.04
+text = "LIGHT TILE"
+
+[node name="HS_Up" type="HSeparator" parent="Info"]
+margin_top = 28.0
+margin_right = 250.0
+margin_bottom = 32.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Info"]
+margin_top = 35.0
+margin_right = 250.0
+margin_bottom = 234.596
+rect_min_size = Vector2( 0, 199.596 )
+
+[node name="Tiles" type="HFlowContainer" parent="Info/ScrollContainer"]
+margin_right = 250.0
+margin_bottom = 60.0
+size_flags_horizontal = 3
+
+[node name="Button_Light_c" type="Button" parent="Info/ScrollContainer/Tiles"]
+margin_right = 60.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 60, 60 )
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 0
+icon = SubResource( 2 )
+expand_icon = true
+script = ExtResource( 3 )
+Block_scene = "res://Scene/Tiles/light.tscn"
+
+[node name="Button_Light" type="Button" parent="Info/ScrollContainer/Tiles"]
+margin_left = 63.0
+margin_right = 123.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 60, 60 )
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 0
+icon = SubResource( 1 )
+expand_icon = true
+script = ExtResource( 1 )
+Block_scene = "res://Scene/Tiles/light.tscn"
+
+[node name="HS_Down" type="HSeparator" parent="Info"]
+margin_top = 237.0
+margin_right = 250.0
+margin_bottom = 241.0

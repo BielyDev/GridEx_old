@@ -1,14 +1,29 @@
 extends CanvasLayer
 
-onready var World3D: Spatial = $World
+var World3D
 
 var tile
 
 var popup_pc_new: PackedScene = preload("res://Scene/Popups/Popup_PC.tscn")
 var file_explore_new: PackedScene = preload("res://Scene/Popups/File_explore.tscn")
+#var world = load("res://Scene/World_Node.tscn")
+onready var w = $World
+onready var Edit: VBoxContainer = $Local/Vbox/Hbox/Edit
 
 func _ready() -> void:
+	#var w = world.instance()
+	w.View = $Local/Vbox/Hbox/View/ViewPanel/View
+	#add_child(w)
+	w.Block.Option = $"%Option"
+	w.Mirror = $"%Mirror"
+	World3D = w
+	
 	Index.edit_node = self
+
+
+func _input(event: InputEvent) -> void:
+	Edit.visible = Index.mode == Index.MODE.ADD
+
 
 func warning_pc(text: String,object: Node,OK: String,CANCEL: String) -> void:
 	var pop = popup_pc_new.instance()

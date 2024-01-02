@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   sodipodi:docname="UI.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#434343"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     showguides="true"
+     inkscape:zoom="3.2765434"
+     inkscape:cx="78.741518"
+     inkscape:cy="64.397133"
+     inkscape:window-width="1366"
+     inkscape:window-height="699"
+     inkscape:window-x="1024"
+     inkscape:window-y="32"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <sodipodi:guide
+       position="17.843565,300.30807"
+       orientation="1,0"
+       id="guide1797"
+       inkscape:locked="false" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <circle
+       style="fill:#ffffff;fill-opacity:0.418011;stroke:none;stroke-width:1.18852;paint-order:markers stroke fill"
+       id="path292"
+       cx="17.885595"
+       cy="17.789316"
+       r="17.109016" />
+    <path
+       id="path1008"
+       style="fill:#ffffff;fill-opacity:0.418011;stroke:none;stroke-width:1.11746;paint-order:markers stroke fill"
+       d="M 17.864026 3.543453 A 9.0126408 9.0126408 0 0 0 8.8516561 12.556856 A 9.0126408 9.0126408 0 0 0 13.755233 20.571871 C 13.723313 20.731802 13.706657 20.897336 13.706657 21.066931 L 13.706657 21.966101 C 13.706657 23.349233 14.820015 24.462073 16.203145 24.462073 L 19.448942 24.462073 C 20.832073 24.462073 21.945431 23.349233 21.945431 21.966101 L 21.945431 21.066931 C 21.945431 20.910124 21.930973 20.756691 21.903573 20.608044 A 9.0126408 9.0126408 0 0 0 26.876912 12.556856 A 9.0126408 9.0126408 0 0 0 17.864026 3.543453 z M 17.864026 25.249622 A 3.5862396 3.5862396 0 0 0 14.277681 28.835449 A 3.5862396 3.5862396 0 0 0 17.864026 32.421794 A 3.5862396 3.5862396 0 0 0 21.45037 28.835449 A 3.5862396 3.5862396 0 0 0 17.864026 25.249622 z " />
+    <circle
+       style="fill:#ffffff;fill-opacity:0.418011;stroke:none;stroke-width:0.797521;paint-order:markers stroke fill"
+       id="circle1802"
+       cx="17.711687"
+       cy="12.265188"
+       r="6.43226" />
+  </g>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="g2052">
+    <circle
+       style="fill:#ffffff;fill-opacity:0.418011;stroke:none;stroke-width:1.18852;paint-order:markers stroke fill"
+       id="circle2046"
+       cx="17.885595"
+       cy="17.789316"
+       r="17.109016" />
+    <path
+       id="path2048"
+       style="fill:#ffffff;fill-opacity:0.418011;stroke:none;stroke-width:1.11746;paint-order:markers stroke fill"
+       d="M 17.864026 3.543453 A 9.0126408 9.0126408 0 0 0 8.8516561 12.556856 A 9.0126408 9.0126408 0 0 0 13.755233 20.571871 C 13.723313 20.731802 13.706657 20.897336 13.706657 21.066931 L 13.706657 21.966101 C 13.706657 23.349233 14.820015 24.462073 16.203145 24.462073 L 19.448942 24.462073 C 20.832073 24.462073 21.945431 23.349233 21.945431 21.966101 L 21.945431 21.066931 C 21.945431 20.910124 21.930973 20.756691 21.903573 20.608044 A 9.0126408 9.0126408 0 0 0 26.876912 12.556856 A 9.0126408 9.0126408 0 0 0 17.864026 3.543453 z M 17.864026 25.249622 A 3.5862396 3.5862396 0 0 0 14.277681 28.835449 A 3.5862396 3.5862396 0 0 0 17.864026 32.421794 A 3.5862396 3.5862396 0 0 0 21.45037 28.835449 A 3.5862396 3.5862396 0 0 0 17.864026 25.249622 z " />
+    <circle
+       style="fill:#ffffff;fill-opacity:0.418011;stroke:none;stroke-width:0.797521;paint-order:markers stroke fill"
+       id="circle2050"
+       cx="26.818415"
+       cy="12.581943"
+       r="6.43226" />
+  </g>
+</svg>

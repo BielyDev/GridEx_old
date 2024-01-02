@@ -1,17 +1,17 @@
 [gd_scene load_steps=5 format=2]
 
-[sub_resource type="SpatialMaterial" id=19]
-resource_name = "Materiais.005"
-vertex_color_use_as_albedo = true
-params_cull_mode = 2
-albedo_color = Color( 0.576471, 0.878431, 0.917647, 1 )
-roughness = 0.5
-
 [sub_resource type="SpatialMaterial" id=20]
 resource_name = "Materiais.006"
 vertex_color_use_as_albedo = true
 params_cull_mode = 2
 albedo_color = Color( 0.882353, 0.980392, 0.996078, 1 )
+roughness = 0.5
+
+[sub_resource type="SpatialMaterial" id=19]
+resource_name = "Materiais.005"
+vertex_color_use_as_albedo = true
+params_cull_mode = 2
+albedo_color = Color( 0.576471, 0.878431, 0.917647, 1 )
 roughness = 0.5
 
 [sub_resource type="ArrayMesh" id=21]
@@ -23,7 +23,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194711,
 "index_count": 12,
-"material": SubResource( 19 ),
+"material": SubResource( 20 ),
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 8
@@ -35,7 +35,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 2194711,
 "index_count": 12,
-"material": SubResource( 20 ),
+"material": SubResource( 19 ),
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 8

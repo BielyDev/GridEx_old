@@ -1,10 +1,7 @@
-extends Button
-
-export(String) var Block_scene: String
+extends TileButton
 
 func _pressed() -> void:
-	Index.tile.path = Block_scene
-	Index.tile.icon = icon
+	index()
 	
 	var scene = load(Block_scene)
 	var preview = scene.instance()
