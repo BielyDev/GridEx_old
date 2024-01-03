@@ -14,6 +14,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Script/Class/AnimationButtonClass.gd"
 }, {
+"base": "Spatial",
+"class": "Camera_Controller",
+"language": "GDScript",
+"path": "res://Script/Pos.gd"
+}, {
+"base": "Reference",
+"class": "ObjParse",
+"language": "GDScript",
+"path": "res://Script/Class/Objimport.gd"
+}, {
 "base": "AnimationButtonClass",
 "class": "TileButton",
 "language": "GDScript",
@@ -21,6 +31,8 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "AnimationButtonClass": "",
+"Camera_Controller": "",
+"ObjParse": "",
 "TileButton": ""
 }
 

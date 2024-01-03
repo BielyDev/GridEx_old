@@ -1,5 +1,7 @@
 extends Spatial
 
+class_name Camera_Controller
+
 enum STATE {IDLE,TRANSLATION_POS,ROTATION_CAM,FIRST_PERSON,BLOCK}
 
 var sensi: float = 0.02
@@ -9,31 +11,28 @@ var state: int = 0
 var velocity: Vector3
 var lock_pos_cam: Vector3
 
-onready var PosLock: Position3D = $Camera/Pos_Lock
-onready var Cam: Camera = $Camera
-onready var Ray: RayCast = $Camera/Ray
+export(bool) var Index_values: bool = false
+
+export(NodePath) var PosLock_path: NodePath
+export(NodePath) var Cam_path: NodePath
+export(NodePath) var Ray_path: NodePath
+
+onready var PosLock: Spatial = get_node(PosLock_path)
+onready var Cam: Camera = get_node(Cam_path)
+onready var Ray: RayCast = get_node_or_null(Ray_path)
 
 
 func _ready() -> void:
 	_reset_pos_cam()
-	Index.cam = Cam
-	Index.ray = Ray
+	
+	if Index_values:
+		Index.cam = Cam
+		Index.ray = Ray
 
 
 func _input(_event: InputEvent) -> void:
 	if state == STATE.BLOCK or Index.block_view:
 		return
-	
-	if _event is InputEventKey:
-		
-		speed_vel = (Index.settings[Index.SETT.CAM_SENSI_MOVE] * 0.0003) * (int(Input.is_action_pressed("speed")) + 1)
-		
-		if Input.is_action_pressed("reset_cam"):
-			rotation_degrees = Vector3(45,-180,0)
-			global_transform.origin = Vector3()
-			Cam.transform.origin = Vector3(0,0,-10)
-			Cam.rotation_degrees = Vector3(0,-180,0)
-			_reset_pos_cam()
 	
 	
 	if _event is InputEventMouseButton:
@@ -69,6 +68,8 @@ func _input(_event: InputEvent) -> void:
 			state = STATE.ROTATION_CAM
 			return
 
+func _unhandled_key_input(event: InputEventKey) -> void:
+	reset_transform()
 
 func _physics_process(_delta: float) -> void:
 	if Index.block_view:
@@ -80,17 +81,20 @@ func _physics_process(_delta: float) -> void:
 	
 	Cam.global_translate(velocity * speed_vel)
 	
-	_cursor_state()
 
 
-func _cursor_state() -> void:
-	match state:
-		STATE.IDLE:
-			Input.set_default_cursor_shape(Input.CURSOR_ARROW)
-		STATE.TRANSLATION_POS:
-			Input.set_default_cursor_shape(Input.CURSOR_CAN_DROP)
-		STATE.ROTATION_CAM:
-			Input.set_default_cursor_shape(Input.CURSOR_DRAG)
+func reset_transform() -> void:
+	speed_vel = (
+		(Index.settings[Index.SETT.CAM_SENSI_MOVE] * 0.0003) * 
+		(int(Input.is_action_pressed("speed")) + 1)
+	)
+	
+	if Input.is_action_pressed("reset_cam"):
+		rotation_degrees = Vector3(45,-180,0)
+		global_transform.origin = Vector3()
+		Cam.transform.origin = Vector3(0,0,-10)
+		Cam.rotation_degrees = Vector3(0,-180,0)
+		_reset_pos_cam()
 
 
 func _zoom_moviment() -> void:

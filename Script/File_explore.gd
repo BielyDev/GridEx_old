@@ -25,7 +25,7 @@ func _on_FileDialog_confirmed() -> void:
 	
 	var dir = str(Filex.current_dir,"/",Filex.current_file)
 	
-	emit_signal("OK",dir)
+	emit_signal("OK",dir,Filex.current_file)
 	queue_free()
 
 func _on_FileDialog_file_selected(path: String) -> void:
@@ -35,7 +35,7 @@ func _on_FileDialog_file_selected(path: String) -> void:
 	
 	var dir = str(Filex.current_dir,"/",Filex.current_file)
 	
-	emit_signal("OK",dir)
+	emit_signal("OK",dir,Filex.current_file)
 	queue_free()
 
 func _on_FileDialog_popup_hide() -> void:

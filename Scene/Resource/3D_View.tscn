@@ -19,6 +19,10 @@ skeleton = NodePath("../Pos")
 [node name="Pos" type="Spatial" parent="."]
 transform = Transform( -1, 6.18172e-08, -6.18172e-08, 8.74228e-08, 0.707107, -0.707107, 0, -0.707107, -0.707107, 0, 0, 0 )
 script = ExtResource( 1 )
+Index_values = true
+PosLock_path = NodePath("Camera/Pos_Lock")
+Cam_path = NodePath("Camera")
+Ray_path = NodePath("Camera/Ray")
 
 [node name="Pos_lock" type="RemoteTransform" parent="Pos"]
 remote_path = NodePath("../../Pos_Texture")

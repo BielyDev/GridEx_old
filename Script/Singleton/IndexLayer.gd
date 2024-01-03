@@ -35,7 +35,7 @@ func call_export(scene_path,dir,no,call) -> void:
 	scene.connect("finished",no,call)
 
 
-func file_explore(files : Array,object: Node,OK: String,CANCEL: String) -> void:
+func file_explore(files : Array,object: Node,OK: String,CANCEL: String, mode = FileDialog.MODE_SAVE_FILE) -> void:
 	var explore = file_explore_new.instance()
 	
 	explore.files = files
@@ -43,3 +43,4 @@ func file_explore(files : Array,object: Node,OK: String,CANCEL: String) -> void:
 	explore.connect("OK",object,OK)
 	
 	add_child(explore)
+	explore.Filex.mode = mode
