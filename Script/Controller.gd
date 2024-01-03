@@ -41,18 +41,12 @@ func _undo() -> void:
 
 func _rotation_selection() -> void:
 	if Input.is_action_just_pressed("rot_x"):
-		Selection.rotation_degrees.x = rot.x
 		rot.x += 90
-		
-		Index.animated_tween_ui(Selection,"rotation_degrees:x",Selection.rotation_degrees.x,rot.x,0.5)
+		Selection.rotation_degrees.x = rot.x
 	if Input.is_action_just_pressed("rot_y"):
-		Selection.rotation_degrees.y = rot.y
 		rot.y += 90
-		
-		Index.animated_tween_ui(Selection,"rotation_degrees:y",Selection.rotation_degrees.y,rot.y,0.5)
+		Selection.rotation_degrees.y = rot.y
 	if Input.is_action_just_pressed("rot_z"):
-		Selection.rotation_degrees.z = rot.z
 		rot.z += 90
-		
-		Index.animated_tween_ui(Selection,"rotation_degrees:z",Selection.rotation_degrees.z,rot.z,0.5)
+		Selection.rotation_degrees.z = rot.z
 
