@@ -24,16 +24,28 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Script/Class/Objimport.gd"
 }, {
+"base": "SpinBox",
+"class": "SpinBoxControl",
+"language": "GDScript",
+"path": "res://Script/Class/SpinBoxControlClass.gd"
+}, {
 "base": "AnimationButtonClass",
 "class": "TileButton",
 "language": "GDScript",
 "path": "res://Script/Class/TileButtonClass.gd"
+}, {
+"base": "Node",
+"class": "UI",
+"language": "GDScript",
+"path": "res://Script/Class/UI.gd"
 } ]
 _global_script_class_icons={
 "AnimationButtonClass": "",
 "Camera_Controller": "",
 "ObjParse": "",
-"TileButton": ""
+"SpinBoxControl": "",
+"TileButton": "",
+"UI": ""
 }
 
 [application]

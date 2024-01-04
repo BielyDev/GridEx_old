@@ -4,7 +4,7 @@ signal finished()
 
 func start() -> void:
 	Index.block_view = true
-	Index.edit_node.warning_pc(
+	IndexLayer.popup_two(
 		"VOCÊ IRAR PERDER SEU PROJETO ATUAL. \n DESEJA CONTINUAR?",
 		self,
 		"ok",

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Script/Popup_PC.gd" type="Script" id=1]
+[ext_resource path="res://Script/Popups/Popup_PC.gd" type="Script" id=1]
+[ext_resource path="res://Script/Class/AnimationButtonClass.gd" type="Script" id=2]
 
 [node name="Popup_PC" type="Control"]
 anchor_right = 1.0
@@ -29,7 +30,7 @@ margin_right = 392.192
 margin_bottom = 161.952
 
 [node name="Text" type="Label" parent="Panel/Vbox"]
-margin_top = 51.96
+margin_top = 49.96
 margin_right = 386.0
 margin_bottom = 77.0
 size_flags_vertical = 14
@@ -38,25 +39,29 @@ align = 1
 valign = 1
 
 [node name="Hbox" type="HBoxContainer" parent="Panel/Vbox"]
-margin_top = 131.0
+margin_top = 129.0
 margin_right = 386.0
 margin_bottom = 157.0
 size_flags_vertical = 10
 alignment = 1
 
 [node name="Cancel" type="Button" parent="Panel/Vbox/Hbox"]
-margin_right = 59.616
-margin_bottom = 26.096
+margin_right = 71.616
+margin_bottom = 28.096
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 2
 text = "CANCEL"
+script = ExtResource( 2 )
+Color_pressed_back = Color( 1, 0.333333, 0.47451, 1 )
 
 [node name="Ready" type="Button" parent="Panel/Vbox/Hbox"]
-margin_left = 359.0
+margin_left = 355.0
 margin_right = 386.616
-margin_bottom = 26.096
+margin_bottom = 28.096
 mouse_default_cursor_shape = 2
 text = "OK"
+script = ExtResource( 2 )
+Color_pressed_back = Color( 0.301961, 0.729412, 1, 1 )
 
 [connection signal="pressed" from="Panel/Vbox/Hbox/Cancel" to="." method="_on_Cancel_pressed"]
 [connection signal="pressed" from="Panel/Vbox/Hbox/Ready" to="." method="_on_Ready_pressed"]

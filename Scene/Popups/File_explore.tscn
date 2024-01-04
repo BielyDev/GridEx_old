@@ -22,10 +22,7 @@ margin_top = -256.0
 margin_right = 388.5
 margin_bottom = 256.0
 rect_min_size = Vector2( 176, 61.6 )
-popup_exclusive = true
-window_title = "GridEx"
 access = 2
-show_hidden_files = true
 
 [connection signal="confirmed" from="FileDialog" to="." method="_on_FileDialog_confirmed"]
 [connection signal="dir_selected" from="FileDialog" to="." method="_on_FileDialog_dir_selected"]

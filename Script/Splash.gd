@@ -1,6 +1,11 @@
 extends Control
 
+onready var PanelNode: PanelContainer = $Panel
+onready var Background: PanelContainer = $Background
+
 func _ready() -> void:
+	UI.ready_animated_complex(PanelNode,Background)
+	
 	Index.block_view = true
 
 func _unhandled_key_input(_event: InputEventKey) -> void:
@@ -11,5 +16,9 @@ func _on_New_project_pressed() -> void:
 	exit()
 
 func exit() -> void:
-	queue_free()
+	UI.queue_animated_complex(self,PanelNode,Background)
 	Index.block_view = false
+
+
+func _on_what_pressed() -> void:
+	OS.execute("",[])

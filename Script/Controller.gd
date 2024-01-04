@@ -7,7 +7,7 @@ onready var Selection: MeshInstance = $"../Selection3D"
 var rot: Vector3
 
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	if Input.is_action_pressed("undo"):
 		_undo()
 	

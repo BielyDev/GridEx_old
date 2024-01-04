@@ -10,7 +10,6 @@ func _input(_event: InputEvent) -> void:
 		modulate = Color.white
 
 func _pressed() -> void:
-	button_animated()
 	Index.mode = mode
 
 func _unhandled_key_input(_event: InputEventKey) -> void:

@@ -21,7 +21,7 @@ var tile: Dictionary = {
 }
 
 var settings: Array = [
-	0,0,0
+	50,50,50
 ]
 
 
@@ -37,7 +37,17 @@ func search_arr_dic(array: Array,pos: int, value):
 	return false
 
 
-func animated_tween_ui(object: Node,propriety: String, value_initial,value_final,time: float = 0.5) -> void:
-	Tw.interpolate_property(object,propriety,value_initial,value_final,time,Tween.TRANS_BACK)
+func animated_tween_ui(object: Node,propriety: String, value_initial,value_final,time: float = 0.5,transition: int = Tween.TRANS_BACK) -> void:
+	Tw.interpolate_property(object,propriety,value_initial,value_final,time,transition)
 	Tw.start()
+
+
+func makelocal(node,owner_node):
+	node.filename = ""
+	node.set_owner(owner_node)
+	
+	for child in node.get_children():
+		child = makelocal(child,owner_node)
+	
+	return node
 

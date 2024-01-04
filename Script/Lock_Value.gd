@@ -13,7 +13,6 @@ func _ready() -> void:
 	apply()
 
 func _pressed() -> void:
-	button_animated()
 	apply()
 
 func apply() -> void:

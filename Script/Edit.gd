@@ -5,6 +5,7 @@ var tile
 onready var World3D = $World
 onready var Edit: VBoxContainer = $Local/Vbox/Hbox/Edit
 onready var View: ViewportContainer = $Local/Vbox/Hbox/View/ViewPanel/View
+onready var Tile_groups: VBoxContainer = $"Local/Vbox/Hbox/Edit/TileMain/Tab/Tiles/Tile Groups"
 
 func _ready() -> void:
 	World_ready()

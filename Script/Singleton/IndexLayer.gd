@@ -1,8 +1,9 @@
 extends CanvasLayer
 
-var popup_pc_new: PackedScene = preload("res://Scene/Popups/Popup_PC.tscn")
+var popup_two_new: PackedScene = preload("res://Scene/Popups/Popup_PC.tscn")
+var popup_one_new: PackedScene = preload("res://Scene/Popups/Popup_OK.tscn")
 var file_explore_new: PackedScene = preload("res://Scene/Popups/File_explore.tscn")
-
+var importer_new: PackedScene = preload("res://Scene/Import/Import_Config.tscn")
 
 
 var edit: Dictionary = {
@@ -11,14 +12,28 @@ var edit: Dictionary = {
 	other = null,
 }
 
-func warning_pc(text: String,object: Node,OK: String,CANCEL: String) -> void:
-	var pop = popup_pc_new.instance()
+func popup_two(text: String,object: Node,OK: String,CANCEL: String) -> void:
+	var pop = popup_two_new.instance()
 	
 	pop.text = text
 	pop.connect("CANCEL",object,CANCEL)
 	pop.connect("OK",object,OK)
 	
 	add_child(pop)
+
+func popup_one(text: String,object: Node,OK: String) -> void:
+	var pop = popup_one_new.instance()
+	
+	pop.text = text
+	pop.connect("OK",object,OK)
+	
+	add_child(pop)
+
+func importer_menu(object: Node,OK: String) -> void:
+	var importer = importer_new.instance()
+	
+	add_child(importer)
+	importer.connect("OK",object,OK)
 
 
 func call_edit():

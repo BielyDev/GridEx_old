@@ -1,4 +1,4 @@
-extends Node
+extends Spatial
 
 var View
 var Mirror
@@ -19,7 +19,6 @@ var pos: Vector3
 
 
 func _input(event: InputEvent) -> void:
-	
 	Selection.visible = (Index.mode != Index.MODE.VOID) and Index.block_view == false
 	
 	if Index.block_view:

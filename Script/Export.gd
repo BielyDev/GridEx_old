@@ -4,17 +4,6 @@ onready var Block: Spatial = $"../Block"
 var Worlds = Spatial.new()
 var collision_save: Array
 
-func makelocal(node,owner_node):
-	
-	node.filename = ""
-	node.set_owner(owner_node)
-	
-	for child in node.get_children():
-		child = makelocal(child,owner_node)
-	
-	return node
-
-
 
 func export_scene_gltf(path: String) -> void:
 	pass
@@ -55,7 +44,7 @@ func add_block_export():
 		
 		Worlds.call("add_child",no)
 		
-		no = makelocal(no,Worlds)
+		no = Index.makelocal(no,Worlds)
 		
 		verific_collision(no)
 		delet_others(no)

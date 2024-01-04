@@ -6,7 +6,7 @@ func start() -> void:
 	Index.block_view = true
 	
 	Index.edit_node.file_explore(
-		["gltf"],
+		["*.gltf"],
 		self,
 		"ok",
 		"cancel"

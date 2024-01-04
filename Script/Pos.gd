@@ -6,6 +6,7 @@ enum STATE {IDLE,TRANSLATION_POS,ROTATION_CAM,FIRST_PERSON,BLOCK}
 
 var sensi: float = 0.02
 var speed_vel: float = 0.05
+var block_view: bool = false
 
 var state: int = 0
 var velocity: Vector3
@@ -31,7 +32,7 @@ func _ready() -> void:
 
 
 func _input(_event: InputEvent) -> void:
-	if state == STATE.BLOCK or Index.block_view:
+	if state == STATE.BLOCK or block_view:
 		return
 	
 	
@@ -72,7 +73,10 @@ func _unhandled_key_input(event: InputEventKey) -> void:
 	reset_transform()
 
 func _physics_process(_delta: float) -> void:
-	if Index.block_view:
+	if Index_values:
+		block_view = Index.block_view
+	
+	if block_view:
 		return
 	
 	if state == STATE.FIRST_PERSON:

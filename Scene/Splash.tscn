@@ -28,7 +28,7 @@ rect_min_size = Vector2( 550, 381.096 )
 margin_left = 5.808
 margin_top = 4.048
 margin_right = 544.192
-margin_bottom = 377.048
+margin_bottom = 379.048
 
 [node name="Texture" type="TextureRect" parent="Panel/VBoxContainer"]
 margin_right = 538.0
@@ -40,27 +40,35 @@ expand = true
 [node name="Buttons" type="HBoxContainer" parent="Panel/VBoxContainer"]
 margin_top = 347.0
 margin_right = 538.0
-margin_bottom = 373.0
+margin_bottom = 375.0
 alignment = 1
 
 [node name="Open" type="Button" parent="Panel/VBoxContainer/Buttons"]
-margin_right = 43.616
-margin_bottom = 26.096
+margin_right = 51.616
+margin_bottom = 28.096
 disabled = true
-text = "OPEN"
+text = "Open"
 
 [node name="New_project" type="Button" parent="Panel/VBoxContainer/Buttons"]
-margin_left = 46.0
-margin_right = 145.616
-margin_bottom = 26.096
+margin_left = 54.0
+margin_right = 175.616
+margin_bottom = 28.096
 mouse_default_cursor_shape = 2
-text = "NEW PROJECT"
+text = "New project"
+
+[node name="what" type="LinkButton" parent="Panel/VBoxContainer/Buttons"]
+margin_left = 212.0
+margin_right = 322.0
+margin_bottom = 28.0
+size_flags_horizontal = 6
+text = "what's new?"
 
 [node name="Label" type="Label" parent="Panel/VBoxContainer/Buttons"]
-margin_left = 426.96
+margin_left = 400.96
 margin_right = 538.0
-margin_bottom = 25.04
+margin_bottom = 27.04
 size_flags_horizontal = 14
-text = "version 0.0.3"
+text = "version 0.1.0"
 
 [connection signal="pressed" from="Panel/VBoxContainer/Buttons/New_project" to="." method="_on_New_project_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Buttons/what" to="." method="_on_what_pressed"]
