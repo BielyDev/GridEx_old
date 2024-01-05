@@ -23,6 +23,7 @@ func _unhandled_key_input(_event: InputEventKey) -> void:
 func _on_FileDialog_confirmed() -> void:
 	if exporting:
 		return
+	
 	exporting = true
 	
 	var dir = str(Filex.current_dir,"/",Filex.current_file)

@@ -78,4 +78,25 @@ margin_top = 239.0
 margin_right = 260.0
 margin_bottom = 243.0
 
+[node name="Create_preview" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 999, 999 )
+
+[node name="View" type="Viewport" parent="Create_preview"]
+size = Vector2( 300, 300 )
+transparent_bg = true
+render_target_v_flip = true
+render_target_update_mode = 3
+
+[node name="Cam" type="Spatial" parent="Create_preview/View"]
+transform = Transform( 0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, 0, 999, 999 )
+
+[node name="OmniLight" type="OmniLight" parent="Create_preview/View/Cam"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.90815, 0.0216675, 2.6993 )
+
+[node name="Camera" type="Camera" parent="Create_preview/View/Cam"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.615 )
+projection = 1
+size = 3.699
+far = 10.0
+
 [connection signal="pressed" from="Info/Hbox/Hide_and_show" to="." method="_on_Hide_and_show_pressed"]

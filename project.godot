@@ -19,6 +19,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Script/Pos.gd"
 }, {
+"base": "Node",
+"class": "Export",
+"language": "GDScript",
+"path": "res://Script/Class/Export.gd"
+}, {
+"base": "Node",
+"class": "Import",
+"language": "GDScript",
+"path": "res://Script/Class/Import.gd"
+}, {
 "base": "Reference",
 "class": "ObjParse",
 "language": "GDScript",
@@ -34,6 +44,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Script/Class/TileButtonClass.gd"
 }, {
+"base": "Tween",
+"class": "TweenUI",
+"language": "GDScript",
+"path": "res://Script/Others/Tween_animation.gd"
+}, {
 "base": "Node",
 "class": "UI",
 "language": "GDScript",
@@ -42,9 +57,12 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "AnimationButtonClass": "",
 "Camera_Controller": "",
+"Export": "",
+"Import": "",
 "ObjParse": "",
 "SpinBoxControl": "",
 "TileButton": "",
+"TweenUI": "",
 "UI": ""
 }
 

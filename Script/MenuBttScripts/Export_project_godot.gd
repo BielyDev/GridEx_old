@@ -14,14 +14,9 @@ func start() -> void:
 		"cancel"
 	)
 
-func ok(dir):
-	IndexLayer.call_export(expr,dir,self,"final")
+func ok(dir: String, file:String):
+	IndexLayer.call_export(expr,dir,self,"cancel")
 	Index.block_view = true
-
-func final():
-	emit_signal("finished")
-	Index.block_view = false
 
 func cancel():
 	emit_signal("finished")
-	Index.block_view = false

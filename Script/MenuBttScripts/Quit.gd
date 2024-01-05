@@ -5,7 +5,7 @@ signal finished()
 func start() -> void:
 	Index.block_view = true
 	
-	IndexLayer.warning_pc(
+	IndexLayer.popup_two(
 		"DESEJA MESMO SAIR?",
 		self,
 		"ok",
@@ -15,8 +15,6 @@ func start() -> void:
 func ok():
 	get_tree().quit()
 	emit_signal("finished")
-	Index.block_view = false
 
 func cancel():
 	emit_signal("finished")
-	Index.block_view = false

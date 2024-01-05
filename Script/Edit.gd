@@ -9,7 +9,6 @@ onready var Tile_groups: VBoxContainer = $"Local/Vbox/Hbox/Edit/TileMain/Tab/Til
 
 func _ready() -> void:
 	World_ready()
-	
 	Index.edit_node = self
 
 

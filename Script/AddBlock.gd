@@ -8,6 +8,61 @@ var pos
 func _process(_delta: float) -> void:
 	pos = Par.pos
 
+func add_block_settings() -> void:
+	var tile = Index.tile.tile
+	
+	match Par.Mirror.selected:
+		0:
+			Cont.Block.add_block(pos,Cont.rot,tile)
+			
+		1:
+			var pos_mir = Vector3(-pos.x,pos.y,pos.z)
+			var rot_mir = Vector3(Cont.rot.x,-Cont.rot.y,Cont.rot.z)
+			
+			Cont.Block.add_block(pos,Cont.rot,tile)
+			Cont.Block.add_block(pos_mir,rot_mir,tile)
+			
+		2:
+			var pos_mir = Vector3(pos.x,pos.y,-pos.z)
+			var rot_mir = Vector3(Cont.rot.x,-Cont.rot.y+180,Cont.rot.z)
+			
+			Cont.Block.add_block(pos,Cont.rot,tile)
+			Cont.Block.add_block(pos_mir,rot_mir,tile)
+			
+		3:
+			add_mirror_x_y(tile)
+
+
+func add_mirror_x_y(tile: MeshInstance) -> void:
+	var pos_x_neg = Vector3(-Par.pos.x,Par.pos.y,Par.pos.z)
+	var pos_x_z_neg = Vector3(Par.pos.x,Par.pos.y,-Par.pos.z)
+	var pos_x_neg_z_neg = Vector3(-Par.pos.x,Par.pos.y,-Par.pos.z)
+	
+	var pos_z_x = Vector3(Par.pos.z,Par.pos.y,Par.pos.x)
+	var pos_z_x_neg = Vector3(Par.pos.z,Par.pos.y,-Par.pos.x)
+	var pos_z_neg_x_neg = Vector3(-Par.pos.z,Par.pos.y,-Par.pos.x)
+	var pos_z_neg_x = Vector3(-Par.pos.z,Par.pos.y,Par.pos.x)
+	
+	var rot_x_neg = Vector3(Cont.rot.x,-Cont.rot.y,Cont.rot.z)
+	var rot_x_z_neg = Vector3(Cont.rot.x,-Cont.rot.y+180,Cont.rot.z)
+	var rot_x_neg_z_neg = Vector3(Cont.rot.x,Cont.rot.y+180,Cont.rot.z)
+	
+	var rot_z_x = Vector3(Cont.rot.x,Cont.rot.y,Cont.rot.z)
+	
+	var rot_z_x_neg = Vector3(Cont.rot.x,-Cont.rot.y+180,Cont.rot.z)
+	var rot_z_neg_x_neg = Vector3(Cont.rot.x,Cont.rot.y+180,Cont.rot.z)
+	var rot_z_neg_x = Vector3(Cont.rot.x,-Cont.rot.y,Cont.rot.z)
+	
+	Cont.Block.add_block(pos,Cont.rot,tile)
+	Cont.Block.add_block(pos_x_neg,rot_x_neg,tile)
+	Cont.Block.add_block(pos_x_neg_z_neg,rot_x_neg_z_neg,tile)
+	Cont.Block.add_block(pos_x_z_neg,rot_x_z_neg,tile)
+	
+	Cont.Block.add_block(pos_z_x,rot_z_x,tile) #av
+	Cont.Block.add_block(pos_z_neg_x,rot_z_neg_x,tile)
+	Cont.Block.add_block(pos_z_x_neg,rot_z_x_neg,tile)
+	Cont.Block.add_block(pos_z_neg_x_neg,rot_z_neg_x_neg,tile)
+
 
 func remove_block_settings() -> void:
 	match get_parent().Mirror.selected:
@@ -28,37 +83,6 @@ func remove_block_settings() -> void:
 			
 		3:
 			remove_mirror_x_y()
-
-
-func add_mirror_x_y(path_tile) -> void:
-	var pos_x_neg = Vector3(-Par.pos.x,Par.pos.y,Par.pos.z)
-	var pos_x_z_neg = Vector3(Par.pos.x,Par.pos.y,-Par.pos.z)
-	var pos_x_neg_z_neg = Vector3(-Par.pos.x,Par.pos.y,-Par.pos.z)
-	
-	var pos_z_x = Vector3(Par.pos.z,Par.pos.y,Par.pos.x)
-	var pos_z_x_neg = Vector3(Par.pos.z,Par.pos.y,-Par.pos.x)
-	var pos_z_neg_x_neg = Vector3(-Par.pos.z,Par.pos.y,-Par.pos.x)
-	var pos_z_neg_x = Vector3(-Par.pos.z,Par.pos.y,Par.pos.x)
-	
-	var rot_x_neg = Vector3(Cont.rot.x,-Cont.rot.y,Cont.rot.z)
-	var rot_x_z_neg = Vector3(Cont.rot.x,-Cont.rot.y+180,Cont.rot.z)
-	var rot_x_neg_z_neg = Vector3(Cont.rot.x,Cont.rot.y+180,Cont.rot.z)
-	
-	var rot_z_x = Vector3(Cont.rot.x,Cont.rot.y,Cont.rot.z)
-	
-	var rot_z_x_neg = Vector3(Cont.rot.x,-Cont.rot.y+180,Cont.rot.z)
-	var rot_z_neg_x_neg = Vector3(Cont.rot.x,Cont.rot.y+180,Cont.rot.z)
-	var rot_z_neg_x = Vector3(Cont.rot.x,-Cont.rot.y,Cont.rot.z)
-	
-	Cont.Block.add_block(pos,Cont.rot,path_tile)
-	Cont.Block.add_block(pos_x_neg,rot_x_neg,path_tile)
-	Cont.Block.add_block(pos_x_neg_z_neg,rot_x_neg_z_neg,path_tile)
-	Cont.Block.add_block(pos_x_z_neg,rot_x_z_neg,path_tile)
-	
-	Cont.Block.add_block(pos_z_x,rot_z_x,path_tile) #av
-	Cont.Block.add_block(pos_z_neg_x,rot_z_neg_x,path_tile)
-	Cont.Block.add_block(pos_z_x_neg,rot_z_x_neg,path_tile)
-	Cont.Block.add_block(pos_z_neg_x_neg,rot_z_neg_x_neg,path_tile)
 
 
 func remove_mirror_x_y() -> void:

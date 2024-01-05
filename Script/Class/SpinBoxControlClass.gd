@@ -21,6 +21,10 @@ func change(value) -> void:
 	rounded = Input.is_key_pressed(KEY_CONTROL)
 
 func button_animated(up: int) -> void:
-	Index.animated_tween_ui(self,"rect_scale", Scale_pressed,Vector2(1,1))
+	var TwUI = TweenUI.new()
+	TwUI.delete = true
+	add_child(TwUI)
 	
-	Index.animated_tween_ui(self,"modulate", color_up[up],Color.white)
+	TwUI.animated_tween_ui(self,"rect_scale", Scale_pressed,Vector2(1,1))
+	TwUI.animated_tween_ui(self,"modulate", color_up[up],Color.white)
+

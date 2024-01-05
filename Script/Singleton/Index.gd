@@ -13,7 +13,6 @@ var cam: Camera
 var ray: RayCast
 var env : Environment = preload("res://default_env.tres")
 var undo: Array = []
-var Tw: Tween = Tween.new()
 
 var tile: Dictionary = {
 	path = "",
@@ -25,21 +24,12 @@ var settings: Array = [
 ]
 
 
-func _ready() -> void:
-	add_child(Tw)
-
-
 func search_arr_dic(array: Array,pos: int, value):
 	for values in array:
 		if values.values()[pos] == value:
 			return values
 	
 	return false
-
-
-func animated_tween_ui(object: Node,propriety: String, value_initial,value_final,time: float = 0.5,transition: int = Tween.TRANS_BACK) -> void:
-	Tw.interpolate_property(object,propriety,value_initial,value_final,time,transition)
-	Tw.start()
 
 
 func makelocal(node,owner_node):

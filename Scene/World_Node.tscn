@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Script/Block.gd" type="Script" id=1]
 [ext_resource path="res://Script/Preview.gd" type="Script" id=2]
@@ -6,7 +6,7 @@
 [ext_resource path="res://Assets/Models/OBJ/Eixo.obj" type="ArrayMesh" id=4]
 [ext_resource path="res://Assets/Others/Tile.png" type="Texture" id=5]
 [ext_resource path="res://Script/Controller.gd" type="Script" id=6]
-[ext_resource path="res://Script/Export.gd" type="Script" id=7]
+[ext_resource path="res://Assets/Material/Preview.tres" type="Material" id=7]
 [ext_resource path="res://Script/AddBlock.gd" type="Script" id=8]
 
 [sub_resource type="SpatialMaterial" id=3]
@@ -269,12 +269,6 @@ tracks/1/keys = {
 "values": [ 1.6, 0.0 ]
 }
 
-[sub_resource type="SpatialMaterial" id=3970]
-flags_transparent = true
-params_cull_mode = 2
-params_depth_draw_mode = 3
-albedo_color = Color( 0, 0.352941, 0.992157, 0.517647 )
-
 [node name="World" type="Spatial"]
 script = ExtResource( 3 )
 
@@ -283,9 +277,6 @@ script = ExtResource( 6 )
 
 [node name="AddBlock" type="Node" parent="."]
 script = ExtResource( 8 )
-
-[node name="Export" type="Node" parent="."]
-script = ExtResource( 7 )
 
 [node name="Block" type="Spatial" parent="."]
 script = ExtResource( 1 )
@@ -324,7 +315,7 @@ anims/RESET = SubResource( 3968 )
 anims/Remove = SubResource( 3969 )
 
 [node name="Preview" type="MeshInstance" parent="Selection3D"]
-material_override = SubResource( 3970 )
+material_override = ExtResource( 7 )
 script = ExtResource( 2 )
 
 [node name="Light" type="DirectionalLight" parent="."]

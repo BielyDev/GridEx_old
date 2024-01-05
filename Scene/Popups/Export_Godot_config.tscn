@@ -31,38 +31,39 @@ margin_bottom = 475.952
 [node name="Tittle" type="Label" parent="Panel/Vbox"]
 margin_top = -1.0
 margin_right = 484.0
-margin_bottom = 24.04
+margin_bottom = 26.04
 text = "EXPORT TSCN"
 align = 1
 valign = 1
 
 [node name="Panel" type="PanelContainer" parent="Panel/Vbox"]
-margin_top = 28.0
+margin_top = 30.0
 margin_right = 484.0
-margin_bottom = 442.0
+margin_bottom = 440.0
 size_flags_vertical = 3
 
 [node name="Options" type="VBoxContainer" parent="Panel/Vbox/Panel"]
 margin_left = 5.808
 margin_top = 4.048
 margin_right = 478.192
-margin_bottom = 409.952
+margin_bottom = 405.952
 
 [node name="Collision" type="VBoxContainer" parent="Panel/Vbox/Panel/Options"]
 margin_right = 472.0
-margin_bottom = 83.0
+margin_bottom = 89.0
 
 [node name="Tittle" type="Label" parent="Panel/Vbox/Panel/Options/Collision"]
 margin_top = -1.0
 margin_right = 472.0
-margin_bottom = 24.04
+margin_bottom = 26.04
 text = "COLLISION:"
 
 [node name="Collision" type="CheckButton" parent="Panel/Vbox/Panel/Options/Collision"]
-margin_top = 28.0
+margin_top = 30.0
 margin_right = 472.0
-margin_bottom = 54.096
+margin_bottom = 58.096
 mouse_default_cursor_shape = 2
+disabled = true
 text = "COLLISION ENABLED"
 script = ExtResource( 1 )
 Node_Path = NodePath("../CollisionMode")
@@ -71,9 +72,9 @@ his_propriety = "disabled"
 negative = true
 
 [node name="CollisionMode" type="OptionButton" parent="Panel/Vbox/Panel/Options/Collision"]
-margin_top = 57.0
+margin_top = 61.0
 margin_right = 472.0
-margin_bottom = 83.096
+margin_bottom = 89.096
 hint_tooltip = "Recomendo usar \"Apenas um static body\", em um sistema de colisão é o mais perfomatico."
 mouse_default_cursor_shape = 2
 disabled = true
@@ -82,49 +83,49 @@ items = [ "ONLY ONE STATIC BODY", null, false, 0, null, "STATIC BODY IN EACH BLO
 selected = 0
 
 [node name="HSeparator" type="HSeparator" parent="Panel/Vbox/Panel/Options"]
-margin_top = 86.0
+margin_top = 92.0
 margin_right = 472.0
-margin_bottom = 90.0
+margin_bottom = 96.0
 
 [node name="Light" type="VBoxContainer" parent="Panel/Vbox/Panel/Options"]
-margin_top = 93.0
+margin_top = 99.0
 margin_right = 472.0
-margin_bottom = 147.0
+margin_bottom = 157.0
 
 [node name="Tittle" type="Label" parent="Panel/Vbox/Panel/Options/Light"]
 margin_top = -1.0
 margin_right = 472.0
-margin_bottom = 24.04
+margin_bottom = 26.04
 text = "LIGHT:"
 
 [node name="Light" type="CheckButton" parent="Panel/Vbox/Panel/Options/Light"]
-margin_top = 28.0
+margin_top = 30.0
 margin_right = 472.0
-margin_bottom = 54.096
+margin_bottom = 58.096
 mouse_default_cursor_shape = 2
 pressed = true
 text = "EXPORT LIGHT"
 
 [node name="HSeparator2" type="HSeparator" parent="Panel/Vbox/Panel/Options"]
-margin_top = 150.0
+margin_top = 160.0
 margin_right = 472.0
-margin_bottom = 154.0
+margin_bottom = 164.0
 
 [node name="Mesh" type="VBoxContainer" parent="Panel/Vbox/Panel/Options"]
-margin_top = 157.0
+margin_top = 167.0
 margin_right = 472.0
-margin_bottom = 240.0
+margin_bottom = 256.0
 
 [node name="Tittle" type="Label" parent="Panel/Vbox/Panel/Options/Mesh"]
 margin_top = -1.0
 margin_right = 472.0
-margin_bottom = 24.04
+margin_bottom = 26.04
 text = "TILE:"
 
 [node name="Tile" type="CheckButton" parent="Panel/Vbox/Panel/Options/Mesh"]
-margin_top = 28.0
+margin_top = 30.0
 margin_right = 472.0
-margin_bottom = 54.096
+margin_bottom = 58.096
 mouse_default_cursor_shape = 2
 pressed = true
 text = "EXPORT TILE"
@@ -135,19 +136,19 @@ his_propriety = "disabled"
 negative = true
 
 [node name="Hbox" type="HBoxContainer" parent="Panel/Vbox/Panel/Options/Mesh"]
-margin_top = 57.0
+margin_top = 61.0
 margin_right = 472.0
-margin_bottom = 83.0
+margin_bottom = 89.0
 
 [node name="Label" type="Label" parent="Panel/Vbox/Panel/Options/Mesh/Hbox"]
-margin_right = 95.04
-margin_bottom = 25.04
+margin_right = 117.04
+margin_bottom = 27.04
 text = "HIERARQUIA:"
 
 [node name="TileMode" type="OptionButton" parent="Panel/Vbox/Panel/Options/Mesh/Hbox"]
-margin_left = 98.0
+margin_left = 120.0
 margin_right = 472.0
-margin_bottom = 26.096
+margin_bottom = 28.096
 hint_tooltip = "Recomendo usar \"Apenas um static body\", em um sistema de colisão é o mais perfomatico."
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 3
@@ -156,12 +157,12 @@ items = [ "ALL IN ONE", null, false, 0, null, "SEPARATED BY GROUP", null, true, 
 selected = 0
 
 [node name="HSeparator3" type="HSeparator" parent="Panel/Vbox/Panel/Options"]
-margin_top = 243.0
+margin_top = 259.0
 margin_right = 472.0
-margin_bottom = 247.0
+margin_bottom = 263.0
 
 [node name="Export" type="Button" parent="Panel/Vbox"]
-margin_top = 445.0
+margin_top = 443.0
 margin_right = 484.0
 margin_bottom = 471.096
 mouse_default_cursor_shape = 2

@@ -12,7 +12,7 @@ func start() -> void:
 		"cancel"
 	)
 
-func ok(dir):
+func ok(dir: String,file: String):
 	Index.edit_node.World3D.export_scene_gltf(str(dir,".gltf"))
 	emit_signal("finished")
 	Index.block_view = false

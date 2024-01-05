@@ -8,8 +8,6 @@ onready var Tw: Tween = $Tween
 onready var Cont: Node = $Controller
 onready var Block: Spatial = $Block
 onready var Add: Node = $AddBlock
-onready var Export: Node = $Export
-
 
 export(int) var grid_size: int
 
@@ -42,6 +40,7 @@ func _selection_moviment() -> void:
 	if Input.is_action_pressed("click_left") and pos != pos_save:
 		selection_move()
 		pos_save = pos
+	
 	pos = Index.ray.get_collision_point().snapped(Vector3(2,2,2)) + Vector3(0,1,0)
 	
 	Selection.global_transform.origin = pos
@@ -55,10 +54,12 @@ func selection_move():
 func _add_block() -> void:
 	match Index.mode:
 		Index.MODE.ADD:
-			if Index.tile.path != "":
-				add_block_settings()
+			if Index.tile.tile != null:
+				Add.add_block_settings()
+				
 				if IndexLayer.edit.enabled == true:
 					IndexLayer.call_edit()
+		
 		Index.MODE.REMOVE:
 			Add.remove_block_settings()
 
@@ -71,26 +72,3 @@ func verific_mouse() -> bool:
 	return true
 
 
-func add_block_settings() -> void:
-	var path_tile = load(Index.tile.path)
-	
-	match Mirror.selected:
-		0:
-			Cont.Block.add_block(pos,Cont.rot,load(Index.tile.path))
-			
-		1:
-			var pos_mir = Vector3(-pos.x,pos.y,pos.z)
-			var rot_mir = Vector3(Cont.rot.x,-Cont.rot.y,Cont.rot.z)
-			
-			Cont.Block.add_block(pos,Cont.rot,path_tile)
-			Cont.Block.add_block(pos_mir,rot_mir,path_tile)
-			
-		2:
-			var pos_mir = Vector3(pos.x,pos.y,-pos.z)
-			var rot_mir = Vector3(Cont.rot.x,-Cont.rot.y+180,Cont.rot.z)
-			
-			Cont.Block.add_block(pos,Cont.rot,path_tile)
-			Cont.Block.add_block(pos_mir,rot_mir,path_tile)
-			
-		3:
-			Add.add_mirror_x_y(path_tile)

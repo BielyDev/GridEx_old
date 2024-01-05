@@ -21,10 +21,14 @@ var Tw: Tween = Tween.new()
 
 func _ready() -> void:
 	add_child(Tw)
-	rect_pivot_offset = rect_size/2
+	center_pivot()
 	
 	connect("button_down",self,"button_animated_down")
 	connect("button_up",self,"button_animated_up")
+
+
+func center_pivot() -> void:
+	rect_pivot_offset = rect_size/2
 
 
 func button_animated_down() -> void:
@@ -44,5 +48,4 @@ func button_animated_up() -> void:
 	
 	Tw.interpolate_property(self,"modulate", Color_pressed_back,Color_pressed_front,speed,transition)
 	Tw.start()
-
 
