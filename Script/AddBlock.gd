@@ -3,6 +3,8 @@ extends Node
 onready var Block: Spatial = $"../Block"
 onready var Par := get_parent()
 onready var Cont: Node = $"../Controller"
+
+var Light_new: PackedScene = preload("res://Scene/Tiles/Light.tscn")
 var pos
 
 func _process(_delta: float) -> void:
@@ -58,10 +60,18 @@ func add_mirror_x_y(tile: MeshInstance) -> void:
 	Cont.Block.add_block(pos_x_neg_z_neg,rot_x_neg_z_neg,tile)
 	Cont.Block.add_block(pos_x_z_neg,rot_x_z_neg,tile)
 	
-	Cont.Block.add_block(pos_z_x,rot_z_x,tile) #av
+	Cont.Block.add_block(pos_z_x,rot_z_x,tile)
 	Cont.Block.add_block(pos_z_neg_x,rot_z_neg_x,tile)
 	Cont.Block.add_block(pos_z_x_neg,rot_z_x_neg,tile)
 	Cont.Block.add_block(pos_z_neg_x_neg,rot_z_neg_x_neg,tile)
+
+
+func add_light() -> void:
+	var LightConfig = Light_new.instance()
+	Block.add_child(LightConfig)
+	LightConfig.global_transform.origin = pos
+	
+	IndexLayer.light_panel(LightConfig)
 
 
 func remove_block_settings() -> void:
@@ -104,3 +114,4 @@ func remove_mirror_x_y() -> void:
 	Cont.Block.remove_block(pos_z_neg_x)
 	Cont.Block.remove_block(pos_z_x_neg)
 	Cont.Block.remove_block(pos_z_neg_x_neg)
+

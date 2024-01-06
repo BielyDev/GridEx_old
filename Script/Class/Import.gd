@@ -1,4 +1,4 @@
-extends Node
+extends GridEx
 
 class_name Import
 

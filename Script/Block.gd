@@ -44,7 +44,8 @@ func add_block(pos: Vector3,rot: Vector3,tile_mesh: MeshInstance,undo: bool = tr
 
 
 func remove_block(pos: Vector3,undo: bool = true) -> bool:
-	var tile_undo 
+	var tile_undo
+	
 	for pos_array in get_children():
 		if pos_array.global_transform.origin == pos:
 			pos_array.queue_free()
@@ -77,6 +78,7 @@ func instance_block(tile_mesh: MeshInstance,pos_in: Vector3,rot: Vector3,undo: b
 	
 	block_pos.append({pos = pos_in, tile = tile})
 	if undo: Index.undo.append({pos = pos_in,add = true,tile = tile})
+
 
 func mode_selected(index: int) -> void:
 	mode = index

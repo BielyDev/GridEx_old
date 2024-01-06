@@ -5,11 +5,16 @@ onready var Tiles: HFlowContainer = $Info/Scroll/Tiles
 onready var Tittle_node: Label = $Info/Hbox/Tittle
 onready var CreatePreview: Spatial = $Create_preview
 onready var View: Viewport = $Create_preview/View
+onready var Show_button: Button = $Info/Hbox/Hide_and_show
+onready var TwUI: TweenUI = $TweenUI
 
 export(PackedScene) var group_scene: PackedScene
 
-var tittle: String = "Basic Tile"
+var show_arrow: AtlasTexture = preload("res://Assets/2D/Atlas/UI/Show_Arrow.tres")
+var hide_arrow: AtlasTexture = preload("res://Assets/2D/Atlas/UI/Hide_Arrow.tres")
 var script_tile: Script = load("res://Script/Button_Tile.gd")
+
+var tittle: String = "Basic Tile"
 var visivel: bool = true
 
 func _ready() -> void:
@@ -58,6 +63,8 @@ func _on_Hide_and_show_pressed() -> void:
 	visivel = !visivel
 	
 	if visivel:
-		Scroll.rect_min_size.y = 200
+		Show_button.icon = show_arrow
+		TwUI.animated_tween_ui(Scroll,"rect_min_size:y",Scroll.rect_min_size.y,200)
 	else:
-		Scroll.rect_min_size.y = 0
+		Show_button.icon = hide_arrow
+		TwUI.animated_tween_ui(Scroll,"rect_min_size:y",Scroll.rect_min_size.y,0,0.4,Tween.TRANS_CUBIC)

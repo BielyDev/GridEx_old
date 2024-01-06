@@ -6,7 +6,7 @@ func start() -> void:
 	Index.block_view = true
 	
 	IndexLayer.popup_two(
-		"DESEJA MESMO SAIR?",
+		"Do you really want to leave?",
 		self,
 		"ok",
 		"cancel"

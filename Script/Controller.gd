@@ -8,8 +8,12 @@ var rot: Vector3
 
 
 func _input(_event: InputEvent) -> void:
+	if Index.block_view:
+		return
+	
 	if Input.is_action_pressed("undo"):
 		_undo()
+		return
 	
 	_rotation_selection()
 	
@@ -33,7 +37,7 @@ func _undo() -> void:
 		if id.add == true:
 			Block.remove_block(id.pos,false)
 		else:
-			Block.add_block(id.pos,load(id.path),false)
+			Block.add_block(id.pos,id.tile,false)
 		
 		Index.undo.erase(id)
 

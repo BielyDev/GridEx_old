@@ -42,7 +42,7 @@ func _input(_event: InputEvent) -> void:
 			return
 	
 	if _event is InputEventMouseMotion:
-		if Input.is_mouse_button_pressed(BUTTON_MIDDLE) and Input.is_key_pressed(KEY_SHIFT):
+		if Input.is_mouse_button_pressed(BUTTON_MIDDLE) and Input.is_key_pressed(KEY_SHIFT) and state != STATE.FIRST_PERSON:
 			_moviment_mouse_local(_event.relative)
 			
 			state = STATE.TRANSLATION_POS
@@ -63,7 +63,7 @@ func _input(_event: InputEvent) -> void:
 			
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		
-		if Input.is_mouse_button_pressed(BUTTON_MIDDLE):
+		if Input.is_mouse_button_pressed(BUTTON_MIDDLE) and state != STATE.FIRST_PERSON:
 			_rotation_local(_event.relative)
 			
 			state = STATE.ROTATION_CAM
@@ -81,10 +81,10 @@ func _physics_process(_delta: float) -> void:
 	
 	if state == STATE.FIRST_PERSON:
 		_translate_cam()
+	
 	velocity =  velocity.linear_interpolate(Vector3(),0.1)
 	
 	Cam.global_translate(velocity * speed_vel)
-	
 
 
 func reset_transform() -> void:

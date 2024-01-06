@@ -4,7 +4,6 @@ var View
 var Mirror
 
 onready var Selection: MeshInstance = $Selection3D
-onready var Tw: Tween = $Tween
 onready var Cont: Node = $Controller
 onready var Block: Spatial = $Block
 onready var Add: Node = $AddBlock
@@ -48,10 +47,10 @@ func _selection_moviment() -> void:
 
 func selection_move():
 	if button_pressed:
-		_add_block()
+		_start_mode()
 
 
-func _add_block() -> void:
+func _start_mode() -> void:
 	match Index.mode:
 		Index.MODE.ADD:
 			if Index.tile.tile != null:
@@ -62,6 +61,9 @@ func _add_block() -> void:
 		
 		Index.MODE.REMOVE:
 			Add.remove_block_settings()
+		
+		Index.MODE.LIGHT:
+			Add.add_light()
 
 
 func verific_mouse() -> bool:
@@ -70,5 +72,4 @@ func verific_mouse() -> bool:
 	if View.get_local_mouse_position().y >= View.get_child(0).size.y or View.get_local_mouse_position().y <= 35:
 		return false
 	return true
-
 

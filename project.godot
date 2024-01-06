@@ -19,12 +19,17 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Script/Pos.gd"
 }, {
-"base": "Node",
+"base": "GridEx",
 "class": "Export",
 "language": "GDScript",
 "path": "res://Script/Class/Export.gd"
 }, {
 "base": "Node",
+"class": "GridEx",
+"language": "GDScript",
+"path": "res://Script/Class/GridEx_class.gd"
+}, {
+"base": "GridEx",
 "class": "Import",
 "language": "GDScript",
 "path": "res://Script/Class/Import.gd"
@@ -49,7 +54,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Script/Others/Tween_animation.gd"
 }, {
-"base": "Node",
+"base": "GridEx",
 "class": "UI",
 "language": "GDScript",
 "path": "res://Script/Class/UI.gd"
@@ -58,6 +63,7 @@ _global_script_class_icons={
 "AnimationButtonClass": "",
 "Camera_Controller": "",
 "Export": "",
+"GridEx": "res://Assets/2D/Program/Icon/icon.svg",
 "Import": "",
 "ObjParse": "",
 "SpinBoxControl": "",
@@ -70,10 +76,10 @@ _global_script_class_icons={
 
 config/name="GridEx"
 run/main_scene="res://Scene/World.tscn"
-boot_splash/image="res://Assets/Others/GridEx_Splash.png"
+boot_splash/image="res://Assets/2D/Program/Thumbnail/Splash.png"
 boot_splash/bg_color=Color( 0.141176, 0.141176, 0.141176, 0 )
-config/icon="res://icon.svg"
-config/windows_native_icon="res://icon(1).ico"
+config/icon="res://Assets/2D/Program/Icon/icon.svg"
+config/windows_native_icon="res://Assets/2D/Program/Icon/icon(1).ico"
 
 [autoload]
 
@@ -179,6 +185,11 @@ rot_y={
 rot_z={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":90,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+light={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":true,"control":false,"meta":false,"command":false,"pressed":false,"scancode":70,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 

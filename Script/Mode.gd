@@ -1,6 +1,14 @@
 extends AnimationButtonClass
 
-export(int, "VOID","ADD","REMOVE") var mode: int 
+export(
+	int,
+	"VOID",
+	"ADD",
+	"REMOVE",
+	"LINE",
+	"BUCKET",
+	"LIGHT"
+) var mode: int 
 export(String) var key: String 
 
 func _input(_event: InputEvent) -> void:

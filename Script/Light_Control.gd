@@ -1,7 +1,7 @@
 extends Control
 
 #var 
-var light
+var LightConfig: OmniLight
 onready var Energy_value: SpinBox = $LightPanel/Vbox/Panel/Vbox/Energy/Value
 onready var Size_value: SpinBox = $LightPanel/Vbox/Panel/Vbox/Size/Value
 onready var Att_value: SpinBox = $LightPanel/Vbox/Panel/Vbox/Attenuation/Value
@@ -10,25 +10,24 @@ onready var ShadownsColor: ColorPickerButton = $LightPanel/Vbox/Panel/Vbox/View/
 onready var Lightcolor: ColorPickerButton = $LightPanel/Vbox/Panel/Vbox/View/Vbox/ColorPanel/Vbox/Color
 
 func sets() -> void:
-	
-	Energy_value.No = light
-	Size_value.No = light
-	Att_value.No = light
-	Shadowns.No = light
-	ShadownsColor.No = light
-	Lightcolor.No = light
+	Energy_value.No = LightConfig
+	Size_value.No = LightConfig
+	Att_value.No = LightConfig
+	Shadowns.No = LightConfig
+	ShadownsColor.No = LightConfig
+	Lightcolor.No = LightConfig
 
 func _ready() -> void:
 	Index.block_view = true
 	
-	Energy_value.No = light
-	Size_value.No = light
-	Att_value.No = light
-	Shadowns.No = light
-	ShadownsColor.No = light
-	Lightcolor.No = light
+	Energy_value.No = LightConfig
+	Size_value.No = LightConfig
+	Att_value.No = LightConfig
+	Shadowns.No = LightConfig
+	ShadownsColor.No = LightConfig
+	Lightcolor.No = LightConfig
 
 
 func _on_Ok_pressed() -> void:
 	Index.block_view = false
-	get_parent().queue_free()
+	queue_free()

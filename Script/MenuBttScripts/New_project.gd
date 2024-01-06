@@ -5,7 +5,7 @@ signal finished()
 func start() -> void:
 	Index.block_view = true
 	IndexLayer.popup_two(
-		"VOCÊ IRAR PERDER SEU PROJETO ATUAL. \n DESEJA CONTINUAR?",
+		"You will lose your current project. \n Do you wish to continue?",
 		self,
 		"ok",
 		"cancel"

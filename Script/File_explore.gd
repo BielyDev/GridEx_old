@@ -54,3 +54,4 @@ func _on_FileDialog_hide() -> void:
 	
 	emit_signal("CANCEL")
 	queue_free()
+

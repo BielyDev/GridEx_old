@@ -15,7 +15,6 @@ func _process(delta: float) -> void:
 
 func _on_Export_pressed() -> void:
 	Export.export_tscn(str(dir,".tscn"),collision.pressed,collision_mode.selected,light.pressed,tile.pressed,tile_mode.selected)
-	#Index.edit_node.World3D.Export.export_scene(str(dir,".tscn"),collision.pressed,collision_mode.selected,light.pressed,tile.pressed,tile_mode.selected)
 	
 	emit_signal("final")
 	Index.block_view = false

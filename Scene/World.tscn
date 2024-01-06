@@ -1,14 +1,18 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Scene/World_Node.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scene/Resource/3D_View.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Script/MenuBttScripts/Create_tile.gd" type="Script" id=3]
 [ext_resource path="res://Script/MenuBttScripts/Import_tile.gd" type="Script" id=4]
+[ext_resource path="res://Script/Class/AnimationButtonClass.gd" type="Script" id=5]
 [ext_resource path="res://Scene/Theme_Tile/Basic.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Script/Edit.gd" type="Script" id=7]
 [ext_resource path="res://Scene/Settings/Settings_Scene.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Script/MenuBttScripts/Make_comment.gd" type="Script" id=9]
+[ext_resource path="res://Script/MenuBttScripts/About.gd" type="Script" id=10]
 [ext_resource path="res://Script/View.gd" type="Script" id=11]
 [ext_resource path="res://Script/Mode.gd" type="Script" id=12]
+[ext_resource path="res://Script/MenuBttScripts/Community.gd" type="Script" id=13]
 [ext_resource path="res://Script/Lock_Value.gd" type="Script" id=14]
 [ext_resource path="res://Script/TILE_COLLISION.gd" type="Script" id=15]
 [ext_resource path="res://Script/Menu_button_propriety.gd" type="Script" id=16]
@@ -33,6 +37,21 @@ region = Rect2( 222.059, 32.367, 78, 78 )
 flags = 23
 atlas = ExtResource( 23 )
 region = Rect2( 318.225, 26.465, 78, 78 )
+
+[sub_resource type="AtlasTexture" id=3977]
+flags = 23
+atlas = ExtResource( 23 )
+region = Rect2( 318.801, 91.323, 78, 78 )
+
+[sub_resource type="AtlasTexture" id=3978]
+flags = 23
+atlas = ExtResource( 23 )
+region = Rect2( 432.186, 49.172, 40, 40 )
+
+[sub_resource type="AtlasTexture" id=3976]
+flags = 23
+atlas = ExtResource( 23 )
+region = Rect2( 14.94, -1.307, 107.938, 140 )
 
 [node name="Edit" type="CanvasLayer"]
 script = ExtResource( 7 )
@@ -92,6 +111,17 @@ mouse_default_cursor_shape = 2
 text = "Render"
 items = [ "Image render", null, 0, false, true, 0, 0, null, "", false ]
 
+[node name="Help" type="MenuButton" parent="Local/Vbox/BarPanel/Modes"]
+margin_left = 182.0
+margin_right = 233.616
+margin_bottom = 28.096
+focus_mode = 2
+mouse_default_cursor_shape = 2
+text = "Help"
+items = [ "Make a comment", null, 0, false, false, 0, 0, null, "", false, "About", null, 0, false, false, 1, 0, null, "", false, "Community", null, 0, false, false, 2, 0, null, "", false, "", null, 0, false, true, 3, 0, null, "", true, "Bug report", null, 0, false, false, 4, 0, null, "", false ]
+script = ExtResource( 16 )
+Scripts = [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 13 ), null, ExtResource( 9 ) ]
+
 [node name="ModePanel" type="PanelContainer" parent="Local/Vbox"]
 margin_top = 39.0
 margin_right = 1280.0
@@ -121,6 +151,7 @@ mouse_default_cursor_shape = 2
 text = "Replace"
 items = [ "Replace", null, false, 0, null, "Stop", null, false, 1, null, "Mix", null, false, 2, null, "Apenas Sobrepor", null, false, 3, null ]
 selected = 0
+script = ExtResource( 5 )
 
 [node name="Mirror" type="HBoxContainer" parent="Local/Vbox/ModePanel/Modes"]
 margin_left = 207.0
@@ -141,6 +172,7 @@ mouse_default_cursor_shape = 2
 text = "None"
 items = [ "None", null, false, 0, null, "X", null, false, 1, null, "Z", null, false, 2, null, "X and Z", null, false, 3, null ]
 selected = 0
+script = ExtResource( 5 )
 
 [node name="Hbox" type="HBoxContainer" parent="Local/Vbox"]
 margin_top = 78.0
@@ -199,6 +231,60 @@ Color_pressed_front = Color( 1, 0, 0.960784, 1 )
 mode = 2
 key = "erase"
 
+[node name="Hs" type="HSeparator" parent="Local/Vbox/Hbox/Options/Vbox"]
+margin_top = 189.0
+margin_right = 60.0
+margin_bottom = 193.0
+
+[node name="Line" type="Button" parent="Local/Vbox/Hbox/Options/Vbox"]
+margin_top = 196.0
+margin_right = 60.0
+margin_bottom = 256.0
+rect_min_size = Vector2( 60, 60 )
+hint_tooltip = "Only in future versions."
+mouse_default_cursor_shape = 2
+disabled = true
+icon = SubResource( 3977 )
+expand_icon = true
+script = ExtResource( 12 )
+Color_pressed_front = Color( 1, 0, 0.960784, 1 )
+mode = 3
+key = "paint"
+
+[node name="Bucket" type="Button" parent="Local/Vbox/Hbox/Options/Vbox"]
+margin_top = 259.0
+margin_right = 60.0
+margin_bottom = 319.0
+rect_min_size = Vector2( 60, 60 )
+hint_tooltip = "Only in future versions."
+mouse_default_cursor_shape = 2
+disabled = true
+icon = SubResource( 3978 )
+expand_icon = true
+script = ExtResource( 12 )
+Color_pressed_front = Color( 1, 0, 0.960784, 1 )
+mode = 3
+key = "paint"
+
+[node name="Hs2" type="HSeparator" parent="Local/Vbox/Hbox/Options/Vbox"]
+margin_top = 322.0
+margin_right = 60.0
+margin_bottom = 326.0
+
+[node name="Light" type="Button" parent="Local/Vbox/Hbox/Options/Vbox"]
+margin_top = 329.0
+margin_right = 60.0
+margin_bottom = 389.0
+rect_min_size = Vector2( 60, 60 )
+mouse_default_cursor_shape = 2
+icon = SubResource( 3976 )
+icon_align = 1
+expand_icon = true
+script = ExtResource( 12 )
+Color_pressed_front = Color( 1, 0, 0.960784, 1 )
+mode = 5
+key = "light"
+
 [node name="View" type="VBoxContainer" parent="Local/Vbox/Hbox"]
 margin_left = 74.0
 margin_right = 983.0
@@ -228,7 +314,10 @@ stretch = true
 size = Vector2( 897, 582 )
 handle_input_locally = false
 render_target_update_mode = 3
-shadow_atlas_size = 1024
+shadow_atlas_size = 2048
+shadow_atlas_quad_1 = 3
+shadow_atlas_quad_2 = 4
+shadow_atlas_quad_3 = 5
 
 [node name="3D_View" parent="Local/Vbox/Hbox/View/ViewPanel/View/Viewport" instance=ExtResource( 2 )]
 
@@ -393,6 +482,7 @@ size_flags_vertical = 15
 scroll_horizontal_enabled = false
 
 [node name="Tile Groups" type="VBoxContainer" parent="Local/Vbox/Hbox/Edit/TileMain/Tab/Tiles"]
+unique_name_in_owner = true
 margin_right = 273.584
 margin_bottom = 597.104
 mouse_filter = 2
@@ -403,7 +493,7 @@ size_flags_vertical = 3
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 273.0
-margin_bottom = 251.096
+margin_bottom = 252.096
 mouse_filter = 2
 
 [node name="World" parent="Local/Vbox/Hbox/Edit/TileMain/Tab" instance=ExtResource( 8 )]
@@ -416,10 +506,10 @@ margin_right = -4.4
 margin_bottom = -4.4
 
 [node name="View" type="Control" parent="Local"]
-anchor_left = 0.062
+anchor_left = 0.06825
 anchor_top = 0.123611
-anchor_right = 0.771875
-anchor_bottom = 0.924
+anchor_right = 0.758594
+anchor_bottom = 0.900389
 margin_left = 0.639999
 margin_bottom = -0.28009
 script = ExtResource( 11 )
@@ -429,7 +519,9 @@ __meta__ = {
 
 [node name="World" parent="." instance=ExtResource( 1 )]
 
+[connection signal="pressed" from="Local/Vbox/Hbox/Options/Vbox/Void" to="." method="_on_Void_pressed"]
 [connection signal="pressed" from="Local/Vbox/Hbox/Options/Vbox/Add" to="." method="_on_Add_pressed"]
+[connection signal="pressed" from="Local/Vbox/Hbox/Options/Vbox/Light" to="." method="_on_Light_pressed"]
 [connection signal="mouse_entered" from="Local/View" to="Local/View" method="_on_View_mouse_entered"]
 [connection signal="mouse_exited" from="Local/View" to="Local/View" method="_on_View_mouse_exited"]
 

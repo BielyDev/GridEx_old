@@ -8,7 +8,7 @@ func start() -> void:
 	Index.block_view = true
 	
 	IndexLayer.file_explore(
-		["*.tile","*.tscn"],
+		["*.tscn"],
 		self,
 		"ok",
 		"cancel",

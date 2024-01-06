@@ -6,7 +6,7 @@ export(Color) var Color_pressed_back: Color = Color.white
 export(Color) var Color_pressed_front: Color = Color.white
 export(Vector2) var Scale_pressed_up: Vector2 = Vector2(1.1,1.1)
 export(Vector2) var Scale_pressed_down: Vector2 = Vector2(0.8,0.8)
-export(float) var speed: float = 0.6
+export(float) var speed: float = 0.4
 export(
 	int,
 	"TRANS_BACK",

@@ -4,7 +4,7 @@ signal model_tile_selection(mesh)
 signal change_tile()
 
 enum SETT {CAM_SENSI,CAM_SENSI_MOVE}
-enum MODE {VOID,ADD,REMOVE}
+enum MODE {VOID,ADD,REMOVE,LINE,BUCKET,LIGHT}
 
 var block_view: bool = false
 var edit_node
@@ -15,7 +15,7 @@ var env : Environment = preload("res://default_env.tres")
 var undo: Array = []
 
 var tile: Dictionary = {
-	path = "",
+	tile = null,
 	icon = null,
 }
 

@@ -1,4 +1,4 @@
-extends Node
+extends GridEx
 
 class_name Export
 
@@ -14,24 +14,28 @@ static func export_tscn(path: String,collision_enabled: bool,collision_mode: int
 	
 	#Montagem---------------------------------------------------------
 	add_block_export(Worlds ,collision_save)
+	yield(create_time(),"timeout")
 	
 	if collision_enabled:
 		add_collision_export(Worlds ,collision_mode ,collision_save)
 	
-	if light_enabled == false:
-		for child in Worlds.get_children():
-			if child.get("light_color") != null:
-				child.queue_free()
+	system_light(Worlds,light_enabled)
 	#-----------------------------------------------------------------
-	
-	scene.pack(Worlds)
-	var error = ResourceSaver.save(path ,scene)
-	Worlds.queue_free()
-	collision_save = []
+	yield(create_time(),"timeout")
+	file_tscn_create(Worlds,collision_save,scene,path)
 
 
 static func export_scene_gltf(path: String) -> void:
 	pass
+
+
+static func export_new_tiles(Models:Spatial ,path: String ,file: String) -> void:
+	for child in Models.get_children():
+		var group_scene: PackedScene = PackedScene.new()
+		group_scene.pack(child)
+		yield(create_time(),"timeout")
+		
+		file_tile_create(path,child,group_scene)
 
 
 static func add_block_export(Worlds: Spatial ,collision_save: Array):
@@ -68,6 +72,18 @@ static func add_collision_export(Worlds: Spatial ,collision_mode: int ,collision
 				collision.set_owner(Worlds)
 
 
+static func system_light(Worlds: Spatial,light_enabled: bool) -> void:
+	if light_enabled:
+		for lights in Worlds.get_children():
+			if lights.get("light_color") != null:
+				for spr in lights.get_children():
+					spr.queue_free()
+	else:
+		for lights in Worlds.get_children():
+			if lights.get("light_color") != null:
+				lights.queue_free()
+
+
 static func delet_others(node):
 	node.set_script(null)
 	for child in node.get_children():
@@ -95,3 +111,17 @@ static func verific_collision(node,collision_save: Array):
 		else:
 			verific_collision(node,collision_save)
 
+
+#Todas as funções que criam arquivos =================================================
+static func file_tscn_create(Worlds: Spatial,collision_save: Array,scene: PackedScene,path: String) -> void:
+	scene.pack(Worlds)
+	var error = ResourceSaver.save(path ,scene)
+	Worlds.queue_free()
+	collision_save = []
+
+static func file_tile_create(path: String,child: Spatial,group_scene: PackedScene) -> void:
+	var file_name = str(path,child.name,".tscn")
+	var erro = ResourceSaver.save(file_name,group_scene)
+	
+	yield(create_time(),"timeout")
+	Import.import_group_tile_automatic(file_name)

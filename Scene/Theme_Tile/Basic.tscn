@@ -1,27 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scene/Tiles/Basic_Tile.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/2D/Atlas/UI/Show_Arrow.tres" type="Texture" id=2]
+[ext_resource path="res://Script/Class/AnimationButtonClass.gd" type="Script" id=3]
+[ext_resource path="res://Script/Others/Tween_animation.gd" type="Script" id=4]
 [ext_resource path="res://Script/Basic.gd" type="Script" id=19]
-
-[sub_resource type="Gradient" id=3]
-offsets = PoolRealArray( 0.859259, 1 )
-colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
-
-[sub_resource type="GradientTexture2D" id=2]
-gradient = SubResource( 3 )
-fill = 1
-fill_from = Vector2( 0.5, 0.5 )
-fill_to = Vector2( 0.8, 0.2 )
-
-[sub_resource type="Gradient" id=4]
-offsets = PoolRealArray( 0.870722, 1 )
-colors = PoolColorArray( 0.431111, 0.431111, 0.431111, 1, 1, 1, 1, 0 )
-
-[sub_resource type="GradientTexture2D" id=5]
-gradient = SubResource( 4 )
-fill = 1
-fill_from = Vector2( 0.5, 0.5 )
-fill_to = Vector2( 0.8, 0.2 )
 
 [node name="Base" type="PanelContainer"]
 anchor_right = 0.2125
@@ -36,37 +19,40 @@ group_scene = ExtResource( 1 )
 margin_left = 5.808
 margin_top = 4.048
 margin_right = 266.192
-margin_bottom = 247.048
+margin_bottom = 248.048
 
 [node name="Hbox" type="HBoxContainer" parent="Info"]
 margin_right = 260.0
-margin_bottom = 27.0
+margin_bottom = 28.0
 
-[node name="Hide_and_show" type="TextureButton" parent="Info/Hbox"]
+[node name="Hide_and_show" type="Button" parent="Info/Hbox"]
 margin_right = 26.0
-margin_bottom = 27.0
+margin_bottom = 28.096
 rect_min_size = Vector2( 26, 26 )
 mouse_default_cursor_shape = 2
-texture_normal = SubResource( 2 )
-texture_pressed = SubResource( 5 )
-expand = true
+icon = ExtResource( 2 )
+flat = true
+expand_icon = true
+script = ExtResource( 3 )
+Scale_pressed_up = Vector2( 1.5, 1.5 )
+speed = 0.2
+transition = 4
 
 [node name="Tittle" type="Label" parent="Info/Hbox"]
 margin_left = 29.0
-margin_top = -1.0
 margin_right = 136.04
-margin_bottom = 26.04
+margin_bottom = 27.04
 text = "Basic tile"
 
 [node name="HS_Up" type="HSeparator" parent="Info"]
-margin_top = 30.0
+margin_top = 31.0
 margin_right = 260.0
-margin_bottom = 34.0
+margin_bottom = 35.0
 
 [node name="Scroll" type="ScrollContainer" parent="Info"]
-margin_top = 37.0
+margin_top = 38.0
 margin_right = 260.0
-margin_bottom = 236.596
+margin_bottom = 237.596
 rect_min_size = Vector2( 0, 199.596 )
 
 [node name="Tiles" type="HFlowContainer" parent="Info/Scroll"]
@@ -74,9 +60,9 @@ margin_right = 260.0
 size_flags_horizontal = 3
 
 [node name="HS_Down" type="HSeparator" parent="Info"]
-margin_top = 239.0
+margin_top = 240.0
 margin_right = 260.0
-margin_bottom = 243.0
+margin_bottom = 244.0
 
 [node name="Create_preview" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 999, 999 )
@@ -98,5 +84,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.615 )
 projection = 1
 size = 3.699
 far = 10.0
+
+[node name="TweenUI" type="Tween" parent="."]
+script = ExtResource( 4 )
 
 [connection signal="pressed" from="Info/Hbox/Hide_and_show" to="." method="_on_Hide_and_show_pressed"]

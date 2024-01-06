@@ -4,7 +4,7 @@ var popup_two_new: PackedScene = preload("res://Scene/Popups/Popup_PC.tscn")
 var popup_one_new: PackedScene = preload("res://Scene/Popups/Popup_OK.tscn")
 var file_explore_new: PackedScene = preload("res://Scene/Popups/File_explore.tscn")
 var importer_new: PackedScene = preload("res://Scene/Import/Import_Config.tscn")
-
+var light_panel_new: PackedScene = preload("res://Scene/Popups/Light_Control.tscn")
 
 var edit: Dictionary = {
 	enabled = false,
@@ -36,11 +36,10 @@ func importer_menu(object: Node,OK: String) -> void:
 	importer.connect("OK",object,OK)
 
 
-func call_edit():
-	var scene = load(edit.scene_path).instance()
-	scene.get_child(0).light = edit.other
-	add_child(scene)
-	scene.get_child(0).sets()
+func light_panel(light: OmniLight) -> void:
+	var li = light_panel_new.instance()
+	li.LightConfig = light
+	add_child(li)
 
 
 func call_export(scene_path,dir,no,call) -> void:

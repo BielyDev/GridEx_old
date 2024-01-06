@@ -1,4 +1,4 @@
-extends Node
+extends GridEx
 
 class_name UI
 
@@ -7,12 +7,11 @@ static func ready_animated(object: Control) -> bool:
 	center_pivot(object)
 	
 	TwUI.animated_tween_ui(object,"rect_scale",Vector2(),object.rect_scale,0.6,Tween.TRANS_CUBIC)
-	
 	yield(TwUI,"tween_all_completed")
-	
 	TwUI.queue_free()
 	
 	return true
+
 
 static func ready_animated_complex(object_size: Control,object_opacity: Control) -> bool:
 	var TwUI = add_tween()
@@ -28,6 +27,7 @@ static func ready_animated_complex(object_size: Control,object_opacity: Control)
 	return true
 
 
+
 static func queue_animated(object: Control) -> bool:
 	var TwUI = add_tween()
 	center_pivot(object)
@@ -40,6 +40,7 @@ static func queue_animated(object: Control) -> bool:
 	TwUI.queue_free()
 	
 	return true
+
 
 static func queue_animated_complex(object: Control,object_size: Control,object_opacity: Control) -> bool:
 	var TwUI = add_tween()
@@ -56,11 +57,14 @@ static func queue_animated_complex(object: Control,object_size: Control,object_o
 	return true
 
 
+
 static func add_tween() -> TweenUI:
 	var TwUI: TweenUI = TweenUI.new()
 	Index.add_child(TwUI)
 	
 	return TwUI
 
+
 static func center_pivot(object: Control) -> void:
 	object.rect_pivot_offset = object.rect_size/2
+
