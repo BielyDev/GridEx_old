@@ -148,6 +148,7 @@ func get_item_selection():
 
 func save_groups(path,file) -> void:
 	Export.export_new_tiles(Models ,path ,file)
+	yield(get_tree().create_timer(3),"timeout")
 	yield(UI.queue_animated(self),"completed")
 	emit_signal("OK")
 

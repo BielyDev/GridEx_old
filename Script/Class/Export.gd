@@ -35,6 +35,7 @@ static func export_new_tiles(Models:Spatial ,path: String ,file: String) -> void
 		group_scene.pack(child)
 		yield(create_time(),"timeout")
 		
+		print(child)
 		file_tile_create(path,child,group_scene)
 
 
