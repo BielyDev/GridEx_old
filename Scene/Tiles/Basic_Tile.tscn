@@ -1,10 +1,5 @@
 [gd_scene load_steps=53 format=2]
 
-[ext_resource path="res://Assets/Models/GLTF/Basic_T/Materiais_013.material" type="Material" id=1]
-[ext_resource path="res://Assets/Models/GLTF/Basic_T/Materiais_017.material" type="Material" id=2]
-[ext_resource path="res://Assets/Models/GLTF/Basic_T/Materiais_012.material" type="Material" id=3]
-[ext_resource path="res://Assets/Models/GLTF/Basic_T/Materiais_011.material" type="Material" id=4]
-
 [sub_resource type="SpatialMaterial" id=15]
 resource_name = "Materiais.005"
 vertex_color_use_as_albedo = true
@@ -316,6 +311,26 @@ surfaces/1 = {
 "vertex_count": 105
 }
 
+[sub_resource type="SpatialMaterial" id=55]
+resource_name = "Materiais.011"
+vertex_color_use_as_albedo = true
+params_cull_mode = 2
+albedo_color = Color( 0.399991, 0.399991, 0.399991, 1 )
+roughness = 0.5
+
+[sub_resource type="SpatialMaterial" id=56]
+resource_name = "Materiais.012"
+vertex_color_use_as_albedo = true
+params_cull_mode = 2
+albedo_color = Color( 0.773324, 0.773324, 0.773324, 1 )
+roughness = 0.5
+
+[sub_resource type="SpatialMaterial" id=57]
+resource_name = "Materiais.013"
+vertex_color_use_as_albedo = true
+params_cull_mode = 2
+roughness = 0.5
+
 [sub_resource type="ArrayMesh" id=40]
 resource_name = "Map_Cubo015"
 surfaces/0 = {
@@ -325,7 +340,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194711,
 "index_count": 252,
-"material": ExtResource( 4 ),
+"material": SubResource( 55 ),
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 171
@@ -337,7 +352,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 2194711,
 "index_count": 120,
-"material": ExtResource( 3 ),
+"material": SubResource( 56 ),
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 84
@@ -349,7 +364,7 @@ surfaces/2 = {
 "blend_shape_data": [  ],
 "format": 2194711,
 "index_count": 168,
-"material": ExtResource( 1 ),
+"material": SubResource( 57 ),
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 91
@@ -532,6 +547,13 @@ surfaces/1 = {
 "vertex_count": 70
 }
 
+[sub_resource type="SpatialMaterial" id=58]
+resource_name = "Materiais.017"
+vertex_color_use_as_albedo = true
+params_cull_mode = 2
+albedo_color = Color( 0.793324, 0.793324, 0.793324, 1 )
+roughness = 0.5
+
 [sub_resource type="SpatialMaterial" id=25]
 resource_name = "Materiais.016"
 vertex_color_use_as_albedo = true
@@ -548,7 +570,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194711,
 "index_count": 96,
-"material": ExtResource( 2 ),
+"material": SubResource( 58 ),
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 36

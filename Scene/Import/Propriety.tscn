@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/2D/Atlas/UI/Hide_Arrow.tres" type="Texture" id=1]
+[ext_resource path="res://Script/UI/Buttons/Hide_and_show.gd" type="Script" id=2]
+[ext_resource path="res://Script/UI/Geral/Propriety.gd" type="Script" id=3]
+
+[node name="Propriety" type="VBoxContainer"]
+margin_right = 250.0
+margin_bottom = 45.0
+size_flags_horizontal = 7
+script = ExtResource( 3 )
+
+[node name="hide_show" type="Button" parent="."]
+margin_right = 250.0
+margin_bottom = 28.096
+rect_min_size = Vector2( 28.096, 28.096 )
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+text = "Albedo"
+icon = ExtResource( 1 )
+flat = true
+icon_align = 2
+expand_icon = true
+script = ExtResource( 2 )
+Scale_pressed_up = Vector2( 1, 2 )
+Scale_pressed_down = Vector2( 1, 0.8 )
+Node_effect = NodePath("../Vbox")
+Vec_max = Vector2( 180, 100 )
+Vec_min = Vector2( 180, 0 )
+visivel = false
+child_hide = true
+
+[node name="Vbox" type="VBoxContainer" parent="."]
+margin_top = 31.0
+margin_right = 250.0
+margin_bottom = 45.0
+size_flags_horizontal = 3
+
+[node name="Hs" type="HSeparator" parent="Vbox"]
+margin_right = 250.0
+margin_bottom = 4.0
+
+[node name="list" type="VBoxContainer" parent="Vbox"]
+margin_top = 7.0
+margin_right = 250.0
+margin_bottom = 7.0
+size_flags_horizontal = 3
+
+[node name="Hs2" type="HSeparator" parent="Vbox"]
+margin_top = 10.0
+margin_right = 250.0
+margin_bottom = 14.0

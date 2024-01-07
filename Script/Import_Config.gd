@@ -2,10 +2,11 @@ extends Control
 
 signal OK()
 signal CONFIRM()
-
+onready var Mat: VBoxContainer = $"%Materials"
 onready var Models: Spatial = $"%Models"
 onready var Tree_models: Tree = $"%Tree"
 onready var Propriety: PanelContainer = $Screen/Hbox/TreePanel/Vbox/ProprietyPanel
+onready var Make_materials: Node = $Make_Materials
 
 var tile_icon: AtlasTexture = load("res://Assets/2D/Atlas/UI/Tile.tres")
 var group_tile_icon: AtlasTexture = load("res://Assets/2D/Atlas/UI/Group_tile.tres")
@@ -28,7 +29,10 @@ func _input(_event: InputEvent) -> void:
 	var item_select = get_item_selection() 
 	if item_select != null:
 		Propriety.show()
+		
 		Propriety.tile_selected(item_select.node)
+		if Mat.get_child_count() == 0:
+			Make_materials.make(item_select.node)
 	else:
 		Propriety.hide()
 

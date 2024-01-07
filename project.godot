@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Script/Class/GridEx_class.gd"
 }, {
+"base": "AnimationButtonClass",
+"class": "Hide_and_show_animated",
+"language": "GDScript",
+"path": "res://Script/UI/Buttons/Hide_and_show.gd"
+}, {
 "base": "GridEx",
 "class": "Import",
 "language": "GDScript",
@@ -64,6 +69,7 @@ _global_script_class_icons={
 "Camera_Controller": "",
 "Export": "",
 "GridEx": "res://Assets/2D/Program/Icon/icon.svg",
+"Hide_and_show_animated": "",
 "Import": "",
 "ObjParse": "",
 "SpinBoxControl": "",

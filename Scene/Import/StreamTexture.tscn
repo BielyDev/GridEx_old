@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/2D/Program/Icon/icon.svg" type="Texture" id=1]
+[ext_resource path="res://Script/Import_Config/StreamTexture.gd" type="Script" id=2]
+
+[node name="StreamTexture" type="PanelContainer"]
+margin_right = 128.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 128, 128 )
+script = ExtResource( 2 )
+
+[node name="Texture" type="TextureButton" parent="."]
+margin_left = 5.808
+margin_top = 4.048
+margin_right = 122.192
+margin_bottom = 123.952
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 1 )
+expand = true
+stretch_mode = 5
+
+[connection signal="pressed" from="Texture" to="." method="_on_Texture_pressed"]
