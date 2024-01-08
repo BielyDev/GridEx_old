@@ -11,6 +11,11 @@ func make(item_select: MeshInstance) -> void:
 	create_geometry_material_menu(item_select)
 
 
+func clear() -> void:
+	for child in Mat.get_children():
+		child.queue_free()
+
+
 func create_sep() -> void:
 	var Sep: HSeparator = HSeparator.new()
 	Mat.add_child(Sep)

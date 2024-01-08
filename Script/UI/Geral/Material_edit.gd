@@ -16,6 +16,14 @@ func _ready() -> void:
 	create_propriety()
 
 func create_propriety() -> void:
+	var pro = propriety_new.instance()
+	
+	propriety("Albedo","albedo_color",pro.TYPE.COLOR)
+	[[{}]]
+
+#Você parou aqui, estava tentando achar uma maneira de criar uma função que encurtace o caminho para criar as propriedades
+
+func propriety(tittle: String,propriety_name: String,type: int) -> void:
 	var albedo = propriety_new.instance()
 	albedo.tittle = "Albedo"
 	albedo.mat = mat

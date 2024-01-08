@@ -10,6 +10,8 @@ onready var Make_materials: Node = $Make_Materials
 
 var tile_icon: AtlasTexture = load("res://Assets/2D/Atlas/UI/Tile.tres")
 var group_tile_icon: AtlasTexture = load("res://Assets/2D/Atlas/UI/Group_tile.tres")
+var item_save: MeshInstance
+var limpar: bool = true
 
 var group: Array = []
 var item: Array = []
@@ -26,14 +28,25 @@ func _ready() -> void:
 
 
 func _input(_event: InputEvent) -> void:
-	var item_select = get_item_selection() 
+	var item_select = get_item_selection()
+	
 	if item_select != null:
 		Propriety.show()
 		
+		if item_save != item_select.node:
+			Make_materials.clear()
+		item_save = item_select.node
+		
 		Propriety.tile_selected(item_select.node)
+		
 		if Mat.get_child_count() == 0:
 			Make_materials.make(item_select.node)
+		
+		limpar = true
 	else:
+		if limpar:
+			Make_materials.clear()
+			limpar = false
 		Propriety.hide()
 
 

@@ -82,3 +82,4 @@ func instance_block(tile_mesh: MeshInstance,pos_in: Vector3,rot: Vector3,undo: b
 
 func mode_selected(index: int) -> void:
 	mode = index
+
