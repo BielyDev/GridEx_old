@@ -25,6 +25,7 @@ margin_bottom = 35.048
 [node name="Options" type="MenuButton" parent="Vbox"]
 margin_right = 180.0
 margin_bottom = 28.096
+mouse_default_cursor_shape = 2
 text = "[empty]"
 flat = false
 items = [ "Clear", null, 0, false, false, 0, 0, null, "", false, "New AnimationTexture", null, 0, false, false, 1, 0, null, "", false, "New StreamTexture", null, 0, false, false, 2, 0, null, "", false ]

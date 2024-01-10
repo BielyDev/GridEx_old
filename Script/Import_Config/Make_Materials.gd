@@ -8,7 +8,7 @@ var Material_edit_new: PackedScene = preload("res://Scene/Import/Material_edit.t
 func make(item_select: MeshInstance) -> void:
 	create_surface_material_menu(item_select)
 	create_sep()
-	create_geometry_material_menu(item_select)
+	#create_geometry_material_menu(item_select)
 
 
 func clear() -> void:

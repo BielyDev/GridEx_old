@@ -2,11 +2,16 @@ extends HBoxContainer
 
 onready var Pro: PanelContainer = $"../.."
 
-func _on_x_value_changed(_value: float) -> void:
-	Pro.tile.global_transform.origin.x = _value
+var prop_new = preload("res://Scene/Import/Propriety.tscn")
 
-func _on_y_value_changed(_value: float) -> void:
-	Pro.tile.global_transform.origin.y = _value
+export(String) var propriety: String
 
-func _on_z_value_changed(_value: float) -> void:
-	Pro.tile.global_transform.origin.z = _value
+func start() -> void:
+	var prop = prop_new.instance()
+	prop.types = [{name = propriety,type = prop.TYPE.VECTOR}]
+	prop.mat = Pro.tile
+	
+	add_child(prop)
+
+func clear() -> void:
+	get_child(1).queue_free()

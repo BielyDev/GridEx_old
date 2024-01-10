@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Script/Import_Config/Types/Option.gd" type="Script" id=1]
+
+[node name="Option" type="OptionButton"]
+margin_right = 128.0
+margin_bottom = 28.096
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+script = ExtResource( 1 )
+
+[connection signal="item_selected" from="." to="." method="_on_Option_item_selected"]

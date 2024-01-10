@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scene/Import/StreamTexture.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Script/Class/SpinBoxControlClass.gd" type="Script" id=2]
+[ext_resource path="res://Script/Import_Config/Types/Frame.gd" type="Script" id=3]
+
+[node name="Frame" type="VBoxContainer"]
+margin_right = 235.0
+margin_bottom = 189.0
+script = ExtResource( 3 )
+
+[node name="Tittle" type="Label" parent="."]
+margin_top = -1.0
+margin_right = 235.0
+margin_bottom = 26.04
+text = "Frame 0"
+
+[node name="StreamTexture" parent="." instance=ExtResource( 1 )]
+margin_top = 30.0
+margin_right = 235.0
+margin_bottom = 158.0
+
+[node name="Sec" type="HBoxContainer" parent="."]
+margin_top = 161.0
+margin_right = 235.0
+margin_bottom = 189.0
+
+[node name="Tittle" type="Label" parent="Sec"]
+margin_right = 87.04
+margin_bottom = 27.04
+text = "Secunds:"
+
+[node name="Sec" type="SpinBox" parent="Sec"]
+margin_left = 90.0
+margin_right = 235.616
+margin_bottom = 28.096
+max_value = 60.0
+page = 0.1
+value = 1.0
+script = ExtResource( 2 )
+
+[connection signal="texture_chaged" from="StreamTexture" to="." method="_on_StreamTexture_texture_chaged"]
+[connection signal="value_changed" from="Sec/Sec" to="." method="_on_Sec_value_changed"]

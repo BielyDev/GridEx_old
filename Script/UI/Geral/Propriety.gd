@@ -1,18 +1,22 @@
 extends VBoxContainer
 
-enum TYPE {BOOL,NUM,VECTOR,COLOR,TEXTURE}
+enum TYPE {BOOL,NUM,OPTION,VECTOR,COLOR,TEXTURE}
 
 onready var List := $Vbox/list
 onready var Hide_show: Button = $hide_show
 
-var script_animation: Script = preload("res://Script/Import_Config/set_propriety.gd")
 var TextureLoadButton_new: PackedScene = preload("res://Scene/Import/TextureLoadButton.tscn")
+var BoolButton_new: PackedScene = preload("res://Scene/Import/Types/Bool.tscn")
+var NumButton_new: PackedScene = preload("res://Scene/Import/Types/Num.tscn")
+var VecButton_new: PackedScene = preload("res://Scene/Resource/Vector.tscn")
+var OptionButton_new: PackedScene = preload("res://Scene/Import/Types/Option.tscn")
+var ColorButton_new: PackedScene = preload("res://Scene/Import/Types/Color.tscn")
 
-var mat: SpatialMaterial
+var mat
 
 var types: Array = []
 var tittle: String
-#{name = "albedo_color",type = TYPE.COLOR},{name = "albedo_texture",type = TYPE.TEXTURE}
+#{name = "albedo_color",type = TYPE.COLOR,others = []}
 
 func _ready() -> void:
 	Hide_show.text = tittle
@@ -25,30 +29,51 @@ func create_types() -> void:
 	for i in types:
 		match i.type:
 			TYPE.BOOL:
-				var check: CheckBox = CheckBox.new()
+				var Bool = BoolButton_new.instance()
 				var hbox = add(i.name)
-				config(check,"on",i.name,"pressed")
+				Bool.mat = mat
+				Bool.mat_propriety = i.name
 				
-				hbox.add_child(check)
+				hbox.add_child(Bool)
 			TYPE.NUM:
-				var num: HSlider = HSlider.new()
+				var Num = NumButton_new.instance()
 				var hbox = add(i.name)
-				config(num,"",i.name,"value")
+				Num.mat = mat
+				Num.mat_propriety = i.name
+				Num.min_value = i.values[0]
+				Num.max_value = i.values[1]
 				
-				hbox.add_child(num)
+				hbox.add_child(Num)
+			TYPE.VECTOR:
+				var Vec = VecButton_new.instance()
+				var hbox = add(i.name)
+				Vec.node = mat
+				Vec.propriety = i.name
+				
+				hbox.add_child(Vec)
+			TYPE.OPTION:
+				var Option = OptionButton_new.instance()
+				var hbox = add(i.name)
+				Option.mat = mat
+				Option.mat_propriety = i.name
+				for itens in i.options:
+					Option.add_item(itens)
+				
+				hbox.add_child(Option)
 			TYPE.COLOR:
-				var color: ColorPickerButton = ColorPickerButton.new()
+				var _Color = ColorButton_new.instance()
 				var hbox = add(i.name)
-				config(color,"",i.name,"color")
+				_Color.mat = mat
+				_Color.mat_propriety = i.name
 				
-				hbox.add_child(color)
+				hbox.add_child(_Color)
 			TYPE.TEXTURE:
 				var Tex = TextureLoadButton_new.instance()
 				var hbox = add(i.name)
 				Tex.mat = mat
+				Tex.mat_propriety = i.name
 				
 				hbox.add_child(Tex)
-
 
 
 func add(text: String):
@@ -61,17 +86,4 @@ func add(text: String):
 	
 	list.add_child(tittle)
 	return list
-
-
-func config(item: Control,text: String,mat_propriety: String,propriety: String) -> void:
-	item.size_flags_horizontal = 10
-	item.rect_min_size.x = 100
-	item.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
-	if text != "":
-		item.text = text
-	
-	item.set_script(script_animation)
-	item.mat = mat
-	item.mat_propriety = mat_propriety
-	item.propriety = propriety
 

@@ -10,7 +10,7 @@ func _ready() -> void:
 	connect("mouse_exited",self,"mouse_exit")
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion or event is InputEventMouseButton:
 		if Input.is_mouse_button_pressed(BUTTON_LEFT) and mouse:
 			pressed()
 

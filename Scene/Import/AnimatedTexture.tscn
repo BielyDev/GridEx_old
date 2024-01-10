@@ -1,0 +1,68 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Script/Class/AnimationButtonClass.gd" type="Script" id=1]
+[ext_resource path="res://Script/Import_Config/AnimatedTexture.gd" type="Script" id=2]
+
+[node name="AnimatedTexture" type="PanelContainer"]
+margin_right = 256.0
+margin_bottom = 250.0
+rect_min_size = Vector2( 256, 275 )
+script = ExtResource( 2 )
+
+[node name="Vbox" type="VBoxContainer" parent="."]
+margin_left = 5.808
+margin_top = 4.048
+margin_right = 250.192
+margin_bottom = 270.952
+
+[node name="Hbox2" type="HBoxContainer" parent="Vbox"]
+margin_right = 244.0
+margin_bottom = 28.0
+
+[node name="Play" type="Button" parent="Vbox/Hbox2"]
+margin_right = 51.616
+margin_bottom = 28.096
+text = "Play"
+script = ExtResource( 1 )
+
+[node name="Stop" type="Button" parent="Vbox/Hbox2"]
+margin_left = 192.384
+margin_right = 244.0
+margin_bottom = 28.096
+size_flags_horizontal = 10
+text = "Stop"
+script = ExtResource( 1 )
+
+[node name="Scroll" type="ScrollContainer" parent="Vbox"]
+margin_top = 31.0
+margin_right = 244.0
+margin_bottom = 235.0
+size_flags_vertical = 3
+
+[node name="Frames" type="VBoxContainer" parent="Vbox/Scroll"]
+
+[node name="Hbox" type="HBoxContainer" parent="Vbox"]
+margin_top = 238.0
+margin_right = 244.0
+margin_bottom = 266.0
+
+[node name="Add" type="Button" parent="Vbox/Hbox"]
+margin_right = 41.616
+margin_bottom = 28.096
+text = "Add"
+script = ExtResource( 1 )
+Color_pressed_back = Color( 0, 0.694118, 1, 1 )
+
+[node name="Remove" type="Button" parent="Vbox/Hbox"]
+margin_left = 172.384
+margin_right = 244.0
+margin_bottom = 28.096
+size_flags_horizontal = 10
+text = "Remove"
+script = ExtResource( 1 )
+Color_pressed_back = Color( 1, 0.27451, 0.27451, 1 )
+
+[connection signal="pressed" from="Vbox/Hbox2/Play" to="." method="_on_Play_pressed"]
+[connection signal="pressed" from="Vbox/Hbox2/Stop" to="." method="_on_Stop_pressed"]
+[connection signal="pressed" from="Vbox/Hbox/Add" to="." method="_on_Add_pressed"]
+[connection signal="pressed" from="Vbox/Hbox/Remove" to="." method="_on_Remove_pressed"]

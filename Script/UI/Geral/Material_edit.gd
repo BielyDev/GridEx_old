@@ -18,35 +18,62 @@ func _ready() -> void:
 func create_propriety() -> void:
 	var pro = propriety_new.instance()
 	
-	propriety("Albedo","albedo_color",pro.TYPE.COLOR)
-	[[{}]]
+	propriety("Flags",[
+		{name = "flags_transparent",type = pro.TYPE.BOOL},
+		{name = "flags_unshaded",type = pro.TYPE.BOOL},
+		{name = "flags_fixed_size",type = pro.TYPE.BOOL}
+	])
+	
+	propriety("Parameters",[
+		{name = "params_diffuse_mode",type = pro.TYPE.OPTION,options = ["Burley","Lambert","Lambert Warp","Oren Nayar","Toon"]},
+		{name = "params_specular_mode",type = pro.TYPE.OPTION,options = ["SchlickGGX","Blinn","Phong","Toon","Disabled"]},
+		{name = "params_blend_mode",type = pro.TYPE.OPTION,options = ["Mix","Add","Sub","Mul"]},
+		{name = "params_cull_mode",type = pro.TYPE.OPTION,options = ["Fron","Back","Disabled"]},
+		{name = "params_billboard_mode",type = pro.TYPE.OPTION,options = ["Disabled","Enabled","Y-Billboard"]},
+		{name = "params_billboard_keep_scale",type = pro.TYPE.BOOL}
+	])
+	
+	propriety("Albedo",[
+		{name = "albedo_color",type = pro.TYPE.COLOR},
+		{name = "albedo_texture",type = pro.TYPE.TEXTURE}
+	])
+	
+	propriety("Metalic",[
+		{name = "metalic",type = pro.TYPE.NUM,values = [0,1]},
+		{name = "metallic_specular",type = pro.TYPE.NUM,values = [0,1]}
+	])
+	
+	propriety("Roughness",[
+		{name = "roughness",type = pro.TYPE.NUM,values = [0,1]},
+		{name = "roughness_texture",type = pro.TYPE.TEXTURE}
+	])
+	
+	propriety("Emission",[
+		{name = "emission_enabled",type = pro.TYPE.BOOL},
+		{name = "emission",type = pro.TYPE.COLOR},
+		{name = "emission_energy",type = pro.TYPE.NUM,values = [0,16]},
+		{name = "emission_operator",type = pro.TYPE.OPTION,options = ["Add","Multiply"]},
+		{name = "emission_texture",type = pro.TYPE.TEXTURE}
+	])
+	
+	propriety("Normal Map",[
+		{name = "normal_scale",type = pro.TYPE.NUM,values = [-16,16]},
+		{name = "normal_texture",type = pro.TYPE.TEXTURE}
+	])
+	
+	propriety("UV 1",[
+		{name = "uv1_scale",type = pro.TYPE.VECTOR},
+		{name = "uv1_offset",type = pro.TYPE.VECTOR},
+		{name = "uv1_triplanar",type = pro.TYPE.BOOL}
+	])
 
-#Você parou aqui, estava tentando achar uma maneira de criar uma função que encurtace o caminho para criar as propriedades
 
-func propriety(tittle: String,propriety_name: String,type: int) -> void:
-	var albedo = propriety_new.instance()
-	albedo.tittle = "Albedo"
-	albedo.mat = mat
+func propriety(tittle: String,propriety: Array) -> void:
+	var prop = propriety_new.instance()
+	prop.tittle = tittle
+	prop.mat = mat
+	prop.types = propriety
 	
-	albedo.types.push_back(
-		{name = "albedo_color",type = albedo.TYPE.COLOR}
-	)
-	albedo.types.push_back(
-		{name = "albedo_texture",type = albedo.TYPE.TEXTURE}
-	)
 	
-	Vbox.add_child(albedo)
-	
-	var metalic = propriety_new.instance()
-	metalic.tittle = "Metalic"
-	metalic.mat = mat
-	
-	metalic.types.push_back(
-		{name = "metalic",type = metalic.TYPE.NUM}
-	)
-	metalic.types.push_back(
-		{name = "metallic_specular",type = metalic.TYPE.NUM}
-	)
-	
-	Vbox.add_child(metalic)
-	
+	Vbox.add_child(prop)
+
