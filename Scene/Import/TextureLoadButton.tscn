@@ -9,8 +9,8 @@
 [node name="TextureLoadButton" type="PanelContainer"]
 anchor_right = 0.15
 anchor_bottom = 0.0543
-rect_min_size = Vector2( 192, 0 )
-size_flags_horizontal = 3
+rect_min_size = Vector2( 150, 0 )
+size_flags_horizontal = 10
 script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": true

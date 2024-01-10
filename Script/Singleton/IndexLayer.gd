@@ -21,11 +21,13 @@ func popup_two(text: String,object: Node,OK: String,CANCEL: String) -> void:
 	
 	add_child(pop)
 
-func popup_one(text: String,object: Node,OK: String) -> void:
+func popup_one(text: String,object: Node = null,OK: String = "") -> void:
 	var pop = popup_one_new.instance()
 	
 	pop.text = text
-	pop.connect("OK",object,OK)
+	
+	if object != null:
+		pop.connect("OK",object,OK)
 	
 	add_child(pop)
 

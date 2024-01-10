@@ -1,5 +1,7 @@
 extends Spatial
 
+signal move_block(pos)
+
 var View
 var Mirror
 
@@ -7,27 +9,34 @@ onready var Selection: MeshInstance = $Selection3D
 onready var Cont: Node = $Controller
 onready var Block: Spatial = $Block
 onready var Add: Node = $AddBlock
+onready var Line: Node = $Line
+
 
 export(int) var grid_size: int
 
 var button_pressed: bool = false
 var pos_save: Vector3 = Vector3(999,99,999)
 var pos: Vector3 
+var save_line: Vector3
 
-
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	Selection.visible = (Index.mode != Index.MODE.VOID) and Index.block_view == false
 	
 	if Index.block_view:
 		return
 	
-	if event is InputEventMouseMotion or event is InputEventMouseButton:
+	if _event is InputEventMouseMotion or _event is InputEventMouseButton:
 		
 		button_pressed = Input.is_action_pressed("click_left")
 		_selection_moviment()
 	
 	if Input.is_action_just_released("click_left"):
+		if Index.mode == Index.MODE.LINE:
+			if Input.is_action_just_released("click_left"):
+				Line.add_block()
+		
 		pos_save = Vector3(0,999,0)
+
 
 
 func _selection_moviment() -> void:
@@ -36,9 +45,12 @@ func _selection_moviment() -> void:
 	
 	Index.ray.look_at(project,Vector3.UP)
 	
-	if Input.is_action_pressed("click_left") and pos != pos_save:
-		selection_move()
-		pos_save = pos
+	if pos != pos_save:
+		if Input.is_action_pressed("click_left"):
+			selection_move()
+			pos_save = pos
+		
+		emit_signal("move_block",pos)
 	
 	pos = Index.ray.get_collision_point().snapped(Vector3(2,2,2)) + Vector3(0,1,0)
 	

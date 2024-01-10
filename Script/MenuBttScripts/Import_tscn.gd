@@ -2,8 +2,6 @@ extends Node
 
 signal finished()
 
-var expr = ("res://Scene/Popups/Export_Godot_config.tscn")
-
 func start() -> void:
 	Index.block_view = true
 	
@@ -21,7 +19,7 @@ func ok(dir: String,file: String) -> void:
 		IndexLayer.popup_one('The file type must be "tscn"!')
 		return
 	
-	Import.import_group_tile_automatic(dir)
+	Import.import_tscn(dir)
 
 func cancel() -> void:
 	emit_signal("finished")

@@ -1,5 +1,9 @@
 extends VBoxContainer
 
+onready var x: SpinBox = $X/X
+onready var y: SpinBox = $Y/Y
+onready var z: SpinBox = $Z/Z
+
 var vector: Vector3
 
 var node
@@ -7,6 +11,10 @@ var propriety: String
 
 func _ready() -> void:
 	vector = node.get(propriety)
+	
+	x.value = vector.x
+	y.value = vector.y
+	z.value = vector.z
 
 func _on_X_value_changed(_value: float) -> void:
 	vector.x = _value

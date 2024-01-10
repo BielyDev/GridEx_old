@@ -9,6 +9,7 @@ bg_color = Color( 0, 0, 0, 1 )
 [node name="Vector" type="VBoxContainer"]
 anchor_right = 0.13125
 anchor_bottom = 0.125
+size_flags_horizontal = 10
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": true
@@ -60,6 +61,8 @@ valign = 1
 margin_left = 23.0
 margin_right = 168.616
 margin_bottom = 28.096
+min_value = -999.0
+max_value = 999.0
 step = 0.1
 script = ExtResource( 1 )
 
@@ -84,6 +87,8 @@ valign = 1
 margin_left = 23.0
 margin_right = 168.616
 margin_bottom = 28.096
+min_value = -999.0
+max_value = 999.0
 step = 0.1
 script = ExtResource( 1 )
 

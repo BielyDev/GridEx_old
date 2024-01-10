@@ -19,6 +19,10 @@ func _on_Texture_pressed() -> void:
 	)
 
 func confirm_path(dir: String,file_name: String) -> void:
+	if (dir.get_extension() == "png" or dir.get_extension() == "jpg" or  dir.get_extension() == "jpeg" or  dir.get_extension() == "svg") == false:
+		IndexLayer.popup_one('The file type must be "png / jpg / jpeg / svg"!')
+		return
+	
 	var image = Image.new()
 	var image_tex = ImageTexture.new()
 	

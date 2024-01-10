@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Script/Block.gd" type="Script" id=1]
 [ext_resource path="res://Script/Preview.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Script/Controller.gd" type="Script" id=6]
 [ext_resource path="res://Assets/Material/Preview.tres" type="Material" id=7]
 [ext_resource path="res://Script/AddBlock.gd" type="Script" id=8]
+[ext_resource path="res://Script/Line.gd" type="Script" id=9]
 
 [sub_resource type="SpatialMaterial" id=3]
 flags_transparent = true
@@ -278,6 +279,9 @@ script = ExtResource( 6 )
 [node name="AddBlock" type="Node" parent="."]
 script = ExtResource( 8 )
 
+[node name="Line" type="Node" parent="."]
+script = ExtResource( 9 )
+
 [node name="Block" type="Spatial" parent="."]
 script = ExtResource( 1 )
 
@@ -304,6 +308,9 @@ material/1 = SubResource( 3951 )
 material/2 = SubResource( 3953 )
 material/3 = SubResource( 3952 )
 
+[node name="All" type="Spatial" parent="."]
+transform = Transform( 1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0 )
+
 [node name="Selection3D" type="MeshInstance" parent="."]
 transform = Transform( 1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0 )
 mesh = SubResource( 3954 )
@@ -321,3 +328,5 @@ script = ExtResource( 2 )
 [node name="Light" type="DirectionalLight" parent="."]
 transform = Transform( 0.866025, 0.353553, -0.353553, 0, 0.707107, 0.707107, 0.5, -0.612372, 0.612372, 0, 1, 0 )
 visible = false
+
+[connection signal="move_block" from="." to="Line" method="_on_World_move_block"]

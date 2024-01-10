@@ -28,3 +28,4 @@ func _on_Light_pressed() -> void:
 
 func _on_Void_pressed() -> void:
 	$Local/Vbox/Hbox/View/ViewPanel/Preview2D/Hbox/TexPanel.hide()
+

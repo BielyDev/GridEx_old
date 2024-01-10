@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Assets/2D/Program/Icon/icon.svg" type="Texture" id=1]
 [ext_resource path="res://Script/Splash.gd" type="Script" id=2]
-[ext_resource path="res://Assets/2D/Program/Thumbnail/01.png" type="Texture" id=3]
+[ext_resource path="res://Assets/2D/Program/Thumbnail/Thumb_2.png" type="Texture" id=3]
 
 [node name="Splash_Control" type="Control"]
 anchor_right = 1.0
@@ -77,7 +77,7 @@ margin_left = 400.96
 margin_right = 538.0
 margin_bottom = 27.04
 size_flags_horizontal = 14
-text = "version 0.1.0"
+text = "version 0.1.5"
 
 [connection signal="pressed" from="Panel/VBoxContainer/Buttons/New_project" to="." method="_on_New_project_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/Buttons/what" to="." method="_on_what_pressed"]

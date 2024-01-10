@@ -23,6 +23,10 @@ func open_confirm() -> void:
 
 
 func file_ok(dir: String,file_name: String) -> void:
+	if dir.get_extension() != "obj":
+		IndexLayer.popup_one('The file type must be "obj"!')
+		return
+	
 	var file_import
 	var extension_file: String
 	var save: String

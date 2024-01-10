@@ -43,6 +43,8 @@ static func add_block_export(Worlds: Spatial ,collision_save: Array):
 	#O Block é onde fica todos os tiles, luzes e colisoes.
 	var Block_node: Spatial = Index.edit_node.World3D.Block
 	
+	loop_get_tile(Block_node,Worlds,collision_save)
+	
 	for child in Block_node.get_children():
 		var new_tile = child.duplicate()
 		Worlds.add_child(new_tile)
@@ -111,6 +113,32 @@ static func verific_collision(node,collision_save: Array):
 			child.queue_free()
 		else:
 			verific_collision(node,collision_save)
+
+
+static func loop_get_tile(node,Worlds: Spatial,collision_save: Array):
+	for child_0 in node.get_children():
+		if child_0.get_child_count() >= 1:
+			
+			var new_tile = child_0.duplicate()
+			Worlds.add_child(new_tile)
+			new_tile.name = str("Tile_",Worlds.get_child_count())
+			
+			new_tile = Index.makelocal(new_tile ,Worlds)
+			
+			verific_collision(new_tile ,collision_save)
+			delet_others(new_tile)
+			
+			loop_get_tile(child_0,Worlds,collision_save)
+		else:
+			
+			var new_tile = child_0.duplicate()
+			Worlds.add_child(new_tile)
+			new_tile.name = str("Tile_",Worlds.get_child_count())
+			
+			new_tile = Index.makelocal(new_tile ,Worlds)
+			
+			verific_collision(new_tile ,collision_save)
+			delet_others(new_tile)
 
 
 #Todas as funções que criam arquivos =================================================
