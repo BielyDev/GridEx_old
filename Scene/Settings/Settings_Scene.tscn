@@ -4,109 +4,109 @@
 [ext_resource path="res://Script/Spin_Config.gd" type="Script" id=4]
 
 [node name="WORLD" type="VBoxContainer"]
-anchor_right = 0.289844
-anchor_bottom = 0.309722
+anchor_right = 0.2625
+anchor_bottom = 0.366667
 mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
 [node name="ControllerPanel" type="PanelContainer" parent="."]
-margin_right = 371.0
-margin_bottom = 98.096
+margin_right = 336.0
+margin_bottom = 108.0
 
 [node name="Controller" type="VBoxContainer" parent="ControllerPanel"]
-margin_left = 5.808
-margin_top = 4.048
-margin_right = 365.192
-margin_bottom = 94.048
+margin_left = 3.0
+margin_top = 5.0
+margin_right = 333.0
+margin_bottom = 101.0
 
 [node name="Tittle" type="Label" parent="ControllerPanel/Controller"]
-margin_top = -1.0
-margin_right = 359.0
-margin_bottom = 24.04
+margin_right = 330.0
+margin_bottom = 20.0
 text = "CONTROLLER"
 
 [node name="HS" type="HSeparator" parent="ControllerPanel/Controller"]
-margin_top = 28.0
-margin_right = 359.0
-margin_bottom = 32.0
+margin_top = 24.0
+margin_right = 330.0
+margin_bottom = 28.0
 
 [node name="Options" type="VBoxContainer" parent="ControllerPanel/Controller"]
-margin_top = 35.0
-margin_right = 359.0
-margin_bottom = 90.0
+margin_top = 32.0
+margin_right = 330.0
+margin_bottom = 96.0
 
 [node name="CamSensi" type="HBoxContainer" parent="ControllerPanel/Controller/Options"]
-margin_right = 359.0
-margin_bottom = 26.0
+margin_right = 330.0
+margin_bottom = 30.0
 script = ExtResource( 4 )
 ValueNode_Path = NodePath("SpinBox")
 
 [node name="Tittle" type="Label" parent="ControllerPanel/Controller/Options/CamSensi"]
-margin_right = 103.04
-margin_bottom = 25.04
+margin_top = 5.0
+margin_right = 120.0
+margin_bottom = 25.0
 text = "CAMERA SENSI"
 
 [node name="SpinBox" type="SpinBox" parent="ControllerPanel/Controller/Options/CamSensi"]
-margin_left = 237.384
-margin_right = 359.0
-margin_bottom = 26.096
+margin_left = 184.0
+margin_right = 330.0
+margin_bottom = 30.0
 size_flags_horizontal = 10
 step = 0.5
 value = 50.0
 
 [node name="CamMovSensi" type="HBoxContainer" parent="ControllerPanel/Controller/Options"]
-margin_top = 29.0
-margin_right = 359.0
-margin_bottom = 55.0
+margin_top = 34.0
+margin_right = 330.0
+margin_bottom = 64.0
 script = ExtResource( 4 )
 ValueNode_Path = NodePath("SpinBox")
 propriety = 1
 
 [node name="Tittle" type="Label" parent="ControllerPanel/Controller/Options/CamMovSensi"]
-margin_right = 175.04
-margin_bottom = 25.04
-text = "CAMERA MOVEMENT SENSI"
+margin_top = 5.0
+margin_right = 180.0
+margin_bottom = 25.0
+text = "CAM MOVEMENT SENSI"
 
 [node name="SpinBox" type="SpinBox" parent="ControllerPanel/Controller/Options/CamMovSensi"]
-margin_left = 237.384
-margin_right = 359.0
-margin_bottom = 26.096
+margin_left = 184.0
+margin_right = 330.0
+margin_bottom = 30.0
 size_flags_horizontal = 10
 step = 0.5
 value = 50.0
 
 [node name="GraphicPanel" type="PanelContainer" parent="."]
-margin_top = 101.0
-margin_right = 371.0
-margin_bottom = 253.096
+margin_top = 112.0
+margin_right = 336.0
+margin_bottom = 264.0
 
 [node name="Graphic" type="VBoxContainer" parent="GraphicPanel"]
-margin_left = 5.808
-margin_top = 4.048
-margin_right = 365.192
-margin_bottom = 148.048
+margin_left = 3.0
+margin_top = 5.0
+margin_right = 333.0
+margin_bottom = 145.0
 
 [node name="Tittle" type="Label" parent="GraphicPanel/Graphic"]
-margin_top = -1.0
-margin_right = 359.0
-margin_bottom = 24.04
+margin_right = 330.0
+margin_bottom = 20.0
 text = "GRAPHIC"
 
 [node name="HS" type="HSeparator" parent="GraphicPanel/Graphic"]
-margin_top = 28.0
-margin_right = 359.0
-margin_bottom = 32.0
+margin_top = 24.0
+margin_right = 330.0
+margin_bottom = 28.0
 
 [node name="Options" type="VBoxContainer" parent="GraphicPanel/Graphic"]
-margin_top = 35.0
-margin_right = 359.0
-margin_bottom = 144.0
+margin_top = 32.0
+margin_right = 330.0
+margin_bottom = 140.0
 
 [node name="Glow" type="CheckBox" parent="GraphicPanel/Graphic/Options"]
-margin_right = 359.0
-margin_bottom = 25.04
+margin_right = 330.0
+margin_bottom = 24.0
 mouse_default_cursor_shape = 2
 pressed = true
 text = "GLOW"
@@ -116,8 +116,8 @@ propriety = "glow_enabled"
 
 [node name="Filter" type="CheckBox" parent="GraphicPanel/Graphic/Options"]
 margin_top = 28.0
-margin_right = 359.0
-margin_bottom = 53.04
+margin_right = 330.0
+margin_bottom = 52.0
 mouse_default_cursor_shape = 2
 text = "FILTER"
 align = 1
@@ -126,8 +126,8 @@ propriety = "adjustment_enabled"
 
 [node name="Fog" type="CheckBox" parent="GraphicPanel/Graphic/Options"]
 margin_top = 56.0
-margin_right = 359.0
-margin_bottom = 81.04
+margin_right = 330.0
+margin_bottom = 80.0
 mouse_default_cursor_shape = 2
 text = "FOG"
 align = 1
@@ -136,8 +136,8 @@ propriety = "fog_enabled"
 
 [node name="Reflects" type="CheckBox" parent="GraphicPanel/Graphic/Options"]
 margin_top = 84.0
-margin_right = 359.0
-margin_bottom = 109.04
+margin_right = 330.0
+margin_bottom = 108.0
 mouse_default_cursor_shape = 2
 text = "REFLECTS"
 align = 1
