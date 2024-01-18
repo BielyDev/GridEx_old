@@ -10,10 +10,10 @@ rect_min_size = Vector2( 128, 128 )
 script = ExtResource( 2 )
 
 [node name="Texture" type="TextureButton" parent="."]
-margin_left = 5.808
-margin_top = 4.048
-margin_right = 122.192
-margin_bottom = 123.952
+margin_left = 3.0
+margin_top = 5.0
+margin_right = 125.0
+margin_bottom = 121.0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource( 1 )
 expand = true

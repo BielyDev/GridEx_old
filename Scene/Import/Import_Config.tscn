@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Script/Import_Config.gd" type="Script" id=1]
 [ext_resource path="res://Script/Pos.gd" type="Script" id=2]
@@ -10,6 +10,22 @@
 [ext_resource path="res://Script/Import_Config/Make_Materials.gd" type="Script" id=11]
 [ext_resource path="res://Assets/Material/Preview.tres" type="Material" id=12]
 [ext_resource path="res://Script/Lock_Value.gd" type="Script" id=13]
+
+[sub_resource type="StyleBoxFlat" id=23]
+content_margin_left = 3.0
+content_margin_right = 3.0
+content_margin_top = 5.0
+content_margin_bottom = 7.0
+bg_color = Color( 0.0941176, 0.0980392, 0.137255, 0.772549 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.270588, 0.254902, 0.337255, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [sub_resource type="SpatialMaterial" id=6]
 flags_transparent = true
@@ -107,25 +123,26 @@ anchor_left = 0.0261719
 anchor_top = 0.05
 anchor_right = 0.973828
 anchor_bottom = 0.95
+custom_styles/panel = SubResource( 23 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
 [node name="Hbox" type="HBoxContainer" parent="Screen"]
-margin_left = 5.808
-margin_top = 4.048
-margin_right = 1207.19
-margin_bottom = 643.952
+margin_left = 3.0
+margin_top = 5.0
+margin_right = 1210.0
+margin_bottom = 641.0
 
 [node name="MaterialPanel" type="PanelContainer" parent="Screen/Hbox"]
-margin_right = 211.616
-margin_bottom = 639.0
+margin_right = 206.0
+margin_bottom = 636.0
 
 [node name="Scroll" type="ScrollContainer" parent="Screen/Hbox/MaterialPanel"]
-margin_left = 5.808
-margin_top = 4.048
-margin_right = 205.808
-margin_bottom = 634.952
+margin_left = 3.0
+margin_top = 5.0
+margin_right = 203.0
+margin_bottom = 629.0
 rect_min_size = Vector2( 200, 0 )
 scroll_horizontal_enabled = false
 
@@ -137,34 +154,34 @@ size_flags_horizontal = 3
 custom_constants/separation = 9
 
 [node name="Vbox" type="VBoxContainer" parent="Screen/Hbox"]
-margin_left = 214.0
-margin_right = 948.0
-margin_bottom = 639.0
+margin_left = 210.0
+margin_right = 952.0
+margin_bottom = 636.0
 size_flags_horizontal = 3
 
 [node name="Hbox" type="HBoxContainer" parent="Screen/Hbox/Vbox"]
-margin_right = 734.0
-margin_bottom = 28.0
+margin_right = 742.0
+margin_bottom = 24.0
 
 [node name="Open" type="Button" parent="Screen/Hbox/Vbox/Hbox"]
-margin_right = 121.616
-margin_bottom = 28.096
+margin_right = 114.0
+margin_bottom = 24.0
 mouse_default_cursor_shape = 2
 text = "Open models"
 script = ExtResource( 10 )
 
 [node name="Save" type="Button" parent="Screen/Hbox/Vbox/Hbox"]
-margin_left = 124.0
-margin_right = 245.616
-margin_bottom = 28.096
+margin_left = 118.0
+margin_right = 232.0
+margin_bottom = 24.0
 mouse_default_cursor_shape = 2
 text = "Save groups"
 script = ExtResource( 10 )
 
 [node name="Close" type="Button" parent="Screen/Hbox/Vbox/Hbox"]
-margin_left = 672.384
-margin_right = 734.0
-margin_bottom = 28.096
+margin_left = 688.0
+margin_right = 742.0
+margin_bottom = 24.0
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 10
 text = "Close"
@@ -172,14 +189,14 @@ script = ExtResource( 10 )
 Color_pressed_back = Color( 1, 0.192157, 0.364706, 1 )
 
 [node name="View" type="ViewportContainer" parent="Screen/Hbox/Vbox"]
-margin_top = 31.0
-margin_right = 734.0
-margin_bottom = 609.0
+margin_top = 28.0
+margin_right = 742.0
+margin_bottom = 608.0
 size_flags_vertical = 3
 stretch = true
 
 [node name="Viewport" type="Viewport" parent="Screen/Hbox/Vbox/View"]
-size = Vector2( 734, 578 )
+size = Vector2( 742, 580 )
 size_override_stretch = true
 handle_input_locally = false
 render_target_update_mode = 3
@@ -222,12 +239,12 @@ transform = Transform( 1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0, 2.5332
 
 [node name="Options" type="HBoxContainer" parent="Screen/Hbox/Vbox"]
 margin_top = 612.0
-margin_right = 734.0
-margin_bottom = 639.0
+margin_right = 742.0
+margin_bottom = 636.0
 
 [node name="Examples" type="CheckBox" parent="Screen/Hbox/Vbox/Options"]
-margin_right = 134.04
-margin_bottom = 27.04
+margin_right = 132.0
+margin_bottom = 24.0
 mouse_default_cursor_shape = 2
 text = "Examples 3D"
 script = ExtResource( 13 )
@@ -236,21 +253,21 @@ my_propriety = "pressed"
 his_propriety = "visible"
 
 [node name="TreePanel" type="PanelContainer" parent="Screen/Hbox"]
-margin_left = 951.0
-margin_right = 1201.0
-margin_bottom = 639.0
+margin_left = 956.0
+margin_right = 1206.0
+margin_bottom = 636.0
 rect_min_size = Vector2( 250, 0 )
 
 [node name="Vbox" type="VBoxContainer" parent="Screen/Hbox/TreePanel"]
-margin_left = 5.808
-margin_top = 4.048
-margin_right = 244.192
-margin_bottom = 634.952
+margin_left = 3.0
+margin_top = 5.0
+margin_right = 247.0
+margin_bottom = 629.0
 
 [node name="Tree" type="Tree" parent="Screen/Hbox/TreePanel/Vbox"]
 unique_name_in_owner = true
-margin_right = 238.0
-margin_bottom = 442.0
+margin_right = 244.0
+margin_bottom = 452.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_vertical = 3
 column_titles_visible = true
@@ -259,94 +276,93 @@ hide_root = true
 drop_mode_flags = 1
 
 [node name="ProprietyPanel" type="PanelContainer" parent="Screen/Hbox/TreePanel/Vbox"]
-margin_top = 445.0
-margin_right = 238.0
-margin_bottom = 591.096
+margin_top = 456.0
+margin_right = 244.0
+margin_bottom = 584.0
 script = ExtResource( 6 )
 
 [node name="Propriety" type="VBoxContainer" parent="Screen/Hbox/TreePanel/Vbox/ProprietyPanel"]
-margin_left = 5.808
-margin_top = 4.048
-margin_right = 232.192
-margin_bottom = 142.048
+margin_left = 3.0
+margin_top = 5.0
+margin_right = 241.0
+margin_bottom = 121.0
 
 [node name="Tile_name" type="Label" parent="Screen/Hbox/TreePanel/Vbox/ProprietyPanel/Propriety"]
-margin_top = -1.0
-margin_right = 226.0
-margin_bottom = 26.04
+margin_right = 238.0
+margin_bottom = 20.0
 text = "CUBE"
 align = 1
 
 [node name="Hs" type="HSeparator" parent="Screen/Hbox/TreePanel/Vbox/ProprietyPanel/Propriety"]
-margin_top = 30.0
-margin_right = 226.0
-margin_bottom = 34.0
+margin_top = 24.0
+margin_right = 238.0
+margin_bottom = 28.0
 
 [node name="Position" type="HBoxContainer" parent="Screen/Hbox/TreePanel/Vbox/ProprietyPanel/Propriety"]
-margin_top = 37.0
-margin_right = 226.0
-margin_bottom = 64.0
+margin_top = 32.0
+margin_right = 238.0
+margin_bottom = 52.0
 script = ExtResource( 5 )
 propriety = "translation"
 
 [node name="Tittle" type="Label" parent="Screen/Hbox/TreePanel/Vbox/ProprietyPanel/Propriety/Position"]
-margin_right = 97.04
-margin_bottom = 27.04
+margin_right = 90.0
+margin_bottom = 20.0
 size_flags_vertical = 0
 text = "Position:"
 
 [node name="Hs2" type="HSeparator" parent="Screen/Hbox/TreePanel/Vbox/ProprietyPanel/Propriety"]
-margin_top = 67.0
-margin_right = 226.0
-margin_bottom = 71.0
+margin_top = 56.0
+margin_right = 238.0
+margin_bottom = 60.0
 
 [node name="Rotation" type="HBoxContainer" parent="Screen/Hbox/TreePanel/Vbox/ProprietyPanel/Propriety"]
-margin_top = 74.0
-margin_right = 226.0
-margin_bottom = 101.0
+margin_top = 64.0
+margin_right = 238.0
+margin_bottom = 84.0
 script = ExtResource( 5 )
 propriety = "rotation_degrees"
 
 [node name="Tittle" type="Label" parent="Screen/Hbox/TreePanel/Vbox/ProprietyPanel/Propriety/Rotation"]
-margin_right = 97.04
-margin_bottom = 27.04
+margin_right = 90.0
+margin_bottom = 20.0
 size_flags_vertical = 0
 text = "Rotation:"
 
 [node name="Hs3" type="HSeparator" parent="Screen/Hbox/TreePanel/Vbox/ProprietyPanel/Propriety"]
-margin_top = 104.0
-margin_right = 226.0
-margin_bottom = 108.0
+margin_top = 88.0
+margin_right = 238.0
+margin_bottom = 92.0
 
 [node name="Scale" type="HBoxContainer" parent="Screen/Hbox/TreePanel/Vbox/ProprietyPanel/Propriety"]
-margin_top = 111.0
-margin_right = 226.0
-margin_bottom = 138.0
+margin_top = 96.0
+margin_right = 238.0
+margin_bottom = 116.0
 script = ExtResource( 5 )
 propriety = "scale"
 
 [node name="Tittle" type="Label" parent="Screen/Hbox/TreePanel/Vbox/ProprietyPanel/Propriety/Scale"]
-margin_right = 67.04
-margin_bottom = 27.04
+margin_right = 60.0
+margin_bottom = 20.0
 size_flags_vertical = 0
 text = "Scale:"
 
 [node name="Buttons_add" type="PanelContainer" parent="Screen/Hbox/TreePanel/Vbox"]
-margin_top = 594.0
-margin_right = 238.0
-margin_bottom = 630.096
+margin_top = 588.0
+margin_right = 244.0
+margin_bottom = 624.0
 
 [node name="Hbox" type="HBoxContainer" parent="Screen/Hbox/TreePanel/Vbox/Buttons_add"]
-margin_left = 5.808
-margin_top = 4.048
-margin_right = 232.192
-margin_bottom = 32.048
+margin_left = 3.0
+margin_top = 5.0
+margin_right = 241.0
+margin_bottom = 29.0
 size_flags_vertical = 0
 alignment = 1
 
 [node name="Add" type="Button" parent="Screen/Hbox/TreePanel/Vbox/Buttons_add/Hbox"]
-margin_right = 101.616
-margin_bottom = 28.096
+margin_right = 94.0
+margin_bottom = 24.0
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 2
 text = "Add Group"
@@ -354,9 +370,9 @@ script = ExtResource( 10 )
 Color_pressed_back = Color( 0.376471, 0.72549, 1, 1 )
 
 [node name="Delete" type="Button" parent="Screen/Hbox/TreePanel/Vbox/Buttons_add/Hbox"]
-margin_left = 155.0
-margin_right = 226.616
-margin_bottom = 28.096
+margin_left = 174.0
+margin_right = 238.0
+margin_bottom = 24.0
 mouse_default_cursor_shape = 2
 text = "Delete"
 script = ExtResource( 10 )

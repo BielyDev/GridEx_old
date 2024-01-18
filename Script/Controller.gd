@@ -8,6 +8,8 @@ var rot: Vector3
 
 
 func _input(_event: InputEvent) -> void:
+	_others_buttons()
+	
 	if Index.block_view:
 		return
 	
@@ -28,6 +30,11 @@ func _input(_event: InputEvent) -> void:
 		
 		else:
 			Index.cam.get_parent().state = Index.cam.get_parent().STATE.IDLE
+
+
+func _others_buttons() -> void:
+	if Input.is_action_just_pressed("fullscreen"):
+		OS.window_fullscreen = !OS.window_fullscreen
 
 
 func _undo() -> void:

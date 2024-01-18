@@ -4,8 +4,7 @@
 [ext_resource path="res://Script/UI/Buttons/Hide_and_show.gd" type="Script" id=2]
 [ext_resource path="res://Script/UI/Geral/Material_edit.gd" type="Script" id=3]
 
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0, 0, 0, 1 )
+[sub_resource type="StyleBoxEmpty" id=3]
 
 [sub_resource type="SpatialMaterial" id=2]
 metallic_specular = 0.0
@@ -21,32 +20,39 @@ anchor_right = 1.02686
 anchor_bottom = 0.0545361
 margin_right = -1122.38
 margin_bottom = -0.265999
-custom_styles/panel = SubResource( 1 )
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
 [node name="Vbox" type="VBoxContainer" parent="."]
-margin_right = 192.001
-margin_bottom = 39.0
+margin_left = 3.0
+margin_top = 5.0
+margin_right = 189.001
+margin_bottom = 37.0
 
 [node name="Hbox" type="HBoxContainer" parent="Vbox"]
-margin_right = 192.0
+margin_right = 186.0
 margin_bottom = 28.0
 
 [node name="Tittle" type="Label" parent="Vbox/Hbox"]
-margin_right = 97.04
-margin_bottom = 27.04
+margin_top = 4.0
+margin_right = 90.0
+margin_bottom = 24.0
 text = "Materials"
 
 [node name="Hide_and_show_animated" type="Button" parent="Vbox/Hbox"]
-margin_left = 163.904
-margin_right = 192.0
+margin_left = 157.904
+margin_right = 186.0
 margin_bottom = 28.096
 rect_min_size = Vector2( 28.096, 28.096 )
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 10
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/disabled = SubResource( 3 )
+custom_styles/normal = SubResource( 3 )
 icon = ExtResource( 1 )
 flat = true
 expand_icon = true
@@ -59,18 +65,18 @@ Vec_min = Vector2( 180, 0 )
 visivel = false
 
 [node name="Vbox" type="VBoxContainer" parent="Vbox"]
-margin_top = 31.0
-margin_right = 192.0
-margin_bottom = 31.0
+margin_top = 32.0
+margin_right = 186.0
+margin_bottom = 32.0
 
 [node name="Scroll" type="ScrollContainer" parent="Vbox/Vbox"]
-margin_right = 192.0
+margin_right = 186.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 scroll_horizontal_enabled = false
 
 [node name="Vbox" type="VBoxContainer" parent="Vbox/Vbox/Scroll"]
-margin_right = 192.0
+margin_right = 186.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 

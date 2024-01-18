@@ -1,7 +1,7 @@
 extends Control
 
 
-onready var File_node: MenuButton = $"../../../BarPanel/Modes/File"
+onready var File_node: MenuButton = $"%File"
 
 
 func _on_Add_pressed() -> void:

@@ -7,6 +7,7 @@ onready var Edit: VBoxContainer = $Local/Vbox/Hbox/Edit
 onready var View: ViewportContainer = $Local/Vbox/Hbox/View/ViewPanel/View
 onready var TexPanel := $Local/Vbox/Hbox/View/ViewPanel/Preview2D/Hbox/TexPanel
 onready var Tile_groups: VBoxContainer = $"%Tile Groups"
+onready var Node_2d: Node2D = $"2d"
 
 
 func _ready() -> void:

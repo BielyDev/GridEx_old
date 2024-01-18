@@ -5,6 +5,7 @@ onready var Options: MenuButton = $Vbox/Options
 
 var StreamTexture_new: PackedScene = preload("res://Scene/Import/StreamTexture.tscn")
 var AnimatedTexture_new: PackedScene = preload("res://Scene/Import/AnimatedTexture.tscn")
+var GradientTexture_new: PackedScene = preload("res://Scene/Import/Gradient2D_Texture.tscn")
 
 var texture
 var stream: bool = true
@@ -43,6 +44,13 @@ func stream() -> void:
 func animated() -> void:
 	clear()
 	texture = AnimatedTexture_new.instance()
+	
+	texture.connect("texture_chaged",self,"set_texture")
+	Tex.add_child(texture)
+
+func gradient() -> void:
+	clear()
+	texture = GradientTexture_new.instance()
 	
 	texture.connect("texture_chaged",self,"set_texture")
 	Tex.add_child(texture)

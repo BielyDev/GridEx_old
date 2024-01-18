@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Scene/World_Node.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scene/Resource/3D_View.tscn" type="PackedScene" id=2]
@@ -26,9 +26,10 @@
 [ext_resource path="res://Assets/Theme/New_main.tres" type="Theme" id=24]
 [ext_resource path="res://Script/Others/Tile_configPanel.gd" type="Script" id=25]
 [ext_resource path="res://Script/UI/Dock.gd" type="Script" id=26]
+[ext_resource path="res://Script/UI/Moviment_panel.gd" type="Script" id=27]
 
 [sub_resource type="Gradient" id=3979]
-colors = PoolColorArray( 0.289062, 0, 1, 1, 1, 0.0355079, 0.532824, 1 )
+colors = PoolColorArray( 0.0959776, 0, 0.332031, 1, 0.492188, 0, 0.253784, 1 )
 
 [sub_resource type="GradientTexture2D" id=3980]
 gradient = SubResource( 3979 )
@@ -66,6 +67,9 @@ region = Rect2( 432.186, 49.172, 40, 40 )
 
 [node name="Edit" type="CanvasLayer"]
 script = ExtResource( 7 )
+__meta__ = {
+"_edit_vertical_guides_": [ 1324.0 ]
+}
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -91,18 +95,19 @@ mouse_filter = 2
 
 [node name="BarPanel" type="PanelContainer" parent="Local/Vbox"]
 margin_right = 1280.0
-margin_bottom = 36.0
+margin_bottom = 38.0
 
 [node name="Modes" type="HBoxContainer" parent="Local/Vbox/BarPanel"]
 margin_left = 3.0
 margin_top = 5.0
 margin_right = 1277.0
-margin_bottom = 29.0
+margin_bottom = 31.0
 mouse_filter = 0
 
 [node name="File" type="MenuButton" parent="Local/Vbox/BarPanel/Modes"]
-margin_right = 44.0
-margin_bottom = 24.0
+unique_name_in_owner = true
+margin_right = 52.0
+margin_bottom = 26.0
 mouse_default_cursor_shape = 2
 text = "File"
 items = [ "New project", null, 0, false, false, 0, 0, null, "", false, "Save project", null, 0, false, true, 1, 0, null, "", false, "Export project in GLTF", null, 0, false, true, 2, 0, null, "", false, "Export project to Godot", null, 0, false, false, 3, 0, null, "", false, "Import .tscn", null, 0, false, false, 4, 0, null, "", false, "", null, 0, false, true, 5, 0, null, "", true, "Create Tile", null, 0, false, false, 6, 0, null, "", false, "Import Tile", null, 0, false, false, 7, 0, null, "", false, "", null, 0, false, true, 8, 0, null, "", true, "Quit", null, 0, false, false, 9, 0, null, "", false ]
@@ -110,27 +115,27 @@ script = ExtResource( 16 )
 Scripts = [ ExtResource( 17 ), null, ExtResource( 19 ), ExtResource( 20 ), ExtResource( 22 ), null, ExtResource( 3 ), ExtResource( 4 ), null, ExtResource( 18 ) ]
 
 [node name="Edit" type="MenuButton" parent="Local/Vbox/BarPanel/Modes"]
-margin_left = 48.0
-margin_right = 92.0
-margin_bottom = 24.0
+margin_left = 56.0
+margin_right = 108.0
+margin_bottom = 26.0
 focus_mode = 2
 mouse_default_cursor_shape = 2
 text = "Edit"
 items = [ "Preview 2D", null, 1, true, true, 0, 0, null, "", false, "Preview 3D", null, 1, false, true, 1, 0, null, "", false, "Collision", null, 1, false, true, 2, 0, null, "", false, "Shadowns", null, 1, true, true, 3, 0, null, "", false, "Grid and Axis", null, 1, true, true, 4, 0, null, "", false ]
 
 [node name="Render" type="MenuButton" parent="Local/Vbox/BarPanel/Modes"]
-margin_left = 96.0
-margin_right = 160.0
-margin_bottom = 24.0
+margin_left = 112.0
+margin_right = 184.0
+margin_bottom = 26.0
 focus_mode = 2
 mouse_default_cursor_shape = 2
 text = "Render"
 items = [ "Image render", null, 0, false, true, 0, 0, null, "", false ]
 
 [node name="Help" type="MenuButton" parent="Local/Vbox/BarPanel/Modes"]
-margin_left = 164.0
-margin_right = 208.0
-margin_bottom = 24.0
+margin_left = 188.0
+margin_right = 240.0
+margin_bottom = 26.0
 focus_mode = 2
 mouse_default_cursor_shape = 2
 text = "Help"
@@ -139,9 +144,9 @@ script = ExtResource( 16 )
 Scripts = [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 13 ), null, ExtResource( 9 ) ]
 
 [node name="ModePanel" type="PanelContainer" parent="Local/Vbox"]
-margin_top = 40.0
+margin_top = 42.0
 margin_right = 1280.0
-margin_bottom = 76.0
+margin_bottom = 78.0
 
 [node name="Modes" type="HBoxContainer" parent="Local/Vbox/ModePanel"]
 margin_left = 3.0
@@ -193,7 +198,7 @@ selected = 0
 script = ExtResource( 5 )
 
 [node name="Hbox" type="HBoxContainer" parent="Local/Vbox"]
-margin_top = 80.0
+margin_top = 82.0
 margin_right = 1280.0
 margin_bottom = 720.0
 mouse_filter = 2
@@ -203,7 +208,7 @@ alignment = 1
 
 [node name="Options" type="TabContainer" parent="Local/Vbox/Hbox"]
 margin_right = 136.0
-margin_bottom = 640.0
+margin_bottom = 638.0
 rect_min_size = Vector2( 83.354, 0 )
 tab_align = 0
 script = ExtResource( 26 )
@@ -220,7 +225,7 @@ margin_bottom = -7.0
 margin_left = 3.0
 margin_top = 5.0
 margin_right = 127.0
-margin_bottom = 591.0
+margin_bottom = 589.0
 rect_min_size = Vector2( 124, 0 )
 
 [node name="Void" type="Button" parent="Local/Vbox/Hbox/Options/Options/Options"]
@@ -313,16 +318,24 @@ Color_pressed_front = Color( 1, 0, 0.960784, 1 )
 mode = 3
 key = "paint"
 
-[node name="View" type="VBoxContainer" parent="Local/Vbox/Hbox"]
+[node name="Vs" type="VSeparator" parent="Local/Vbox/Hbox"]
 margin_left = 140.0
-margin_right = 982.0
-margin_bottom = 640.0
+margin_right = 144.0
+margin_bottom = 638.0
+mouse_default_cursor_shape = 10
+script = ExtResource( 27 )
+Panel_Path = NodePath("../Options")
+
+[node name="View" type="VBoxContainer" parent="Local/Vbox/Hbox"]
+margin_left = 148.0
+margin_right = 974.0
+margin_bottom = 638.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 
 [node name="ViewPanel" type="PanelContainer" parent="Local/Vbox/Hbox/View"]
-margin_right = 842.0
-margin_bottom = 584.0
+margin_right = 826.0
+margin_bottom = 582.0
 mouse_filter = 2
 size_flags_horizontal = 9
 size_flags_vertical = 3
@@ -330,14 +343,14 @@ size_flags_vertical = 3
 [node name="View" type="ViewportContainer" parent="Local/Vbox/Hbox/View/ViewPanel"]
 margin_left = 3.0
 margin_top = 5.0
-margin_right = 839.0
-margin_bottom = 577.0
+margin_right = 823.0
+margin_bottom = 575.0
 size_flags_horizontal = 11
 size_flags_vertical = 3
 stretch = true
 
 [node name="Viewport" type="Viewport" parent="Local/Vbox/Hbox/View/ViewPanel/View"]
-size = Vector2( 836, 572 )
+size = Vector2( 820, 570 )
 handle_input_locally = false
 render_target_update_mode = 3
 shadow_atlas_size = 2048
@@ -350,8 +363,8 @@ shadow_atlas_quad_3 = 5
 [node name="Preview2D" type="Control" parent="Local/Vbox/Hbox/View/ViewPanel"]
 margin_left = 3.0
 margin_top = 5.0
-margin_right = 839.0
-margin_bottom = 577.0
+margin_right = 823.0
+margin_bottom = 575.0
 script = ExtResource( 11 )
 
 [node name="Hbox" type="HBoxContainer" parent="Local/Vbox/Hbox/View/ViewPanel/Preview2D"]
@@ -361,8 +374,8 @@ alignment = 2
 
 [node name="TexPanel" type="PanelContainer" parent="Local/Vbox/Hbox/View/ViewPanel/Preview2D/Hbox"]
 self_modulate = Color( 1, 1, 1, 0.658824 )
-margin_left = 736.0
-margin_right = 836.0
+margin_left = 720.0
+margin_right = 820.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
 __meta__ = {
@@ -378,20 +391,20 @@ expand = true
 script = ExtResource( 21 )
 
 [node name="OptionsPanel" type="PanelContainer" parent="Local/Vbox/Hbox/View"]
-margin_top = 588.0
-margin_right = 842.0
-margin_bottom = 640.0
+margin_top = 586.0
+margin_right = 826.0
+margin_bottom = 638.0
 size_flags_vertical = 8
 
 [node name="Scroll" type="ScrollContainer" parent="Local/Vbox/Hbox/View/OptionsPanel"]
 margin_left = 3.0
 margin_top = 5.0
-margin_right = 839.0
+margin_right = 823.0
 margin_bottom = 45.0
 scroll_vertical_enabled = false
 
 [node name="Hbox" type="HBoxContainer" parent="Local/Vbox/Hbox/View/OptionsPanel/Scroll"]
-margin_right = 820.0
+margin_right = 808.0
 margin_bottom = 40.0
 
 [node name="Collision" type="CheckBox" parent="Local/Vbox/Hbox/View/OptionsPanel/Scroll/Hbox"]
@@ -424,13 +437,13 @@ margin_bottom = 40.0
 
 [node name="Light" type="CheckBox" parent="Local/Vbox/Hbox/View/OptionsPanel/Scroll/Hbox"]
 margin_left = 276.0
-margin_right = 418.0
+margin_right = 406.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 130, 40 )
 hint_tooltip = "A LUZ GLOBAL NÃO É EXPORTADA."
 mouse_default_cursor_shape = 2
 pressed = true
-text = "Global light"
+text = "Light"
 align = 1
 script = ExtResource( 14 )
 Node_Path = NodePath("../../../../../../../../World/Light")
@@ -438,8 +451,8 @@ my_propriety = "pressed"
 his_propriety = "visible"
 
 [node name="Shadow" type="CheckBox" parent="Local/Vbox/Hbox/View/OptionsPanel/Scroll/Hbox"]
-margin_left = 422.0
-margin_right = 552.0
+margin_left = 410.0
+margin_right = 540.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 130, 40 )
 mouse_default_cursor_shape = 2
@@ -452,8 +465,8 @@ my_propriety = "pressed"
 his_propriety = "shadow_enabled"
 
 [node name="Grid" type="CheckBox" parent="Local/Vbox/Hbox/View/OptionsPanel/Scroll/Hbox"]
-margin_left = 556.0
-margin_right = 686.0
+margin_left = 544.0
+margin_right = 674.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 130, 40 )
 mouse_default_cursor_shape = 2
@@ -466,8 +479,8 @@ my_propriety = "pressed"
 his_propriety = "visible"
 
 [node name="Axis" type="CheckBox" parent="Local/Vbox/Hbox/View/OptionsPanel/Scroll/Hbox"]
-margin_left = 690.0
-margin_right = 820.0
+margin_left = 678.0
+margin_right = 808.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 130, 40 )
 mouse_default_cursor_shape = 2
@@ -479,10 +492,19 @@ Node_Path = NodePath("../../../../../../../../World/Axis")
 my_propriety = "pressed"
 his_propriety = "visible"
 
+[node name="Vs2" type="VSeparator" parent="Local/Vbox/Hbox"]
+margin_left = 978.0
+margin_right = 982.0
+margin_bottom = 638.0
+mouse_default_cursor_shape = 10
+script = ExtResource( 27 )
+Panel_Path = NodePath("../Edit")
+Xpo = false
+
 [node name="Edit" type="VBoxContainer" parent="Local/Vbox/Hbox"]
 margin_left = 986.0
 margin_right = 1280.0
-margin_bottom = 640.0
+margin_bottom = 638.0
 rect_min_size = Vector2( 294, 0 )
 mouse_filter = 2
 size_flags_horizontal = 9
@@ -490,7 +512,7 @@ size_flags_vertical = 7
 
 [node name="TileMain" type="PanelContainer" parent="Local/Vbox/Hbox/Edit"]
 margin_right = 294.0
-margin_bottom = 589.0
+margin_bottom = 638.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -499,7 +521,7 @@ size_flags_vertical = 3
 margin_left = 3.0
 margin_top = 5.0
 margin_right = 291.0
-margin_bottom = 582.0
+margin_bottom = 631.0
 size_flags_vertical = 3
 tab_align = 0
 script = ExtResource( 26 )
@@ -515,7 +537,7 @@ size_flags_vertical = 3
 
 [node name="Tiles" type="ScrollContainer" parent="Local/Vbox/Hbox/Edit/TileMain/Tab/Tiles"]
 margin_right = 282.0
-margin_bottom = 535.0
+margin_bottom = 533.0
 rect_min_size = Vector2( 0, 501 )
 size_flags_vertical = 15
 scroll_horizontal_enabled = false
@@ -523,7 +545,7 @@ scroll_horizontal_enabled = false
 [node name="Tile Groups" type="VBoxContainer" parent="Local/Vbox/Hbox/Edit/TileMain/Tab/Tiles/Tiles"]
 unique_name_in_owner = true
 margin_right = 282.0
-margin_bottom = 535.0
+margin_bottom = 533.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -535,6 +557,60 @@ margin_right = 282.0
 margin_bottom = 257.0
 mouse_filter = 2
 
+[node name="Tile_configPanel" type="PanelContainer" parent="Local/Vbox/Hbox/Edit/TileMain/Tab/Tiles"]
+margin_top = 537.0
+margin_right = 282.0
+margin_bottom = 584.0
+script = ExtResource( 25 )
+
+[node name="Scroll" type="ScrollContainer" parent="Local/Vbox/Hbox/Edit/TileMain/Tab/Tiles/Tile_configPanel"]
+margin_left = 3.0
+margin_top = 5.0
+margin_right = 279.0
+margin_bottom = 40.0
+scroll_vertical_enabled = false
+
+[node name="Tile_config" type="HBoxContainer" parent="Local/Vbox/Hbox/Edit/TileMain/Tab/Tiles/Tile_configPanel/Scroll"]
+margin_right = 276.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+
+[node name="Add" type="Button" parent="Local/Vbox/Hbox/Edit/TileMain/Tab/Tiles/Tile_configPanel/Scroll/Tile_config"]
+margin_right = 34.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 0, 35 )
+mouse_default_cursor_shape = 2
+text = "Add"
+script = ExtResource( 5 )
+
+[node name="Edit" type="Button" parent="Local/Vbox/Hbox/Edit/TileMain/Tab/Tiles/Tile_configPanel/Scroll/Tile_config"]
+margin_left = 38.0
+margin_right = 82.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 0, 35 )
+mouse_default_cursor_shape = 2
+text = "Edit"
+script = ExtResource( 5 )
+
+[node name="Import" type="Button" parent="Local/Vbox/Hbox/Edit/TileMain/Tab/Tiles/Tile_configPanel/Scroll/Tile_config"]
+margin_left = 86.0
+margin_right = 150.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 0, 35 )
+mouse_default_cursor_shape = 2
+text = "Import"
+script = ExtResource( 5 )
+
+[node name="Remove" type="Button" parent="Local/Vbox/Hbox/Edit/TileMain/Tab/Tiles/Tile_configPanel/Scroll/Tile_config"]
+margin_left = 212.0
+margin_right = 276.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 0, 35 )
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 10
+text = "Remove"
+script = ExtResource( 5 )
+
 [node name="World" parent="Local/Vbox/Hbox/Edit/TileMain/Tab" instance=ExtResource( 8 )]
 visible = false
 anchor_right = 1.0
@@ -544,62 +620,9 @@ margin_top = 38.0
 margin_right = -3.0
 margin_bottom = -7.0
 
-[node name="Tile_configPanel" type="PanelContainer" parent="Local/Vbox/Hbox/Edit"]
-margin_top = 593.0
-margin_right = 294.0
-margin_bottom = 640.0
-script = ExtResource( 25 )
-
-[node name="Tile_config" type="HBoxContainer" parent="Local/Vbox/Hbox/Edit/Tile_configPanel"]
-margin_left = 3.0
-margin_top = 5.0
-margin_right = 291.0
-margin_bottom = 40.0
-
-[node name="Tittle" type="Label" parent="Local/Vbox/Hbox/Edit/Tile_configPanel/Tile_config"]
-margin_right = 60.0
-margin_bottom = 35.0
-size_flags_vertical = 5
-text = "Tile: "
-
-[node name="Add" type="Button" parent="Local/Vbox/Hbox/Edit/Tile_configPanel/Tile_config"]
-margin_left = 64.0
-margin_right = 98.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 0, 35 )
-mouse_default_cursor_shape = 2
-text = "Add"
-script = ExtResource( 5 )
-
-[node name="Edit" type="Button" parent="Local/Vbox/Hbox/Edit/Tile_configPanel/Tile_config"]
-margin_left = 102.0
-margin_right = 146.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 0, 35 )
-mouse_default_cursor_shape = 2
-text = "Edit"
-script = ExtResource( 5 )
-
-[node name="Import" type="Button" parent="Local/Vbox/Hbox/Edit/Tile_configPanel/Tile_config"]
-margin_left = 150.0
-margin_right = 214.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 0, 35 )
-mouse_default_cursor_shape = 2
-text = "Import"
-script = ExtResource( 5 )
-
-[node name="Remove" type="Button" parent="Local/Vbox/Hbox/Edit/Tile_configPanel/Tile_config"]
-margin_left = 224.0
-margin_right = 288.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 0, 35 )
-mouse_default_cursor_shape = 2
-size_flags_horizontal = 10
-text = "Remove"
-script = ExtResource( 5 )
-
 [node name="World" parent="." instance=ExtResource( 1 )]
+
+[node name="2d" type="Node2D" parent="."]
 
 [connection signal="tab_changed" from="Local/Vbox/Hbox/Options" to="Local/Vbox/Hbox/Options" method="_on_Options_tab_changed"]
 [connection signal="pressed" from="Local/Vbox/Hbox/Options/Options/Options/Void" to="." method="_on_Void_pressed"]
@@ -608,9 +631,9 @@ script = ExtResource( 5 )
 [connection signal="mouse_entered" from="Local/Vbox/Hbox/View/ViewPanel/Preview2D" to="Local/Vbox/Hbox/View/ViewPanel/Preview2D" method="_on_Preview2D_mouse_entered"]
 [connection signal="mouse_exited" from="Local/Vbox/Hbox/View/ViewPanel/Preview2D" to="Local/Vbox/Hbox/View/ViewPanel/Preview2D" method="_on_Preview2D_mouse_exited"]
 [connection signal="tab_selected" from="Local/Vbox/Hbox/Edit/TileMain/Tab" to="Local/Vbox/Hbox/Edit/TileMain/Tab" method="_on_Tab_tab_selected"]
-[connection signal="pressed" from="Local/Vbox/Hbox/Edit/Tile_configPanel/Tile_config/Add" to="Local/Vbox/Hbox/Edit/Tile_configPanel" method="_on_Add_pressed"]
-[connection signal="pressed" from="Local/Vbox/Hbox/Edit/Tile_configPanel/Tile_config/Edit" to="Local/Vbox/Hbox/Edit/Tile_configPanel" method="_on_Edit_pressed"]
-[connection signal="pressed" from="Local/Vbox/Hbox/Edit/Tile_configPanel/Tile_config/Import" to="Local/Vbox/Hbox/Edit/Tile_configPanel" method="_on_Import_pressed"]
-[connection signal="pressed" from="Local/Vbox/Hbox/Edit/Tile_configPanel/Tile_config/Remove" to="Local/Vbox/Hbox/Edit/Tile_configPanel" method="_on_Remove_pressed"]
+[connection signal="pressed" from="Local/Vbox/Hbox/Edit/TileMain/Tab/Tiles/Tile_configPanel/Scroll/Tile_config/Add" to="Local/Vbox/Hbox/Edit/TileMain/Tab/Tiles/Tile_configPanel" method="_on_Add_pressed"]
+[connection signal="pressed" from="Local/Vbox/Hbox/Edit/TileMain/Tab/Tiles/Tile_configPanel/Scroll/Tile_config/Edit" to="Local/Vbox/Hbox/Edit/TileMain/Tab/Tiles/Tile_configPanel" method="_on_Edit_pressed"]
+[connection signal="pressed" from="Local/Vbox/Hbox/Edit/TileMain/Tab/Tiles/Tile_configPanel/Scroll/Tile_config/Import" to="Local/Vbox/Hbox/Edit/TileMain/Tab/Tiles/Tile_configPanel" method="_on_Import_pressed"]
+[connection signal="pressed" from="Local/Vbox/Hbox/Edit/TileMain/Tab/Tiles/Tile_configPanel/Scroll/Tile_config/Remove" to="Local/Vbox/Hbox/Edit/TileMain/Tab/Tiles/Tile_configPanel" method="_on_Remove_pressed"]
 
 [editable path="World"]
