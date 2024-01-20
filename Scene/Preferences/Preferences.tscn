@@ -1,0 +1,130 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Script/UI/Buttons/Hide_and_show.gd" type="Script" id=1]
+[ext_resource path="res://Assets/2D/Atlas/UI/Hide_Arrow.tres" type="Texture" id=2]
+
+[node name="Preferences" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Background" type="PanelContainer" parent="."]
+modulate = Color( 1, 1, 1, 0.552941 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Panel" type="PanelContainer" parent="."]
+anchor_left = 0.0777344
+anchor_top = 0.0791667
+anchor_right = 0.922266
+anchor_bottom = 0.920833
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Vbox" type="VBoxContainer" parent="Panel"]
+margin_left = 3.0
+margin_top = 5.0
+margin_right = 1078.0
+margin_bottom = 599.0
+
+[node name="Tittle" type="Label" parent="Panel/Vbox"]
+margin_right = 1075.0
+margin_bottom = 20.0
+text = "Preferences"
+align = 1
+valign = 1
+
+[node name="Hbox" type="HBoxContainer" parent="Panel/Vbox"]
+margin_top = 24.0
+margin_right = 1075.0
+margin_bottom = 594.0
+size_flags_vertical = 3
+
+[node name="List" type="PanelContainer" parent="Panel/Vbox/Hbox"]
+margin_right = 300.0
+margin_bottom = 570.0
+rect_min_size = Vector2( 300, 0 )
+
+[node name="Scroll" type="ScrollContainer" parent="Panel/Vbox/Hbox/List"]
+margin_left = 3.0
+margin_top = 5.0
+margin_right = 297.0
+margin_bottom = 563.0
+
+[node name="Buttons" type="VBoxContainer" parent="Panel/Vbox/Hbox/List/Scroll"]
+margin_right = 294.0
+margin_bottom = 52.0
+size_flags_horizontal = 3
+
+[node name="Edit" type="Button" parent="Panel/Vbox/Hbox/List/Scroll/Buttons"]
+margin_right = 294.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "Edit"
+icon = ExtResource( 2 )
+icon_align = 2
+expand_icon = true
+script = ExtResource( 1 )
+Scale_pressed_up = Vector2( 1, 1.1 )
+Scale_pressed_down = Vector2( 1, 0.8 )
+Node_effect = NodePath("../../../../Propriety/Scroll/Propriety/Edit")
+child_hide = true
+parent_desabilit = true
+
+[node name="Edit2" type="Button" parent="Panel/Vbox/Hbox/List/Scroll/Buttons"]
+margin_top = 28.0
+margin_right = 294.0
+margin_bottom = 52.0
+size_flags_horizontal = 3
+text = "Edit abcv"
+icon = ExtResource( 2 )
+icon_align = 2
+expand_icon = true
+script = ExtResource( 1 )
+Scale_pressed_up = Vector2( 1, 1.1 )
+Scale_pressed_down = Vector2( 1, 0.8 )
+Node_effect = NodePath("../../../../Propriety/Scroll/Propriety/Edit2")
+visivel = false
+child_hide = true
+parent_desabilit = true
+
+[node name="VS" type="VSeparator" parent="Panel/Vbox/Hbox"]
+margin_left = 304.0
+margin_right = 308.0
+margin_bottom = 570.0
+
+[node name="Propriety" type="PanelContainer" parent="Panel/Vbox/Hbox"]
+margin_left = 312.0
+margin_right = 1075.0
+margin_bottom = 570.0
+size_flags_horizontal = 3
+
+[node name="Scroll" type="ScrollContainer" parent="Panel/Vbox/Hbox/Propriety"]
+margin_left = 3.0
+margin_top = 5.0
+margin_right = 760.0
+margin_bottom = 563.0
+
+[node name="Propriety" type="VBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll"]
+margin_right = 757.0
+margin_bottom = 52.0
+size_flags_horizontal = 3
+
+[node name="Edit" type="VBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety"]
+margin_right = 757.0
+margin_bottom = 24.0
+
+[node name="Check" type="CheckBox" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Edit"]
+margin_right = 757.0
+margin_bottom = 24.0
+text = "Coisa"
+
+[node name="Edit2" type="VBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety"]
+margin_top = 28.0
+margin_right = 757.0
+margin_bottom = 52.0
+
+[node name="Check" type="CheckBox" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Edit2"]
+margin_right = 757.0
+margin_bottom = 24.0
+text = "Coisa123123"

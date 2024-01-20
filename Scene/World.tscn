@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Scene/World_Node.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scene/Resource/3D_View.tscn" type="PackedScene" id=2]
@@ -27,6 +27,7 @@
 [ext_resource path="res://Script/Others/Tile_configPanel.gd" type="Script" id=25]
 [ext_resource path="res://Script/UI/Dock.gd" type="Script" id=26]
 [ext_resource path="res://Script/UI/Moviment_panel.gd" type="Script" id=27]
+[ext_resource path="res://Script/MenuBttScripts/Preferences.gd" type="Script" id=28]
 
 [sub_resource type="Gradient" id=3979]
 colors = PoolColorArray( 0.0959776, 0, 0.332031, 1, 0.492188, 0, 0.253784, 1 )
@@ -67,9 +68,6 @@ region = Rect2( 432.186, 49.172, 40, 40 )
 
 [node name="Edit" type="CanvasLayer"]
 script = ExtResource( 7 )
-__meta__ = {
-"_edit_vertical_guides_": [ 1324.0 ]
-}
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -121,7 +119,9 @@ margin_bottom = 26.0
 focus_mode = 2
 mouse_default_cursor_shape = 2
 text = "Edit"
-items = [ "Preview 2D", null, 1, true, true, 0, 0, null, "", false, "Preview 3D", null, 1, false, true, 1, 0, null, "", false, "Collision", null, 1, false, true, 2, 0, null, "", false, "Shadowns", null, 1, true, true, 3, 0, null, "", false, "Grid and Axis", null, 1, true, true, 4, 0, null, "", false ]
+items = [ "Preview 2D", null, 1, true, true, 0, 0, null, "", false, "Preview 3D", null, 1, false, true, 1, 0, null, "", false, "Collision", null, 1, false, true, 2, 0, null, "", false, "Shadowns", null, 1, true, true, 3, 0, null, "", false, "Grid and Axis", null, 1, true, true, 4, 0, null, "", false, "", null, 0, false, true, 5, 0, null, "", true, "Preferences", null, 0, false, false, 6, 0, null, "", false ]
+script = ExtResource( 16 )
+Scripts = [ null, null, null, null, null, ExtResource( 28 ) ]
 
 [node name="Render" type="MenuButton" parent="Local/Vbox/BarPanel/Modes"]
 margin_left = 112.0
@@ -206,14 +206,14 @@ size_flags_horizontal = 3
 size_flags_vertical = 15
 alignment = 1
 
-[node name="Options" type="TabContainer" parent="Local/Vbox/Hbox"]
+[node name="Tools" type="TabContainer" parent="Local/Vbox/Hbox"]
 margin_right = 136.0
 margin_bottom = 638.0
 rect_min_size = Vector2( 83.354, 0 )
 tab_align = 0
 script = ExtResource( 26 )
 
-[node name="Options" type="PanelContainer" parent="Local/Vbox/Hbox/Options"]
+[node name="Tools" type="PanelContainer" parent="Local/Vbox/Hbox/Tools"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 3.0
@@ -221,14 +221,14 @@ margin_top = 35.0
 margin_right = -3.0
 margin_bottom = -7.0
 
-[node name="Options" type="HFlowContainer" parent="Local/Vbox/Hbox/Options/Options"]
+[node name="Options" type="HFlowContainer" parent="Local/Vbox/Hbox/Tools/Tools"]
 margin_left = 3.0
 margin_top = 5.0
 margin_right = 127.0
 margin_bottom = 589.0
 rect_min_size = Vector2( 124, 0 )
 
-[node name="Void" type="Button" parent="Local/Vbox/Hbox/Options/Options/Options"]
+[node name="Void" type="Button" parent="Local/Vbox/Hbox/Tools/Tools/Options"]
 margin_right = 60.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 60, 60 )
@@ -240,7 +240,7 @@ script = ExtResource( 12 )
 Color_pressed_front = Color( 1, 0, 0.960784, 1 )
 key = "paint"
 
-[node name="Add" type="Button" parent="Local/Vbox/Hbox/Options/Options/Options"]
+[node name="Add" type="Button" parent="Local/Vbox/Hbox/Tools/Tools/Options"]
 margin_left = 64.0
 margin_right = 124.0
 margin_bottom = 60.0
@@ -255,7 +255,7 @@ Color_pressed_front = Color( 1, 0, 0.960784, 1 )
 mode = 1
 key = "paint"
 
-[node name="Line" type="Button" parent="Local/Vbox/Hbox/Options/Options/Options"]
+[node name="Line" type="Button" parent="Local/Vbox/Hbox/Tools/Tools/Options"]
 margin_top = 64.0
 margin_right = 60.0
 margin_bottom = 124.0
@@ -270,7 +270,7 @@ Color_pressed_front = Color( 1, 0, 0.960784, 1 )
 mode = 3
 key = "line"
 
-[node name="Remove" type="Button" parent="Local/Vbox/Hbox/Options/Options/Options"]
+[node name="Remove" type="Button" parent="Local/Vbox/Hbox/Tools/Tools/Options"]
 margin_left = 64.0
 margin_top = 64.0
 margin_right = 124.0
@@ -286,7 +286,7 @@ Color_pressed_front = Color( 1, 0, 0.960784, 1 )
 mode = 2
 key = "erase"
 
-[node name="Light" type="Button" parent="Local/Vbox/Hbox/Options/Options/Options"]
+[node name="Light" type="Button" parent="Local/Vbox/Hbox/Tools/Tools/Options"]
 margin_top = 128.0
 margin_right = 60.0
 margin_bottom = 188.0
@@ -301,7 +301,7 @@ Color_pressed_front = Color( 1, 0, 0.960784, 1 )
 mode = 5
 key = "light"
 
-[node name="Bucket" type="Button" parent="Local/Vbox/Hbox/Options/Options/Options"]
+[node name="Bucket" type="Button" parent="Local/Vbox/Hbox/Tools/Tools/Options"]
 margin_left = 64.0
 margin_top = 128.0
 margin_right = 124.0
@@ -324,7 +324,7 @@ margin_right = 144.0
 margin_bottom = 638.0
 mouse_default_cursor_shape = 10
 script = ExtResource( 27 )
-Panel_Path = NodePath("../Options")
+Panel_Path = NodePath("../Tools")
 
 [node name="View" type="VBoxContainer" parent="Local/Vbox/Hbox"]
 margin_left = 148.0
@@ -624,10 +624,10 @@ margin_bottom = -7.0
 
 [node name="2d" type="Node2D" parent="."]
 
-[connection signal="tab_changed" from="Local/Vbox/Hbox/Options" to="Local/Vbox/Hbox/Options" method="_on_Options_tab_changed"]
-[connection signal="pressed" from="Local/Vbox/Hbox/Options/Options/Options/Void" to="." method="_on_Void_pressed"]
-[connection signal="pressed" from="Local/Vbox/Hbox/Options/Options/Options/Add" to="." method="_on_Add_pressed"]
-[connection signal="pressed" from="Local/Vbox/Hbox/Options/Options/Options/Light" to="." method="_on_Light_pressed"]
+[connection signal="tab_changed" from="Local/Vbox/Hbox/Tools" to="Local/Vbox/Hbox/Tools" method="_on_Options_tab_changed"]
+[connection signal="pressed" from="Local/Vbox/Hbox/Tools/Tools/Options/Void" to="." method="_on_Void_pressed"]
+[connection signal="pressed" from="Local/Vbox/Hbox/Tools/Tools/Options/Add" to="." method="_on_Add_pressed"]
+[connection signal="pressed" from="Local/Vbox/Hbox/Tools/Tools/Options/Light" to="." method="_on_Light_pressed"]
 [connection signal="mouse_entered" from="Local/Vbox/Hbox/View/ViewPanel/Preview2D" to="Local/Vbox/Hbox/View/ViewPanel/Preview2D" method="_on_Preview2D_mouse_entered"]
 [connection signal="mouse_exited" from="Local/Vbox/Hbox/View/ViewPanel/Preview2D" to="Local/Vbox/Hbox/View/ViewPanel/Preview2D" method="_on_Preview2D_mouse_exited"]
 [connection signal="tab_selected" from="Local/Vbox/Hbox/Edit/TileMain/Tab" to="Local/Vbox/Hbox/Edit/TileMain/Tab" method="_on_Tab_tab_selected"]

@@ -24,7 +24,7 @@ margin_bottom = 101.0
 [node name="Tittle" type="Label" parent="ControllerPanel/Controller"]
 margin_right = 330.0
 margin_bottom = 20.0
-text = "CONTROLLER"
+text = "Controller"
 
 [node name="HS" type="HSeparator" parent="ControllerPanel/Controller"]
 margin_top = 24.0
@@ -46,7 +46,7 @@ ValueNode_Path = NodePath("SpinBox")
 margin_top = 5.0
 margin_right = 120.0
 margin_bottom = 25.0
-text = "CAMERA SENSI"
+text = "Camera sensi"
 
 [node name="SpinBox" type="SpinBox" parent="ControllerPanel/Controller/Options/CamSensi"]
 margin_left = 184.0
@@ -68,7 +68,7 @@ propriety = 1
 margin_top = 5.0
 margin_right = 180.0
 margin_bottom = 25.0
-text = "CAM MOVEMENT SENSI"
+text = "Cam movement sensi"
 
 [node name="SpinBox" type="SpinBox" parent="ControllerPanel/Controller/Options/CamMovSensi"]
 margin_left = 184.0
@@ -92,7 +92,7 @@ margin_bottom = 145.0
 [node name="Tittle" type="Label" parent="GraphicPanel/Graphic"]
 margin_right = 330.0
 margin_bottom = 20.0
-text = "GRAPHIC"
+text = "Graphic"
 
 [node name="HS" type="HSeparator" parent="GraphicPanel/Graphic"]
 margin_top = 24.0
@@ -109,7 +109,7 @@ margin_right = 330.0
 margin_bottom = 24.0
 mouse_default_cursor_shape = 2
 pressed = true
-text = "GLOW"
+text = "Glow"
 align = 1
 script = ExtResource( 1 )
 propriety = "glow_enabled"
@@ -119,7 +119,7 @@ margin_top = 28.0
 margin_right = 330.0
 margin_bottom = 52.0
 mouse_default_cursor_shape = 2
-text = "FILTER"
+text = "Filter"
 align = 1
 script = ExtResource( 1 )
 propriety = "adjustment_enabled"
@@ -129,7 +129,7 @@ margin_top = 56.0
 margin_right = 330.0
 margin_bottom = 80.0
 mouse_default_cursor_shape = 2
-text = "FOG"
+text = "Fog"
 align = 1
 script = ExtResource( 1 )
 propriety = "fog_enabled"
@@ -139,7 +139,7 @@ margin_top = 84.0
 margin_right = 330.0
 margin_bottom = 108.0
 mouse_default_cursor_shape = 2
-text = "REFLECTS"
+text = "Reflects"
 align = 1
 script = ExtResource( 1 )
 propriety = "ss_reflections_enabled"
