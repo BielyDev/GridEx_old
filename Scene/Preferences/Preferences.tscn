@@ -1,11 +1,22 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Script/UI/Buttons/Hide_and_show.gd" type="Script" id=1]
 [ext_resource path="res://Assets/2D/Atlas/UI/Hide_Arrow.tres" type="Texture" id=2]
+[ext_resource path="res://Assets/2D/SVG/UI.svg" type="Texture" id=3]
+[ext_resource path="res://Script/Preferences/Preferences.gd" type="Script" id=4]
+[ext_resource path="res://Scene/Import/TextureLoadButton.tscn" type="PackedScene" id=5]
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 23
+atlas = ExtResource( 3 )
+region = Rect2( 160, 220, 16, 16 )
+
+[sub_resource type="StyleBoxEmpty" id=2]
 
 [node name="Preferences" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 4 )
 
 [node name="Background" type="PanelContainer" parent="."]
 modulate = Color( 1, 1, 1, 0.552941 )
@@ -27,29 +38,43 @@ margin_top = 5.0
 margin_right = 1078.0
 margin_bottom = 599.0
 
-[node name="Tittle" type="Label" parent="Panel/Vbox"]
+[node name="TopBar" type="HBoxContainer" parent="Panel/Vbox"]
 margin_right = 1075.0
 margin_bottom = 20.0
+
+[node name="Tittle" type="Label" parent="Panel/Vbox/TopBar"]
+margin_left = 470.0
+margin_right = 580.0
+margin_bottom = 20.0
+size_flags_horizontal = 6
 text = "Preferences"
 align = 1
 valign = 1
 
+[node name="Button" type="TextureButton" parent="Panel/Vbox/TopBar"]
+margin_left = 1055.0
+margin_right = 1075.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+texture_normal = SubResource( 1 )
+expand = true
+
 [node name="Hbox" type="HBoxContainer" parent="Panel/Vbox"]
 margin_top = 24.0
 margin_right = 1075.0
-margin_bottom = 594.0
+margin_bottom = 593.0
 size_flags_vertical = 3
 
 [node name="List" type="PanelContainer" parent="Panel/Vbox/Hbox"]
 margin_right = 300.0
-margin_bottom = 570.0
+margin_bottom = 569.0
 rect_min_size = Vector2( 300, 0 )
 
 [node name="Scroll" type="ScrollContainer" parent="Panel/Vbox/Hbox/List"]
 margin_left = 3.0
 margin_top = 5.0
 margin_right = 297.0
-margin_bottom = 563.0
+margin_bottom = 562.0
 
 [node name="Buttons" type="VBoxContainer" parent="Panel/Vbox/Hbox/List/Scroll"]
 margin_right = 294.0
@@ -59,6 +84,7 @@ size_flags_horizontal = 3
 [node name="Edit" type="Button" parent="Panel/Vbox/Hbox/List/Scroll/Buttons"]
 margin_right = 294.0
 margin_bottom = 24.0
+mouse_default_cursor_shape = 2
 size_flags_horizontal = 3
 text = "Edit"
 icon = ExtResource( 2 )
@@ -71,19 +97,20 @@ Node_effect = NodePath("../../../../Propriety/Scroll/Propriety/Edit")
 child_hide = true
 parent_desabilit = true
 
-[node name="Edit2" type="Button" parent="Panel/Vbox/Hbox/List/Scroll/Buttons"]
+[node name="Keywords" type="Button" parent="Panel/Vbox/Hbox/List/Scroll/Buttons"]
 margin_top = 28.0
 margin_right = 294.0
 margin_bottom = 52.0
+mouse_default_cursor_shape = 2
 size_flags_horizontal = 3
-text = "Edit abcv"
+text = "Keywords"
 icon = ExtResource( 2 )
 icon_align = 2
 expand_icon = true
 script = ExtResource( 1 )
 Scale_pressed_up = Vector2( 1, 1.1 )
 Scale_pressed_down = Vector2( 1, 0.8 )
-Node_effect = NodePath("../../../../Propriety/Scroll/Propriety/Edit2")
+Node_effect = NodePath("../../../../Propriety/Scroll/Propriety/Keywords")
 visivel = false
 child_hide = true
 parent_desabilit = true
@@ -91,40 +118,418 @@ parent_desabilit = true
 [node name="VS" type="VSeparator" parent="Panel/Vbox/Hbox"]
 margin_left = 304.0
 margin_right = 308.0
-margin_bottom = 570.0
+margin_bottom = 569.0
 
 [node name="Propriety" type="PanelContainer" parent="Panel/Vbox/Hbox"]
 margin_left = 312.0
 margin_right = 1075.0
-margin_bottom = 570.0
+margin_bottom = 569.0
 size_flags_horizontal = 3
 
 [node name="Scroll" type="ScrollContainer" parent="Panel/Vbox/Hbox/Propriety"]
 margin_left = 3.0
 margin_top = 5.0
 margin_right = 760.0
-margin_bottom = 563.0
+margin_bottom = 562.0
 
 [node name="Propriety" type="VBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll"]
 margin_right = 757.0
-margin_bottom = 52.0
+margin_bottom = 510.0
 size_flags_horizontal = 3
 
 [node name="Edit" type="VBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety"]
 margin_right = 757.0
-margin_bottom = 24.0
+margin_bottom = 42.0
 
-[node name="Check" type="CheckBox" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Edit"]
+[node name="Background_texture" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Edit"]
+margin_right = 757.0
+margin_bottom = 42.0
+
+[node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Edit/Background_texture"]
+margin_right = 603.0
+margin_bottom = 42.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+custom_styles/focus = SubResource( 2 )
+shortcut_in_tooltip = false
+text = "Paint"
+align = 0
+
+[node name="TextureLoadButton" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Edit/Background_texture" instance=ExtResource( 5 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 607.0
+margin_right = 757.0
+margin_bottom = 42.0
+size_flags_horizontal = 9
+
+[node name="Keywords" type="VBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety"]
+margin_top = 46.0
+margin_right = 757.0
+margin_bottom = 510.0
+custom_constants/separation = 8
+
+[node name="Action2" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords"]
 margin_right = 757.0
 margin_bottom = 24.0
-text = "Coisa"
 
-[node name="Edit2" type="VBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety"]
-margin_top = 28.0
-margin_right = 757.0
-margin_bottom = 52.0
+[node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action2"]
+margin_right = 553.0
+margin_bottom = 24.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+custom_styles/focus = SubResource( 2 )
+shortcut_in_tooltip = false
+text = "Paint"
+align = 0
 
-[node name="Check" type="CheckBox" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Edit2"]
+[node name="Input" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action2"]
+margin_left = 557.0
 margin_right = 757.0
 margin_bottom = 24.0
-text = "Coisa123123"
+rect_min_size = Vector2( 200, 0 )
+mouse_default_cursor_shape = 8
+size_flags_horizontal = 8
+disabled = true
+text = "T"
+
+[node name="Action11" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords"]
+margin_top = 32.0
+margin_right = 757.0
+margin_bottom = 56.0
+
+[node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action11"]
+margin_right = 553.0
+margin_bottom = 24.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+custom_styles/focus = SubResource( 2 )
+shortcut_in_tooltip = false
+text = "Eraser"
+align = 0
+
+[node name="Input" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action11"]
+margin_left = 557.0
+margin_right = 757.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 200, 0 )
+mouse_default_cursor_shape = 8
+size_flags_horizontal = 8
+disabled = true
+text = "E"
+
+[node name="Action13" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords"]
+margin_top = 64.0
+margin_right = 757.0
+margin_bottom = 88.0
+
+[node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action13"]
+margin_right = 553.0
+margin_bottom = 24.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+custom_styles/focus = SubResource( 2 )
+shortcut_in_tooltip = false
+text = "Line"
+align = 0
+
+[node name="Input" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action13"]
+margin_left = 557.0
+margin_right = 757.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 200, 0 )
+mouse_default_cursor_shape = 8
+size_flags_horizontal = 8
+disabled = true
+text = "H"
+
+[node name="Action14" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords"]
+margin_top = 96.0
+margin_right = 757.0
+margin_bottom = 120.0
+
+[node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action14"]
+margin_right = 553.0
+margin_bottom = 24.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+custom_styles/focus = SubResource( 2 )
+shortcut_in_tooltip = false
+text = "Light"
+align = 0
+
+[node name="Input" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action14"]
+margin_left = 557.0
+margin_right = 757.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 200, 0 )
+mouse_default_cursor_shape = 8
+size_flags_horizontal = 8
+disabled = true
+text = "Shift+F"
+
+[node name="Hs3" type="HSeparator" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords"]
+margin_top = 128.0
+margin_right = 757.0
+margin_bottom = 132.0
+
+[node name="Action12" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords"]
+margin_top = 140.0
+margin_right = 757.0
+margin_bottom = 164.0
+
+[node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action12"]
+margin_right = 553.0
+margin_bottom = 24.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+custom_styles/focus = SubResource( 2 )
+shortcut_in_tooltip = false
+text = "Up movement"
+align = 0
+
+[node name="Input" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action12"]
+margin_left = 557.0
+margin_right = 757.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 200, 0 )
+mouse_default_cursor_shape = 8
+size_flags_horizontal = 8
+disabled = true
+text = "W"
+
+[node name="Action3" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords"]
+margin_top = 172.0
+margin_right = 757.0
+margin_bottom = 196.0
+
+[node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action3"]
+margin_right = 553.0
+margin_bottom = 24.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+custom_styles/focus = SubResource( 2 )
+shortcut_in_tooltip = false
+text = "Down movement"
+align = 0
+
+[node name="Input" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action3"]
+margin_left = 557.0
+margin_right = 757.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 200, 0 )
+mouse_default_cursor_shape = 8
+size_flags_horizontal = 8
+disabled = true
+text = "S"
+
+[node name="Action4" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords"]
+margin_top = 204.0
+margin_right = 757.0
+margin_bottom = 228.0
+
+[node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action4"]
+margin_right = 553.0
+margin_bottom = 24.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+custom_styles/focus = SubResource( 2 )
+shortcut_in_tooltip = false
+text = "Left movement"
+align = 0
+
+[node name="Input" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action4"]
+margin_left = 557.0
+margin_right = 757.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 200, 0 )
+mouse_default_cursor_shape = 8
+size_flags_horizontal = 8
+disabled = true
+text = "A"
+
+[node name="Action5" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords"]
+margin_top = 236.0
+margin_right = 757.0
+margin_bottom = 260.0
+
+[node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action5"]
+margin_right = 553.0
+margin_bottom = 24.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+custom_styles/focus = SubResource( 2 )
+shortcut_in_tooltip = false
+text = "Right movement"
+align = 0
+
+[node name="Input" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action5"]
+margin_left = 557.0
+margin_right = 757.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 200, 0 )
+mouse_default_cursor_shape = 8
+size_flags_horizontal = 8
+disabled = true
+text = "D"
+
+[node name="Action7" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords"]
+margin_top = 268.0
+margin_right = 757.0
+margin_bottom = 292.0
+
+[node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action7"]
+margin_right = 553.0
+margin_bottom = 24.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+custom_styles/focus = SubResource( 2 )
+shortcut_in_tooltip = false
+text = "Up camera movement"
+align = 0
+
+[node name="Input" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action7"]
+margin_left = 557.0
+margin_right = 757.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 200, 0 )
+mouse_default_cursor_shape = 8
+size_flags_horizontal = 8
+disabled = true
+text = "Q"
+
+[node name="Action8" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords"]
+margin_top = 300.0
+margin_right = 757.0
+margin_bottom = 324.0
+
+[node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action8"]
+margin_right = 553.0
+margin_bottom = 24.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+custom_styles/focus = SubResource( 2 )
+shortcut_in_tooltip = false
+text = "Down camera movement"
+align = 0
+
+[node name="Input" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action8"]
+margin_left = 557.0
+margin_right = 757.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 200, 0 )
+mouse_default_cursor_shape = 8
+size_flags_horizontal = 8
+disabled = true
+text = "E"
+
+[node name="Action" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords"]
+margin_top = 332.0
+margin_right = 757.0
+margin_bottom = 356.0
+
+[node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action"]
+margin_right = 553.0
+margin_bottom = 24.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+custom_styles/focus = SubResource( 2 )
+shortcut_in_tooltip = false
+text = "Reset camera"
+align = 0
+
+[node name="Input" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action"]
+margin_left = 557.0
+margin_right = 757.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 200, 0 )
+mouse_default_cursor_shape = 8
+size_flags_horizontal = 8
+disabled = true
+text = "Shit+R"
+
+[node name="Action9" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords"]
+margin_top = 364.0
+margin_right = 757.0
+margin_bottom = 388.0
+
+[node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action9"]
+margin_right = 553.0
+margin_bottom = 24.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+custom_styles/focus = SubResource( 2 )
+shortcut_in_tooltip = false
+text = "Speed camera movement"
+align = 0
+
+[node name="Input" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action9"]
+margin_left = 557.0
+margin_right = 757.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 200, 0 )
+mouse_default_cursor_shape = 8
+size_flags_horizontal = 8
+disabled = true
+text = "Shit"
+
+[node name="Hs2" type="HSeparator" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords"]
+margin_top = 396.0
+margin_right = 757.0
+margin_bottom = 400.0
+
+[node name="Action6" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords"]
+margin_top = 408.0
+margin_right = 757.0
+margin_bottom = 432.0
+
+[node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action6"]
+margin_right = 553.0
+margin_bottom = 24.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+custom_styles/focus = SubResource( 2 )
+shortcut_in_tooltip = false
+text = "Undo"
+align = 0
+
+[node name="Input" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action6"]
+margin_left = 557.0
+margin_right = 757.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 200, 0 )
+mouse_default_cursor_shape = 8
+size_flags_horizontal = 8
+disabled = true
+text = "Ctrl+Z"
+
+[node name="Action10" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords"]
+margin_top = 440.0
+margin_right = 757.0
+margin_bottom = 464.0
+
+[node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action10"]
+margin_right = 553.0
+margin_bottom = 24.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+custom_styles/focus = SubResource( 2 )
+shortcut_in_tooltip = false
+text = "Fullscreen"
+align = 0
+
+[node name="Input" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action10"]
+margin_left = 557.0
+margin_right = 757.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 200, 0 )
+mouse_default_cursor_shape = 8
+size_flags_horizontal = 8
+disabled = true
+text = "F11"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 48.0
+margin_top = 16.0
+margin_right = 176.0
+margin_bottom = 152.0

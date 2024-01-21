@@ -10,12 +10,12 @@ var GradientTexture_new: PackedScene = preload("res://Scene/Import/Gradient2D_Te
 var texture
 var stream: bool = true
 
-var mat: SpatialMaterial
+var mat
 var mat_propriety: String
 
 func _ready() -> void:
 	var value = mat.get(mat_propriety)
-	stream == value is StreamTexture
+	stream = value is StreamTexture
 	
 	if stream:
 		texture = StreamTexture_new.instance()
