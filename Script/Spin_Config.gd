@@ -1,12 +1,12 @@
 extends Control
 
 export(NodePath) var ValueNode_Path: NodePath
-export(Index.SETT) var propriety: int
+export(int,"CAM_SENSI","CAM_SENSI_MOVE") var propriety: int
 
 onready var value_node := get_node(ValueNode_Path)
 
 func _ready() -> void:
-	Index.settings[propriety] = value_node.value
+	value_node.value = Index.settings[propriety]
 	
 	value_node.connect("value_changed",self,"_change_value")
 

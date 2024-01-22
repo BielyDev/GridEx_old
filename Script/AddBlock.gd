@@ -10,10 +10,12 @@ var pos
 func _process(_delta: float) -> void:
 	pos = Par.pos
 
+
 func add_block_settings(pre_pos = pos) -> void:
 	var tile = Index.tile.tile
 	
-	verific_mirror(pre_pos,tile)
+	if tile != null:
+		verific_mirror(pre_pos,tile)
 
 func verific_mirror(pre_pos: Vector3,tile):
 	match Par.Mirror.selected:

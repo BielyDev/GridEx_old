@@ -11,5 +11,5 @@ func _ready() -> void:
 	No.set(his_propriety,color)
 	connect("color_changed",self,"event")
 
-func event(cor: Color) -> void:
-	No.set(his_propriety,cor)
+func event(_cor: Color) -> void:
+	No.set(his_propriety,_cor)

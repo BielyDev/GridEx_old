@@ -1,9 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Script/Popups/Popup_PC.gd" type="Script" id=1]
 [ext_resource path="res://Script/Class/AnimationButtonClass.gd" type="Script" id=2]
 
 [sub_resource type="StyleBoxFlat" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=3]
 
 [node name="Popup_PC" type="Control"]
 anchor_right = 1.0
@@ -49,19 +53,23 @@ size_flags_vertical = 10
 alignment = 1
 
 [node name="Cancel" type="Button" parent="Panel/Vbox/Hbox"]
-margin_right = 64.0
+margin_right = 100.0
 margin_bottom = 24.0
+rect_min_size = Vector2( 100, 0 )
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 2
+custom_styles/focus = SubResource( 4 )
 text = "CANCEL"
 script = ExtResource( 2 )
 Color_pressed_back = Color( 1, 0.333333, 0.47451, 1 )
 
 [node name="Ready" type="Button" parent="Panel/Vbox/Hbox"]
-margin_left = 368.0
+margin_left = 292.0
 margin_right = 392.0
 margin_bottom = 24.0
+rect_min_size = Vector2( 100, 0 )
 mouse_default_cursor_shape = 2
+custom_styles/focus = SubResource( 3 )
 text = "OK"
 script = ExtResource( 2 )
 Color_pressed_back = Color( 0.301961, 0.729412, 1, 1 )

@@ -1,7 +1,8 @@
 extends MenuButton
 
-export(Array,Script) var Scripts: Array = []
+class_name MenuScripts
 
+export(Array,Script) var Scripts: Array = []
 
 func _ready() -> void:
 	get_popup().connect("id_pressed",self,"press")

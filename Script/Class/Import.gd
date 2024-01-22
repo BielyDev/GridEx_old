@@ -49,5 +49,11 @@ static func import_group_tile_automatic(path: String) -> void:
 	var basic = tile_menu.instance()
 	
 	basic.tittle = no.name
+	basic.name = no.name
 	basic.group_scene = scene
+	
+	for child in Index.edit_node.Tile_groups.get_children():
+		if child.name == basic.tittle:
+			basic.name = str(no.name,"_",Index.edit_node.Tile_groups.get_children().size())
+	
 	Index.edit_node.Tile_groups.add_child(basic)

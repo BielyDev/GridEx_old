@@ -39,6 +39,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Script/Class/Import.gd"
 }, {
+"base": "MenuButton",
+"class": "MenuScripts",
+"language": "GDScript",
+"path": "res://Script/Menu_button_propriety.gd"
+}, {
 "base": "Reference",
 "class": "ObjParse",
 "language": "GDScript",
@@ -71,6 +76,7 @@ _global_script_class_icons={
 "GridEx": "res://Assets/2D/Program/Icon/icon.svg",
 "Hide_and_show_animated": "",
 "Import": "",
+"MenuScripts": "",
 "ObjParse": "",
 "SpinBoxControl": "",
 "TileButton": "",
@@ -86,6 +92,7 @@ boot_splash/image="res://Assets/2D/Program/Thumbnail/Splash.png"
 boot_splash/bg_color=Color( 0.141176, 0.141176, 0.141176, 0 )
 config/icon="res://Assets/2D/Program/Icon/icon.svg"
 config/windows_native_icon="res://Assets/2D/Program/Icon/icon(1).ico"
+config/auto_accept_quit=false
 
 [autoload]
 
@@ -215,4 +222,5 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+environment/default_clear_color=Color( 0, 0, 0, 1 )
 environment/default_environment="res://default_env.tres"

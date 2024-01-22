@@ -10,7 +10,7 @@ func start() -> void:
 	Index.edit_node.World3D.hide()
 	Index.edit_node.View.get_child(0).get_child(0).hide()
 	
-	IndexLayer.importer_menu(
+	IndexLayer.preferences_menu(
 		self,
 		"ok"
 	)

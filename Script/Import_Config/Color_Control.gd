@@ -1,6 +1,7 @@
 extends Button
 
-onready var Par: PanelContainer = $"../../../../.."
+onready var Par: PanelContainer = $"../../../../../.."
+onready var Controls: Control = $".."
 
 var mouse: bool = false
 var id: int = 0
@@ -15,11 +16,11 @@ func _ready() -> void:
 func _input(_event: InputEvent) -> void:
 	
 	if Input.is_mouse_button_pressed(BUTTON_LEFT) and mouse:
-		rect_global_position.x = get_global_mouse_position().x
+		Controls.rect_global_position.x = get_global_mouse_position().x
 		
-		rect_position.x = clamp(rect_position.x,0,244)
+		Controls.rect_position.x = clamp(Controls.rect_position.x,0,150)
 		
-		Par.gradient.set_offset(id,rect_position.x * 0.0040)
+		Par.gradient.set_offset(id,Controls.rect_position.x * 0.0065)
 
 
 func change_color(_color_value: Color) -> void:
@@ -36,4 +37,4 @@ func _on_Color_Control_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if Input.is_mouse_button_pressed(BUTTON_RIGHT):
 			Par.gradient.remove_point(id)
-			queue_free()
+			Controls.queue_free()

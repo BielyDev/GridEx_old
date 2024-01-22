@@ -11,6 +11,7 @@ var img
 func _ready() -> void:
 	Tittle.text = str("Frame ",frame)
 	Stream_texture.tex_ready = img
+	Stream_texture.Tex.texture_normal = img
 	
 	animated_texture.set_frame_texture(frame,img)
 
