@@ -1,14 +1,15 @@
-extends VSeparator
+extends Control
 
 export(NodePath) var Panel_Path: NodePath
-export(bool) var Xpo: bool = true
+export(bool) var Y: bool = false
+export(bool) var Negative: bool = false
 
 onready var Panel_node := get_node(Panel_Path)
 
 var mouse: bool = false
 var mouse_tab: int = -1
 
-var save_pos: Vector2
+var save_pos: bool
 
 func _ready() -> void:
 	connect("mouse_entered",self,"mouse_enter")
@@ -18,20 +19,30 @@ func _input(_event: InputEvent) -> void:
 	if mouse:
 		if Input.is_mouse_button_pressed(BUTTON_LEFT):
 			if _event is InputEventMouseMotion:
-				
-				if Xpo:
-					if save_pos == Vector2():
-						save_pos = Panel_node.rect_global_position
-					
-					Panel_node.rect_min_size.x = (Panel_node.rect_min_size.x + save_pos.x) + _event.relative.x
-				else:
-					if save_pos == Vector2():
-						save_pos.x = 0#Panel_node.rect_global_position.distance_to(Index.edit_node.get_child(0).rect_size)
-					
-					Panel_node.rect_min_size.x = (Panel_node.rect_min_size.x + save_pos.x) - _event.relative.x
+				movement(_event.relative)
 	
 	if Input.is_action_just_released("click_left"):
-		save_pos = Vector2()
+		save_pos = true
+
+
+
+func movement(mouse: Vector2) -> void:
+	if Y:
+		if save_pos == true:
+			Panel_node.rect_min_size.y = Panel_node.rect_size.y
+			save_pos = false
+		
+		if Negative: Panel_node.rect_min_size.y = Panel_node.rect_min_size.y + mouse.y
+		else:Panel_node.rect_min_size.y = Panel_node.rect_min_size.y - mouse.y
+		
+	else:
+		if save_pos == true:
+			Panel_node.rect_min_size.x = Panel_node.rect_size.x
+			save_pos = false
+		
+		if Negative:Panel_node.rect_min_size.x = Panel_node.rect_min_size.x + mouse.x
+		else: Panel_node.rect_min_size.x = Panel_node.rect_min_size.x - mouse.x
+
 
 func mouse_enter() -> void:
 	mouse = true

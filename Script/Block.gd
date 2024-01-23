@@ -8,14 +8,24 @@ var delete_select: bool = false
 
 
 func _ready() -> void:
-	yield(get_tree().create_timer(1),"timeout")
+	Index.block = self
+	
+	yield(get_tree().create_timer(0.5),"timeout")
 	Option.connect("item_selected",self,"mode_selected")
+	
+	if get_child_count() == 0:
+		var new_layer = Spatial.new()
+		
+		new_layer.name = "Layer 0"
+		add_child(new_layer)
+		
+		Index.layer_select = 0
 
 
 func add_block(pos: Vector3,rot: Vector3,tile_mesh: MeshInstance,undo: bool = true) -> bool:
 	match mode:
 		0:
-			for blocos in get_children():
+			for blocos in get_child(Index.layer_select).get_children():
 				if blocos.global_transform.origin == pos:
 					blocos.queue_free()
 					block_pos.erase(pos)
@@ -30,7 +40,7 @@ func add_block(pos: Vector3,rot: Vector3,tile_mesh: MeshInstance,undo: bool = tr
 		2:
 			instance_block(tile_mesh,pos,rot,undo)
 		3:
-			for blocos in get_children():
+			for blocos in get_child(Index.layer_select).get_children():
 				if blocos.global_transform.origin == pos:
 					blocos.queue_free()
 					block_pos.erase(pos)
@@ -88,7 +98,20 @@ func loop_get_tile(node,pos: Vector3,undo):
 
 func instance_block(tile_mesh: MeshInstance,pos_in: Vector3,rot: Vector3,undo: bool) -> void:
 	var tile = tile_mesh.duplicate()
-	add_child(tile)
+	
+	var num: int = 0
+	var name_staterd: String = tile.name
+	
+	if get_child_count() == 0:
+		var new_layer = Spatial.new()
+		
+		new_layer.name = "Layer 0"
+		add_child(new_layer)
+		
+		Index.layer_select = 0
+	
+	get_child(Index.layer_select).add_child(tile)
+	
 	
 	tile.global_transform.origin = pos_in
 	tile.rotation_degrees = rot

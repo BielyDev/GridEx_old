@@ -73,7 +73,7 @@ func add_mirror_x_y(pre_pos: Vector3,tile: MeshInstance) -> void:
 
 func add_light() -> void:
 	var LightConfig = Light_new.instance()
-	Block.add_child(LightConfig)
+	Block.get_child(Index.layer_select).add_child(LightConfig)
 	LightConfig.global_transform.origin = pos
 	
 	IndexLayer.light_panel(LightConfig)

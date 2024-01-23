@@ -8,7 +8,9 @@ enum MODE {VOID,ADD,REMOVE,LINE,BUCKET,LIGHT}
 
 var block_view: bool = false
 var edit_node
+var block
 var mode
+var layer_select: int
 var cam: Camera
 var ray: RayCast
 var env : Environment = preload("res://default_env.tres")

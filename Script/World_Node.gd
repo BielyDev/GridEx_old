@@ -10,7 +10,7 @@ onready var Cont: Node = $Controller
 onready var Block: Spatial = $Block
 onready var Add: Node = $AddBlock
 onready var Line: Node = $Line
-
+onready var Grid: MeshInstance = $Grid
 
 export(int) var grid_size: int
 
@@ -20,7 +20,7 @@ var pos: Vector3
 var save_line: Vector3
 
 func _input(_event: InputEvent) -> void:
-	Selection.visible = (Index.mode != Index.MODE.VOID) and Index.block_view == false
+	Selection.visible = (Index.mode != Index.MODE.VOID) and (Index.mode != Index.MODE.LIGHT) and Index.block_view == false
 	
 	if Index.block_view:
 		return

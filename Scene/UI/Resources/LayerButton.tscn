@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/2D/Atlas/UI/Eyes.tres" type="Texture" id=1]
+[ext_resource path="res://Assets/2D/Atlas/UI/Unlock.tres" type="Texture" id=2]
+[ext_resource path="res://Script/UI/Geral/LayerButton.gd" type="Script" id=3]
+[ext_resource path="res://Script/Class/AnimationButtonClass.gd" type="Script" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[node name="LayerButton" type="HBoxContainer"]
+margin_right = 276.0
+margin_bottom = 32.0
+script = ExtResource( 3 )
+
+[node name="Layer" type="Button" parent="."]
+margin_right = 240.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 0, 32 )
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+custom_styles/focus = SubResource( 1 )
+text = "Layer 0"
+align = 0
+script = ExtResource( 4 )
+Scale_pressed_up = Vector2( 1, 1.1 )
+Scale_pressed_down = Vector2( 0.85, 0.8 )
+
+[node name="Lock" type="TextureButton" parent="."]
+visible = false
+margin_left = 208.0
+margin_right = 240.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 2 )
+expand = true
+stretch_mode = 5
+
+[node name="Visible" type="TextureButton" parent="."]
+modulate = Color( 1, 1, 1, 0.623529 )
+margin_left = 244.0
+margin_right = 276.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 1 )
+expand = true
+stretch_mode = 5
+
+[connection signal="pressed" from="Layer" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Lock" to="." method="_on_Lock_pressed"]
+[connection signal="pressed" from="Visible" to="." method="_on_Tex_pressed"]

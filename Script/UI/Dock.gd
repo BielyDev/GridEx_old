@@ -11,6 +11,8 @@ func _ready() -> void:
 func _child_exit(node: Node):
 	if get_child_count() == 1:
 		rect_min_size.x = 0
+		rect_min_size.y = 0
 func _child_show(node: Node):
 	if get_child_count() == 0:
 		rect_min_size.x = 400
+		rect_min_size.y = 400
