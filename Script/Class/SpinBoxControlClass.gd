@@ -9,11 +9,13 @@ var color_up: Array = [Color.red,Color.aqua]
 
 func _ready() -> void:
 	rect_pivot_offset = rect_size/2
+	
 	connect("value_changed",self,"change")
 
 
 func change(value) -> void:
 	var up: int = 1
+	
 	up = int(value > value_save)
 	value_save = value
 	

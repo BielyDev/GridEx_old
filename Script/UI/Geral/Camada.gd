@@ -36,3 +36,7 @@ func _on_Add_pressed() -> void:
 	new_layer.name = str("Layer ", Index.block.get_child_count())
 	
 	Index.block.add_child(new_layer)
+
+
+func _on_Delete_pressed() -> void:
+	Layers.get_child(Index.layer_select).delete()

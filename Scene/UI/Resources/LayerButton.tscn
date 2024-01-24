@@ -1,11 +1,19 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Assets/2D/Atlas/UI/Eyes.tres" type="Texture" id=1]
 [ext_resource path="res://Assets/2D/Atlas/UI/Unlock.tres" type="Texture" id=2]
 [ext_resource path="res://Script/UI/Geral/LayerButton.gd" type="Script" id=3]
 [ext_resource path="res://Script/Class/AnimationButtonClass.gd" type="Script" id=4]
+[ext_resource path="res://Assets/2D/SVG/UI.svg" type="Texture" id=5]
 
 [sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 23
+atlas = ExtResource( 5 )
+region = Rect2( 146, 256, 40, 39 )
 
 [node name="LayerButton" type="HBoxContainer"]
 margin_right = 276.0
@@ -24,6 +32,75 @@ align = 0
 script = ExtResource( 4 )
 Scale_pressed_up = Vector2( 1, 1.1 )
 Scale_pressed_down = Vector2( 0.85, 0.8 )
+
+[node name="Popup" type="Popup" parent="Layer"]
+margin_left = 15.0
+margin_top = -117.0
+margin_right = 262.0
+margin_bottom = -6.0
+mouse_filter = 2
+
+[node name="Vbox" type="VBoxContainer" parent="Layer/Popup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Favorite" type="Button" parent="Layer/Popup/Vbox"]
+margin_right = 247.0
+margin_bottom = 24.0
+mouse_default_cursor_shape = 2
+custom_styles/focus = SubResource( 3 )
+text = "Add favorites"
+
+[node name="Rename" type="Button" parent="Layer/Popup/Vbox"]
+margin_top = 28.0
+margin_right = 247.0
+margin_bottom = 52.0
+mouse_default_cursor_shape = 2
+custom_styles/focus = SubResource( 3 )
+text = "Rename"
+
+[node name="Duplicate" type="Button" parent="Layer/Popup/Vbox"]
+margin_top = 56.0
+margin_right = 247.0
+margin_bottom = 80.0
+mouse_default_cursor_shape = 2
+custom_styles/focus = SubResource( 3 )
+text = "Duplicate"
+
+[node name="Delete" type="Button" parent="Layer/Popup/Vbox"]
+margin_top = 84.0
+margin_right = 247.0
+margin_bottom = 108.0
+mouse_default_cursor_shape = 2
+custom_styles/focus = SubResource( 3 )
+text = "Delete"
+
+[node name="Name" type="LineEdit" parent="Layer"]
+visible = false
+margin_right = 239.0
+margin_bottom = 30.0
+text = "Layer 0"
+
+[node name="Gui" type="CanvasLayer" parent="Layer"]
+layer = 6
+
+[node name="Favorite" type="TextureButton" parent="Layer"]
+visible = false
+modulate = Color( 1, 1, 1, 0.690196 )
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -32.0
+margin_top = -16.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 32, 32 )
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 10
+texture_normal = SubResource( 2 )
+expand = true
+stretch_mode = 5
 
 [node name="Lock" type="TextureButton" parent="."]
 visible = false
@@ -47,6 +124,17 @@ texture_normal = ExtResource( 1 )
 expand = true
 stretch_mode = 5
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[connection signal="gui_input" from="Layer" to="." method="_on_Layer_gui_input"]
 [connection signal="pressed" from="Layer" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Layer/Popup/Vbox/Favorite" to="." method="_on_Favorite_pressed"]
+[connection signal="focus_exited" from="Layer/Popup/Vbox/Rename" to="." method="_on_Rename_focus_exited"]
+[connection signal="pressed" from="Layer/Popup/Vbox/Rename" to="." method="_on_Rename_pressed"]
+[connection signal="pressed" from="Layer/Popup/Vbox/Duplicate" to="." method="_on_Duplicate_pressed"]
+[connection signal="pressed" from="Layer/Popup/Vbox/Delete" to="." method="_on_Delete_pressed"]
+[connection signal="gui_input" from="Layer/Name" to="." method="_on_Name_gui_input"]
+[connection signal="text_changed" from="Layer/Name" to="." method="_on_Name_text_changed"]
+[connection signal="pressed" from="Layer/Favorite" to="." method="_on_Favorite_pressed"]
 [connection signal="pressed" from="Lock" to="." method="_on_Lock_pressed"]
 [connection signal="pressed" from="Visible" to="." method="_on_Tex_pressed"]

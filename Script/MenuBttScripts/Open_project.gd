@@ -13,7 +13,7 @@ func start() -> void:
 	)
 
 func ok(dir: String, file:String):
-	Save.save_project(dir)
+	Save.open_project(dir)
 	Index.block_view = true
 
 func cancel():

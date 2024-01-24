@@ -1,0 +1,133 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Assets/2D/SVG/UI.svg" type="Texture" id=1]
+[ext_resource path="res://Script/Mode.gd" type="Script" id=2]
+
+[sub_resource type="AtlasTexture" id=3973]
+flags = 23
+atlas = ExtResource( 1 )
+region = Rect2( 123.647, 27.996, 78, 78 )
+
+[sub_resource type="AtlasTexture" id=3974]
+flags = 23
+atlas = ExtResource( 1 )
+region = Rect2( 222.059, 32.367, 78, 78 )
+
+[sub_resource type="AtlasTexture" id=3977]
+flags = 23
+atlas = ExtResource( 1 )
+region = Rect2( 318.801, 91.323, 78, 78 )
+
+[sub_resource type="AtlasTexture" id=3975]
+flags = 23
+atlas = ExtResource( 1 )
+region = Rect2( 318.225, 26.465, 78, 78 )
+
+[sub_resource type="AtlasTexture" id=3976]
+flags = 23
+atlas = ExtResource( 1 )
+region = Rect2( 14.94, -1.307, 107.938, 140 )
+
+[sub_resource type="AtlasTexture" id=3978]
+flags = 23
+atlas = ExtResource( 1 )
+region = Rect2( 432.186, 49.172, 40, 40 )
+
+[node name="Tools" type="HFlowContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 3.0
+margin_top = 35.0
+margin_right = -3.0
+margin_bottom = -7.0
+rect_min_size = Vector2( 124, 0 )
+
+[node name="Void" type="Button" parent="."]
+margin_right = 60.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 60, 60 )
+mouse_default_cursor_shape = 2
+icon = SubResource( 3973 )
+icon_align = 1
+expand_icon = true
+script = ExtResource( 2 )
+Color_pressed_front = Color( 1, 0, 0.960784, 1 )
+key = "paint"
+
+[node name="Add" type="Button" parent="."]
+margin_left = 64.0
+margin_right = 124.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 60, 60 )
+hint_tooltip = "Paint"
+mouse_default_cursor_shape = 2
+icon = SubResource( 3974 )
+icon_align = 1
+expand_icon = true
+script = ExtResource( 2 )
+Color_pressed_front = Color( 1, 0, 0.960784, 1 )
+mode = 1
+key = "paint"
+
+[node name="Line" type="Button" parent="."]
+margin_top = 64.0
+margin_right = 60.0
+margin_bottom = 124.0
+rect_min_size = Vector2( 60, 60 )
+hint_tooltip = "Line"
+mouse_default_cursor_shape = 2
+icon = SubResource( 3977 )
+icon_align = 1
+expand_icon = true
+script = ExtResource( 2 )
+Color_pressed_front = Color( 1, 0, 0.960784, 1 )
+mode = 3
+key = "line"
+
+[node name="Remove" type="Button" parent="."]
+margin_left = 64.0
+margin_top = 64.0
+margin_right = 124.0
+margin_bottom = 124.0
+rect_min_size = Vector2( 60, 60 )
+hint_tooltip = "Eraser"
+mouse_default_cursor_shape = 2
+icon = SubResource( 3975 )
+icon_align = 1
+expand_icon = true
+script = ExtResource( 2 )
+Color_pressed_front = Color( 1, 0, 0.960784, 1 )
+mode = 2
+key = "erase"
+
+[node name="Light" type="Button" parent="."]
+margin_top = 128.0
+margin_right = 60.0
+margin_bottom = 188.0
+rect_min_size = Vector2( 60, 60 )
+hint_tooltip = "Light"
+mouse_default_cursor_shape = 2
+icon = SubResource( 3976 )
+icon_align = 1
+expand_icon = true
+script = ExtResource( 2 )
+Color_pressed_front = Color( 1, 0, 0.960784, 1 )
+mode = 5
+key = "light"
+
+[node name="Bucket" type="Button" parent="."]
+margin_left = 64.0
+margin_top = 128.0
+margin_right = 124.0
+margin_bottom = 188.0
+rect_min_size = Vector2( 60, 60 )
+hint_tooltip = "Only in future versions."
+mouse_default_cursor_shape = 2
+disabled = true
+icon = SubResource( 3978 )
+icon_align = 1
+expand_icon = true
+script = ExtResource( 2 )
+Color_pressed_front = Color( 1, 0, 0.960784, 1 )
+mode = 3
+key = "paint"

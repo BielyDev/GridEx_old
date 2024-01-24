@@ -13,14 +13,13 @@ onready var Node_2d: Node2D = $"2d"
 onready var Local: MarginContainer = $Local
 onready var Background: PanelContainer = $Background
 onready var Background_texture: TextureRect = $Texture
-
+onready var Tab_Tilemain: TabContainer = $Local/Vbox/Hbox/Edit/TileMain/Tab
 
 func _ready() -> void:
 	Index.edit_node = self
 	IndexLayer.connect("theme",self,"theme_changed")
 	
 	World_ready()
-
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_QUIT_REQUEST:
@@ -46,14 +45,12 @@ func quit_confirm() -> void:
 func cancel() -> void:
 	popup_quit = false
 
+
 func _on_Add_pressed() -> void:
 	TexPanel.show()
-	$Local/Vbox/Hbox/Edit/TileMain/Tab.current_tab = 0
-
-
+	Tab_Tilemain.current_tab = 0
 func _on_Light_pressed() -> void:
 	TexPanel.hide()
-
 func _on_Void_pressed() -> void:
 	TexPanel.hide()
 

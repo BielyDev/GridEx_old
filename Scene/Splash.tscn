@@ -1,14 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/2D/Program/Icon/icon.svg" type="Texture" id=1]
 [ext_resource path="res://Script/Splash.gd" type="Script" id=2]
+[ext_resource path="res://Script/UI/Buttons/Splash/Open.gd" type="Script" id=3]
 
 [sub_resource type="Gradient" id=2]
-offsets = PoolRealArray( 0.00554017 )
-colors = PoolColorArray( 1, 0.38707, 0.90423, 1 )
+colors = PoolColorArray( 0.294434, 0, 0.5625, 1, 0.78125, 0, 1, 1 )
 
-[sub_resource type="GradientTexture" id=3]
+[sub_resource type="GradientTexture2D" id=3]
 gradient = SubResource( 2 )
+fill_to = Vector2( 1, 1 )
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -40,10 +41,75 @@ margin_right = 547.0
 margin_bottom = 377.0
 
 [node name="Texture" type="TextureRect" parent="Panel/VBoxContainer"]
+modulate = Color( 0.768627, 0.768627, 0.768627, 1 )
 margin_right = 544.0
 margin_bottom = 344.0
 rect_min_size = Vector2( 523.333, 344 )
 texture = SubResource( 3 )
+expand = true
+
+[node name="TextureRect6" type="TextureRect" parent="Panel/VBoxContainer/Texture"]
+modulate = Color( 1, 1, 1, 0.207843 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -160.0
+margin_top = -58.452
+margin_right = -51.0
+margin_bottom = 50.548
+texture = ExtResource( 1 )
+expand = true
+
+[node name="TextureRect5" type="TextureRect" parent="Panel/VBoxContainer/Texture"]
+modulate = Color( 1, 1, 1, 0.345098 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -128.0
+margin_top = -58.452
+margin_right = -19.0
+margin_bottom = 50.548
+texture = ExtResource( 1 )
+expand = true
+
+[node name="TextureRect4" type="TextureRect" parent="Panel/VBoxContainer/Texture"]
+modulate = Color( 1, 1, 1, 0.435294 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -88.0
+margin_top = -58.452
+margin_right = 21.0
+margin_bottom = 50.548
+texture = ExtResource( 1 )
+expand = true
+
+[node name="TextureRect3" type="TextureRect" parent="Panel/VBoxContainer/Texture"]
+modulate = Color( 1, 1, 1, 0.592157 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -48.0
+margin_top = -58.452
+margin_right = 61.0
+margin_bottom = 50.548
+texture = ExtResource( 1 )
+expand = true
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/VBoxContainer/Texture"]
+modulate = Color( 1, 1, 1, 0.756863 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_top = -58.452
+margin_right = 109.0
+margin_bottom = 50.548
+texture = ExtResource( 1 )
 expand = true
 
 [node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/Texture"]
@@ -51,10 +117,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -54.5
-margin_top = -54.5
-margin_right = 54.5
-margin_bottom = 54.5
+margin_left = 40.0
+margin_top = -58.452
+margin_right = 149.0
+margin_bottom = 50.548
 texture = ExtResource( 1 )
 expand = true
 
@@ -69,8 +135,8 @@ margin_right = 100.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 100, 0 )
 custom_styles/focus = SubResource( 1 )
-disabled = true
 text = "Open"
+script = ExtResource( 3 )
 
 [node name="New_project" type="Button" parent="Panel/VBoxContainer/Buttons"]
 margin_left = 104.0
@@ -82,7 +148,6 @@ custom_styles/focus = SubResource( 1 )
 text = "New project"
 
 [node name="what" type="LinkButton" parent="Panel/VBoxContainer/Buttons"]
-visible = false
 margin_left = 246.0
 margin_right = 356.0
 margin_bottom = 24.0
@@ -95,7 +160,7 @@ margin_top = 2.0
 margin_right = 544.0
 margin_bottom = 22.0
 size_flags_horizontal = 14
-text = "version 0.2.0"
+text = "version 0.2.1"
 
 [connection signal="pressed" from="Panel/VBoxContainer/Buttons/New_project" to="." method="_on_New_project_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/Buttons/what" to="." method="_on_what_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Scene/World_Node.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scene/Resource/3D_View.tscn" type="PackedScene" id=2]
@@ -11,7 +11,7 @@
 [ext_resource path="res://Script/MenuBttScripts/Make_comment.gd" type="Script" id=9]
 [ext_resource path="res://Script/MenuBttScripts/About.gd" type="Script" id=10]
 [ext_resource path="res://Script/View.gd" type="Script" id=11]
-[ext_resource path="res://Script/Mode.gd" type="Script" id=12]
+[ext_resource path="res://Scene/UI/Bars/Tools.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Script/MenuBttScripts/Community.gd" type="Script" id=13]
 [ext_resource path="res://Script/Lock_Value.gd" type="Script" id=14]
 [ext_resource path="res://Script/TILE_COLLISION.gd" type="Script" id=15]
@@ -22,7 +22,7 @@
 [ext_resource path="res://Script/MenuBttScripts/Export_project_godot.gd" type="Script" id=20]
 [ext_resource path="res://Script/Icon.gd" type="Script" id=21]
 [ext_resource path="res://Script/MenuBttScripts/Import_tscn.gd" type="Script" id=22]
-[ext_resource path="res://Assets/2D/SVG/UI.svg" type="Texture" id=23]
+[ext_resource path="res://Script/MenuBttScripts/Save_project.gd" type="Script" id=23]
 [ext_resource path="res://Assets/Theme/New_main.tres" type="Theme" id=24]
 [ext_resource path="res://Script/Others/Tile_configPanel.gd" type="Script" id=25]
 [ext_resource path="res://Script/UI/Dock.gd" type="Script" id=26]
@@ -31,6 +31,7 @@
 [ext_resource path="res://Script/Class/SpinBoxControlClass.gd" type="Script" id=29]
 [ext_resource path="res://Script/UI/Geral/Height_tile.gd" type="Script" id=30]
 [ext_resource path="res://Script/UI/Geral/Camada.gd" type="Script" id=31]
+[ext_resource path="res://Script/MenuBttScripts/Open_project.gd" type="Script" id=32]
 
 [sub_resource type="Gradient" id=3979]
 colors = PoolColorArray( 0.0941176, 0, 0.333333, 1, 0.492188, 0, 0.253784, 1 )
@@ -38,36 +39,6 @@ colors = PoolColorArray( 0.0941176, 0, 0.333333, 1, 0.492188, 0, 0.253784, 1 )
 [sub_resource type="GradientTexture2D" id=3980]
 gradient = SubResource( 3979 )
 fill_from = Vector2( 0, 1 )
-
-[sub_resource type="AtlasTexture" id=3973]
-flags = 23
-atlas = ExtResource( 23 )
-region = Rect2( 123.647, 27.996, 78, 78 )
-
-[sub_resource type="AtlasTexture" id=3974]
-flags = 23
-atlas = ExtResource( 23 )
-region = Rect2( 222.059, 32.367, 78, 78 )
-
-[sub_resource type="AtlasTexture" id=3977]
-flags = 23
-atlas = ExtResource( 23 )
-region = Rect2( 318.801, 91.323, 78, 78 )
-
-[sub_resource type="AtlasTexture" id=3975]
-flags = 23
-atlas = ExtResource( 23 )
-region = Rect2( 318.225, 26.465, 78, 78 )
-
-[sub_resource type="AtlasTexture" id=3976]
-flags = 23
-atlas = ExtResource( 23 )
-region = Rect2( 14.94, -1.307, 107.938, 140 )
-
-[sub_resource type="AtlasTexture" id=3978]
-flags = 23
-atlas = ExtResource( 23 )
-region = Rect2( 432.186, 49.172, 40, 40 )
 
 [sub_resource type="StyleBoxFlat" id=3981]
 bg_color = Color( 1, 1, 1, 1 )
@@ -118,9 +89,9 @@ margin_right = 44.0
 margin_bottom = 24.0
 mouse_default_cursor_shape = 2
 text = "File"
-items = [ "New project", null, 0, false, false, 0, 0, null, "", false, "Save project", null, 0, false, true, 1, 0, null, "", false, "Export project in GLTF", null, 0, false, true, 2, 0, null, "", false, "Export project to Godot", null, 0, false, false, 3, 0, null, "", false, "Import .tscn", null, 0, false, false, 4, 0, null, "", false, "", null, 0, false, true, 5, 0, null, "", true, "Create Tile", null, 0, false, false, 6, 0, null, "", false, "Import Tile", null, 0, false, false, 7, 0, null, "", false, "", null, 0, false, true, 8, 0, null, "", true, "Quit", null, 0, false, false, 9, 0, null, "", false ]
+items = [ "New project", null, 0, false, false, 0, 0, null, "", false, "Open project", null, 0, false, false, 1, 0, null, "", false, "Save project", null, 0, false, false, 2, 0, null, "", false, "", null, 0, false, true, 3, 0, null, "", true, "Export project in GLTF", null, 0, false, false, 4, 0, null, "", false, "Export project to Godot", null, 0, false, false, 5, 0, null, "", false, "", null, 0, false, true, 6, 0, null, "", true, "Import tscn", null, 0, false, false, 7, 0, null, "", false, "", null, 0, false, true, 8, 0, null, "", true, "Create Tile", null, 0, false, false, 9, 0, null, "", false, "Import Tile", null, 0, false, false, 10, 0, null, "", false, "", null, 0, false, true, 11, 0, null, "", true, "Quit", null, 0, false, false, 12, 0, null, "", false ]
 script = ExtResource( 16 )
-Scripts = [ ExtResource( 17 ), null, ExtResource( 19 ), ExtResource( 20 ), ExtResource( 22 ), null, ExtResource( 3 ), ExtResource( 4 ), null, ExtResource( 18 ) ]
+Scripts = [ ExtResource( 17 ), ExtResource( 32 ), ExtResource( 23 ), null, ExtResource( 19 ), ExtResource( 20 ), ExtResource( 3 ), ExtResource( 22 ), null, ExtResource( 3 ), ExtResource( 4 ), null, ExtResource( 18 ) ]
 
 [node name="Edit" type="MenuButton" parent="Local/Vbox/BarPanel/Modes"]
 margin_left = 48.0
@@ -129,7 +100,7 @@ margin_bottom = 24.0
 focus_mode = 2
 mouse_default_cursor_shape = 2
 text = "Edit"
-items = [ "Preview 2D", null, 1, true, true, 0, 0, null, "", false, "Preview 3D", null, 1, false, true, 1, 0, null, "", false, "Collision", null, 1, false, true, 2, 0, null, "", false, "Shadowns", null, 1, true, true, 3, 0, null, "", false, "Grid and Axis", null, 1, true, true, 4, 0, null, "", false, "", null, 0, false, true, 5, 0, null, "", true, "Preferences", null, 0, false, false, 6, 0, null, "", false ]
+items = [ "Preview 2D", null, 1, true, true, 0, 0, null, "", false, "Preview 3D", null, 1, false, true, 1, 0, null, "", false, "Collision", null, 1, false, true, 2, 0, null, "", false, "Shadowns", null, 1, true, true, 3, 0, null, "", false, "Grid and Axis", null, 1, true, true, 4, 0, null, "", false, "", null, 0, false, true, 5, 0, null, "", true, "Settings", null, 0, false, false, 6, 0, null, "", false ]
 script = ExtResource( 16 )
 Scripts = [ null, null, null, null, null, null, ExtResource( 28 ) ]
 
@@ -163,125 +134,50 @@ size_flags_vertical = 15
 alignment = 1
 
 [node name="LeftBar" type="VBoxContainer" parent="Local/Vbox/Hbox"]
-margin_right = 210.0
+margin_right = 200.0
 margin_bottom = 680.0
 
 [node name="Tools" type="PanelContainer" parent="Local/Vbox/Hbox/LeftBar"]
-margin_right = 210.0
+margin_right = 200.812
 margin_bottom = 350.0
 rect_min_size = Vector2( 0, 350 )
 
 [node name="Tools" type="TabContainer" parent="Local/Vbox/Hbox/LeftBar/Tools"]
 margin_left = 3.0
 margin_top = 5.0
-margin_right = 207.0
+margin_right = 197.812
 margin_bottom = 343.0
-rect_min_size = Vector2( 83.354, 0 )
+rect_min_size = Vector2( 194.812, 0 )
 tab_align = 0
 script = ExtResource( 26 )
 
-[node name="Tools" type="HFlowContainer" parent="Local/Vbox/Hbox/LeftBar/Tools/Tools"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 3.0
-margin_top = 35.0
-margin_right = -3.0
-margin_bottom = -7.0
-rect_min_size = Vector2( 124, 0 )
+[node name="Tools" parent="Local/Vbox/Hbox/LeftBar/Tools/Tools" instance=ExtResource( 12 )]
 
-[node name="Void" type="Button" parent="Local/Vbox/Hbox/LeftBar/Tools/Tools/Tools"]
-margin_right = 60.0
-margin_bottom = 60.0
-rect_min_size = Vector2( 60, 60 )
-mouse_default_cursor_shape = 2
-icon = SubResource( 3973 )
-icon_align = 1
-expand_icon = true
-script = ExtResource( 12 )
-Color_pressed_front = Color( 1, 0, 0.960784, 1 )
-key = "paint"
-
-[node name="Add" type="Button" parent="Local/Vbox/Hbox/LeftBar/Tools/Tools/Tools"]
-margin_left = 64.0
-margin_right = 124.0
-margin_bottom = 60.0
-rect_min_size = Vector2( 60, 60 )
-hint_tooltip = "Paint"
-mouse_default_cursor_shape = 2
-icon = SubResource( 3974 )
-icon_align = 1
-expand_icon = true
-script = ExtResource( 12 )
-Color_pressed_front = Color( 1, 0, 0.960784, 1 )
-mode = 1
-key = "paint"
-
-[node name="Line" type="Button" parent="Local/Vbox/Hbox/LeftBar/Tools/Tools/Tools"]
+[node name="Line" parent="Local/Vbox/Hbox/LeftBar/Tools/Tools/Tools" index="2"]
 margin_left = 128.0
+margin_top = 0.0
 margin_right = 188.0
 margin_bottom = 60.0
-rect_min_size = Vector2( 60, 60 )
-hint_tooltip = "Line"
-mouse_default_cursor_shape = 2
-icon = SubResource( 3977 )
-icon_align = 1
-expand_icon = true
-script = ExtResource( 12 )
-Color_pressed_front = Color( 1, 0, 0.960784, 1 )
-mode = 3
-key = "line"
 
-[node name="Remove" type="Button" parent="Local/Vbox/Hbox/LeftBar/Tools/Tools/Tools"]
-margin_top = 64.0
+[node name="Remove" parent="Local/Vbox/Hbox/LeftBar/Tools/Tools/Tools" index="3"]
+margin_left = 0.0
 margin_right = 60.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 60, 60 )
-hint_tooltip = "Eraser"
-mouse_default_cursor_shape = 2
-icon = SubResource( 3975 )
-icon_align = 1
-expand_icon = true
-script = ExtResource( 12 )
-Color_pressed_front = Color( 1, 0, 0.960784, 1 )
-mode = 2
-key = "erase"
 
-[node name="Light" type="Button" parent="Local/Vbox/Hbox/LeftBar/Tools/Tools/Tools"]
+[node name="Light" parent="Local/Vbox/Hbox/LeftBar/Tools/Tools/Tools" index="4"]
 margin_left = 64.0
 margin_top = 64.0
 margin_right = 124.0
 margin_bottom = 124.0
-rect_min_size = Vector2( 60, 60 )
-hint_tooltip = "Light"
-mouse_default_cursor_shape = 2
-icon = SubResource( 3976 )
-icon_align = 1
-expand_icon = true
-script = ExtResource( 12 )
-Color_pressed_front = Color( 1, 0, 0.960784, 1 )
-mode = 5
-key = "light"
 
-[node name="Bucket" type="Button" parent="Local/Vbox/Hbox/LeftBar/Tools/Tools/Tools"]
+[node name="Bucket" parent="Local/Vbox/Hbox/LeftBar/Tools/Tools/Tools" index="5"]
 margin_left = 128.0
 margin_top = 64.0
 margin_right = 188.0
 margin_bottom = 124.0
-rect_min_size = Vector2( 60, 60 )
-hint_tooltip = "Only in future versions."
-mouse_default_cursor_shape = 2
-disabled = true
-icon = SubResource( 3978 )
-icon_align = 1
-expand_icon = true
-script = ExtResource( 12 )
-Color_pressed_front = Color( 1, 0, 0.960784, 1 )
-mode = 3
-key = "paint"
 
 [node name="Hs" type="HSeparator" parent="Local/Vbox/Hbox/LeftBar"]
 margin_top = 354.0
-margin_right = 210.0
+margin_right = 200.0
 margin_bottom = 358.0
 mouse_default_cursor_shape = 9
 script = ExtResource( 27 )
@@ -291,11 +187,12 @@ Negative = true
 
 [node name="Options" type="PanelContainer" parent="Local/Vbox/Hbox/LeftBar"]
 margin_top = 362.0
-margin_right = 210.0
+margin_right = 200.0
 margin_bottom = 680.0
 size_flags_vertical = 3
 
 [node name="Options" type="TabContainer" parent="Local/Vbox/Hbox/LeftBar/Options"]
+visible = false
 margin_left = 3.0
 margin_top = 5.0
 margin_right = 207.0
@@ -390,8 +287,8 @@ step = 2.0
 script = ExtResource( 29 )
 
 [node name="Vs" type="VSeparator" parent="Local/Vbox/Hbox"]
-margin_left = 214.0
-margin_right = 218.0
+margin_left = 204.0
+margin_right = 208.0
 margin_bottom = 680.0
 mouse_default_cursor_shape = 10
 script = ExtResource( 27 )
@@ -399,26 +296,26 @@ Panel_Path = NodePath("../LeftBar/Tools/Tools")
 Negative = true
 
 [node name="View" type="VBoxContainer" parent="Local/Vbox/Hbox"]
-margin_left = 222.0
+margin_left = 212.0
 margin_right = 974.0
 margin_bottom = 680.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 
 [node name="ModePanel" type="ScrollContainer" parent="Local/Vbox/Hbox/View"]
-margin_right = 752.0
+margin_right = 762.0
 margin_bottom = 42.0
 rect_min_size = Vector2( 0, 40 )
 scroll_vertical_enabled = false
 
 [node name="ModePanel" type="PanelContainer" parent="Local/Vbox/Hbox/View/ModePanel"]
-margin_right = 664.0
+margin_right = 658.0
 margin_bottom = 42.0
 
 [node name="Modes" type="HBoxContainer" parent="Local/Vbox/Hbox/View/ModePanel/ModePanel"]
 margin_left = 3.0
 margin_top = 5.0
-margin_right = 661.0
+margin_right = 655.0
 margin_bottom = 35.0
 
 [node name="Edit" type="HBoxContainer" parent="Local/Vbox/Hbox/View/ModePanel/ModePanel/Modes"]
@@ -478,7 +375,7 @@ margin_bottom = 30.0
 
 [node name="Height_tile" type="HBoxContainer" parent="Local/Vbox/Hbox/View/ModePanel/ModePanel/Modes"]
 margin_left = 398.0
-margin_right = 658.0
+margin_right = 652.0
 margin_bottom = 30.0
 size_flags_horizontal = 8
 script = ExtResource( 30 )
@@ -491,7 +388,7 @@ text = "Height tile"
 
 [node name="Spin" type="SpinBox" parent="Local/Vbox/Hbox/View/ModePanel/ModePanel/Modes/Height_tile"]
 margin_left = 114.0
-margin_right = 260.0
+margin_right = 254.0
 margin_bottom = 30.0
 min_value = -100.0
 step = 2.0
@@ -499,7 +396,7 @@ script = ExtResource( 29 )
 
 [node name="ViewPanel" type="PanelContainer" parent="Local/Vbox/Hbox/View"]
 margin_top = 46.0
-margin_right = 752.0
+margin_right = 762.0
 margin_bottom = 612.0
 mouse_filter = 2
 size_flags_horizontal = 9
@@ -508,14 +405,14 @@ size_flags_vertical = 3
 [node name="View" type="ViewportContainer" parent="Local/Vbox/Hbox/View/ViewPanel"]
 margin_left = 3.0
 margin_top = 5.0
-margin_right = 749.0
+margin_right = 759.0
 margin_bottom = 559.0
 size_flags_horizontal = 11
 size_flags_vertical = 3
 stretch = true
 
 [node name="Viewport" type="Viewport" parent="Local/Vbox/Hbox/View/ViewPanel/View"]
-size = Vector2( 746, 554 )
+size = Vector2( 756, 554 )
 handle_input_locally = false
 render_target_update_mode = 3
 shadow_atlas_size = 2048
@@ -528,7 +425,7 @@ shadow_atlas_quad_3 = 5
 [node name="Preview2D" type="Control" parent="Local/Vbox/Hbox/View/ViewPanel"]
 margin_left = 3.0
 margin_top = 5.0
-margin_right = 749.0
+margin_right = 759.0
 margin_bottom = 559.0
 script = ExtResource( 11 )
 
@@ -557,14 +454,14 @@ script = ExtResource( 21 )
 
 [node name="OptionsPanel" type="PanelContainer" parent="Local/Vbox/Hbox/View"]
 margin_top = 616.0
-margin_right = 752.0
+margin_right = 762.0
 margin_bottom = 680.0
 size_flags_vertical = 8
 
 [node name="Scroll" type="ScrollContainer" parent="Local/Vbox/Hbox/View/OptionsPanel"]
 margin_left = 3.0
 margin_top = 5.0
-margin_right = 749.0
+margin_right = 759.0
 margin_bottom = 57.0
 scroll_vertical_enabled = false
 
@@ -821,7 +718,6 @@ margin_left = 3.0
 margin_top = 5.0
 margin_right = 279.0
 margin_bottom = 237.0
-scroll_horizontal_enabled = false
 
 [node name="Config" type="VBoxContainer" parent="Local/Vbox/Hbox/Edit/Camadas/Tab/Layer/LayerPanel/Scroll"]
 margin_right = 276.0
@@ -837,14 +733,19 @@ size_flags_vertical = 3
 margin_top = 4.0
 margin_right = 276.0
 margin_bottom = 4.0
+mouse_filter = 2
 
 [node name="Panel" type="Panel" parent="Local/Vbox/Hbox/Edit/Camadas/Tab/Layer/LayerPanel/Scroll/Config/Selected"]
 modulate = Color( 0.537255, 0.564706, 0.67451, 0.317647 )
-margin_left = -5.0
+anchor_left = -0.0181159
+anchor_right = 0.311594
 margin_top = -5.0
-margin_right = 86.0
 margin_bottom = 28.0
+mouse_filter = 2
 custom_styles/panel = SubResource( 3981 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Scroll" type="ScrollContainer" parent="Local/Vbox/Hbox/Edit/Camadas/Tab/Layer"]
 margin_top = 248.0
@@ -892,5 +793,7 @@ unique_name_in_owner = true
 [connection signal="pressed" from="Local/Vbox/Hbox/Edit/TileMain/Tab/Tiles/Tile_configPanel/Scroll/Tile_config/Import" to="Local/Vbox/Hbox/Edit/TileMain/Tab/Tiles/Tile_configPanel" method="_on_Import_pressed"]
 [connection signal="tab_selected" from="Local/Vbox/Hbox/Edit/Camadas/Tab" to="Local/Vbox/Hbox/Edit/Camadas/Tab" method="_on_Tab_tab_selected"]
 [connection signal="pressed" from="Local/Vbox/Hbox/Edit/Camadas/Tab/Layer/Scroll/Hbox/Add" to="Local/Vbox/Hbox/Edit/Camadas/Tab/Layer/LayerPanel" method="_on_Add_pressed"]
+[connection signal="pressed" from="Local/Vbox/Hbox/Edit/Camadas/Tab/Layer/Scroll/Hbox/Delete" to="Local/Vbox/Hbox/Edit/Camadas/Tab/Layer/LayerPanel" method="_on_Delete_pressed"]
 
+[editable path="Local/Vbox/Hbox/LeftBar/Tools/Tools/Tools"]
 [editable path="World"]

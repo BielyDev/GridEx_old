@@ -21,4 +21,4 @@ func exit() -> void:
 
 
 func _on_what_pressed() -> void:
-	OS.shell_open("https://bielydev.itch.io/gridex/devlog/663409/new-version-gridex-015")
+	OS.shell_open("https://bielydev.itch.io/gridex/devlog/670219/new-version-gridex-021")

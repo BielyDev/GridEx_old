@@ -19,14 +19,16 @@ func _input(_event: InputEvent) -> void:
 	
 	_rotation_selection()
 	
-	if Input.is_action_pressed("speed"):
+	if Input.is_key_pressed(KEY_CONTROL):
 		if Input.is_action_just_pressed("middle_up"):
 			Index.cam.get_parent().state = Index.cam.get_parent().STATE.BLOCK
 			Grid.transform.origin.y += 2
+			Index.emit_signal("height_tile",Grid.transform.origin.y)
 		
 		elif Input.is_action_just_pressed("middle_down"):
 			Index.cam.get_parent().state = Index.cam.get_parent().STATE.BLOCK
 			Grid.transform.origin.y += -2
+			Index.emit_signal("height_tile",Grid.transform.origin.y)
 		
 		else:
 			Index.cam.get_parent().state = Index.cam.get_parent().STATE.IDLE
