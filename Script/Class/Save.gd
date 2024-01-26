@@ -15,41 +15,61 @@ static func save_project(dir: String) -> void:
 		)
 		
 		for child in layers.get_children():
+			#print("child --  ",child.id_tile)
 			save_array.tiles.push_back(
 				{
 					id = child.get_index(),
+					id_tile = child.id_tile,
+					id_group = child.id_group,
 					position = str(child.global_transform.origin),
 					layer = layers.get_index()
 				}
 			)
 	
 	
-	var file_scenes: File = File.new()
+	#Scene------------------
 	var save_scenes = [] #{Basic_tile = cena}
-	
-	file_scenes.open(str(dir,".bin"),File.WRITE)
+	var paths = []
 	
 	for groups in Index.edit_node.Tile_groups.get_children():
-		save_scenes.append(groups.group_scene)
+		var path = str(dir,int(randi()),".tscn")
+		paths.append(path)
+		
+		var scene = PackedScene.new()
+		scene.pack(groups.group_scene)
+		ResourceSaver.save(path,scene)
 	
-	file_scenes.store_var(save_scenes)
-	file_scenes.close()
 	
-	yield(create_time(0.1),"timeout")
+	yield(create_time(0.4),"timeout")
 	
-	file_scenes.open(str(dir,".bin"),File.READ)
 	
-	save_array.tiles_groups = file_scenes.get_as_text()
-	file_scenes.close()
+	var open_scenes = [] #{Basic_tile = cena}
+	for path in paths:
+		
+		var fil = File.new()
+		fil.open(path,File.READ)
+		
+		var arq = fil.get_as_text()
+		fil.close()
+		
+		open_scenes.append(arq)
+		yield(create_time(0.1),"timeout")
+		
+		var dic = Directory.new()
+		dic.remove(path)
 	
-	yield(create_time(0.1),"timeout")
 	
-	print("Tiles groups:  ",save_array.tiles_groups)
+	yield(create_time(0.2),"timeout")
+	
+	
+	save_array.tiles_groups = (open_scenes)
 	
 	file.store_string(to_json(save_array))
 	file.close()
 
+
 static func open_project(dir: String) -> void:
+	
 	var file = File.new()
 	
 	file.open(dir,File.READ)
@@ -57,15 +77,31 @@ static func open_project(dir: String) -> void:
 	var load_file_ant = file.get_as_text()
 	file.close()
 	var load_file = parse_json(load_file_ant)
-	
+	print(load_file)
 	
 	for child in Index.block.get_children():
 		child.queue_free()
 	
-	loader_tiles_and_layers(load_file)
+	loader_tiles_and_layers(load_file,dir)
+	
 
 
-static func loader_tiles_and_layers(load_file: Dictionary) -> void:
+static func loader_tiles_and_layers(load_file: Dictionary,dir: String) -> void:
+	
+	for groups in load_file.tiles_groups:
+		var path = str(dir,int(randi()),".tscn")
+		var file = File.new()
+		
+		file.open(path,File.WRITE)
+		file.store_string(groups)
+		file.close()
+		
+		Import.import_group_tile_automatic(path,true)
+		
+		var dic = Directory.new()
+		dic.remove(path)
+	
+	
 	for layers in load_file.layers:
 		var new_layer = Spatial.new()
 		
@@ -74,17 +110,28 @@ static func loader_tiles_and_layers(load_file: Dictionary) -> void:
 		Index.block.add_child(new_layer)
 	
 	
-	for child in (load_file.tiles):
-		var mesh = MeshInstance.new()
-		mesh.mesh = CubeMesh.new()
+	for tiles in (load_file.tiles):
+		var mesh = Tile.new()
 		
-		Index.block.get_child(child.layer).add_child(mesh)
-		var sem_aspas: String = (child.position.replace("(","").replace(")",""))
+		for groups in Index.edit_node.Tile_groups.get_children():
+			
+			if groups.group_scene.id_group == tiles.id_group:
+				for tile in groups.group_scene.get_children():
+					
+					if tile.id_tile == tiles.id_tile:
+						mesh = tile.duplicate()
+		
+		
+		Index.block.get_child(tiles.layer).add_child(mesh)
+		var sem_aspas: String = (tiles.position.replace("(","").replace(")",""))
 		var pos_string = sem_aspas.replace(",","")
 		
 		var pos_vect = Vector3(
 			float(pos_string.split(" ")[0]),
 			float(pos_string.split(" ")[1]),
-			float(pos_string.split(" ")[2]))
+			float(pos_string.split(" ")[2])
+			)
 		
 		mesh.global_transform.origin = pos_vect
+
+

@@ -9,6 +9,7 @@ onready var Edit: VBoxContainer = $Local/Vbox/Hbox/Edit
 onready var View: ViewportContainer = $Local/Vbox/Hbox/View/ViewPanel/View
 onready var TexPanel := $Local/Vbox/Hbox/View/ViewPanel/Preview2D/Hbox/TexPanel
 onready var Tile_groups: VBoxContainer = $"%Tile Groups"
+onready var Layer_panel: PanelContainer = $"%LayerPanel"
 onready var Node_2d: Node2D = $"2d"
 onready var Local: MarginContainer = $Local
 onready var Background: PanelContainer = $Background
@@ -18,6 +19,7 @@ onready var Tab_Tilemain: TabContainer = $Local/Vbox/Hbox/Edit/TileMain/Tab
 func _ready() -> void:
 	Index.edit_node = self
 	IndexLayer.connect("theme",self,"theme_changed")
+	Import.import_group_tile_automatic("res://Scene/Tiles/Basic_Tile.tscn")
 	
 	World_ready()
 

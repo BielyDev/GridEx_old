@@ -22,7 +22,7 @@ func _ready() -> void:
 		Index.layer_select = 0
 
 
-func add_block(pos: Vector3,rot: Vector3,tile_mesh: MeshInstance,undo: bool = true) -> bool:
+func add_block(pos: Vector3,rot: Vector3,id_tile: int,undo: bool = true) -> bool:
 	match mode:
 		0:
 			for blocos in get_child(Index.layer_select).get_children():
@@ -30,22 +30,22 @@ func add_block(pos: Vector3,rot: Vector3,tile_mesh: MeshInstance,undo: bool = tr
 					blocos.queue_free()
 					block_pos.erase(pos)
 			
-			instance_block(tile_mesh,pos,rot,undo)
+			instance_block(id_tile,pos,rot,undo)
 		1:
 			for pos_array in block_pos:
 				if pos_array.pos == pos:
 					return false
 			
-			instance_block(tile_mesh,pos,rot,undo)
+			instance_block(id_tile,pos,rot,undo)
 		2:
-			instance_block(tile_mesh,pos,rot,undo)
+			instance_block(id_tile,pos,rot,undo)
 		3:
 			for blocos in get_child(Index.layer_select).get_children():
 				if blocos.global_transform.origin == pos:
 					blocos.queue_free()
 					block_pos.erase(pos)
 					
-					instance_block(tile_mesh,pos,rot,undo)
+					instance_block(id_tile,pos,rot,undo)
 	
 	Anima.stop()
 	Anima.play("Add")
@@ -96,8 +96,12 @@ func loop_get_tile(node,pos: Vector3,undo):
 
 
 
-func instance_block(tile_mesh: MeshInstance,pos_in: Vector3,rot: Vector3,undo: bool) -> void:
-	var tile = tile_mesh.duplicate()
+func instance_block(id_tile: int,pos_in: Vector3,rot: Vector3,undo: bool) -> void:
+	var tile
+	
+	for groups_tiles in Index.edit_node.Tile_groups.get_children():
+		if Index.tile.id_group == groups_tiles.group_scene.id_group:
+			tile = groups_tiles.get_tile(id_tile)
 	
 	var num: int = 0
 	var name_staterd: String = tile.name

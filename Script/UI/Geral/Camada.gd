@@ -40,3 +40,4 @@ func _on_Add_pressed() -> void:
 
 func _on_Delete_pressed() -> void:
 	Layers.get_child(Index.layer_select).delete()
+	Index.layer_select -= 1

@@ -29,13 +29,13 @@ static func export_scene_gltf(path: String) -> void:
 	pass
 
 
-static func export_new_tiles(Models:Spatial ,path: String ,file: String) -> void:
+static func export_new_tiles(Models: Spatial ,path: String ,file: String) -> void:
 	for child in Models.get_children():
+		print(child)
 		var group_scene: PackedScene = PackedScene.new()
 		group_scene.pack(child)
 		yield(create_time(),"timeout")
 		
-		print(child)
 		file_tile_create(path,child,group_scene)
 
 
@@ -151,6 +151,25 @@ static func file_tscn_create(Worlds: Spatial,collision_save: Array,scene: Packed
 static func file_tile_create(path: String,child: Spatial,group_scene: PackedScene) -> void:
 	var file_name = str(path,child.name,".tscn")
 	var erro = ResourceSaver.save(file_name,group_scene)
+	
+	#Load
+	var file = File.new()
+	file.open(file_name,File.READ)
+	
+	var tile_scene = file.get_as_text()
+	file.close()
+	
+	#Save
+	var path_save = str(path)
+	file.open(path_save,File.WRITE)
+	
+	
+	file.store_string(tile_scene)
+	file.close()
+	
+	var dic = Directory.new()
+	dic.remove(file_name)
+	
 	
 	yield(create_time(),"timeout")
 	Import.import_group_tile_automatic(file_name)

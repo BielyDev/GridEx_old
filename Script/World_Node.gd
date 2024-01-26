@@ -65,7 +65,7 @@ func selection_move():
 func _start_mode() -> void:
 	match Index.mode:
 		Index.MODE.ADD:
-			if Index.tile.tile != null:
+			if Index.tile.id_tile != -1:
 				Add.add_block_settings()
 				
 				if IndexLayer.edit.enabled == true:

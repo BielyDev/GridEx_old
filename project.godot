@@ -59,10 +59,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Script/Class/SpinBoxControlClass.gd"
 }, {
+"base": "MeshInstance",
+"class": "Tile",
+"language": "GDScript",
+"path": "res://Script/Class/Tile.gd"
+}, {
 "base": "AnimationButtonClass",
 "class": "TileButton",
 "language": "GDScript",
 "path": "res://Script/Class/TileButtonClass.gd"
+}, {
+"base": "Node",
+"class": "Tile_Group",
+"language": "GDScript",
+"path": "res://Script/Class/Tile_Group.gd"
 }, {
 "base": "Tween",
 "class": "TweenUI",
@@ -85,7 +95,9 @@ _global_script_class_icons={
 "ObjParse": "",
 "Save": "",
 "SpinBoxControl": "",
+"Tile": "",
 "TileButton": "",
+"Tile_Group": "",
 "TweenUI": "",
 "UI": ""
 }
@@ -111,7 +123,7 @@ window/size/width=1280
 window/size/height=720
 window/per_pixel_transparency/allowed=true
 window/per_pixel_transparency/enabled=true
-window/stretch/mode="viewport"
+window/stretch/mode="2d"
 window/stretch/aspect="expand"
 
 [gui]
@@ -219,6 +231,11 @@ line={
 fullscreen={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777254,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+void={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":71,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 

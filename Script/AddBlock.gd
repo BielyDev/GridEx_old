@@ -12,35 +12,35 @@ func _process(_delta: float) -> void:
 
 
 func add_block_settings(pre_pos = pos) -> void:
-	var tile = Index.tile.tile
+	var id_tile = Index.tile.id_tile
 	
-	if tile != null:
-		verific_mirror(pre_pos,tile)
+	if id_tile != -1:
+		verific_mirror(pre_pos,id_tile)
 
-func verific_mirror(pre_pos: Vector3,tile):
+func verific_mirror(pre_pos: Vector3,id_tile: int):
 	match Par.Mirror.selected:
 		0:
-			Cont.Block.add_block(pre_pos,Cont.rot,tile)
+			Cont.Block.add_block(pre_pos,Cont.rot,id_tile)
 			
 		1:
 			var pos_mir = Vector3(-pre_pos.x,pre_pos.y,pre_pos.z)
 			var rot_mir = Vector3(Cont.rot.x,-Cont.rot.y,Cont.rot.z)
 			
-			Cont.Block.add_block(pre_pos,Cont.rot,tile)
-			Cont.Block.add_block(pos_mir,rot_mir,tile)
+			Cont.Block.add_block(pre_pos,Cont.rot,id_tile)
+			Cont.Block.add_block(pos_mir,rot_mir,id_tile)
 			
 		2:
 			var pos_mir = Vector3(pre_pos.x,pre_pos.y,-pre_pos.z)
 			var rot_mir = Vector3(Cont.rot.x,-Cont.rot.y+180,Cont.rot.z)
 			
-			Cont.Block.add_block(pre_pos,Cont.rot,tile)
-			Cont.Block.add_block(pos_mir,rot_mir,tile)
+			Cont.Block.add_block(pre_pos,Cont.rot,id_tile)
+			Cont.Block.add_block(pos_mir,rot_mir,id_tile)
 			
 		3:
-			add_mirror_x_y(pre_pos,tile)
+			add_mirror_x_y(pre_pos,id_tile)
 
 
-func add_mirror_x_y(pre_pos: Vector3,tile: MeshInstance) -> void:
+func add_mirror_x_y(pre_pos: Vector3,id_tile: int) -> void:
 	var pos_x_neg = Vector3(-pre_pos.x,pre_pos.y,pre_pos.z)
 	var pos_x_z_neg = Vector3(pre_pos.x,pre_pos.y,-pre_pos.z)
 	var pos_x_neg_z_neg = Vector3(-pre_pos.x,pre_pos.y,-pre_pos.z)
@@ -60,15 +60,15 @@ func add_mirror_x_y(pre_pos: Vector3,tile: MeshInstance) -> void:
 	var rot_z_neg_x_neg = Vector3(Cont.rot.x,Cont.rot.y+180,Cont.rot.z)
 	var rot_z_neg_x = Vector3(Cont.rot.x,-Cont.rot.y,Cont.rot.z)
 	
-	Cont.Block.add_block(pre_pos,Cont.rot,tile)
-	Cont.Block.add_block(pos_x_neg,rot_x_neg,tile)
-	Cont.Block.add_block(pos_x_neg_z_neg,rot_x_neg_z_neg,tile)
-	Cont.Block.add_block(pos_x_z_neg,rot_x_z_neg,tile)
+	Cont.Block.add_block(pre_pos,Cont.rot,id_tile)
+	Cont.Block.add_block(pos_x_neg,rot_x_neg,id_tile)
+	Cont.Block.add_block(pos_x_neg_z_neg,rot_x_neg_z_neg,id_tile)
+	Cont.Block.add_block(pos_x_z_neg,rot_x_z_neg,id_tile)
 	
-	Cont.Block.add_block(pos_z_x,rot_z_x,tile)
-	Cont.Block.add_block(pos_z_neg_x,rot_z_neg_x,tile)
-	Cont.Block.add_block(pos_z_x_neg,rot_z_x_neg,tile)
-	Cont.Block.add_block(pos_z_neg_x_neg,rot_z_neg_x_neg,tile)
+	Cont.Block.add_block(pos_z_x,rot_z_x,id_tile)
+	Cont.Block.add_block(pos_z_neg_x,rot_z_neg_x,id_tile)
+	Cont.Block.add_block(pos_z_x_neg,rot_z_x_neg,id_tile)
+	Cont.Block.add_block(pos_z_neg_x_neg,rot_z_neg_x_neg,id_tile)
 
 
 func add_light() -> void:

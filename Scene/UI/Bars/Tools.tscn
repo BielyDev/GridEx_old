@@ -13,15 +13,15 @@ flags = 23
 atlas = ExtResource( 1 )
 region = Rect2( 222.059, 32.367, 78, 78 )
 
-[sub_resource type="AtlasTexture" id=3977]
-flags = 23
-atlas = ExtResource( 1 )
-region = Rect2( 318.801, 91.323, 78, 78 )
-
 [sub_resource type="AtlasTexture" id=3975]
 flags = 23
 atlas = ExtResource( 1 )
 region = Rect2( 318.225, 26.465, 78, 78 )
+
+[sub_resource type="AtlasTexture" id=3977]
+flags = 23
+atlas = ExtResource( 1 )
+region = Rect2( 318.801, 91.323, 78, 78 )
 
 [sub_resource type="AtlasTexture" id=3976]
 flags = 23
@@ -38,7 +38,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 3.0
 margin_top = 35.0
-margin_right = -3.0
+margin_right = -1153.0
 margin_bottom = -7.0
 rect_min_size = Vector2( 124, 0 )
 
@@ -52,14 +52,14 @@ icon_align = 1
 expand_icon = true
 script = ExtResource( 2 )
 Color_pressed_front = Color( 1, 0, 0.960784, 1 )
-key = "paint"
+key = "void"
 
 [node name="Add" type="Button" parent="."]
 margin_left = 64.0
 margin_right = 124.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 60, 60 )
-hint_tooltip = "Paint"
+hint_tooltip = "Paint T"
 mouse_default_cursor_shape = 2
 icon = SubResource( 3974 )
 icon_align = 1
@@ -69,28 +69,12 @@ Color_pressed_front = Color( 1, 0, 0.960784, 1 )
 mode = 1
 key = "paint"
 
-[node name="Line" type="Button" parent="."]
+[node name="Remove" type="Button" parent="."]
 margin_top = 64.0
 margin_right = 60.0
 margin_bottom = 124.0
 rect_min_size = Vector2( 60, 60 )
-hint_tooltip = "Line"
-mouse_default_cursor_shape = 2
-icon = SubResource( 3977 )
-icon_align = 1
-expand_icon = true
-script = ExtResource( 2 )
-Color_pressed_front = Color( 1, 0, 0.960784, 1 )
-mode = 3
-key = "line"
-
-[node name="Remove" type="Button" parent="."]
-margin_left = 64.0
-margin_top = 64.0
-margin_right = 124.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 60, 60 )
-hint_tooltip = "Eraser"
+hint_tooltip = "Eraser E"
 mouse_default_cursor_shape = 2
 icon = SubResource( 3975 )
 icon_align = 1
@@ -100,12 +84,28 @@ Color_pressed_front = Color( 1, 0, 0.960784, 1 )
 mode = 2
 key = "erase"
 
+[node name="Line" type="Button" parent="."]
+margin_left = 64.0
+margin_top = 64.0
+margin_right = 124.0
+margin_bottom = 124.0
+rect_min_size = Vector2( 60, 60 )
+hint_tooltip = "Line H"
+mouse_default_cursor_shape = 2
+icon = SubResource( 3977 )
+icon_align = 1
+expand_icon = true
+script = ExtResource( 2 )
+Color_pressed_front = Color( 1, 0, 0.960784, 1 )
+mode = 3
+key = "line"
+
 [node name="Light" type="Button" parent="."]
 margin_top = 128.0
 margin_right = 60.0
 margin_bottom = 188.0
 rect_min_size = Vector2( 60, 60 )
-hint_tooltip = "Light"
+hint_tooltip = "Light Shift+h"
 mouse_default_cursor_shape = 2
 icon = SubResource( 3976 )
 icon_align = 1

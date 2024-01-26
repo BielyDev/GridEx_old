@@ -1,11 +1,10 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Scene/World_Node.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scene/Resource/3D_View.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Script/MenuBttScripts/Create_tile.gd" type="Script" id=3]
 [ext_resource path="res://Script/MenuBttScripts/Import_tile.gd" type="Script" id=4]
 [ext_resource path="res://Script/Class/AnimationButtonClass.gd" type="Script" id=5]
-[ext_resource path="res://Scene/Theme_Tile/Basic.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Script/Edit.gd" type="Script" id=7]
 [ext_resource path="res://Script/UI/Geral/Remove.gd" type="Script" id=8]
 [ext_resource path="res://Script/MenuBttScripts/Make_comment.gd" type="Script" id=9]
@@ -152,14 +151,15 @@ tab_align = 0
 script = ExtResource( 26 )
 
 [node name="Tools" parent="Local/Vbox/Hbox/LeftBar/Tools/Tools" instance=ExtResource( 12 )]
+margin_right = -3.0
 
-[node name="Line" parent="Local/Vbox/Hbox/LeftBar/Tools/Tools/Tools" index="2"]
+[node name="Remove" parent="Local/Vbox/Hbox/LeftBar/Tools/Tools/Tools" index="2"]
 margin_left = 128.0
 margin_top = 0.0
 margin_right = 188.0
 margin_bottom = 60.0
 
-[node name="Remove" parent="Local/Vbox/Hbox/LeftBar/Tools/Tools/Tools" index="3"]
+[node name="Line" parent="Local/Vbox/Hbox/LeftBar/Tools/Tools/Tools" index="3"]
 margin_left = 0.0
 margin_right = 60.0
 
@@ -604,18 +604,11 @@ scroll_horizontal_enabled = false
 
 [node name="Tile Groups" type="VBoxContainer" parent="Local/Vbox/Hbox/Edit/TileMain/Tab/Tiles/Tiles"]
 unique_name_in_owner = true
-margin_right = 270.0
-margin_bottom = 257.0
+margin_right = 282.0
+margin_bottom = 229.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="Basic Tile" parent="Local/Vbox/Hbox/Edit/TileMain/Tab/Tiles/Tiles/Tile Groups" instance=ExtResource( 6 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 270.0
-margin_bottom = 257.0
-mouse_filter = 2
 
 [node name="Tile_configPanel" type="PanelContainer" parent="Local/Vbox/Hbox/Edit/TileMain/Tab/Tiles"]
 margin_top = 233.0
@@ -708,6 +701,7 @@ margin_right = -3.0
 margin_bottom = -7.0
 
 [node name="LayerPanel" type="PanelContainer" parent="Local/Vbox/Hbox/Edit/Camadas/Tab/Layer"]
+unique_name_in_owner = true
 margin_right = 282.0
 margin_bottom = 244.0
 size_flags_vertical = 3
