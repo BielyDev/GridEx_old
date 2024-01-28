@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Script/Import_Config.gd" type="Script" id=1]
-[ext_resource path="res://Script/Pos.gd" type="Script" id=2]
+[ext_resource path="res://Scene/Resource/3D_View.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Others/Tile.png" type="Texture" id=3]
 [ext_resource path="res://Script/Import_Config/ProprietyPanel/Position.gd" type="Script" id=5]
 [ext_resource path="res://Script/ProprietyPanel.gd" type="Script" id=6]
@@ -225,17 +225,11 @@ collision_mask = 0
 [node name="CollisionShape" type="CollisionShape" parent="Screen/Hbox/Vbox/View/Viewport/World3D/Settings/Grid/Area"]
 shape = SubResource( 5 )
 
-[node name="Pos" type="Spatial" parent="Screen/Hbox/Vbox/View/Viewport/World3D"]
-transform = Transform( -4.37114e-08, -0.707107, -0.707107, 0, 0.707107, -0.707107, 1, -3.09086e-08, -3.09086e-08, 0, 0, 0 )
-script = ExtResource( 2 )
-PosLock_path = NodePath("Camera/Pos_Lock")
-Cam_path = NodePath("Camera")
+[node name="3D_View" parent="Screen/Hbox/Vbox/View/Viewport/World3D" instance=ExtResource( 2 )]
 
-[node name="Camera" type="Camera" parent="Screen/Hbox/Vbox/View/Viewport/World3D/Pos"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -10 )
-
-[node name="Pos_Lock" type="Position3D" parent="Screen/Hbox/Vbox/View/Viewport/World3D/Pos/Camera"]
-transform = Transform( 1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0, 2.5332e-07, -9.822 )
+[node name="Pos" parent="Screen/Hbox/Vbox/View/Viewport/World3D/3D_View" index="2"]
+Index_values = false
+Ray_path = NodePath("")
 
 [node name="Options" type="HBoxContainer" parent="Screen/Hbox/Vbox"]
 margin_top = 612.0
@@ -400,3 +394,5 @@ mesh = SubResource( 21 )
 [connection signal="pressed" from="Screen/Hbox/Vbox/Hbox/Close" to="." method="_on_Close_pressed"]
 [connection signal="pressed" from="Screen/Hbox/TreePanel/Vbox/Buttons_add/Hbox/Add" to="." method="_on_Add_pressed"]
 [connection signal="pressed" from="Screen/Hbox/TreePanel/Vbox/Buttons_add/Hbox/Delete" to="." method="_on_Delete_pressed"]
+
+[editable path="Screen/Hbox/Vbox/View/Viewport/World3D/3D_View"]

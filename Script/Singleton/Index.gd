@@ -12,8 +12,6 @@ var edit_node
 var block
 var mode
 var layer_select: int
-var cam: Camera
-var ray: RayCast
 var env : Environment = preload("res://default_env.tres")
 var undo: Array = []
 
@@ -22,6 +20,19 @@ var tile: Dictionary = {
 	id_group = -1,
 	icon = null,
 }
+
+
+var view3d: Dictionary = {
+	cam = null,
+	ray = null,
+	pos = null,
+}
+var view2d: Dictionary = {
+	preview2d = null,
+	axis = null,
+	viewport = null,
+}
+
 
 var settings: Array = [
 	50,50,50

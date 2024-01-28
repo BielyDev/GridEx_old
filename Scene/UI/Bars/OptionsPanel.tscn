@@ -1,0 +1,176 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Assets/2D/SVG/UI.svg" type="Texture" id=1]
+[ext_resource path="res://Script/Lock_Value.gd" type="Script" id=2]
+[ext_resource path="res://Assets/2D/Atlas/Light.tres" type="Texture" id=3]
+[ext_resource path="res://Script/TILE_COLLISION.gd" type="Script" id=4]
+[ext_resource path="res://Assets/2D/Atlas/UI/Collision.tres" type="Texture" id=5]
+[ext_resource path="res://Assets/2D/Atlas/UI/Shadow.tres" type="Texture" id=6]
+[ext_resource path="res://Assets/2D/Atlas/UI/Preview.tres" type="Texture" id=7]
+
+[sub_resource type="StreamTexture" id=3984]
+
+[sub_resource type="StyleBoxEmpty" id=3982]
+
+[sub_resource type="AtlasTexture" id=3983]
+flags = 23
+atlas = ExtResource( 1 )
+region = Rect2( 293.832, 260.892, 34, 36 )
+
+[sub_resource type="AtlasTexture" id=3985]
+flags = 23
+atlas = ExtResource( 1 )
+region = Rect2( 368.976, 260.178, 34, 36 )
+
+[node name="Hbox" type="HBoxContainer"]
+margin_right = 220.0
+margin_bottom = 40.0
+
+[node name="Collision" type="CheckBox" parent="."]
+margin_right = 32.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 32, 32 )
+hint_tooltip = "Collision real time"
+mouse_default_cursor_shape = 2
+custom_icons/radio_checked_disabled = SubResource( 3984 )
+custom_icons/radio_checked = SubResource( 3984 )
+custom_icons/checked_disabled = SubResource( 3984 )
+custom_icons/radio_unchecked_disabled = SubResource( 3984 )
+custom_icons/checked = SubResource( 3984 )
+custom_icons/radio_unchecked = SubResource( 3984 )
+custom_icons/unchecked_disabled = SubResource( 3984 )
+custom_icons/unchecked = SubResource( 3984 )
+custom_styles/focus = SubResource( 3982 )
+icon = ExtResource( 5 )
+align = 1
+expand_icon = true
+script = ExtResource( 4 )
+
+[node name="Preview" type="CheckBox" parent="."]
+margin_left = 36.0
+margin_right = 68.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 32, 32 )
+hint_tooltip = "Tile preview "
+mouse_default_cursor_shape = 2
+custom_icons/radio_checked_disabled = SubResource( 3984 )
+custom_icons/radio_checked = SubResource( 3984 )
+custom_icons/checked_disabled = SubResource( 3984 )
+custom_icons/radio_unchecked_disabled = SubResource( 3984 )
+custom_icons/checked = SubResource( 3984 )
+custom_icons/radio_unchecked = SubResource( 3984 )
+custom_icons/unchecked_disabled = SubResource( 3984 )
+custom_icons/unchecked = SubResource( 3984 )
+custom_styles/focus = SubResource( 3982 )
+pressed = true
+icon = ExtResource( 7 )
+align = 1
+expand_icon = true
+script = ExtResource( 2 )
+Node_Path = NodePath("../../../../../../../../World")
+my_propriety = "pressed"
+his_propriety = "selection_visible"
+
+[node name="Sep" type="VSeparator" parent="."]
+margin_left = 72.0
+margin_right = 76.0
+margin_bottom = 40.0
+
+[node name="Light" type="CheckBox" parent="."]
+margin_left = 80.0
+margin_right = 112.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 32, 32 )
+hint_tooltip = "Light"
+mouse_default_cursor_shape = 2
+custom_icons/radio_checked_disabled = SubResource( 3984 )
+custom_icons/radio_checked = SubResource( 3984 )
+custom_icons/checked_disabled = SubResource( 3984 )
+custom_icons/radio_unchecked_disabled = SubResource( 3984 )
+custom_icons/checked = SubResource( 3984 )
+custom_icons/radio_unchecked = SubResource( 3984 )
+custom_icons/unchecked_disabled = SubResource( 3984 )
+custom_icons/unchecked = SubResource( 3984 )
+custom_styles/focus = SubResource( 3982 )
+pressed = true
+icon = ExtResource( 3 )
+align = 1
+expand_icon = true
+script = ExtResource( 2 )
+Node_Path = NodePath("../../../../../../../../World/Light")
+my_propriety = "pressed"
+his_propriety = "visible"
+
+[node name="Shadow" type="CheckBox" parent="."]
+margin_left = 116.0
+margin_right = 148.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 32, 32 )
+hint_tooltip = "Shadow"
+mouse_default_cursor_shape = 2
+custom_icons/radio_checked_disabled = SubResource( 3984 )
+custom_icons/radio_checked = SubResource( 3984 )
+custom_icons/checked_disabled = SubResource( 3984 )
+custom_icons/radio_unchecked_disabled = SubResource( 3984 )
+custom_icons/checked = SubResource( 3984 )
+custom_icons/radio_unchecked = SubResource( 3984 )
+custom_icons/unchecked_disabled = SubResource( 3984 )
+custom_icons/unchecked = SubResource( 3984 )
+custom_styles/focus = SubResource( 3982 )
+pressed = true
+icon = ExtResource( 6 )
+align = 1
+expand_icon = true
+script = ExtResource( 2 )
+Node_Path = NodePath("../../../../../../../../World/Light")
+my_propriety = "pressed"
+his_propriety = "shadow_enabled"
+
+[node name="Grid" type="CheckBox" parent="."]
+margin_left = 152.0
+margin_right = 184.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 32, 32 )
+hint_tooltip = "Grid preview"
+mouse_default_cursor_shape = 2
+custom_icons/radio_checked_disabled = SubResource( 3984 )
+custom_icons/radio_checked = SubResource( 3984 )
+custom_icons/checked_disabled = SubResource( 3984 )
+custom_icons/radio_unchecked_disabled = SubResource( 3984 )
+custom_icons/checked = SubResource( 3984 )
+custom_icons/radio_unchecked = SubResource( 3984 )
+custom_icons/unchecked_disabled = SubResource( 3984 )
+custom_icons/unchecked = SubResource( 3984 )
+custom_styles/focus = SubResource( 3982 )
+pressed = true
+icon = SubResource( 3983 )
+align = 1
+expand_icon = true
+script = ExtResource( 2 )
+Node_Path = NodePath("../../../../../../../../World/Grid")
+my_propriety = "pressed"
+his_propriety = "visible"
+
+[node name="Axis" type="CheckBox" parent="."]
+margin_left = 188.0
+margin_right = 220.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 32, 32 )
+mouse_default_cursor_shape = 2
+custom_icons/radio_checked_disabled = SubResource( 3984 )
+custom_icons/radio_checked = SubResource( 3984 )
+custom_icons/checked_disabled = SubResource( 3984 )
+custom_icons/radio_unchecked_disabled = SubResource( 3984 )
+custom_icons/checked = SubResource( 3984 )
+custom_icons/radio_unchecked = SubResource( 3984 )
+custom_icons/unchecked_disabled = SubResource( 3984 )
+custom_icons/unchecked = SubResource( 3984 )
+custom_styles/focus = SubResource( 3982 )
+pressed = true
+icon = SubResource( 3985 )
+align = 1
+expand_icon = true
+script = ExtResource( 2 )
+Node_Path = NodePath("../../../../../../../../World/Axis")
+my_propriety = "pressed"
+his_propriety = "visible"

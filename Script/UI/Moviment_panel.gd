@@ -15,6 +15,7 @@ func _ready() -> void:
 	connect("mouse_entered",self,"mouse_enter")
 	connect("mouse_exited",self,"mouse_exit")
 
+
 func _input(_event: InputEvent) -> void:
 	if mouse:
 		if Input.is_mouse_button_pressed(BUTTON_LEFT):

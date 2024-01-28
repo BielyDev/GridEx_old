@@ -1,8 +1,12 @@
 extends Control
 
 
-func _on_Preview2D_mouse_entered() -> void:
+func _ready() -> void:
+	Index.view2d.preview2d = self
+
+
+func _on_Screen_Mouse_mouse_entered() -> void:
 	Index.block_view = false
 
-func _on_Preview2D_mouse_exited() -> void:
+func _on_Screen_Mouse_mouse_exited() -> void:
 	Index.block_view = true

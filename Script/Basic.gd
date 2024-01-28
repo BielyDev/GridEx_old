@@ -2,13 +2,13 @@ extends PanelContainer
 
 signal create_thumbnail()
 
-onready var Scroll: ScrollContainer = $Info/Scroll
-onready var Tiles: HFlowContainer = $Info/Scroll/Tiles
-onready var Tittle_node: Label = $Info/Hbox/Tittle
+onready var Scroll: ScrollContainer = $Hbox/Info/Scroll
+onready var Tiles: HFlowContainer = $Hbox/Info/Scroll/Tiles
+onready var Tittle_node: Label = $Hbox/Info/Hbox/Tittle
 onready var CreatePreview: Spatial = $Create_preview
 onready var View: Viewport = $Create_preview/View
-onready var Show_button: Button = $Info/Hbox/Hide_and_show
-onready var Id_button: CheckBox = $Info/Hbox/Id
+onready var Show_button: Button = $Hbox/Info/Hbox/Hide_and_show
+onready var Id_button: CheckBox = $Hbox/Info/Hbox/Id
 
 
 var group_scene
@@ -75,3 +75,10 @@ func generate_icon(mesh_ins: Tile,item_tile: TileButton) -> void:
 func _on_Id_pressed() -> void:
 	for tilebutton in Tiles.get_children():
 		tilebutton.id_text.visible = Id_button.pressed
+
+
+func hide_vs() -> void:
+	$Hbox/Vs.hide()
+func show_vs() -> void:
+	$Hbox/Vs.show()
+	rect_min_size.x = 0

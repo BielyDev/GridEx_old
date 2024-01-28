@@ -1,6 +1,6 @@
 extends MenuButton
 
-onready var Tiles: VBoxContainer = $"%Tile Groups"
+onready var Tiles: FlowContainer = $"%Tile Groups"
 
 func _ready() -> void:
 	get_popup().connect("id_pressed",self,"press")

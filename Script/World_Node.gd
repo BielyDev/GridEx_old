@@ -2,8 +2,8 @@ extends Spatial
 
 signal move_block(pos)
 
-var View
-var Mirror
+onready var View: ViewportContainer = $"../Local/Vbox/Hbox/View/ViewPanel/View"
+onready var OptionsBar: PanelContainer = $"../Local/Vbox/Hbox/LeftBar/Options/Options/Options"
 
 onready var Selection: MeshInstance = $Selection3D
 onready var Cont: Node = $Controller
@@ -11,16 +11,21 @@ onready var Block: Spatial = $Block
 onready var Add: Node = $AddBlock
 onready var Line: Node = $Line
 onready var Grid: MeshInstance = $Grid
+onready var Preview: MeshInstance = $Selection3D/Preview
 
 export(int) var grid_size: int
 
 var button_pressed: bool = false
+var selection_visible: bool = true
 var pos_save: Vector3 = Vector3(999,99,999)
 var pos: Vector3 
 var save_line: Vector3
 
+
 func _input(_event: InputEvent) -> void:
 	Selection.visible = (Index.mode != Index.MODE.VOID) and (Index.mode != Index.MODE.LIGHT) and Index.block_view == false
+	
+	Preview.visible = selection_visible
 	
 	if Index.block_view:
 		return
@@ -41,9 +46,11 @@ func _input(_event: InputEvent) -> void:
 
 func _selection_moviment() -> void:
 	var mouse2d = View.get_local_mouse_position() #+ Vector2(-40,0)
-	var project = Index.cam.project_position(mouse2d,40)
+	var project: Vector3 = Index.view3d.cam.project_position(mouse2d,40)
+	if Index.view3d.cam.projection == Camera.PROJECTION_ORTHOGONAL:
+		project = Index.view3d.cam.project_position(mouse2d,Index.view3d.cam.size)
 	
-	Index.ray.look_at(project,Vector3.UP)
+	Index.view3d.ray.look_at(project,Vector3.UP)
 	
 	if pos != pos_save:
 		if Input.is_action_pressed("click_left"):
@@ -52,7 +59,7 @@ func _selection_moviment() -> void:
 		
 		emit_signal("move_block",pos)
 	
-	pos = Index.ray.get_collision_point().snapped(Vector3(2,2,2)) + Vector3(0,1,0)
+	pos = Index.view3d.ray.get_collision_point().snapped(Vector3(2,2,2)) + Vector3(0,1,0)
 	
 	Selection.global_transform.origin = pos
 

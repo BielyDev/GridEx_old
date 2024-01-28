@@ -19,9 +19,10 @@ func _ready() -> void:
 	Filex.dialog_text = str(Filex.current_file,".",files[0])
 
 
-func _unhandled_key_input(_event: InputEventKey) -> void:
+func _input(_event: InputEvent) -> void:
+	var extension = Filex.current_file.get_extension()
 	var file_name_filter = Filex.current_file.replace(".","").replace(Filex.current_file.get_extension(),"")
-	var file_name = str(file_name_filter,files[0])
+	var file_name = str(file_name_filter,".",extension)
 	
 	Filex.dialog_text = file_name.replace("*","")
 
@@ -35,8 +36,9 @@ func _selection_file_and_dir() -> void:
 	
 	yield(UI.queue_animated_complex(self,Filex,$Background),"completed")
 	
+	var extension = Filex.current_file.get_extension()
 	var file_name_filter = Filex.current_file.replace(".","").replace(Filex.current_file.get_extension(),"")
-	var file_name = str(file_name_filter,files[0]).replace("*","")
+	var file_name = str(file_name_filter,".",extension).replace("*","")
 	
 	var dir = str(Filex.current_dir,"/",file_name).replace("*","")
 	

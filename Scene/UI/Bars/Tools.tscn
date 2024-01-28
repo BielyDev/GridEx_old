@@ -34,18 +34,16 @@ atlas = ExtResource( 1 )
 region = Rect2( 432.186, 49.172, 40, 40 )
 
 [node name="Tools" type="HFlowContainer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 3.0
-margin_top = 35.0
-margin_right = -1153.0
-margin_bottom = -7.0
-rect_min_size = Vector2( 124, 0 )
+anchor_right = 0.0390625
+anchor_bottom = 0.444444
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Void" type="Button" parent="."]
-margin_right = 60.0
-margin_bottom = 60.0
-rect_min_size = Vector2( 60, 60 )
+margin_right = 50.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
 mouse_default_cursor_shape = 2
 icon = SubResource( 3973 )
 icon_align = 1
@@ -55,10 +53,10 @@ Color_pressed_front = Color( 1, 0, 0.960784, 1 )
 key = "void"
 
 [node name="Add" type="Button" parent="."]
-margin_left = 64.0
-margin_right = 124.0
-margin_bottom = 60.0
-rect_min_size = Vector2( 60, 60 )
+margin_top = 54.0
+margin_right = 50.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 50, 50 )
 hint_tooltip = "Paint T"
 mouse_default_cursor_shape = 2
 icon = SubResource( 3974 )
@@ -70,10 +68,10 @@ mode = 1
 key = "paint"
 
 [node name="Remove" type="Button" parent="."]
-margin_top = 64.0
-margin_right = 60.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 60, 60 )
+margin_top = 108.0
+margin_right = 50.0
+margin_bottom = 158.0
+rect_min_size = Vector2( 50, 50 )
 hint_tooltip = "Eraser E"
 mouse_default_cursor_shape = 2
 icon = SubResource( 3975 )
@@ -85,11 +83,10 @@ mode = 2
 key = "erase"
 
 [node name="Line" type="Button" parent="."]
-margin_left = 64.0
-margin_top = 64.0
-margin_right = 124.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 60, 60 )
+margin_top = 162.0
+margin_right = 50.0
+margin_bottom = 212.0
+rect_min_size = Vector2( 50, 50 )
 hint_tooltip = "Line H"
 mouse_default_cursor_shape = 2
 icon = SubResource( 3977 )
@@ -101,10 +98,10 @@ mode = 3
 key = "line"
 
 [node name="Light" type="Button" parent="."]
-margin_top = 128.0
-margin_right = 60.0
-margin_bottom = 188.0
-rect_min_size = Vector2( 60, 60 )
+margin_top = 216.0
+margin_right = 50.0
+margin_bottom = 266.0
+rect_min_size = Vector2( 50, 50 )
 hint_tooltip = "Light Shift+h"
 mouse_default_cursor_shape = 2
 icon = SubResource( 3976 )
@@ -116,11 +113,10 @@ mode = 5
 key = "light"
 
 [node name="Bucket" type="Button" parent="."]
-margin_left = 64.0
-margin_top = 128.0
-margin_right = 124.0
-margin_bottom = 188.0
-rect_min_size = Vector2( 60, 60 )
+margin_top = 270.0
+margin_right = 50.0
+margin_bottom = 320.0
+rect_min_size = Vector2( 50, 50 )
 hint_tooltip = "Only in future versions."
 mouse_default_cursor_shape = 2
 disabled = true

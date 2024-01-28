@@ -1,7 +1,8 @@
 extends Spatial
 
 onready var Anima: AnimationPlayer = $"../Selection3D/Anima"
-var Option
+var Option: OptionButton
+
 var block_pos: Array = []
 var mode: int = 0
 var delete_select: bool = false
@@ -61,6 +62,10 @@ func delete_block(tile,pos,undo) -> bool:
 	var tile_undo
 	
 	if tile != null:
+		
+		if verific_is_layer(tile) == false:
+			return false
+		
 		tile.queue_free()
 		
 		if delete_select:
@@ -78,6 +83,14 @@ func delete_block(tile,pos,undo) -> bool:
 		Anima.stop()
 		Anima.play("Remove")
 		return true
+	
+	return false
+
+
+func verific_is_layer(tile: Tile) -> bool:
+	for search in Index.block.get_child(Index.layer_select).get_children():
+		if search == tile:
+			return true
 	
 	return false
 

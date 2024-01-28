@@ -4,11 +4,15 @@ onready var Block: Spatial = $"../Block"
 onready var Par := get_parent()
 onready var Cont: Node = $"../Controller"
 
-var Light_new: PackedScene = preload("res://Scene/Tiles/Light.tscn")
 var pos
+var Mirror: OptionButton
+var Rand: OptionButton
+var Light_new: PackedScene = preload("res://Scene/Tiles/Light.tscn")
+
 
 func _process(_delta: float) -> void:
 	pos = Par.pos
+	#Cont.
 
 
 func add_block_settings(pre_pos = pos) -> void:
@@ -16,9 +20,10 @@ func add_block_settings(pre_pos = pos) -> void:
 	
 	if id_tile != -1:
 		verific_mirror(pre_pos,id_tile)
+		verific_random_rotation()
 
 func verific_mirror(pre_pos: Vector3,id_tile: int):
-	match Par.Mirror.selected:
+	match Mirror.selected:
 		0:
 			Cont.Block.add_block(pre_pos,Cont.rot,id_tile)
 			
@@ -38,6 +43,20 @@ func verific_mirror(pre_pos: Vector3,id_tile: int):
 			
 		3:
 			add_mirror_x_y(pre_pos,id_tile)
+
+
+func verific_random_rotation() -> void:
+	match Rand.selected:
+		1:
+			Cont.rot.x = rand_range(0,360)
+		2:
+			Cont.rot.y = rand_range(0,360)
+		3:
+			Cont.rot.z = rand_range(0,360)
+		4:
+			Cont.rot.x = rand_range(0,360)
+			Cont.rot.y = rand_range(0,360)
+			Cont.rot.z = rand_range(0,360)
 
 
 func add_mirror_x_y(pre_pos: Vector3,id_tile: int) -> void:
@@ -80,7 +99,7 @@ func add_light() -> void:
 
 
 func remove_block_settings() -> void:
-	match get_parent().Mirror.selected:
+	match Mirror.selected:
 		0:
 			Block.remove_block(pos)
 			

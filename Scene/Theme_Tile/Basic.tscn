@@ -16,18 +16,23 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Info" type="VBoxContainer" parent="."]
+[node name="Hbox" type="HBoxContainer" parent="."]
 margin_left = 3.0
 margin_top = 5.0
 margin_right = 269.0
 margin_bottom = 250.0
-mouse_filter = 2
 
-[node name="Hbox" type="HBoxContainer" parent="Info"]
-margin_right = 266.0
+[node name="Info" type="VBoxContainer" parent="Hbox"]
+margin_right = 258.0
+margin_bottom = 244.0
+mouse_filter = 2
+size_flags_horizontal = 3
+
+[node name="Hbox" type="HBoxContainer" parent="Hbox/Info"]
+margin_right = 258.0
 margin_bottom = 26.0
 
-[node name="Hide_and_show" type="Button" parent="Info/Hbox"]
+[node name="Hide_and_show" type="Button" parent="Hbox/Info/Hbox"]
 margin_right = 26.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 26, 26 )
@@ -43,36 +48,45 @@ expand_icon = true
 script = ExtResource( 3 )
 Node_effect = NodePath("../../Scroll")
 
-[node name="Tittle" type="Label" parent="Info/Hbox"]
+[node name="Tittle" type="Label" parent="Hbox/Info/Hbox"]
 margin_left = 30.0
 margin_top = 3.0
 margin_right = 130.0
 margin_bottom = 23.0
 text = "Basic tile"
 
-[node name="Id" type="CheckBox" parent="Info/Hbox"]
+[node name="Id" type="CheckBox" parent="Hbox/Info/Hbox"]
 margin_left = 134.0
 margin_right = 154.0
 margin_bottom = 26.0
 
-[node name="Scroll" type="ScrollContainer" parent="Info"]
+[node name="Scroll" type="ScrollContainer" parent="Hbox/Info"]
 margin_top = 30.0
-margin_right = 266.0
+margin_right = 258.0
 margin_bottom = 236.0
 size_flags_vertical = 3
 
-[node name="Tiles" type="HFlowContainer" parent="Info/Scroll"]
-margin_right = 266.0
+[node name="Tiles" type="HFlowContainer" parent="Hbox/Info/Scroll"]
+margin_right = 258.0
 size_flags_horizontal = 3
 
-[node name="HS_Down" type="HSeparator" parent="Info"]
+[node name="HS_Down" type="HSeparator" parent="Hbox/Info"]
 margin_top = 240.0
-margin_right = 266.0
+margin_right = 258.0
 margin_bottom = 244.0
 mouse_default_cursor_shape = 9
 script = ExtResource( 4 )
-Panel_Path = NodePath("../..")
+Panel_Path = NodePath("../../..")
 Y = true
+Negative = true
+
+[node name="Vs" type="VSeparator" parent="Hbox"]
+margin_left = 262.0
+margin_right = 266.0
+margin_bottom = 244.0
+mouse_default_cursor_shape = 10
+script = ExtResource( 4 )
+Panel_Path = NodePath("../..")
 Negative = true
 
 [node name="Create_preview" type="Spatial" parent="."]
@@ -96,4 +110,4 @@ projection = 1
 size = 3.699
 far = 10.0
 
-[connection signal="pressed" from="Info/Hbox/Id" to="." method="_on_Id_pressed"]
+[connection signal="pressed" from="Hbox/Info/Hbox/Id" to="." method="_on_Id_pressed"]

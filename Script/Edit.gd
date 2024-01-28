@@ -7,8 +7,8 @@ var popup_quit: bool = false
 onready var World3D = $World
 onready var Edit: VBoxContainer = $Local/Vbox/Hbox/Edit
 onready var View: ViewportContainer = $Local/Vbox/Hbox/View/ViewPanel/View
-onready var TexPanel := $Local/Vbox/Hbox/View/ViewPanel/Preview2D/Hbox/TexPanel
-onready var Tile_groups: VBoxContainer = $"%Tile Groups"
+onready var TexPanel := $Local/Vbox/Hbox/View/ViewPanel/Screen_Mouse/Preview2D/TexPanel
+onready var Tile_groups: FlowContainer = $"%Tile Groups"
 onready var Layer_panel: PanelContainer = $"%LayerPanel"
 onready var Node_2d: Node2D = $"2d"
 onready var Local: MarginContainer = $Local
@@ -21,7 +21,7 @@ func _ready() -> void:
 	IndexLayer.connect("theme",self,"theme_changed")
 	Import.import_group_tile_automatic("res://Scene/Tiles/Basic_Tile.tscn")
 	
-	World_ready()
+	#World_ready()
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_QUIT_REQUEST:
@@ -35,11 +35,6 @@ func _notification(what: int) -> void:
 func theme_changed(tema: Theme) -> void:
 	Local.theme = tema
 	Background.theme = tema
-
-func World_ready() -> void:
-	World3D.View = View
-	World3D.Block.Option = $"%Option"
-	World3D.Mirror = $"%Mirror"
 
 
 func quit_confirm() -> void:

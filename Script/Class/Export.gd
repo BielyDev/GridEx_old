@@ -151,7 +151,7 @@ static func file_tscn_create(Worlds: Spatial,collision_save: Array,scene: Packed
 static func file_tile_create(path: String,child: Spatial,group_scene: PackedScene) -> void:
 	var file_name = str(path,child.name,".tscn")
 	var erro = ResourceSaver.save(file_name,group_scene)
-	
+	print_debug(file_name)
 	#Load
 	var file = File.new()
 	file.open(file_name,File.READ)
@@ -161,6 +161,7 @@ static func file_tile_create(path: String,child: Spatial,group_scene: PackedScen
 	
 	#Save
 	var path_save = str(path)
+	print_debug(path_save)
 	file.open(path_save,File.WRITE)
 	
 	

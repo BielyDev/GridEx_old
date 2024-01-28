@@ -21,17 +21,17 @@ func _input(_event: InputEvent) -> void:
 	
 	if Input.is_key_pressed(KEY_CONTROL):
 		if Input.is_action_just_pressed("middle_up"):
-			Index.cam.get_parent().state = Index.cam.get_parent().STATE.BLOCK
+			Index.view3d.pos.state = Index.view3d.pos.STATE.BLOCK
 			Grid.transform.origin.y += 2
 			Index.emit_signal("height_tile",Grid.transform.origin.y)
 		
 		elif Input.is_action_just_pressed("middle_down"):
-			Index.cam.get_parent().state = Index.cam.get_parent().STATE.BLOCK
+			Index.view3d.pos.state = Index.view3d.pos.STATE.BLOCK
 			Grid.transform.origin.y += -2
 			Index.emit_signal("height_tile",Grid.transform.origin.y)
 		
 		else:
-			Index.cam.get_parent().state = Index.cam.get_parent().STATE.IDLE
+			Index.view3d.pos.state = Index.view3d.pos.STATE.IDLE
 
 
 func _others_buttons() -> void:
@@ -55,11 +55,12 @@ func _undo() -> void:
 func _rotation_selection() -> void:
 	if Input.is_action_just_pressed("rot_x"):
 		rot.x += 90
-		Selection.rotation_degrees.x = rot.x
 	if Input.is_action_just_pressed("rot_y"):
 		rot.y += 90
-		Selection.rotation_degrees.y = rot.y
 	if Input.is_action_just_pressed("rot_z"):
 		rot.z += 90
-		Selection.rotation_degrees.z = rot.z
+	
+	rot = rot.snapped(Vector3(90,90,90))
+	
+	Selection.rotation_degrees = rot
 
