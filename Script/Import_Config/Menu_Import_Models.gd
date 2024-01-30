@@ -14,7 +14,7 @@ func _on_Open_pressed() -> void:
 		self,
 		"file_ok",
 		"file_null",
-		FileDialog.MODE_OPEN_FILE
+		FileDialog.MODE_OPEN_FILES
 	)
 
 

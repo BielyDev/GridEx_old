@@ -41,7 +41,10 @@ func movement(mouse: Vector2) -> void:
 			Panel_node.rect_min_size.x = Panel_node.rect_size.x
 			save_pos = false
 		
-		if Negative:Panel_node.rect_min_size.x = Panel_node.rect_min_size.x + mouse.x
+		if Negative:Panel_node.rect_min_size.x = Panel_node.rect_min_size.x + mouse.x #Mouse are event.relative 
+		
+		
+		
 		else: Panel_node.rect_min_size.x = Panel_node.rect_min_size.x - mouse.x
 
 

@@ -22,27 +22,35 @@ func _ready() -> void:
 func _input(_event: InputEvent) -> void:
 	var extension = Filex.current_file.get_extension()
 	var file_name_filter = Filex.current_file.replace(".","").replace(Filex.current_file.get_extension(),"")
-	var file_name = str(file_name_filter,".",extension)
+	var file_name
+	if extension == "":
+		file_name = str(file_name_filter,files[0].replace("*",""))
+	else:
+		file_name = str(file_name_filter,".",extension)
 	
-	Filex.dialog_text = file_name.replace("*","")
+	Filex.dialog_text = file_name
 
 
 
-func _selection_file_and_dir() -> void:
+func _selection_file_and_dir(path) -> void:
 	if exporting:
 		return
 	exporting = true
 	
-	
 	yield(UI.queue_animated_complex(self,Filex,$Background),"completed")
 	
-	var extension = Filex.current_file.get_extension()
-	var file_name_filter = Filex.current_file.replace(".","").replace(Filex.current_file.get_extension(),"")
-	var file_name = str(file_name_filter,".",extension).replace("*","")
+	if path is String:
+		emit_path(path)
+	if path is PoolStringArray:
+		for paths in path:
+			emit_path(paths)
+
+func emit_path(path: String) -> void:
+	var extension = path.get_extension()
+	var file_name: String = path.get_file().replace(extension,"")
 	
-	var dir = str(Filex.current_dir,"/",file_name).replace("*","")
 	
-	emit_signal("OK",dir,file_name)
+	emit_signal("OK",path,file_name)
 	queue_free()
 
 
@@ -53,11 +61,8 @@ func _cancel() -> void:
 	queue_free()
 
 
-
-func _on_FileDialog_confirmed() -> void:
-	_selection_file_and_dir()
 func _on_FileDialog_file_selected(path: String) -> void:
-	_selection_file_and_dir()
+	_selection_file_and_dir(path)
 
 
 func _on_FileDialog_popup_hide() -> void:
@@ -65,3 +70,10 @@ func _on_FileDialog_popup_hide() -> void:
 func _on_FileDialog_hide() -> void:
 	_cancel()
 
+
+
+func _on_FileDialog_files_selected(paths: PoolStringArray) -> void:
+	_selection_file_and_dir(paths)
+
+func _on_FileDialog_dir_selected(dir: String) -> void:
+	_selection_file_and_dir(str(dir,"/",Filex.dialog_text))

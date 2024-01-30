@@ -2,6 +2,8 @@ extends GridEx
 
 class_name Export
 
+signal export_tile()
+
 static func export_tscn(path: String,collision_enabled: bool,collision_mode: int,light_enabled: bool,mesh_enabled: bool,mesh_mode:int) -> void:
 	#Condigure tree.
 	var scene: PackedScene = PackedScene.new()
@@ -29,14 +31,12 @@ static func export_scene_gltf(path: String) -> void:
 	pass
 
 
-static func export_new_tiles(Models: Spatial ,path: String ,file: String) -> void:
+static func export_new_tiles(Models: Spatial ,path: String ,import:bool = true) -> void:
 	for child in Models.get_children():
-		print(child)
 		var group_scene: PackedScene = PackedScene.new()
 		group_scene.pack(child)
-		yield(create_time(),"timeout")
 		
-		file_tile_create(path,child,group_scene)
+		file_tile_create(path,group_scene,child,import)
 
 
 static func add_block_export(Worlds: Spatial ,collision_save: Array):
@@ -148,29 +148,39 @@ static func file_tscn_create(Worlds: Spatial,collision_save: Array,scene: Packed
 	Worlds.queue_free()
 	collision_save = []
 
-static func file_tile_create(path: String,child: Spatial,group_scene: PackedScene) -> void:
-	var file_name = str(path,child.name,".tscn")
+static func file_tile_create(path: String,group_scene: PackedScene,Groups,import: bool) -> void:
+	
+	#Cria o arquivo da cena
+	var file_name = str(path,Groups.name,".tscn")
 	var erro = ResourceSaver.save(file_name,group_scene)
-	print_debug(file_name)
-	#Load
+	
+	#Ler
 	var file = File.new()
 	file.open(file_name,File.READ)
 	
 	var tile_scene = file.get_as_text()
 	file.close()
 	
-	#Save
+	
+	#Compactar
 	var path_save = str(path)
-	print_debug(path_save)
 	file.open(path_save,File.WRITE)
 	
+	var save_data = {id = [],id_tile = [],id_group = -1,scene = tile_scene}
 	
-	file.store_string(tile_scene)
+	save_data.id_group = int(randi())
+	
+	for tiles in Groups.get_children():
+		save_data.id.append(tiles.get_index())
+		save_data.id_tile.append(tiles.get_index())
+	
+	
+	file.store_string(to_json(save_data))
 	file.close()
 	
-	var dic = Directory.new()
-	dic.remove(file_name)
 	
+	delete_file(file_name)
 	
-	yield(create_time(),"timeout")
-	Import.import_group_tile_automatic(file_name)
+	if import:
+		Import.import_group_tile_automatic(path_save,true)
+

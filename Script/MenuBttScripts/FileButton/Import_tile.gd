@@ -8,7 +8,7 @@ func start() -> void:
 	Index.block_view = true
 	
 	IndexLayer.file_explore(
-		["*.tscn"],
+		["*.tile"],
 		self,
 		"ok",
 		"cancel",
@@ -17,11 +17,11 @@ func start() -> void:
 
 func ok(dir: String,file: String) -> void:
 	
-	if dir.get_extension() != "tscn":
-		IndexLayer.popup_one('The file type must be "tscn"!')
+	if dir.get_extension() != "tile":
+		IndexLayer.popup_one('The file type must be "tile"!')
 		return
 	
-	Import.import_group_tile_automatic(dir)
+	Import.import_group_tile_automatic(dir,true)
 
 func cancel() -> void:
 	emit_signal("finished")

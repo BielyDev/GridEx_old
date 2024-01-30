@@ -25,7 +25,6 @@ rect_min_size = Vector2( 176, 61.6 )
 access = 2
 show_hidden_files = true
 
-[connection signal="confirmed" from="FileDialog" to="." method="_on_FileDialog_confirmed"]
 [connection signal="dir_selected" from="FileDialog" to="." method="_on_FileDialog_dir_selected"]
 [connection signal="file_selected" from="FileDialog" to="." method="_on_FileDialog_file_selected"]
 [connection signal="files_selected" from="FileDialog" to="." method="_on_FileDialog_files_selected"]

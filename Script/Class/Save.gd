@@ -9,38 +9,23 @@ static func save_project(dir: String) -> void:
 	
 	var save_array = {layers = [],tiles = [],tiles_groups = []}
 	
-	for layers in Index.block.get_children():
-		save_array.layers.push_back(
-			{id = layers.get_index(),name = layers.name}
-		)
-		
-		for child in layers.get_children():
-			#print("child --  ",child.id_tile)
-			save_array.tiles.push_back(
-				{
-					id = child.get_index(),
-					id_tile = child.id_tile,
-					id_group = child.id_group,
-					position = str(child.global_transform.origin),
-					layer = layers.get_index()
-				}
-			)
-	
+	save_layers_and_tile(Index.block,save_array.layers,save_array.tiles)
 	
 	#Scene------------------
 	var save_scenes = [] #{Basic_tile = cena}
 	var paths = []
 	
 	for groups in Index.edit_node.Tile_groups.get_children():
+		yield(create_time(0.2),"timeout")
+		
+		
 		var path = str(dir,int(randi()),".tscn")
 		paths.append(path)
 		
-		var scene = PackedScene.new()
-		scene.pack(groups.group_scene)
-		ResourceSaver.save(path,scene)
-	
-	
-	yield(create_time(0.4),"timeout")
+		var group_scene: PackedScene = PackedScene.new()
+		group_scene.pack(groups.group_scene)
+		
+		Export.file_tile_create(path,group_scene,groups.group_scene,false)
 	
 	
 	var open_scenes = [] #{Basic_tile = cena}
@@ -53,13 +38,8 @@ static func save_project(dir: String) -> void:
 		fil.close()
 		
 		open_scenes.append(arq)
-		yield(create_time(0.1),"timeout")
 		
-		var dic = Directory.new()
-		dic.remove(path)
-	
-	
-	yield(create_time(0.2),"timeout")
+		delete_file(path)
 	
 	
 	save_array.tiles_groups = (open_scenes)
@@ -77,7 +57,6 @@ static func open_project(dir: String) -> void:
 	var load_file_ant = file.get_as_text()
 	file.close()
 	var load_file = parse_json(load_file_ant)
-	print(load_file)
 	
 	for child in Index.block.get_children():
 		child.queue_free()
@@ -98,13 +77,11 @@ static func loader_tiles_and_layers(load_file: Dictionary,dir: String) -> void:
 		
 		Import.import_group_tile_automatic(path,true)
 		
-		var dic = Directory.new()
-		dic.remove(path)
+		delete_file(path)
 	
 	
 	for layers in load_file.layers:
 		var new_layer = Spatial.new()
-		
 		new_layer.name = layers.name
 		
 		Index.block.add_child(new_layer)
@@ -134,4 +111,22 @@ static func loader_tiles_and_layers(load_file: Dictionary,dir: String) -> void:
 		
 		mesh.global_transform.origin = pos_vect
 
+
+
+static func save_layers_and_tile(Models: Spatial,array_layers: Array,array_tile: Array) -> void:
+	for layers in Models.get_children():
+		array_layers.push_back(
+			{id = layers.get_index(),name = layers.name}
+		)
+		
+		for child in layers.get_children():
+			array_tile.push_back(
+				{
+					id = child.get_index(),
+					id_tile = child.id_tile,
+					id_group = child.id_group,
+					position = str(child.global_transform.origin),
+					layer = layers.get_index()
+				}
+			)
 

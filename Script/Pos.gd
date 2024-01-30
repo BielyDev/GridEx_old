@@ -94,6 +94,8 @@ func _physics_process(_delta: float) -> void:
 	if state == STATE.ROTATION_CAM:
 		Cam.look_at(global_transform.origin,Vector3.UP)
 	
+	adjustment_rotation_translation()
+	
 	velocity =  velocity.linear_interpolate(Vector3(),0.1)
 	
 	CamLock.global_translate(velocity * speed_vel)
@@ -191,4 +193,15 @@ func _moviment_mouse_local(mouse_relative: Vector2) -> void:
 	if Cam.projection == Camera.PROJECTION_PERSPECTIVE:
 		translate_object_local(Vector3(-mouse_relative.x,-mouse_relative.y,0)*sensi)
 	else:
-		translate_object_local(Vector3(-mouse_relative.x,-mouse_relative.y,mouse_relative.y)*sensi)
+		translate_object_local(Vector3(-mouse_relative.x,-mouse_relative.y,0)*sensi)
+
+
+var adjustment: bool = false
+func adjustment_rotation_translation() -> void:
+	if state == STATE.TRANSLATION_POS:
+		adjustment = true
+	else:
+		if adjustment == true:
+			rotation_degrees.z = 180
+			adjustment = false
+

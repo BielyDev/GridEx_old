@@ -10,3 +10,7 @@ static func create_time(sec: float = 1.0) -> Timer:
 	time.start()
 	
 	return time
+
+static func delete_file(path: String) -> void:
+	var dic = Directory.new()
+	dic.remove(path)

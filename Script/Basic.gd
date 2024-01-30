@@ -9,6 +9,7 @@ onready var CreatePreview: Spatial = $Create_preview
 onready var View: Viewport = $Create_preview/View
 onready var Show_button: Button = $Hbox/Info/Hbox/Hide_and_show
 onready var Id_button: CheckBox = $Hbox/Info/Hbox/Id
+onready var Cam: Spatial = $Create_preview/View/Cam
 
 
 var group_scene
@@ -18,6 +19,7 @@ var script_tile: Script = load("res://Script/Button_Tile.gd")
 var tittle: String = "Basic Tile"
 
 func _ready() -> void:
+	
 	Tittle_node.text = tittle
 	
 	generate_tile_button()
@@ -50,26 +52,33 @@ func generate_tile_button() -> void:
 
 
 func generate_icon(mesh_ins: Tile,item_tile: TileButton) -> void:
+	
 	#Configure_button
 	item_tile.expand_icon = true
 	item_tile.rect_min_size = Vector2(60,60)
 	
 	#Instance preview
+	
 	var model_preview = mesh_ins.duplicate()
 	CreatePreview.add_child(model_preview)
 	model_preview.transform.origin = Vector3()
-	yield(get_tree().create_timer(0.15),"timeout")
+	#yield(get_tree().create_timer(0.2),"timeout")
+	
 	#Get view texture
+	
+	#Apply
+	item_tile.set("icon", create_image())
+	
+	model_preview.call_deferred("queue_free")
+	call_deferred("emit_signal","create_thumbnail")
+
+func create_image() -> Texture:
 	var view_data = View.get_texture().get_data()
 	var texture = ImageTexture.new()
 	texture.create_from_image(view_data)
 	
-	#Apply
-	item_tile.icon = texture
-	model_preview.queue_free()
-	yield(get_tree().create_timer(0.1),"timeout")
-	emit_signal("create_thumbnail")
-
+	
+	return texture
 
 
 func _on_Id_pressed() -> void:

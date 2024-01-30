@@ -42,11 +42,42 @@ static func loop_child_importer(block_0) -> void:
 
 static func import_group_tile_automatic(path: String,loader_id: bool = false) -> void:
 	var tile_menu: PackedScene = preload("res://Scene/Theme_Tile/Basic.tscn")
+	var scene
+	var no
 	
-	var scene = load(path)
-	var no = scene.instance()
+	if loader_id:
+		var file = File.new()
+		#LEITURA===========================================
+		file.open(path,File.READ)
+		
+		var load_data = parse_json(file.get_as_text())
+		file.close()
+		#DESCOMPACTA=======================================
+		var path_scene_descompct = str(path,randi(),".tscn")
+		file.open(path_scene_descompct,file.WRITE)
+		file.store_string(load_data.scene)
+		file.close()
+		#==================================================
+		
+		
+		var scene_descompact = load(path_scene_descompct)
+		
+		scene = scene_descompact
+		no = scene.instance()
+		
+		
+		var save_data = {id = load_data.id,id_tile = load_data.id_tile,id_group = load_data.id_group}
+		
+		
+		_load_file_config(no,save_data,true)
+		
+		delete_file(path_scene_descompct)
+	else:
+		scene = load(path)
+		no = scene.instance()
+		
+		_load_file_config(no,{},false)
 	
-	_load_file_config(no,loader_id)
 	
 	var basic = tile_menu.instance()
 	
@@ -61,7 +92,8 @@ static func import_group_tile_automatic(path: String,loader_id: bool = false) ->
 	Index.edit_node.Tile_groups.add_child(basic)
 
 
-static func _load_file_config(no,loader_id: bool) -> void:
+
+static func _load_file_config(no,save_data: Dictionary,loader_id: bool) -> void:
 	var tile_class_script: Script = load("res://Script/Class/Tile.gd")
 	var tile_group_class_script: Script = load("res://Script/Class/Tile_Group.gd")
 	
@@ -84,16 +116,11 @@ static func _load_file_config(no,loader_id: bool) -> void:
 				tiles.id_tile = tiles.get_index()
 				tiles.id_group = no.id_group
 	else:
-		#Criar uma nova exportação de grupos
-		pass
-#		for load_tiles in load_file.tiles:
-#			no.id_group = load_tiles.id_group
-#
-#			print(load_tiles.id)
-#			no.get_child(load_tiles.id).id_group = load_tiles.id_group
-#			no.get_child(load_tiles.id).id_tile = load_tiles.id_tile
-#
-#			#for new_tiles in no.get_children():
-#			#	new_tiles.id_group = load_tiles.id_group
-#			#	new_tiles.id_tile = load_tiles.id_tile
+		no.id_group = save_data.id_group
+		for tiles in no.get_children():
+			for id in save_data.id:
+				if tiles.get_index() == id:
+					tiles.id_tile = save_data.id_tile[id]
+					tiles.id_group = save_data.id_group
+					#tiles.id = save_data.id[id]
 

@@ -6,8 +6,6 @@ func _pressed() -> void:
 	apply_axis(axis)
 
 func apply_axis(_vector: Vector3) -> void:
-	#Index.view3d.pos._reset_pos_cam()
-	#Index.view3d.pos.state = Index.view3d.pos.STATE.BLOCK
 	Index.view3d.pos.state = Index.view3d.pos.STATE.ORTHOGONAL
 	Index.view3d.cam.projection = Camera.PROJECTION_ORTHOGONAL
 	Index.view3d.pos.global_transform.origin = Vector3()
