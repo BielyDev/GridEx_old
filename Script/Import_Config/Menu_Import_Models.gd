@@ -6,7 +6,7 @@ var path: String = ("res://Assets/Execute_import/")
 
 func _on_Open_pressed() -> void:
 	if Par.is_tree_selection() == false:
-		IndexLayer.popup_one("Selecione algum grupo antes!",self,"open_confirm")
+		IndexLayer.popup_one("Selection a group!",self,"open_confirm")
 		return
 	
 	IndexLayer.file_explore(

@@ -1,7 +1,7 @@
 extends Control
 
-onready var Layers: VBoxContainer = $Scroll/Config/Layers
-onready var Selected: Control = $Scroll/Config/Selected
+onready var Layers: VBoxContainer = $Config/Layers
+onready var Selected: Control = $Config/Selected
 
 var new_layerbutton: PackedScene = preload("res://Scene/UI/Resources/LayerButton.tscn")
 

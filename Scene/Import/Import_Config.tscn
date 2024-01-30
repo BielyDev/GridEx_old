@@ -1,49 +1,21 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://Script/Import_Config.gd" type="Script" id=1]
 [ext_resource path="res://Scene/Resource/3D_View.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Others/Tile.png" type="Texture" id=3]
+[ext_resource path="res://Assets/2D/Atlas/UI/Closed.tres" type="Texture" id=4]
 [ext_resource path="res://Script/Import_Config/ProprietyPanel/Position.gd" type="Script" id=5]
 [ext_resource path="res://Script/ProprietyPanel.gd" type="Script" id=6]
+[ext_resource path="res://Script/Import_Config/Separater.gd" type="Script" id=7]
+[ext_resource path="res://Scene/Resource/Vector.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Script/Import_Config/Menu_Import_Models.gd" type="Script" id=9]
 [ext_resource path="res://Script/Class/AnimationButtonClass.gd" type="Script" id=10]
 [ext_resource path="res://Script/Import_Config/Make_Materials.gd" type="Script" id=11]
 [ext_resource path="res://Assets/Material/Preview.tres" type="Material" id=12]
 [ext_resource path="res://Script/Lock_Value.gd" type="Script" id=13]
-
-[sub_resource type="StyleBoxFlat" id=23]
-content_margin_left = 3.0
-content_margin_right = 3.0
-content_margin_top = 5.0
-content_margin_bottom = 7.0
-bg_color = Color( 0.0941176, 0.0980392, 0.137255, 0.772549 )
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color( 0.270588, 0.254902, 0.337255, 1 )
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="SpatialMaterial" id=6]
-flags_transparent = true
-flags_unshaded = true
-params_cull_mode = 2
-albedo_texture = ExtResource( 3 )
-uv1_scale = Vector3( 132, 1, 132 )
-uv1_triplanar = true
-proximity_fade_enable = true
-proximity_fade_distance = 1.0
-distance_fade_mode = 2
-distance_fade_min_distance = 0.0
-distance_fade_max_distance = 3.85
-
-[sub_resource type="PlaneMesh" id=4]
-
-[sub_resource type="BoxShape" id=5]
-extents = Vector3( 31, 0.001, 31 )
+[ext_resource path="res://Script/Others/CamEixo.gd" type="Script" id=14]
+[ext_resource path="res://Script/Others/Eixo_Button.gd" type="Script" id=15]
+[ext_resource path="res://Assets/Models/OBJ/Eixo.obj" type="ArrayMesh" id=16]
 
 [sub_resource type="CubeMesh" id=22]
 
@@ -102,6 +74,122 @@ surfaces/0 = {
 "vertex_count": 120
 }
 
+[sub_resource type="StyleBoxFlat" id=23]
+content_margin_left = 3.0
+content_margin_right = 3.0
+content_margin_top = 5.0
+content_margin_bottom = 7.0
+bg_color = Color( 0.0941176, 0.0980392, 0.137255, 0.772549 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.270588, 0.254902, 0.337255, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="SpatialMaterial" id=35]
+flags_transparent = true
+flags_unshaded = true
+params_cull_mode = 2
+albedo_color = Color( 1, 1, 1, 0.419608 )
+albedo_texture = ExtResource( 3 )
+uv1_scale = Vector3( 146.3, 1, 146.3 )
+uv1_triplanar = true
+proximity_fade_enable = true
+proximity_fade_distance = 1.0
+distance_fade_mode = 2
+distance_fade_min_distance = 0.0
+distance_fade_max_distance = 3.85
+
+[sub_resource type="PlaneMesh" id=36]
+
+[sub_resource type="SpatialMaterial" id=37]
+flags_unshaded = true
+flags_fixed_size = true
+params_cull_mode = 2
+albedo_color = Color( 1, 0, 0.211765, 1 )
+
+[sub_resource type="SpatialMaterial" id=38]
+flags_unshaded = true
+flags_fixed_size = true
+params_cull_mode = 2
+albedo_color = Color( 0, 0.576471, 1, 1 )
+
+[sub_resource type="CylinderMesh" id=24]
+top_radius = 0.3
+bottom_radius = 0.3
+radial_segments = 16
+rings = 0
+
+[sub_resource type="SpatialMaterial" id=25]
+flags_unshaded = true
+albedo_color = Color( 0.286275, 1, 0, 1 )
+
+[sub_resource type="SpatialMaterial" id=26]
+flags_unshaded = true
+albedo_color = Color( 0, 0.321569, 1, 1 )
+
+[sub_resource type="SpatialMaterial" id=27]
+flags_unshaded = true
+albedo_color = Color( 1, 0, 0, 1 )
+
+[sub_resource type="Gradient" id=19]
+offsets = PoolRealArray( 0.625, 0.666667 )
+colors = PoolColorArray( 1, 1, 1, 0.141176, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture2D" id=28]
+gradient = SubResource( 19 )
+fill = 1
+fill_from = Vector2( 0.5, 0.5 )
+
+[sub_resource type="Gradient" id=29]
+offsets = PoolRealArray( 0.625, 0.666667 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture2D" id=30]
+gradient = SubResource( 29 )
+fill = 1
+fill_from = Vector2( 0.5, 0.5 )
+
+[sub_resource type="Gradient" id=17]
+offsets = PoolRealArray( 0.625, 0.666667 )
+colors = PoolColorArray( 1, 1, 1, 0.584314, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture2D" id=31]
+gradient = SubResource( 17 )
+fill = 1
+fill_from = Vector2( 0.5, 0.5 )
+
+[sub_resource type="Gradient" id=13]
+offsets = PoolRealArray( 0.397638, 0.425197, 0.452756 )
+colors = PoolColorArray( 1, 1, 1, 0.431373, 1, 1, 1, 1, 0.870588, 0.870588, 0.870588, 0 )
+
+[sub_resource type="GradientTexture2D" id=32]
+gradient = SubResource( 13 )
+fill = 1
+fill_from = Vector2( 0.5, 0.5 )
+
+[sub_resource type="Gradient" id=11]
+offsets = PoolRealArray( 0.397638, 0.433071, 0.46063, 0.507874 )
+colors = PoolColorArray( 1, 1, 1, 0.572549, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture2D" id=33]
+gradient = SubResource( 11 )
+fill = 1
+fill_from = Vector2( 0.5, 0.5 )
+
+[sub_resource type="Gradient" id=9]
+offsets = PoolRealArray( 0.397638, 0.425197, 0.452756 )
+colors = PoolColorArray( 1, 1, 1, 0.160784, 1, 1, 1, 1, 0.870588, 0.870588, 0.870588, 0 )
+
+[sub_resource type="GradientTexture2D" id=34]
+gradient = SubResource( 9 )
+fill = 1
+fill_from = Vector2( 0.5, 0.5 )
+
 [node name="Import_Config" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -117,260 +205,6 @@ script = ExtResource( 11 )
 modulate = Color( 1, 1, 1, 0.647059 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-
-[node name="Screen" type="PanelContainer" parent="."]
-anchor_left = 0.0261719
-anchor_top = 0.05
-anchor_right = 0.973828
-anchor_bottom = 0.95
-custom_styles/panel = SubResource( 23 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Hbox" type="HBoxContainer" parent="Screen"]
-margin_left = 3.0
-margin_top = 5.0
-margin_right = 1210.0
-margin_bottom = 641.0
-
-[node name="MaterialPanel" type="PanelContainer" parent="Screen/Hbox"]
-margin_right = 206.0
-margin_bottom = 636.0
-
-[node name="Scroll" type="ScrollContainer" parent="Screen/Hbox/MaterialPanel"]
-margin_left = 3.0
-margin_top = 5.0
-margin_right = 203.0
-margin_bottom = 629.0
-rect_min_size = Vector2( 200, 0 )
-scroll_horizontal_enabled = false
-
-[node name="Materials" type="VBoxContainer" parent="Screen/Hbox/MaterialPanel/Scroll"]
-unique_name_in_owner = true
-modulate = Color( 1, 1, 1, 0.760784 )
-margin_right = 200.0
-size_flags_horizontal = 3
-custom_constants/separation = 9
-
-[node name="Vbox" type="VBoxContainer" parent="Screen/Hbox"]
-margin_left = 210.0
-margin_right = 952.0
-margin_bottom = 636.0
-size_flags_horizontal = 3
-
-[node name="Hbox" type="HBoxContainer" parent="Screen/Hbox/Vbox"]
-margin_right = 742.0
-margin_bottom = 24.0
-
-[node name="Open" type="Button" parent="Screen/Hbox/Vbox/Hbox"]
-margin_right = 114.0
-margin_bottom = 24.0
-mouse_default_cursor_shape = 2
-text = "Open models"
-script = ExtResource( 10 )
-
-[node name="Save" type="Button" parent="Screen/Hbox/Vbox/Hbox"]
-margin_left = 118.0
-margin_right = 232.0
-margin_bottom = 24.0
-mouse_default_cursor_shape = 2
-text = "Save groups"
-script = ExtResource( 10 )
-
-[node name="Close" type="Button" parent="Screen/Hbox/Vbox/Hbox"]
-margin_left = 688.0
-margin_right = 742.0
-margin_bottom = 24.0
-mouse_default_cursor_shape = 2
-size_flags_horizontal = 10
-text = "Close"
-script = ExtResource( 10 )
-Color_pressed_back = Color( 1, 0.192157, 0.364706, 1 )
-
-[node name="View" type="ViewportContainer" parent="Screen/Hbox/Vbox"]
-margin_top = 28.0
-margin_right = 742.0
-margin_bottom = 608.0
-size_flags_vertical = 3
-stretch = true
-
-[node name="Viewport" type="Viewport" parent="Screen/Hbox/Vbox/View"]
-size = Vector2( 742, 580 )
-size_override_stretch = true
-handle_input_locally = false
-render_target_update_mode = 3
-
-[node name="World3D" type="Spatial" parent="Screen/Hbox/Vbox/View/Viewport"]
-
-[node name="Models" type="Spatial" parent="Screen/Hbox/Vbox/View/Viewport/World3D"]
-unique_name_in_owner = true
-
-[node name="Settings" type="Spatial" parent="Screen/Hbox/Vbox/View/Viewport/World3D"]
-
-[node name="DirectionalLight" type="DirectionalLight" parent="Screen/Hbox/Vbox/View/Viewport/World3D/Settings"]
-transform = Transform( 0.866025, 0.25, 0.433013, -0.5, 0.433013, 0.75, 0, -0.866025, 0.5, 0, 2.72987, 0 )
-
-[node name="Grid" type="MeshInstance" parent="Screen/Hbox/Vbox/View/Viewport/World3D/Settings"]
-transform = Transform( 265, 0, 0, 0, 175, 0, 0, 0, 265, -1, -1, -1 )
-material_override = SubResource( 6 )
-cast_shadow = 0
-mesh = SubResource( 4 )
-skeleton = NodePath("../..")
-
-[node name="Area" type="Area" parent="Screen/Hbox/Vbox/View/Viewport/World3D/Settings/Grid"]
-transform = Transform( 0.0294118, 0, 0, 0, 0.0294118, 0, 0, 0, 0.0294118, 0, 0, 0 )
-collision_mask = 0
-
-[node name="CollisionShape" type="CollisionShape" parent="Screen/Hbox/Vbox/View/Viewport/World3D/Settings/Grid/Area"]
-shape = SubResource( 5 )
-
-[node name="3D_View" parent="Screen/Hbox/Vbox/View/Viewport/World3D" instance=ExtResource( 2 )]
-
-[node name="Pos" parent="Screen/Hbox/Vbox/View/Viewport/World3D/3D_View" index="2"]
-Index_values = false
-Ray_path = NodePath("")
-
-[node name="Options" type="HBoxContainer" parent="Screen/Hbox/Vbox"]
-margin_top = 612.0
-margin_right = 742.0
-margin_bottom = 636.0
-
-[node name="Examples" type="CheckBox" parent="Screen/Hbox/Vbox/Options"]
-margin_right = 132.0
-margin_bottom = 24.0
-mouse_default_cursor_shape = 2
-text = "Examples 3D"
-script = ExtResource( 13 )
-Node_Path = NodePath("../../../../../Preview")
-my_propriety = "pressed"
-his_propriety = "visible"
-
-[node name="TreePanel" type="PanelContainer" parent="Screen/Hbox"]
-margin_left = 956.0
-margin_right = 1206.0
-margin_bottom = 636.0
-rect_min_size = Vector2( 250, 0 )
-
-[node name="Vbox" type="VBoxContainer" parent="Screen/Hbox/TreePanel"]
-margin_left = 3.0
-margin_top = 5.0
-margin_right = 247.0
-margin_bottom = 629.0
-
-[node name="Tree" type="Tree" parent="Screen/Hbox/TreePanel/Vbox"]
-unique_name_in_owner = true
-margin_right = 244.0
-margin_bottom = 452.0
-rect_min_size = Vector2( 200, 0 )
-size_flags_vertical = 3
-column_titles_visible = true
-allow_reselect = true
-hide_root = true
-drop_mode_flags = 1
-
-[node name="ProprietyPanel" type="PanelContainer" parent="Screen/Hbox/TreePanel/Vbox"]
-margin_top = 456.0
-margin_right = 244.0
-margin_bottom = 584.0
-script = ExtResource( 6 )
-
-[node name="Propriety" type="VBoxContainer" parent="Screen/Hbox/TreePanel/Vbox/ProprietyPanel"]
-margin_left = 3.0
-margin_top = 5.0
-margin_right = 241.0
-margin_bottom = 121.0
-
-[node name="Tile_name" type="Label" parent="Screen/Hbox/TreePanel/Vbox/ProprietyPanel/Propriety"]
-margin_right = 238.0
-margin_bottom = 20.0
-text = "CUBE"
-align = 1
-
-[node name="Hs" type="HSeparator" parent="Screen/Hbox/TreePanel/Vbox/ProprietyPanel/Propriety"]
-margin_top = 24.0
-margin_right = 238.0
-margin_bottom = 28.0
-
-[node name="Position" type="HBoxContainer" parent="Screen/Hbox/TreePanel/Vbox/ProprietyPanel/Propriety"]
-margin_top = 32.0
-margin_right = 238.0
-margin_bottom = 52.0
-script = ExtResource( 5 )
-propriety = "translation"
-
-[node name="Tittle" type="Label" parent="Screen/Hbox/TreePanel/Vbox/ProprietyPanel/Propriety/Position"]
-margin_right = 90.0
-margin_bottom = 20.0
-size_flags_vertical = 0
-text = "Position:"
-
-[node name="Hs2" type="HSeparator" parent="Screen/Hbox/TreePanel/Vbox/ProprietyPanel/Propriety"]
-margin_top = 56.0
-margin_right = 238.0
-margin_bottom = 60.0
-
-[node name="Rotation" type="HBoxContainer" parent="Screen/Hbox/TreePanel/Vbox/ProprietyPanel/Propriety"]
-margin_top = 64.0
-margin_right = 238.0
-margin_bottom = 84.0
-script = ExtResource( 5 )
-propriety = "rotation_degrees"
-
-[node name="Tittle" type="Label" parent="Screen/Hbox/TreePanel/Vbox/ProprietyPanel/Propriety/Rotation"]
-margin_right = 90.0
-margin_bottom = 20.0
-size_flags_vertical = 0
-text = "Rotation:"
-
-[node name="Hs3" type="HSeparator" parent="Screen/Hbox/TreePanel/Vbox/ProprietyPanel/Propriety"]
-margin_top = 88.0
-margin_right = 238.0
-margin_bottom = 92.0
-
-[node name="Scale" type="HBoxContainer" parent="Screen/Hbox/TreePanel/Vbox/ProprietyPanel/Propriety"]
-margin_top = 96.0
-margin_right = 238.0
-margin_bottom = 116.0
-script = ExtResource( 5 )
-propriety = "scale"
-
-[node name="Tittle" type="Label" parent="Screen/Hbox/TreePanel/Vbox/ProprietyPanel/Propriety/Scale"]
-margin_right = 60.0
-margin_bottom = 20.0
-size_flags_vertical = 0
-text = "Scale:"
-
-[node name="Buttons_add" type="PanelContainer" parent="Screen/Hbox/TreePanel/Vbox"]
-margin_top = 588.0
-margin_right = 244.0
-margin_bottom = 624.0
-
-[node name="Hbox" type="HBoxContainer" parent="Screen/Hbox/TreePanel/Vbox/Buttons_add"]
-margin_left = 3.0
-margin_top = 5.0
-margin_right = 241.0
-margin_bottom = 29.0
-size_flags_vertical = 0
-alignment = 1
-
-[node name="Add" type="Button" parent="Screen/Hbox/TreePanel/Vbox/Buttons_add/Hbox"]
-margin_right = 94.0
-margin_bottom = 24.0
-mouse_default_cursor_shape = 2
-size_flags_horizontal = 2
-text = "Add Group"
-script = ExtResource( 10 )
-Color_pressed_back = Color( 0.376471, 0.72549, 1, 1 )
-
-[node name="Delete" type="Button" parent="Screen/Hbox/TreePanel/Vbox/Buttons_add/Hbox"]
-margin_left = 174.0
-margin_right = 238.0
-margin_bottom = 24.0
-mouse_default_cursor_shape = 2
-text = "Delete"
-script = ExtResource( 10 )
-Color_pressed_back = Color( 1, 0.337255, 0.407843, 1 )
 
 [node name="Preview" type="Spatial" parent="."]
 
@@ -389,10 +223,885 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2 )
 material_override = ExtResource( 12 )
 mesh = SubResource( 21 )
 
-[connection signal="pressed" from="Screen/Hbox/Vbox/Hbox/Open" to="Import" method="_on_Open_pressed"]
-[connection signal="pressed" from="Screen/Hbox/Vbox/Hbox/Save" to="." method="_on_Save_pressed"]
-[connection signal="pressed" from="Screen/Hbox/Vbox/Hbox/Close" to="." method="_on_Close_pressed"]
-[connection signal="pressed" from="Screen/Hbox/TreePanel/Vbox/Buttons_add/Hbox/Add" to="." method="_on_Add_pressed"]
-[connection signal="pressed" from="Screen/Hbox/TreePanel/Vbox/Buttons_add/Hbox/Delete" to="." method="_on_Delete_pressed"]
+[node name="Vbox" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -611.0
+margin_top = -336.0
+margin_right = 611.0
+margin_bottom = 328.0
 
-[editable path="Screen/Hbox/Vbox/View/Viewport/World3D/3D_View"]
+[node name="Hbox" type="HBoxContainer" parent="Vbox"]
+margin_right = 1222.0
+margin_bottom = 33.0
+alignment = 1
+
+[node name="Tittle" type="Label" parent="Vbox/Hbox"]
+margin_top = 6.0
+margin_right = 1185.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+text = "Import models"
+align = 1
+
+[node name="Close" type="TextureButton" parent="Vbox/Hbox"]
+margin_left = 1189.0
+margin_right = 1222.0
+margin_bottom = 33.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 4 )
+
+[node name="Screen" type="PanelContainer" parent="Vbox"]
+margin_top = 37.0
+margin_right = 1222.0
+margin_bottom = 664.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 23 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Hbox" type="HBoxContainer" parent="Vbox/Screen"]
+margin_left = 3.0
+margin_top = 5.0
+margin_right = 1219.0
+margin_bottom = 620.0
+
+[node name="MaterialPanel" type="PanelContainer" parent="Vbox/Screen/Hbox"]
+margin_right = 206.0
+margin_bottom = 615.0
+
+[node name="Scroll" type="ScrollContainer" parent="Vbox/Screen/Hbox/MaterialPanel"]
+margin_left = 3.0
+margin_top = 5.0
+margin_right = 203.0
+margin_bottom = 608.0
+rect_min_size = Vector2( 200, 0 )
+scroll_horizontal_enabled = false
+
+[node name="Materials" type="VBoxContainer" parent="Vbox/Screen/Hbox/MaterialPanel/Scroll"]
+unique_name_in_owner = true
+modulate = Color( 1, 1, 1, 0.760784 )
+margin_right = 200.0
+size_flags_horizontal = 3
+custom_constants/separation = 9
+
+[node name="Vbox" type="VBoxContainer" parent="Vbox/Screen/Hbox"]
+margin_left = 210.0
+margin_right = 962.0
+margin_bottom = 615.0
+mouse_filter = 0
+size_flags_horizontal = 3
+
+[node name="Hbox" type="HBoxContainer" parent="Vbox/Screen/Hbox/Vbox"]
+margin_right = 752.0
+margin_bottom = 24.0
+
+[node name="Open" type="Button" parent="Vbox/Screen/Hbox/Vbox/Hbox"]
+margin_right = 114.0
+margin_bottom = 24.0
+mouse_default_cursor_shape = 2
+text = "Open models"
+script = ExtResource( 10 )
+
+[node name="Save" type="Button" parent="Vbox/Screen/Hbox/Vbox/Hbox"]
+margin_left = 118.0
+margin_right = 232.0
+margin_bottom = 24.0
+mouse_default_cursor_shape = 2
+text = "Save groups"
+script = ExtResource( 10 )
+
+[node name="Close" type="Button" parent="Vbox/Screen/Hbox/Vbox/Hbox"]
+margin_left = 698.0
+margin_right = 752.0
+margin_bottom = 24.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 10
+text = "Close"
+script = ExtResource( 10 )
+Color_pressed_back = Color( 1, 0.192157, 0.364706, 1 )
+
+[node name="View" type="ViewportContainer" parent="Vbox/Screen/Hbox/Vbox"]
+margin_top = 28.0
+margin_right = 752.0
+margin_bottom = 578.0
+mouse_filter = 2
+size_flags_vertical = 3
+stretch = true
+
+[node name="Viewport" type="Viewport" parent="Vbox/Screen/Hbox/Vbox/View"]
+size = Vector2( 752, 550 )
+size_override_stretch = true
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="World3D" type="Spatial" parent="Vbox/Screen/Hbox/Vbox/View/Viewport"]
+
+[node name="Models" type="Spatial" parent="Vbox/Screen/Hbox/Vbox/View/Viewport/World3D"]
+unique_name_in_owner = true
+
+[node name="Settings" type="Spatial" parent="Vbox/Screen/Hbox/Vbox/View/Viewport/World3D"]
+
+[node name="DirectionalLight" type="DirectionalLight" parent="Vbox/Screen/Hbox/Vbox/View/Viewport/World3D/Settings"]
+transform = Transform( 0.866025, 0.25, 0.433013, -0.5, 0.433013, 0.75, 0, -0.866025, 0.5, 0, 2.72987, 0 )
+
+[node name="Grid" type="MeshInstance" parent="Vbox/Screen/Hbox/Vbox/View/Viewport/World3D/Settings"]
+transform = Transform( 146.329, 0, 0, 0, 34, 0, 0, 0, 146.329, 0, 0, 0 )
+material_override = SubResource( 35 )
+cast_shadow = 0
+mesh = SubResource( 36 )
+skeleton = NodePath("../..")
+
+[node name="Axis" type="MeshInstance" parent="Vbox/Screen/Hbox/Vbox/View/Viewport/World3D/Settings"]
+transform = Transform( 1.49952, 0, 0, 0, 1.49952, 0, 0, 0, 1.49952, 0, 0, 0 )
+cast_shadow = 0
+mesh = ExtResource( 16 )
+material/0 = SubResource( 37 )
+material/1 = SubResource( 38 )
+
+[node name="3D_View" parent="Vbox/Screen/Hbox/Vbox/View/Viewport/World3D" instance=ExtResource( 2 )]
+
+[node name="Camera" parent="Vbox/Screen/Hbox/Vbox/View/Viewport/World3D/3D_View" index="1"]
+transform = Transform( 1, 1.68645e-08, 2.57766e-07, -1.94193e-07, 0.707107, 0.707107, -1.70343e-07, -0.707107, 0.707107, 1.0677e-06, 7.07107, 7.07107 )
+
+[node name="Pos" parent="Vbox/Screen/Hbox/Vbox/View/Viewport/World3D/3D_View" index="2"]
+Index_values = false
+Ray_path = NodePath("")
+
+[node name="View2" type="Control" parent="Vbox/Screen/Hbox/Vbox/View"]
+margin_top = -4.0
+margin_right = 754.223
+margin_bottom = -4.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Eixo" type="Control" parent="Vbox/Screen/Hbox/Vbox/View/View2"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -116.223
+margin_top = 6.0
+margin_right = -2.22302
+margin_bottom = 120.0
+mouse_filter = 2
+size_flags_horizontal = 9
+
+[node name="View" type="ViewportContainer" parent="Vbox/Screen/Hbox/Vbox/View/View2/Eixo"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -74.9994
+margin_top = 4.0
+margin_right = -4.99939
+margin_bottom = 74.0
+rect_min_size = Vector2( 70, 70 )
+mouse_filter = 2
+stretch = true
+
+[node name="View" type="Viewport" parent="Vbox/Screen/Hbox/Vbox/View/View2/Eixo/View"]
+size = Vector2( 70, 70 )
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 3
+physics_object_picking = true
+
+[node name="Pivot" type="Spatial" parent="Vbox/Screen/Hbox/Vbox/View/View2/Eixo/View/View"]
+
+[node name="Camera" type="Camera" parent="Vbox/Screen/Hbox/Vbox/View/View2/Eixo/View/View/Pivot"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1 )
+cull_mask = 524288
+script = ExtResource( 14 )
+Cam_path = NodePath("../../../../../../Viewport/World3D/3D_View/Camera")
+Pos_path = NodePath("../../../../../../Viewport/World3D/3D_View/Pos")
+
+[node name="Model" type="Spatial" parent="Vbox/Screen/Hbox/Vbox/View/View2/Eixo/View/View"]
+
+[node name="Eixo_y" type="MeshInstance" parent="Vbox/Screen/Hbox/Vbox/View/View2/Eixo/View/View/Model"]
+transform = Transform( 0.0504707, 0, 0, 0, 0.216303, 0, 0, 0, 0.0504707, 0, 0.258, 0 )
+layers = 524288
+mesh = SubResource( 24 )
+skeleton = NodePath("../../Pivot/Camera")
+material/0 = SubResource( 25 )
+
+[node name="Pos" type="Position3D" parent="Vbox/Screen/Hbox/Vbox/View/View2/Eixo/View/View/Model/Eixo_y"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, -2.84217e-14, 1, 0, 1, 0 )
+
+[node name="Pos2" type="Position3D" parent="Vbox/Screen/Hbox/Vbox/View/View2/Eixo/View/View/Model/Eixo_y"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, -2.84217e-14, 1, 0, -3.8, 0 )
+
+[node name="Eixo_z" type="MeshInstance" parent="Vbox/Screen/Hbox/Vbox/View/View2/Eixo/View/View/Model"]
+transform = Transform( 0.0504707, 0, 0, 0, 9.4549e-09, -0.0504707, 0, -0.216303, -2.20614e-09, 0, 0, 0.3 )
+layers = 524288
+mesh = SubResource( 24 )
+skeleton = NodePath("../../Pivot/Camera")
+material/0 = SubResource( 26 )
+
+[node name="Pos" type="Position3D" parent="Vbox/Screen/Hbox/Vbox/View/View2/Eixo/View/View/Model/Eixo_z"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, -2.84217e-14, 1, 0, -1, 0 )
+
+[node name="Pos2" type="Position3D" parent="Vbox/Screen/Hbox/Vbox/View/View2/Eixo/View/View/Model/Eixo_z"]
+transform = Transform( 1, 0, 0, 0, 1, -3.55271e-15, 0, -4.26326e-14, 1, 0, 3.8, 0 )
+
+[node name="Eixo_x" type="MeshInstance" parent="Vbox/Screen/Hbox/Vbox/View/View2/Eixo/View/View/Model"]
+transform = Transform( 3.81043e-09, 0.216303, -2.20614e-09, 0, -9.4549e-09, -0.0504707, -0.0504707, 1.63304e-08, -1.66559e-16, 0.3, 0, 0 )
+layers = 524288
+mesh = SubResource( 24 )
+skeleton = NodePath("../../Pivot/Camera")
+material/0 = SubResource( 27 )
+
+[node name="Pos" type="Position3D" parent="Vbox/Screen/Hbox/Vbox/View/View2/Eixo/View/View/Model/Eixo_x"]
+transform = Transform( 1, 2.84217e-14, -2.75286e-21, 0, 1, -5.81353e-23, -1.69407e-21, -5.68434e-14, 1, 0, 1, 0 )
+
+[node name="Pos2" type="Position3D" parent="Vbox/Screen/Hbox/Vbox/View/View2/Eixo/View/View/Model/Eixo_x"]
+transform = Transform( 1, 2.84217e-14, -2.75286e-21, 0, 1, -5.81353e-23, -1.69407e-21, -5.68434e-14, 1, 0, -3.8, 0 )
+
+[node name="Center" type="Position2D" parent="Vbox/Screen/Hbox/Vbox/View/View2/Eixo/View"]
+position = Vector2( 35, 35 )
+
+[node name="Rot" type="TextureButton" parent="Vbox/Screen/Hbox/Vbox/View/View2/Eixo/View/Center"]
+modulate = Color( 1, 1, 1, 0.360784 )
+margin_left = -42.0
+margin_top = -42.0
+margin_right = 43.0
+margin_bottom = 43.0
+mouse_default_cursor_shape = 6
+texture_normal = SubResource( 28 )
+texture_pressed = SubResource( 30 )
+texture_hover = SubResource( 31 )
+expand = true
+
+[node name="X" type="Position2D" parent="Vbox/Screen/Hbox/Vbox/View/View2/Eixo/View"]
+position = Vector2( 16.0006, 16 )
+scale = Vector2( 0.8, 0.8 )
+
+[node name="X" type="TextureButton" parent="Vbox/Screen/Hbox/Vbox/View/View2/Eixo/View/X"]
+modulate = Color( 1, 0, 0, 1 )
+margin_left = -16.0
+margin_top = -16.0
+margin_right = 16.0
+margin_bottom = 16.0
+texture_normal = SubResource( 32 )
+texture_pressed = SubResource( 33 )
+texture_hover = SubResource( 33 )
+expand = true
+script = ExtResource( 15 )
+axis = Vector3( 0, -90, 0 )
+
+[node name="Text" type="Label" parent="Vbox/Screen/Hbox/Vbox/View/View2/Eixo/View/X"]
+margin_left = -5.00073
+margin_top = -10.0
+margin_right = 4.99927
+margin_bottom = 10.0
+text = "X"
+align = 1
+valign = 1
+
+[node name="Y" type="Position2D" parent="Vbox/Screen/Hbox/Vbox/View/View2/Eixo/View"]
+position = Vector2( 16.0006, 16 )
+scale = Vector2( 0.8, 0.8 )
+
+[node name="Y" type="TextureButton" parent="Vbox/Screen/Hbox/Vbox/View/View2/Eixo/View/Y"]
+modulate = Color( 0, 1, 0.0627451, 1 )
+margin_left = -16.0
+margin_top = -16.0
+margin_right = 16.0
+margin_bottom = 16.0
+texture_normal = SubResource( 32 )
+texture_pressed = SubResource( 33 )
+texture_hover = SubResource( 33 )
+expand = true
+script = ExtResource( 15 )
+axis = Vector3( 90, 0, 0 )
+
+[node name="Text" type="Label" parent="Vbox/Screen/Hbox/Vbox/View/View2/Eixo/View/Y"]
+margin_left = -5.00073
+margin_top = -10.0
+margin_right = 4.99927
+margin_bottom = 10.0
+text = "Y"
+align = 1
+valign = 1
+
+[node name="Z" type="Position2D" parent="Vbox/Screen/Hbox/Vbox/View/View2/Eixo/View"]
+position = Vector2( 16.0006, 16 )
+scale = Vector2( 0.8, 0.8 )
+
+[node name="Z" type="TextureButton" parent="Vbox/Screen/Hbox/Vbox/View/View2/Eixo/View/Z"]
+modulate = Color( 0, 0.454902, 1, 1 )
+margin_left = -16.0
+margin_top = -16.0
+margin_right = 16.0
+margin_bottom = 16.0
+texture_normal = SubResource( 32 )
+texture_pressed = SubResource( 33 )
+texture_hover = SubResource( 33 )
+expand = true
+script = ExtResource( 15 )
+axis = Vector3( 0, 180, 0 )
+
+[node name="Text" type="Label" parent="Vbox/Screen/Hbox/Vbox/View/View2/Eixo/View/Z"]
+margin_left = -5.00073
+margin_top = -10.0
+margin_right = 4.99927
+margin_bottom = 10.0
+text = "Z"
+align = 1
+valign = 1
+
+[node name="X2" type="Position2D" parent="Vbox/Screen/Hbox/Vbox/View/View2/Eixo/View"]
+modulate = Color( 0.678431, 0.678431, 0.678431, 1 )
+position = Vector2( 16.0006, 16 )
+scale = Vector2( 0.8, 0.8 )
+
+[node name="X" type="TextureButton" parent="Vbox/Screen/Hbox/Vbox/View/View2/Eixo/View/X2"]
+modulate = Color( 1, 0, 0, 1 )
+margin_left = -16.0
+margin_top = -16.0
+margin_right = 16.0
+margin_bottom = 16.0
+texture_normal = SubResource( 34 )
+texture_pressed = SubResource( 33 )
+texture_hover = SubResource( 33 )
+expand = true
+script = ExtResource( 15 )
+axis = Vector3( 0, 90, 0 )
+
+[node name="Y2" type="Position2D" parent="Vbox/Screen/Hbox/Vbox/View/View2/Eixo/View"]
+modulate = Color( 0.678431, 0.678431, 0.678431, 1 )
+position = Vector2( 16.0006, 16 )
+scale = Vector2( 0.8, 0.8 )
+
+[node name="Y" type="TextureButton" parent="Vbox/Screen/Hbox/Vbox/View/View2/Eixo/View/Y2"]
+modulate = Color( 0, 1, 0.0627451, 1 )
+margin_left = -16.0
+margin_top = -16.0
+margin_right = 16.0
+margin_bottom = 16.0
+texture_normal = SubResource( 34 )
+texture_pressed = SubResource( 33 )
+texture_hover = SubResource( 33 )
+expand = true
+script = ExtResource( 15 )
+axis = Vector3( -90, 0, 0 )
+
+[node name="Z2" type="Position2D" parent="Vbox/Screen/Hbox/Vbox/View/View2/Eixo/View"]
+modulate = Color( 0.678431, 0.678431, 0.678431, 1 )
+position = Vector2( 16.0006, 16 )
+scale = Vector2( 0.8, 0.8 )
+
+[node name="Z" type="TextureButton" parent="Vbox/Screen/Hbox/Vbox/View/View2/Eixo/View/Z2"]
+modulate = Color( 0, 0.454902, 1, 1 )
+margin_left = -16.0
+margin_top = -16.0
+margin_right = 16.0
+margin_bottom = 16.0
+texture_normal = SubResource( 34 )
+texture_pressed = SubResource( 33 )
+texture_hover = SubResource( 33 )
+expand = true
+script = ExtResource( 15 )
+
+[node name="Options" type="HBoxContainer" parent="Vbox/Screen/Hbox/Vbox"]
+margin_top = 582.0
+margin_right = 752.0
+margin_bottom = 615.0
+rect_min_size = Vector2( 0, 33 )
+
+[node name="Examples" type="CheckBox" parent="Vbox/Screen/Hbox/Vbox/Options"]
+margin_right = 132.0
+margin_bottom = 33.0
+mouse_default_cursor_shape = 2
+text = "Examples 3D"
+script = ExtResource( 13 )
+Node_Path = NodePath("../../../../../../Preview")
+my_propriety = "pressed"
+his_propriety = "visible"
+
+[node name="Separater" type="Button" parent="Vbox/Screen/Hbox/Vbox/Options"]
+margin_left = 136.0
+margin_right = 230.0
+margin_bottom = 33.0
+mouse_default_cursor_shape = 2
+text = "Separater"
+script = ExtResource( 10 )
+
+[node name="Global_scaled" type="Button" parent="Vbox/Screen/Hbox/Vbox/Options"]
+margin_left = 234.0
+margin_right = 358.0
+margin_bottom = 33.0
+mouse_default_cursor_shape = 2
+text = "Global scale"
+script = ExtResource( 10 )
+
+[node name="Global_movement" type="Button" parent="Vbox/Screen/Hbox/Vbox/Options"]
+margin_left = 362.0
+margin_right = 516.0
+margin_bottom = 33.0
+mouse_default_cursor_shape = 2
+text = "Global movement"
+script = ExtResource( 10 )
+
+[node name="TreePanel" type="PanelContainer" parent="Vbox/Screen/Hbox"]
+margin_left = 966.0
+margin_right = 1216.0
+margin_bottom = 615.0
+rect_min_size = Vector2( 250, 0 )
+
+[node name="Vbox" type="VBoxContainer" parent="Vbox/Screen/Hbox/TreePanel"]
+margin_left = 3.0
+margin_top = 5.0
+margin_right = 247.0
+margin_bottom = 608.0
+
+[node name="Tree" type="Tree" parent="Vbox/Screen/Hbox/TreePanel/Vbox"]
+unique_name_in_owner = true
+margin_right = 244.0
+margin_bottom = 431.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_vertical = 3
+column_titles_visible = true
+allow_reselect = true
+hide_root = true
+drop_mode_flags = 1
+
+[node name="ProprietyPanel" type="PanelContainer" parent="Vbox/Screen/Hbox/TreePanel/Vbox"]
+margin_top = 435.0
+margin_right = 244.0
+margin_bottom = 563.0
+script = ExtResource( 6 )
+
+[node name="Propriety" type="VBoxContainer" parent="Vbox/Screen/Hbox/TreePanel/Vbox/ProprietyPanel"]
+margin_left = 3.0
+margin_top = 5.0
+margin_right = 241.0
+margin_bottom = 121.0
+
+[node name="Tile_name" type="Label" parent="Vbox/Screen/Hbox/TreePanel/Vbox/ProprietyPanel/Propriety"]
+margin_right = 238.0
+margin_bottom = 20.0
+text = "CUBE"
+align = 1
+
+[node name="Hs" type="HSeparator" parent="Vbox/Screen/Hbox/TreePanel/Vbox/ProprietyPanel/Propriety"]
+margin_top = 24.0
+margin_right = 238.0
+margin_bottom = 28.0
+
+[node name="Position" type="HBoxContainer" parent="Vbox/Screen/Hbox/TreePanel/Vbox/ProprietyPanel/Propriety"]
+margin_top = 32.0
+margin_right = 238.0
+margin_bottom = 52.0
+script = ExtResource( 5 )
+propriety = "translation"
+
+[node name="Tittle" type="Label" parent="Vbox/Screen/Hbox/TreePanel/Vbox/ProprietyPanel/Propriety/Position"]
+margin_right = 90.0
+margin_bottom = 20.0
+size_flags_vertical = 0
+text = "Position:"
+
+[node name="Hs2" type="HSeparator" parent="Vbox/Screen/Hbox/TreePanel/Vbox/ProprietyPanel/Propriety"]
+margin_top = 56.0
+margin_right = 238.0
+margin_bottom = 60.0
+
+[node name="Rotation" type="HBoxContainer" parent="Vbox/Screen/Hbox/TreePanel/Vbox/ProprietyPanel/Propriety"]
+margin_top = 64.0
+margin_right = 238.0
+margin_bottom = 84.0
+script = ExtResource( 5 )
+propriety = "rotation_degrees"
+
+[node name="Tittle" type="Label" parent="Vbox/Screen/Hbox/TreePanel/Vbox/ProprietyPanel/Propriety/Rotation"]
+margin_right = 90.0
+margin_bottom = 20.0
+size_flags_vertical = 0
+text = "Rotation:"
+
+[node name="Hs3" type="HSeparator" parent="Vbox/Screen/Hbox/TreePanel/Vbox/ProprietyPanel/Propriety"]
+margin_top = 88.0
+margin_right = 238.0
+margin_bottom = 92.0
+
+[node name="Scale" type="HBoxContainer" parent="Vbox/Screen/Hbox/TreePanel/Vbox/ProprietyPanel/Propriety"]
+margin_top = 96.0
+margin_right = 238.0
+margin_bottom = 116.0
+script = ExtResource( 5 )
+propriety = "scale"
+
+[node name="Tittle" type="Label" parent="Vbox/Screen/Hbox/TreePanel/Vbox/ProprietyPanel/Propriety/Scale"]
+margin_right = 60.0
+margin_bottom = 20.0
+size_flags_vertical = 0
+text = "Scale:"
+
+[node name="Buttons_add" type="PanelContainer" parent="Vbox/Screen/Hbox/TreePanel/Vbox"]
+margin_top = 567.0
+margin_right = 244.0
+margin_bottom = 603.0
+
+[node name="Hbox" type="HBoxContainer" parent="Vbox/Screen/Hbox/TreePanel/Vbox/Buttons_add"]
+margin_left = 3.0
+margin_top = 5.0
+margin_right = 241.0
+margin_bottom = 29.0
+size_flags_vertical = 0
+alignment = 1
+
+[node name="Add" type="Button" parent="Vbox/Screen/Hbox/TreePanel/Vbox/Buttons_add/Hbox"]
+margin_right = 94.0
+margin_bottom = 24.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 2
+text = "Add Group"
+script = ExtResource( 10 )
+Color_pressed_back = Color( 0.376471, 0.72549, 1, 1 )
+
+[node name="Delete" type="Button" parent="Vbox/Screen/Hbox/TreePanel/Vbox/Buttons_add/Hbox"]
+margin_left = 174.0
+margin_right = 238.0
+margin_bottom = 24.0
+mouse_default_cursor_shape = 2
+text = "Delete"
+script = ExtResource( 10 )
+Color_pressed_back = Color( 1, 0.337255, 0.407843, 1 )
+
+[node name="Separater" type="Control" parent="."]
+visible = false
+anchor_left = 0.2125
+anchor_top = 0.665278
+anchor_right = 0.44375
+anchor_bottom = 0.880556
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+Propriety_name = "separator"
+
+[node name="Propriety" type="PanelContainer" parent="Separater"]
+anchor_right = 1.0
+anchor_bottom = 1.2
+margin_bottom = -24.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Vbox" type="VBoxContainer" parent="Separater/Propriety"]
+margin_left = 3.0
+margin_top = 5.0
+margin_right = 293.0
+margin_bottom = 155.0
+
+[node name="Hbox" type="HBoxContainer" parent="Separater/Propriety/Vbox"]
+margin_right = 290.0
+margin_bottom = 33.0
+alignment = 1
+
+[node name="Tittle" type="Label" parent="Separater/Propriety/Vbox/Hbox"]
+margin_top = 6.0
+margin_right = 253.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+text = "Separator"
+align = 1
+
+[node name="Close" type="TextureButton" parent="Separater/Propriety/Vbox/Hbox"]
+margin_left = 257.0
+margin_right = 290.0
+margin_bottom = 33.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 4 )
+
+[node name="Vector" parent="Separater/Propriety/Vbox" instance=ExtResource( 8 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 37.0
+margin_right = 290.0
+margin_bottom = 117.0
+size_flags_horizontal = 11
+
+[node name="X" parent="Separater/Propriety/Vbox/Vector" index="0"]
+margin_right = 290.0
+
+[node name="x" parent="Separater/Propriety/Vbox/Vector/X" index="0"]
+margin_right = 100.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 1
+
+[node name="X" parent="Separater/Propriety/Vbox/Vector/X" index="1"]
+margin_left = 104.0
+margin_right = 290.0
+size_flags_horizontal = 3
+
+[node name="Y" parent="Separater/Propriety/Vbox/Vector" index="1"]
+margin_right = 290.0
+
+[node name="y" parent="Separater/Propriety/Vbox/Vector/Y" index="0"]
+margin_right = 100.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 1
+
+[node name="Y" parent="Separater/Propriety/Vbox/Vector/Y" index="1"]
+margin_left = 104.0
+margin_right = 290.0
+size_flags_horizontal = 3
+
+[node name="Z" parent="Separater/Propriety/Vbox/Vector" index="2"]
+margin_right = 290.0
+
+[node name="z" parent="Separater/Propriety/Vbox/Vector/Z" index="0"]
+margin_right = 100.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 1
+
+[node name="Z" parent="Separater/Propriety/Vbox/Vector/Z" index="1"]
+margin_left = 104.0
+margin_right = 290.0
+size_flags_horizontal = 3
+
+[node name="Ok" type="Button" parent="Separater/Propriety/Vbox"]
+margin_top = 121.0
+margin_right = 290.0
+margin_bottom = 145.0
+mouse_default_cursor_shape = 2
+text = "Apply"
+script = ExtResource( 10 )
+
+[node name="Global Scale" type="Control" parent="."]
+visible = false
+anchor_left = 0.2125
+anchor_top = 0.665278
+anchor_right = 0.44375
+anchor_bottom = 0.880556
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+Propriety_name = "global_scale"
+
+[node name="Propriety" type="PanelContainer" parent="Global Scale"]
+anchor_right = 1.0
+anchor_bottom = 1.2
+margin_bottom = -24.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Vbox" type="VBoxContainer" parent="Global Scale/Propriety"]
+margin_left = 3.0
+margin_top = 5.0
+margin_right = 293.0
+margin_bottom = 155.0
+
+[node name="Hbox" type="HBoxContainer" parent="Global Scale/Propriety/Vbox"]
+margin_right = 290.0
+margin_bottom = 33.0
+alignment = 1
+
+[node name="Tittle" type="Label" parent="Global Scale/Propriety/Vbox/Hbox"]
+margin_top = 6.0
+margin_right = 253.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+text = "Global scale"
+align = 1
+
+[node name="Close" type="TextureButton" parent="Global Scale/Propriety/Vbox/Hbox"]
+margin_left = 257.0
+margin_right = 290.0
+margin_bottom = 33.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 4 )
+
+[node name="Vector" parent="Global Scale/Propriety/Vbox" instance=ExtResource( 8 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 37.0
+margin_right = 290.0
+margin_bottom = 117.0
+size_flags_horizontal = 11
+
+[node name="X" parent="Global Scale/Propriety/Vbox/Vector" index="0"]
+margin_right = 290.0
+
+[node name="x" parent="Global Scale/Propriety/Vbox/Vector/X" index="0"]
+margin_right = 100.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 1
+
+[node name="X" parent="Global Scale/Propriety/Vbox/Vector/X" index="1"]
+margin_left = 104.0
+margin_right = 290.0
+size_flags_horizontal = 3
+
+[node name="Y" parent="Global Scale/Propriety/Vbox/Vector" index="1"]
+margin_right = 290.0
+
+[node name="y" parent="Global Scale/Propriety/Vbox/Vector/Y" index="0"]
+margin_right = 100.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 1
+
+[node name="Y" parent="Global Scale/Propriety/Vbox/Vector/Y" index="1"]
+margin_left = 104.0
+margin_right = 290.0
+size_flags_horizontal = 3
+
+[node name="Z" parent="Global Scale/Propriety/Vbox/Vector" index="2"]
+margin_right = 290.0
+
+[node name="z" parent="Global Scale/Propriety/Vbox/Vector/Z" index="0"]
+margin_right = 100.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 1
+
+[node name="Z" parent="Global Scale/Propriety/Vbox/Vector/Z" index="1"]
+margin_left = 104.0
+margin_right = 290.0
+size_flags_horizontal = 3
+
+[node name="Ok" type="Button" parent="Global Scale/Propriety/Vbox"]
+visible = false
+margin_top = 121.0
+margin_right = 290.0
+margin_bottom = 145.0
+mouse_default_cursor_shape = 2
+text = "Apply"
+script = ExtResource( 10 )
+
+[node name="Apply_Scale" type="Button" parent="Global Scale/Propriety/Vbox"]
+margin_top = 121.0
+margin_right = 290.0
+margin_bottom = 145.0
+mouse_default_cursor_shape = 2
+text = "Apply"
+script = ExtResource( 10 )
+
+[node name="Global movement" type="Control" parent="."]
+visible = false
+anchor_left = 0.2125
+anchor_top = 0.665278
+anchor_right = 0.44375
+anchor_bottom = 0.880556
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+Propriety_name = "global_movement"
+
+[node name="Propriety" type="PanelContainer" parent="Global movement"]
+anchor_right = 1.0
+anchor_bottom = 1.2
+margin_bottom = -24.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Vbox" type="VBoxContainer" parent="Global movement/Propriety"]
+margin_left = 3.0
+margin_top = 5.0
+margin_right = 293.0
+margin_bottom = 155.0
+
+[node name="Hbox" type="HBoxContainer" parent="Global movement/Propriety/Vbox"]
+margin_right = 290.0
+margin_bottom = 33.0
+alignment = 1
+
+[node name="Tittle" type="Label" parent="Global movement/Propriety/Vbox/Hbox"]
+margin_top = 6.0
+margin_right = 253.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+text = "Global movement"
+align = 1
+
+[node name="Close" type="TextureButton" parent="Global movement/Propriety/Vbox/Hbox"]
+margin_left = 257.0
+margin_right = 290.0
+margin_bottom = 33.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 4 )
+
+[node name="Vector" parent="Global movement/Propriety/Vbox" instance=ExtResource( 8 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 37.0
+margin_right = 290.0
+margin_bottom = 117.0
+size_flags_horizontal = 11
+
+[node name="X" parent="Global movement/Propriety/Vbox/Vector" index="0"]
+margin_right = 290.0
+
+[node name="x" parent="Global movement/Propriety/Vbox/Vector/X" index="0"]
+margin_right = 100.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 1
+
+[node name="X" parent="Global movement/Propriety/Vbox/Vector/X" index="1"]
+margin_left = 104.0
+margin_right = 290.0
+size_flags_horizontal = 3
+
+[node name="Y" parent="Global movement/Propriety/Vbox/Vector" index="1"]
+margin_right = 290.0
+
+[node name="y" parent="Global movement/Propriety/Vbox/Vector/Y" index="0"]
+margin_right = 100.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 1
+
+[node name="Y" parent="Global movement/Propriety/Vbox/Vector/Y" index="1"]
+margin_left = 104.0
+margin_right = 290.0
+size_flags_horizontal = 3
+
+[node name="Z" parent="Global movement/Propriety/Vbox/Vector" index="2"]
+margin_right = 290.0
+
+[node name="z" parent="Global movement/Propriety/Vbox/Vector/Z" index="0"]
+margin_right = 100.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 1
+
+[node name="Z" parent="Global movement/Propriety/Vbox/Vector/Z" index="1"]
+margin_left = 104.0
+margin_right = 290.0
+size_flags_horizontal = 3
+
+[node name="Apply_Movement" type="Button" parent="Global movement/Propriety/Vbox"]
+margin_top = 121.0
+margin_right = 290.0
+margin_bottom = 145.0
+mouse_default_cursor_shape = 2
+text = "Apply"
+script = ExtResource( 10 )
+
+[connection signal="pressed" from="Vbox/Hbox/Close" to="." method="_on_Close_pressed"]
+[connection signal="mouse_entered" from="Vbox/Screen/Hbox/Vbox" to="." method="_on_Vbox_mouse_entered"]
+[connection signal="mouse_exited" from="Vbox/Screen/Hbox/Vbox" to="." method="_on_Vbox_mouse_exited"]
+[connection signal="pressed" from="Vbox/Screen/Hbox/Vbox/Hbox/Open" to="Import" method="_on_Open_pressed"]
+[connection signal="pressed" from="Vbox/Screen/Hbox/Vbox/Hbox/Save" to="." method="_on_Save_pressed"]
+[connection signal="pressed" from="Vbox/Screen/Hbox/Vbox/Hbox/Close" to="." method="_on_Close_pressed"]
+[connection signal="gui_input" from="Vbox/Screen/Hbox/Vbox/View/View2/Eixo/View/Center/Rot" to="Vbox/Screen/Hbox/Vbox/View/View2/Eixo/View/View/Pivot/Camera" method="_on_Rot_gui_input"]
+[connection signal="pressed" from="Vbox/Screen/Hbox/Vbox/Options/Separater" to="Separater" method="_on_Separater_pressed"]
+[connection signal="pressed" from="Vbox/Screen/Hbox/Vbox/Options/Global_scaled" to="Global Scale" method="_on_Global_scaled_pressed"]
+[connection signal="pressed" from="Vbox/Screen/Hbox/Vbox/Options/Global_movement" to="Global movement" method="_on_Global_movement_pressed"]
+[connection signal="pressed" from="Vbox/Screen/Hbox/TreePanel/Vbox/Buttons_add/Hbox/Add" to="." method="_on_Add_pressed"]
+[connection signal="pressed" from="Vbox/Screen/Hbox/TreePanel/Vbox/Buttons_add/Hbox/Delete" to="." method="_on_Delete_pressed"]
+[connection signal="pressed" from="Separater/Propriety/Vbox/Hbox/Close" to="Separater" method="_on_Close_pressed"]
+[connection signal="pressed" from="Separater/Propriety/Vbox/Ok" to="Separater" method="_on_Button_pressed"]
+[connection signal="pressed" from="Global Scale/Propriety/Vbox/Hbox/Close" to="Global Scale" method="_on_Close_pressed"]
+[connection signal="pressed" from="Global Scale/Propriety/Vbox/Ok" to="Global Scale" method="_on_Button_pressed"]
+[connection signal="pressed" from="Global Scale/Propriety/Vbox/Apply_Scale" to="Global Scale" method="_on_Apply_Scale_pressed"]
+[connection signal="pressed" from="Global movement/Propriety/Vbox/Hbox/Close" to="Global movement" method="_on_Close_pressed"]
+[connection signal="pressed" from="Global movement/Propriety/Vbox/Apply_Movement" to="Global movement" method="_on_Apply_Movement_pressed"]
+
+[editable path="Vbox/Screen/Hbox/Vbox/View/Viewport/World3D/3D_View"]
+[editable path="Separater/Propriety/Vbox/Vector"]
+[editable path="Global Scale/Propriety/Vbox/Vector"]
+[editable path="Global movement/Propriety/Vbox/Vector"]

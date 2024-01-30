@@ -11,12 +11,12 @@ onready var Show_button: Button = $Hbox/Info/Hbox/Hide_and_show
 onready var Id_button: CheckBox = $Hbox/Info/Hbox/Id
 onready var Cam: Spatial = $Create_preview/View/Cam
 
-
 var group_scene
 
 var script_tile: Script = load("res://Script/Button_Tile.gd")
 
 var tittle: String = "Basic Tile"
+
 
 func _ready() -> void:
 	
@@ -40,15 +40,19 @@ func get_tile(id_tile: int):
 
 func generate_tile_button() -> void:
 	for child in group_scene.get_children():
-		yield(self,"create_thumbnail") #Generate to time
 		
 		var item_tile = TileButton.new()
 		item_tile.set_script(script_tile)
 		
-		generate_icon(child,item_tile)
-		
 		item_tile.Tile = child
 		Tiles.add_child(item_tile)
+		item_tile.rect_min_size = Vector2(32,32)
+	
+	for buttons in Tiles.get_children():
+		yield(self,"create_thumbnail") #Generate to time
+		
+		generate_icon(buttons.Tile,buttons)
+	
 
 
 func generate_icon(mesh_ins: Tile,item_tile: TileButton) -> void:
@@ -62,9 +66,7 @@ func generate_icon(mesh_ins: Tile,item_tile: TileButton) -> void:
 	var model_preview = mesh_ins.duplicate()
 	CreatePreview.add_child(model_preview)
 	model_preview.transform.origin = Vector3()
-	#yield(get_tree().create_timer(0.2),"timeout")
-	
-	#Get view texture
+	yield(get_tree().create_timer(0.2),"timeout")
 	
 	#Apply
 	item_tile.set("icon", create_image())
@@ -88,6 +90,11 @@ func _on_Id_pressed() -> void:
 
 func hide_vs() -> void:
 	$Hbox/Vs.hide()
+	rect_min_size.x = 0
+	rect_size.x = 0
+	#Scroll.rect_min_size.x = 0
+	##Scroll.rect_size.x = 0
 func show_vs() -> void:
 	$Hbox/Vs.show()
 	rect_min_size.x = 0
+	rect_size.x = 0

@@ -10,6 +10,7 @@ var node
 var propriety: String
 
 func _ready() -> void:
+	yield(get_tree().create_timer(0.1),"timeout")
 	vector = node.get(propriety)
 	
 	x.value = vector.x

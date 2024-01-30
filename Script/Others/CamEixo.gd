@@ -1,5 +1,11 @@
 extends Camera
 
+export(NodePath) var Cam_path: NodePath
+export(NodePath) var Pos_path: NodePath
+
+onready var Cam: Camera = get_node(Cam_path)
+onready var Pos: Spatial = get_node(Pos_path)
+
 onready var x: Position2D = $"../../../X"
 onready var y: Position2D = $"../../../Y"
 onready var z: Position2D = $"../../../Z"
@@ -21,7 +27,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	get_parent().global_rotation = Index.view3d.cam.global_rotation
+	get_parent().global_rotation = Cam.global_rotation
 	
 	var z_pos = unproject_position(eixo_z.global_transform.origin)
 	z.position = z_pos
@@ -43,23 +49,23 @@ func _process(_delta: float) -> void:
 	
 	
 	if lock_cam:
-		Index.view3d.pos.state = Index.view3d.pos.STATE.BLOCK
-		Index.view3d.cam.look_at(Index.view3d.pos.global_transform.origin,Vector3.UP)
+		Pos.state = Pos.STATE.BLOCK
+		Cam.look_at(Pos.global_transform.origin,Vector3.UP)
 		
 		if Input.is_action_just_released("click_left"):
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			lock_cam = false
-			Index.view3d.pos.state = Index.view3d.pos.STATE.IDLE
-			Index.block_view = false
+			Pos.state = Pos.STATE.IDLE
+			Pos.block_view = false
 
 var lock_cam: bool = false
 
 func _on_Rot_gui_input(_event: InputEvent) -> void:
 	if _event is InputEventMouseMotion:
-		if Input.is_mouse_button_pressed(BUTTON_LEFT) and Index.block_view:
+		if Input.is_mouse_button_pressed(BUTTON_LEFT) and Pos.block_view:
 			
-			Index.view3d.pos._rotation_local(_event.relative)
-			Index.block_view = true
+			Pos._rotation_local(_event.relative)
+			Pos.block_view = true
 			
 			lock_cam = true
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

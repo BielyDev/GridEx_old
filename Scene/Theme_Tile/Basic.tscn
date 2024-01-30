@@ -8,9 +8,12 @@
 [sub_resource type="StyleBoxEmpty" id=3]
 
 [node name="Base" type="PanelContainer"]
-anchor_right = 0.2125
+anchor_right = 0.134363
 anchor_bottom = 0.356944
+margin_right = -3.98499
+margin_bottom = 0.000335693
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 19 )
 __meta__ = {
 "_edit_use_anchors_": true
@@ -19,17 +22,17 @@ __meta__ = {
 [node name="Hbox" type="HBoxContainer" parent="."]
 margin_left = 3.0
 margin_top = 5.0
-margin_right = 269.0
+margin_right = 165.0
 margin_bottom = 250.0
 
 [node name="Info" type="VBoxContainer" parent="Hbox"]
-margin_right = 258.0
-margin_bottom = 244.0
+margin_right = 154.0
+margin_bottom = 245.0
 mouse_filter = 2
 size_flags_horizontal = 3
 
 [node name="Hbox" type="HBoxContainer" parent="Hbox/Info"]
-margin_right = 258.0
+margin_right = 154.0
 margin_bottom = 26.0
 
 [node name="Hide_and_show" type="Button" parent="Hbox/Info/Hbox"]
@@ -62,18 +65,18 @@ margin_bottom = 26.0
 
 [node name="Scroll" type="ScrollContainer" parent="Hbox/Info"]
 margin_top = 30.0
-margin_right = 258.0
-margin_bottom = 236.0
+margin_right = 154.0
+margin_bottom = 237.0
 size_flags_vertical = 3
 
 [node name="Tiles" type="HFlowContainer" parent="Hbox/Info/Scroll"]
-margin_right = 258.0
+margin_right = 154.0
 size_flags_horizontal = 3
 
 [node name="HS_Down" type="HSeparator" parent="Hbox/Info"]
-margin_top = 240.0
-margin_right = 258.0
-margin_bottom = 244.0
+margin_top = 241.0
+margin_right = 154.0
+margin_bottom = 245.0
 mouse_default_cursor_shape = 9
 script = ExtResource( 4 )
 Panel_Path = NodePath("../../..")
@@ -81,9 +84,9 @@ Y = true
 Negative = true
 
 [node name="Vs" type="VSeparator" parent="Hbox"]
-margin_left = 262.0
-margin_right = 266.0
-margin_bottom = 244.0
+margin_left = 158.0
+margin_right = 162.0
+margin_bottom = 245.0
 mouse_default_cursor_shape = 10
 script = ExtResource( 4 )
 Panel_Path = NodePath("../..")

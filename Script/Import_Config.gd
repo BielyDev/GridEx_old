@@ -5,8 +5,10 @@ signal CONFIRM()
 onready var Mat: VBoxContainer = $"%Materials"
 onready var Models: Spatial = $"%Models"
 onready var Tree_models: Tree = $"%Tree"
-onready var ProprietyPanel: PanelContainer = $Screen/Hbox/TreePanel/Vbox/ProprietyPanel
+onready var ProprietyPanel: PanelContainer = $Vbox/Screen/Hbox/TreePanel/Vbox/ProprietyPanel
 onready var Make_materials: Node = $Make_Materials
+onready var Screen: PanelContainer = $Vbox/Screen
+onready var view3d: Spatial = $"Vbox/Screen/Hbox/Vbox/View/Viewport/World3D/3D_View"
 
 var tile_icon: AtlasTexture = load("res://Assets/2D/Atlas/UI/Tile.tres")
 var group_tile_icon: AtlasTexture = load("res://Assets/2D/Atlas/UI/Group_tile.tres")
@@ -19,7 +21,7 @@ var root: TreeItem
 var go: bool
 
 func _ready() -> void:
-	UI.ready_animated_complex($Screen,$Background)
+	UI.ready_animated_complex(Screen,$Background)
 	
 	root = Tree_models.create_item()
 	root.set_text(0,"All")
@@ -191,4 +193,10 @@ func _on_Save_pressed() -> void:
 
 func _on_Close_pressed() -> void:
 	IndexLayer.popup_two("Do you want to close without saving?",self,"close_confirm","cancel")
+
+
+func _on_Vbox_mouse_entered() -> void:
+	view3d.Pos.block_view = false
+func _on_Vbox_mouse_exited() -> void:
+	view3d.Pos.block_view = true
 

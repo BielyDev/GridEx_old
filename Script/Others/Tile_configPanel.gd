@@ -17,4 +17,4 @@ func _on_Remove_pressed() -> void:
 
 
 func _on_Import_pressed() -> void:
-	File_node.press(7)
+	File_node.press(10)

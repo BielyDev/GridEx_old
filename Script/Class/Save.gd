@@ -120,13 +120,14 @@ static func save_layers_and_tile(Models: Spatial,array_layers: Array,array_tile:
 		)
 		
 		for child in layers.get_children():
-			array_tile.push_back(
-				{
-					id = child.get_index(),
-					id_tile = child.id_tile,
-					id_group = child.id_group,
-					position = str(child.global_transform.origin),
-					layer = layers.get_index()
-				}
-			)
+			if child is OmniLight == false:
+				array_tile.push_back(
+					{
+						id = child.get_index(),
+						id_tile = child.id_tile,
+						id_group = child.id_group,
+						position = str(child.global_transform.origin),
+						layer = layers.get_index()
+					}
+				)
 

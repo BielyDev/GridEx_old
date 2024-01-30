@@ -11,7 +11,7 @@ func _ready() -> void:
 	
 	add_child(id_text)
 	id_text.hide()
-	id_text.text =  str(Tile.id_tile,"\n",Tile.id_group)
+	id_text.text =  str(Tile.id_tile)
 
 func index() -> void:
 	Index.tile.id_tile = Tile.id_tile

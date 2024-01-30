@@ -28,57 +28,57 @@ albedo_color = Color( 0, 0.321569, 1, 1 )
 flags_unshaded = true
 albedo_color = Color( 1, 0, 0, 1 )
 
-[sub_resource type="Gradient" id=19]
+[sub_resource type="Gradient" id=21]
 offsets = PoolRealArray( 0.625, 0.666667 )
 colors = PoolColorArray( 1, 1, 1, 0.141176, 1, 1, 1, 0 )
 
 [sub_resource type="GradientTexture2D" id=20]
-gradient = SubResource( 19 )
+gradient = SubResource( 21 )
 fill = 1
 fill_from = Vector2( 0.5, 0.5 )
 
-[sub_resource type="Gradient" id=15]
+[sub_resource type="Gradient" id=22]
 offsets = PoolRealArray( 0.625, 0.666667 )
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
 [sub_resource type="GradientTexture2D" id=16]
-gradient = SubResource( 15 )
+gradient = SubResource( 22 )
 fill = 1
 fill_from = Vector2( 0.5, 0.5 )
 
-[sub_resource type="Gradient" id=17]
+[sub_resource type="Gradient" id=23]
 offsets = PoolRealArray( 0.625, 0.666667 )
 colors = PoolColorArray( 1, 1, 1, 0.584314, 1, 1, 1, 0 )
 
 [sub_resource type="GradientTexture2D" id=18]
-gradient = SubResource( 17 )
+gradient = SubResource( 23 )
 fill = 1
 fill_from = Vector2( 0.5, 0.5 )
 
-[sub_resource type="Gradient" id=13]
+[sub_resource type="Gradient" id=24]
 offsets = PoolRealArray( 0.397638, 0.425197, 0.452756 )
 colors = PoolColorArray( 1, 1, 1, 0.431373, 1, 1, 1, 1, 0.870588, 0.870588, 0.870588, 0 )
 
 [sub_resource type="GradientTexture2D" id=14]
-gradient = SubResource( 13 )
+gradient = SubResource( 24 )
 fill = 1
 fill_from = Vector2( 0.5, 0.5 )
 
-[sub_resource type="Gradient" id=11]
+[sub_resource type="Gradient" id=25]
 offsets = PoolRealArray( 0.397638, 0.433071, 0.46063, 0.507874 )
 colors = PoolColorArray( 1, 1, 1, 0.572549, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0 )
 
 [sub_resource type="GradientTexture2D" id=12]
-gradient = SubResource( 11 )
+gradient = SubResource( 25 )
 fill = 1
 fill_from = Vector2( 0.5, 0.5 )
 
-[sub_resource type="Gradient" id=9]
+[sub_resource type="Gradient" id=26]
 offsets = PoolRealArray( 0.397638, 0.425197, 0.452756 )
 colors = PoolColorArray( 1, 1, 1, 0.160784, 1, 1, 1, 1, 0.870588, 0.870588, 0.870588, 0 )
 
 [sub_resource type="GradientTexture2D" id=10]
-gradient = SubResource( 9 )
+gradient = SubResource( 26 )
 fill = 1
 fill_from = Vector2( 0.5, 0.5 )
 
@@ -103,7 +103,7 @@ size_flags_vertical = 3
 stretch = true
 
 [node name="Viewport" type="Viewport" parent="View"]
-size = Vector2( 1275, 933 )
+size = Vector2( 755, 553 )
 handle_input_locally = false
 render_target_update_mode = 3
 shadow_atlas_size = 2048
@@ -197,6 +197,8 @@ physics_object_picking = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1 )
 cull_mask = 524288
 script = ExtResource( 4 )
+Cam_path = NodePath("../../../../../View/Viewport/3D_View/Camera")
+Pos_path = NodePath("../../../../../View/Viewport/3D_View/Pos")
 
 [node name="Model" type="Spatial" parent="Eixo/View/View"]
 

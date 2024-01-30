@@ -1,6 +1,7 @@
 extends Control
 
 export(NodePath) var Panel_Path: NodePath
+
 export(bool) var Y: bool = false
 export(bool) var Negative: bool = false
 
@@ -42,7 +43,6 @@ func movement(mouse: Vector2) -> void:
 			save_pos = false
 		
 		if Negative:Panel_node.rect_min_size.x = Panel_node.rect_min_size.x + mouse.x #Mouse are event.relative 
-		
 		
 		
 		else: Panel_node.rect_min_size.x = Panel_node.rect_min_size.x - mouse.x
