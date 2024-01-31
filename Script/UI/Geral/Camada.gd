@@ -8,7 +8,6 @@ var new_layerbutton: PackedScene = preload("res://Scene/UI/Resources/LayerButton
 func _ready() -> void:
 	yield(get_tree().create_timer(0.2),"timeout")
 	Index.block.connect("child_entered_tree",self,"add_layer")
-	#Index.block.connect("child_exiting_tree",self,"remove_layer")
 
 func add_layer(node: Node) -> void:
 	if node is Spatial:
@@ -17,6 +16,7 @@ func add_layer(node: Node) -> void:
 		layerbutton.Layer3d = node
 		layerbutton.Par = self
 		Layers.add_child(layerbutton)
+
 
 func remove_layer(node: Node) -> void:
 	if node is Spatial:
@@ -33,11 +33,20 @@ func selected(node: Control) -> void:
 
 func _on_Add_pressed() -> void:
 	var new_layer = Spatial.new()
-	new_layer.name = str("Layer ", Index.block.get_child_count())
+	var num: int = Index.block.get_child_count()
+	var nome = str("Layer ", num)
 	
-	Index.block.add_child(new_layer)
+	for layers in Index.block.get_children():
+		if layers.name == nome:
+			num = layers.name.to_int()+num
+			nome = str("Layer ", num)
+	
+	
+	new_layer.name = nome
+	
+	Index.block.call_deferred("add_child",new_layer)
 
 
 func _on_Delete_pressed() -> void:
 	Layers.get_child(Index.layer_select).delete()
-	Index.layer_select -= 1
+

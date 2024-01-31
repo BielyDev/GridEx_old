@@ -12,20 +12,26 @@ onready var Add: Node = $AddBlock
 onready var Line: Node = $Line
 onready var Grid: MeshInstance = $Grid
 onready var Preview: MeshInstance = $Selection3D/Preview
+onready var Preview_instance: MeshInstance = $Selection3D/Preview_instance
 
 export(int) var grid_size: int
 
 var button_pressed: bool = false
 var selection_visible: bool = true
+var selection_instance_visible: bool = false
 var pos_save: Vector3 = Vector3(999,99,999)
 var pos: Vector3 
+var grid_space: Vector3 = Vector3(2,2,2)
 var save_line: Vector3
 
 
 func _input(_event: InputEvent) -> void:
-	Selection.visible = (Index.mode != Index.MODE.VOID) and (Index.mode != Index.MODE.LIGHT) and Index.block_view == false
+	Selection.visible = (Index.mode != Index.MODE.VOID) and Index.block_view == false
 	
-	Preview.visible = selection_visible
+	Grid.scale = grid_space
+	
+	Preview.visible = selection_visible and (Index.mode != Index.MODE.LIGHT) and selection_instance_visible == false
+	Preview_instance.visible = Preview.visible == false and selection_instance_visible and (Index.mode != Index.MODE.LIGHT)
 	
 	if Index.block_view:
 		return
@@ -59,8 +65,15 @@ func _selection_moviment() -> void:
 		
 		emit_signal("move_block",pos)
 	
-	pos = Index.view3d.ray.get_collision_point().snapped(Vector3(2,2,2)) + Vector3(0,1,0)
+	var mouse = Index.view3d.ray.get_collision_point().snapped(grid_space)
+	var vetor = Index.block.get_child(Index.layer_select).transform.origin
+	var caculate = Vector3(
+		vetor.x,
+		vetor.y,
+		vetor.z
+	)
 	
+	pos = (caculate) + (mouse) - Index.block.get_child(Index.layer_select).transform.origin
 	Selection.global_transform.origin = pos
 
 

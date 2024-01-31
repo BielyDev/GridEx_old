@@ -128,10 +128,15 @@ func delete_itens() -> void:
 
 
 func delete_nodes() -> void:
-	if is_tree_selection():
-		 delete_groups()
-	else:
-		delete_itens()
+	#if is_tree_selection():
+	#	 delete_groups()
+	var _item = get_item_selection()
+	print(_item)
+	if _item != null:
+		for node in group:
+			if node.tree == Tree_models.get_selected():
+				delete_itens_selected(node,node.node)
+				return
 
 
 func delete_itens_selected(group_selected:Dictionary ,item_selected: MeshInstance):

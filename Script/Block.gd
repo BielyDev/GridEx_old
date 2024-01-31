@@ -73,7 +73,7 @@ func delete_block(tile,pos,undo) -> bool:
 			block_pos.erase(dic)
 		else:
 			for block in block_pos:
-				if block.pos == pos:
+				if block.pos == Index.block.get_child(Index.layer_select).to_local(pos):
 					var dic = {pos = pos,tile = block.tile}
 					block_pos.erase(dic)
 					tile_undo = block.tile
@@ -115,6 +115,9 @@ func instance_block(id_tile: int,pos_in: Vector3,rot: Vector3,undo: bool) -> voi
 	for groups_tiles in Index.edit_node.Tile_groups.get_children():
 		if Index.tile.id_group == groups_tiles.group_scene.id_group:
 			tile = groups_tiles.get_tile(id_tile)
+	if tile == null:
+		print("null selection")
+		return
 	
 	var num: int = 0
 	var name_staterd: String = tile.name

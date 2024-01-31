@@ -3,6 +3,7 @@ extends Node
 onready var Block: Spatial = $"../Block"
 onready var Grid: MeshInstance = $"../Grid"
 onready var Selection: MeshInstance = $"../Selection3D"
+onready var Par: Spatial = $".."
 
 var rot: Vector3
 
@@ -22,12 +23,12 @@ func _input(_event: InputEvent) -> void:
 	if Input.is_key_pressed(KEY_CONTROL):
 		if Input.is_action_just_pressed("middle_up"):
 			Index.view3d.pos.state = Index.view3d.pos.STATE.BLOCK
-			Grid.transform.origin.y += 2
+			Grid.transform.origin.y += Par.grid_space.y
 			Index.emit_signal("height_tile",Grid.transform.origin.y)
 		
 		elif Input.is_action_just_pressed("middle_down"):
 			Index.view3d.pos.state = Index.view3d.pos.STATE.BLOCK
-			Grid.transform.origin.y += -2
+			Grid.transform.origin.y += -Par.grid_space.y
 			Index.emit_signal("height_tile",Grid.transform.origin.y)
 		
 		else:

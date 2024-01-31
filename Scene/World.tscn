@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Scene/World_Node.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scene/UI/Bars/ViewPanel.tscn" type="PackedScene" id=2]
@@ -33,6 +33,7 @@
 [ext_resource path="res://Script/UI/Geral/Camada.gd" type="Script" id=31]
 [ext_resource path="res://Script/MenuBttScripts/FileButton/Open_project.gd" type="Script" id=32]
 [ext_resource path="res://Assets/2D/Atlas/UI/Add.tres" type="Texture" id=33]
+[ext_resource path="res://Scene/UI/Bars/Grid.tscn" type="PackedScene" id=34]
 [ext_resource path="res://Assets/2D/Atlas/UI/Delete.tres" type="Texture" id=35]
 
 [sub_resource type="Gradient" id=3979]
@@ -141,14 +142,14 @@ margin_bottom = 680.0
 
 [node name="Tools" type="PanelContainer" parent="Local/Vbox/Hbox/LeftBar"]
 margin_right = 171.0
-margin_bottom = 392.0
+margin_bottom = 345.0
 
 [node name="Tools" type="TabContainer" parent="Local/Vbox/Hbox/LeftBar/Tools"]
 margin_left = 3.0
 margin_top = 5.0
 margin_right = 168.0
-margin_bottom = 385.0
-rect_min_size = Vector2( 165, 380 )
+margin_bottom = 338.0
+rect_min_size = Vector2( 165, 333 )
 tab_align = 0
 script = ExtResource( 26 )
 
@@ -189,9 +190,9 @@ margin_right = 158.0
 margin_bottom = 104.0
 
 [node name="Hs" type="HSeparator" parent="Local/Vbox/Hbox/LeftBar"]
-margin_top = 396.0
+margin_top = 349.0
 margin_right = 171.0
-margin_bottom = 400.0
+margin_bottom = 353.0
 mouse_default_cursor_shape = 9
 script = ExtResource( 27 )
 Panel_Path = NodePath("../Tools/Tools")
@@ -199,7 +200,7 @@ Y = true
 Negative = true
 
 [node name="Options" type="PanelContainer" parent="Local/Vbox/Hbox/LeftBar"]
-margin_top = 404.0
+margin_top = 357.0
 margin_right = 171.0
 margin_bottom = 680.0
 size_flags_vertical = 3
@@ -208,7 +209,7 @@ size_flags_vertical = 3
 margin_left = 3.0
 margin_top = 5.0
 margin_right = 168.0
-margin_bottom = 269.0
+margin_bottom = 316.0
 rect_min_size = Vector2( 83.354, 0 )
 tab_align = 0
 script = ExtResource( 26 )
@@ -223,7 +224,7 @@ margin_bottom = -7.0
 
 [node name="Vbox" parent="Local/Vbox/Hbox/LeftBar/Options/Options/Options" index="0"]
 margin_right = 156.0
-margin_bottom = 215.0
+margin_bottom = 262.0
 
 [node name="Edit" parent="Local/Vbox/Hbox/LeftBar/Options/Options/Options/Vbox" index="0"]
 margin_right = 153.0
@@ -261,6 +262,12 @@ margin_right = 153.0
 [node name="Spin" parent="Local/Vbox/Hbox/LeftBar/Options/Options/Options/Vbox/Height_tile" index="1"]
 margin_right = 153.0
 
+[node name="Grid" parent="Local/Vbox/Hbox/LeftBar/Options/Options" instance=ExtResource( 34 )]
+visible = false
+margin_top = -369.0
+margin_right = -156.0
+margin_bottom = -411.0
+
 [node name="Vs" type="VSeparator" parent="Local/Vbox/Hbox"]
 margin_left = 175.0
 margin_right = 179.0
@@ -294,6 +301,7 @@ margin_right = 788.0
 margin_bottom = 37.0
 
 [node name="OptionsPanel" parent="Local/Vbox/Hbox/View/ModePanel/ModePanel/Modes" instance=ExtResource( 6 )]
+margin_right = 256.0
 margin_bottom = 32.0
 
 [node name="Collision" parent="Local/Vbox/Hbox/View/ModePanel/ModePanel/Modes/OptionsPanel" index="0"]
@@ -303,35 +311,39 @@ margin_bottom = 32.0
 margin_bottom = 32.0
 Node_Path = NodePath("../../../../../../../../../World")
 
-[node name="Sep" parent="Local/Vbox/Hbox/View/ModePanel/ModePanel/Modes/OptionsPanel" index="2"]
+[node name="Preview_instance" parent="Local/Vbox/Hbox/View/ModePanel/ModePanel/Modes/OptionsPanel" index="2"]
+margin_bottom = 32.0
+Node_Path = NodePath("../../../../../../../../../World")
+
+[node name="Sep" parent="Local/Vbox/Hbox/View/ModePanel/ModePanel/Modes/OptionsPanel" index="3"]
 modulate = Color( 1, 1, 1, 0.709804 )
 margin_bottom = 32.0
 
-[node name="Light" parent="Local/Vbox/Hbox/View/ModePanel/ModePanel/Modes/OptionsPanel" index="3"]
+[node name="Light" parent="Local/Vbox/Hbox/View/ModePanel/ModePanel/Modes/OptionsPanel" index="4"]
 margin_bottom = 32.0
 Node_Path = NodePath("../../../../../../../../../World/Light")
 
-[node name="Shadow" parent="Local/Vbox/Hbox/View/ModePanel/ModePanel/Modes/OptionsPanel" index="4"]
+[node name="Shadow" parent="Local/Vbox/Hbox/View/ModePanel/ModePanel/Modes/OptionsPanel" index="5"]
 margin_bottom = 32.0
 Node_Path = NodePath("../../../../../../../../../World/Light")
 
-[node name="Grid" parent="Local/Vbox/Hbox/View/ModePanel/ModePanel/Modes/OptionsPanel" index="5"]
+[node name="Grid" parent="Local/Vbox/Hbox/View/ModePanel/ModePanel/Modes/OptionsPanel" index="6"]
 margin_bottom = 32.0
 Node_Path = NodePath("../../../../../../../../../World/Grid")
 
-[node name="Axis" parent="Local/Vbox/Hbox/View/ModePanel/ModePanel/Modes/OptionsPanel" index="6"]
+[node name="Axis" parent="Local/Vbox/Hbox/View/ModePanel/ModePanel/Modes/OptionsPanel" index="7"]
 margin_bottom = 32.0
 Node_Path = NodePath("../../../../../../../../../World/Axis")
 
 [node name="Vs" type="VSeparator" parent="Local/Vbox/Hbox/View/ModePanel/ModePanel/Modes"]
 modulate = Color( 1, 1, 1, 0.709804 )
-margin_left = 224.0
-margin_right = 228.0
+margin_left = 260.0
+margin_right = 264.0
 margin_bottom = 32.0
 
 [node name="Height_tile" type="HBoxContainer" parent="Local/Vbox/Hbox/View/ModePanel/ModePanel/Modes"]
-margin_left = 232.0
-margin_right = 310.0
+margin_left = 268.0
+margin_right = 346.0
 margin_bottom = 32.0
 script = ExtResource( 30 )
 
@@ -359,6 +371,9 @@ margin_bottom = 571.0
 [node name="Viewport" parent="Local/Vbox/Hbox/View/ViewPanel/View" index="0"]
 size = Vector2( 785, 566 )
 
+[node name="Camera" parent="Local/Vbox/Hbox/View/ViewPanel/View/Viewport/3D_View" index="1"]
+transform = Transform( 1, 6.18174e-08, 2.12813e-07, -1.94193e-07, 0.707107, 0.707107, -1.0677e-07, -0.707107, 0.707107, 1.0677e-06, 7.07107, 7.07107 )
+
 [node name="Screen_Mouse" parent="Local/Vbox/Hbox/View/ViewPanel" index="1"]
 margin_right = 788.0
 margin_bottom = 571.0
@@ -366,6 +381,9 @@ margin_bottom = 571.0
 [node name="Settings" parent="Local/Vbox/Hbox/View/ViewPanel" index="2"]
 margin_right = 788.0
 margin_bottom = 571.0
+
+[node name="CameraOption" parent="Local/Vbox/Hbox/View/ViewPanel/Settings" index="0"]
+items = [ "Default", null, 0, false, false, 0, 0, null, "", false, "Unshaded", null, 0, false, false, 1, 0, null, "", false, "Overdrive", null, 0, false, false, 2, 0, null, "", false ]
 
 [node name="Eixo" parent="Local/Vbox/Hbox/View/ViewPanel" index="3"]
 margin_right = 788.0
@@ -475,7 +493,7 @@ margin_right = 40.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 40, 0 )
 mouse_default_cursor_shape = 2
-text = "Add"
+icon = ExtResource( 33 )
 expand_icon = true
 script = ExtResource( 5 )
 
@@ -586,6 +604,7 @@ modulate = Color( 0.537255, 0.564706, 0.67451, 0.317647 )
 anchor_left = -0.0181159
 anchor_right = 0.311594
 margin_top = -5.0
+margin_right = 39.0001
 margin_bottom = 28.0
 mouse_filter = 2
 custom_styles/panel = SubResource( 3981 )

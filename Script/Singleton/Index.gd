@@ -3,6 +3,7 @@ extends Node
 signal model_tile_selection(mesh)
 signal change_tile()
 signal height_tile(height)
+signal grid_size(size)
 
 enum SETT {CAM_SENSI,CAM_SENSI_MOVE}
 enum MODE {VOID,ADD,REMOVE,LINE,BUCKET,LIGHT}

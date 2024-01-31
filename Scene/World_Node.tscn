@@ -16,7 +16,7 @@ flags_unshaded = true
 params_cull_mode = 2
 albedo_color = Color( 1, 1, 1, 0.419608 )
 albedo_texture = ExtResource( 5 )
-uv1_scale = Vector3( 146.3, 1, 146.3 )
+uv1_offset = Vector3( 0.5, 0, 0.5 )
 uv1_triplanar = true
 proximity_fade_enable = true
 proximity_fade_distance = 1.0
@@ -25,9 +25,10 @@ distance_fade_min_distance = 0.0
 distance_fade_max_distance = 3.85
 
 [sub_resource type="PlaneMesh" id=8]
+size = Vector2( 300, 300 )
 
 [sub_resource type="BoxShape" id=3956]
-extents = Vector3( 31, 0.001, 31 )
+extents = Vector3( 150, 0.001, 150 )
 
 [sub_resource type="SpatialMaterial" id=3973]
 flags_unshaded = true
@@ -283,14 +284,13 @@ script = ExtResource( 9 )
 script = ExtResource( 1 )
 
 [node name="Grid" type="MeshInstance" parent="."]
-transform = Transform( 146.329, 0, 0, 0, 34, 0, 0, 0, 146.329, 0, 0, 0 )
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
 material_override = SubResource( 3 )
 cast_shadow = 0
 mesh = SubResource( 8 )
 skeleton = NodePath("../..")
 
 [node name="Area" type="Area" parent="Grid"]
-transform = Transform( 0.0294118, 0, 0, 0, 0.0294118, 0, 0, 0, 0.0294118, 0, 0, 0 )
 collision_mask = 0
 
 [node name="CollisionShape" type="CollisionShape" parent="Grid/Area"]
@@ -318,6 +318,10 @@ anims/Remove = SubResource( 3969 )
 
 [node name="Preview" type="MeshInstance" parent="Selection3D"]
 material_override = ExtResource( 7 )
+script = ExtResource( 2 )
+
+[node name="Preview_instance" type="MeshInstance" parent="Selection3D"]
+visible = false
 script = ExtResource( 2 )
 
 [node name="Light" type="DirectionalLight" parent="."]

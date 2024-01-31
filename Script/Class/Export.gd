@@ -148,7 +148,7 @@ static func file_tscn_create(Worlds: Spatial,collision_save: Array,scene: Packed
 	Worlds.queue_free()
 	collision_save = []
 
-static func file_tile_create(path: String,group_scene: PackedScene,Groups,import: bool) -> void:
+static func file_tile_create(path: String,group_scene: PackedScene,Groups,import: bool,id_load_group: bool = false) -> void:
 	
 	#Cria o arquivo da cena
 	var file_name = str(path,Groups.name,".tscn")
@@ -168,7 +168,10 @@ static func file_tile_create(path: String,group_scene: PackedScene,Groups,import
 	
 	var save_data = {id = [],id_tile = [],id_group = -1,scene = tile_scene}
 	
-	save_data.id_group = int(randi())
+	if id_load_group:
+		save_data.id_group = Groups.id_group
+	else:
+		save_data.id_group = int(randi())
 	
 	for tiles in Groups.get_children():
 		save_data.id.append(tiles.get_index())

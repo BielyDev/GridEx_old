@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://Script/Import_Config.gd" type="Script" id=1]
 [ext_resource path="res://Scene/Resource/3D_View.tscn" type="PackedScene" id=2]
@@ -6,8 +6,6 @@
 [ext_resource path="res://Assets/2D/Atlas/UI/Closed.tres" type="Texture" id=4]
 [ext_resource path="res://Script/Import_Config/ProprietyPanel/Position.gd" type="Script" id=5]
 [ext_resource path="res://Script/ProprietyPanel.gd" type="Script" id=6]
-[ext_resource path="res://Script/Import_Config/Separater.gd" type="Script" id=7]
-[ext_resource path="res://Scene/Resource/Vector.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Script/Import_Config/Menu_Import_Models.gd" type="Script" id=9]
 [ext_resource path="res://Script/Class/AnimationButtonClass.gd" type="Script" id=10]
 [ext_resource path="res://Script/Import_Config/Make_Materials.gd" type="Script" id=11]
@@ -16,6 +14,8 @@
 [ext_resource path="res://Script/Others/CamEixo.gd" type="Script" id=14]
 [ext_resource path="res://Script/Others/Eixo_Button.gd" type="Script" id=15]
 [ext_resource path="res://Assets/Models/OBJ/Eixo.obj" type="ArrayMesh" id=16]
+[ext_resource path="res://Script/Menu_button_propriety.gd" type="Script" id=17]
+[ext_resource path="res://Script/MenuBttScripts/Transform/Separator.gd" type="Script" id=18]
 
 [sub_resource type="CubeMesh" id=22]
 
@@ -190,6 +190,12 @@ gradient = SubResource( 9 )
 fill = 1
 fill_from = Vector2( 0.5, 0.5 )
 
+[sub_resource type="GDScript" id=39]
+script/source = "extends HBoxContainer
+
+onready var Models: Spatial = $\"%Models\"
+"
+
 [node name="Import_Config" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -301,15 +307,15 @@ margin_right = 752.0
 margin_bottom = 24.0
 
 [node name="Open" type="Button" parent="Vbox/Screen/Hbox/Vbox/Hbox"]
-margin_right = 114.0
+margin_right = 134.0
 margin_bottom = 24.0
 mouse_default_cursor_shape = 2
-text = "Open models"
+text = "Import models"
 script = ExtResource( 10 )
 
 [node name="Save" type="Button" parent="Vbox/Screen/Hbox/Vbox/Hbox"]
-margin_left = 118.0
-margin_right = 232.0
+margin_left = 138.0
+margin_right = 252.0
 margin_bottom = 24.0
 mouse_default_cursor_shape = 2
 text = "Save groups"
@@ -348,6 +354,7 @@ unique_name_in_owner = true
 
 [node name="DirectionalLight" type="DirectionalLight" parent="Vbox/Screen/Hbox/Vbox/View/Viewport/World3D/Settings"]
 transform = Transform( 0.866025, 0.25, 0.433013, -0.5, 0.433013, 0.75, 0, -0.866025, 0.5, 0, 2.72987, 0 )
+light_cull_mask = 4293918721
 
 [node name="Grid" type="MeshInstance" parent="Vbox/Screen/Hbox/Vbox/View/Viewport/World3D/Settings"]
 transform = Transform( 146.329, 0, 0, 0, 34, 0, 0, 0, 146.329, 0, 0, 0 )
@@ -387,7 +394,7 @@ margin_top = 6.0
 margin_right = -2.22302
 margin_bottom = 120.0
 mouse_filter = 2
-size_flags_horizontal = 9
+size_flags_horizontal = 10
 
 [node name="View" type="ViewportContainer" parent="Vbox/Screen/Hbox/Vbox/View/View2/Eixo"]
 anchor_left = 1.0
@@ -398,6 +405,7 @@ margin_right = -4.99939
 margin_bottom = 74.0
 rect_min_size = Vector2( 70, 70 )
 mouse_filter = 2
+size_flags_horizontal = 10
 stretch = true
 
 [node name="View" type="Viewport" parent="Vbox/Screen/Hbox/Vbox/View/View2/Eixo/View"]
@@ -608,6 +616,7 @@ margin_top = 582.0
 margin_right = 752.0
 margin_bottom = 615.0
 rect_min_size = Vector2( 0, 33 )
+script = SubResource( 39 )
 
 [node name="Examples" type="CheckBox" parent="Vbox/Screen/Hbox/Vbox/Options"]
 margin_right = 132.0
@@ -619,29 +628,22 @@ Node_Path = NodePath("../../../../../../Preview")
 my_propriety = "pressed"
 his_propriety = "visible"
 
-[node name="Separater" type="Button" parent="Vbox/Screen/Hbox/Vbox/Options"]
+[node name="All_filters" type="CheckBox" parent="Vbox/Screen/Hbox/Vbox/Options"]
 margin_left = 136.0
-margin_right = 230.0
+margin_right = 268.0
 margin_bottom = 33.0
 mouse_default_cursor_shape = 2
-text = "Separater"
+text = "All filters"
 script = ExtResource( 10 )
 
-[node name="Global_scaled" type="Button" parent="Vbox/Screen/Hbox/Vbox/Options"]
-margin_left = 234.0
-margin_right = 358.0
+[node name="Transforms" type="MenuButton" parent="Vbox/Screen/Hbox/Vbox/Options"]
+margin_left = 272.0
+margin_right = 466.0
 margin_bottom = 33.0
-mouse_default_cursor_shape = 2
-text = "Global scale"
-script = ExtResource( 10 )
-
-[node name="Global_movement" type="Button" parent="Vbox/Screen/Hbox/Vbox/Options"]
-margin_left = 362.0
-margin_right = 516.0
-margin_bottom = 33.0
-mouse_default_cursor_shape = 2
-text = "Global movement"
-script = ExtResource( 10 )
+text = "Edit all transforms"
+items = [ "Separate everyone", null, 0, false, false, 0, 0, null, "", false, "", null, 0, false, true, 1, 0, null, "", true, "All the positions", null, 0, false, false, 2, 0, null, "", false, "All rotations", null, 0, false, false, 3, 0, null, "", false, "All sizes", null, 0, false, false, 4, 0, null, "", false ]
+script = ExtResource( 17 )
+Scripts = [ ExtResource( 18 ), null, null, null, null ]
 
 [node name="TreePanel" type="PanelContainer" parent="Vbox/Screen/Hbox"]
 margin_left = 966.0
@@ -752,6 +754,7 @@ size_flags_vertical = 0
 alignment = 1
 
 [node name="Add" type="Button" parent="Vbox/Screen/Hbox/TreePanel/Vbox/Buttons_add/Hbox"]
+visible = false
 margin_right = 94.0
 margin_bottom = 24.0
 mouse_default_cursor_shape = 2
@@ -761,325 +764,13 @@ script = ExtResource( 10 )
 Color_pressed_back = Color( 0.376471, 0.72549, 1, 1 )
 
 [node name="Delete" type="Button" parent="Vbox/Screen/Hbox/TreePanel/Vbox/Buttons_add/Hbox"]
-margin_left = 174.0
-margin_right = 238.0
+margin_left = 87.0
+margin_right = 151.0
 margin_bottom = 24.0
 mouse_default_cursor_shape = 2
 text = "Delete"
 script = ExtResource( 10 )
 Color_pressed_back = Color( 1, 0.337255, 0.407843, 1 )
-
-[node name="Separater" type="Control" parent="."]
-visible = false
-anchor_left = 0.2125
-anchor_top = 0.665278
-anchor_right = 0.44375
-anchor_bottom = 0.880556
-script = ExtResource( 7 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
-Propriety_name = "separator"
-
-[node name="Propriety" type="PanelContainer" parent="Separater"]
-anchor_right = 1.0
-anchor_bottom = 1.2
-margin_bottom = -24.0
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Vbox" type="VBoxContainer" parent="Separater/Propriety"]
-margin_left = 3.0
-margin_top = 5.0
-margin_right = 293.0
-margin_bottom = 155.0
-
-[node name="Hbox" type="HBoxContainer" parent="Separater/Propriety/Vbox"]
-margin_right = 290.0
-margin_bottom = 33.0
-alignment = 1
-
-[node name="Tittle" type="Label" parent="Separater/Propriety/Vbox/Hbox"]
-margin_top = 6.0
-margin_right = 253.0
-margin_bottom = 26.0
-size_flags_horizontal = 3
-text = "Separator"
-align = 1
-
-[node name="Close" type="TextureButton" parent="Separater/Propriety/Vbox/Hbox"]
-margin_left = 257.0
-margin_right = 290.0
-margin_bottom = 33.0
-mouse_default_cursor_shape = 2
-texture_normal = ExtResource( 4 )
-
-[node name="Vector" parent="Separater/Propriety/Vbox" instance=ExtResource( 8 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 37.0
-margin_right = 290.0
-margin_bottom = 117.0
-size_flags_horizontal = 11
-
-[node name="X" parent="Separater/Propriety/Vbox/Vector" index="0"]
-margin_right = 290.0
-
-[node name="x" parent="Separater/Propriety/Vbox/Vector/X" index="0"]
-margin_right = 100.0
-rect_min_size = Vector2( 100, 0 )
-size_flags_horizontal = 1
-
-[node name="X" parent="Separater/Propriety/Vbox/Vector/X" index="1"]
-margin_left = 104.0
-margin_right = 290.0
-size_flags_horizontal = 3
-
-[node name="Y" parent="Separater/Propriety/Vbox/Vector" index="1"]
-margin_right = 290.0
-
-[node name="y" parent="Separater/Propriety/Vbox/Vector/Y" index="0"]
-margin_right = 100.0
-rect_min_size = Vector2( 100, 0 )
-size_flags_horizontal = 1
-
-[node name="Y" parent="Separater/Propriety/Vbox/Vector/Y" index="1"]
-margin_left = 104.0
-margin_right = 290.0
-size_flags_horizontal = 3
-
-[node name="Z" parent="Separater/Propriety/Vbox/Vector" index="2"]
-margin_right = 290.0
-
-[node name="z" parent="Separater/Propriety/Vbox/Vector/Z" index="0"]
-margin_right = 100.0
-rect_min_size = Vector2( 100, 0 )
-size_flags_horizontal = 1
-
-[node name="Z" parent="Separater/Propriety/Vbox/Vector/Z" index="1"]
-margin_left = 104.0
-margin_right = 290.0
-size_flags_horizontal = 3
-
-[node name="Ok" type="Button" parent="Separater/Propriety/Vbox"]
-margin_top = 121.0
-margin_right = 290.0
-margin_bottom = 145.0
-mouse_default_cursor_shape = 2
-text = "Apply"
-script = ExtResource( 10 )
-
-[node name="Global Scale" type="Control" parent="."]
-visible = false
-anchor_left = 0.2125
-anchor_top = 0.665278
-anchor_right = 0.44375
-anchor_bottom = 0.880556
-script = ExtResource( 7 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
-Propriety_name = "global_scale"
-
-[node name="Propriety" type="PanelContainer" parent="Global Scale"]
-anchor_right = 1.0
-anchor_bottom = 1.2
-margin_bottom = -24.0
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Vbox" type="VBoxContainer" parent="Global Scale/Propriety"]
-margin_left = 3.0
-margin_top = 5.0
-margin_right = 293.0
-margin_bottom = 155.0
-
-[node name="Hbox" type="HBoxContainer" parent="Global Scale/Propriety/Vbox"]
-margin_right = 290.0
-margin_bottom = 33.0
-alignment = 1
-
-[node name="Tittle" type="Label" parent="Global Scale/Propriety/Vbox/Hbox"]
-margin_top = 6.0
-margin_right = 253.0
-margin_bottom = 26.0
-size_flags_horizontal = 3
-text = "Global scale"
-align = 1
-
-[node name="Close" type="TextureButton" parent="Global Scale/Propriety/Vbox/Hbox"]
-margin_left = 257.0
-margin_right = 290.0
-margin_bottom = 33.0
-mouse_default_cursor_shape = 2
-texture_normal = ExtResource( 4 )
-
-[node name="Vector" parent="Global Scale/Propriety/Vbox" instance=ExtResource( 8 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 37.0
-margin_right = 290.0
-margin_bottom = 117.0
-size_flags_horizontal = 11
-
-[node name="X" parent="Global Scale/Propriety/Vbox/Vector" index="0"]
-margin_right = 290.0
-
-[node name="x" parent="Global Scale/Propriety/Vbox/Vector/X" index="0"]
-margin_right = 100.0
-rect_min_size = Vector2( 100, 0 )
-size_flags_horizontal = 1
-
-[node name="X" parent="Global Scale/Propriety/Vbox/Vector/X" index="1"]
-margin_left = 104.0
-margin_right = 290.0
-size_flags_horizontal = 3
-
-[node name="Y" parent="Global Scale/Propriety/Vbox/Vector" index="1"]
-margin_right = 290.0
-
-[node name="y" parent="Global Scale/Propriety/Vbox/Vector/Y" index="0"]
-margin_right = 100.0
-rect_min_size = Vector2( 100, 0 )
-size_flags_horizontal = 1
-
-[node name="Y" parent="Global Scale/Propriety/Vbox/Vector/Y" index="1"]
-margin_left = 104.0
-margin_right = 290.0
-size_flags_horizontal = 3
-
-[node name="Z" parent="Global Scale/Propriety/Vbox/Vector" index="2"]
-margin_right = 290.0
-
-[node name="z" parent="Global Scale/Propriety/Vbox/Vector/Z" index="0"]
-margin_right = 100.0
-rect_min_size = Vector2( 100, 0 )
-size_flags_horizontal = 1
-
-[node name="Z" parent="Global Scale/Propriety/Vbox/Vector/Z" index="1"]
-margin_left = 104.0
-margin_right = 290.0
-size_flags_horizontal = 3
-
-[node name="Ok" type="Button" parent="Global Scale/Propriety/Vbox"]
-visible = false
-margin_top = 121.0
-margin_right = 290.0
-margin_bottom = 145.0
-mouse_default_cursor_shape = 2
-text = "Apply"
-script = ExtResource( 10 )
-
-[node name="Apply_Scale" type="Button" parent="Global Scale/Propriety/Vbox"]
-margin_top = 121.0
-margin_right = 290.0
-margin_bottom = 145.0
-mouse_default_cursor_shape = 2
-text = "Apply"
-script = ExtResource( 10 )
-
-[node name="Global movement" type="Control" parent="."]
-visible = false
-anchor_left = 0.2125
-anchor_top = 0.665278
-anchor_right = 0.44375
-anchor_bottom = 0.880556
-script = ExtResource( 7 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
-Propriety_name = "global_movement"
-
-[node name="Propriety" type="PanelContainer" parent="Global movement"]
-anchor_right = 1.0
-anchor_bottom = 1.2
-margin_bottom = -24.0
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Vbox" type="VBoxContainer" parent="Global movement/Propriety"]
-margin_left = 3.0
-margin_top = 5.0
-margin_right = 293.0
-margin_bottom = 155.0
-
-[node name="Hbox" type="HBoxContainer" parent="Global movement/Propriety/Vbox"]
-margin_right = 290.0
-margin_bottom = 33.0
-alignment = 1
-
-[node name="Tittle" type="Label" parent="Global movement/Propriety/Vbox/Hbox"]
-margin_top = 6.0
-margin_right = 253.0
-margin_bottom = 26.0
-size_flags_horizontal = 3
-text = "Global movement"
-align = 1
-
-[node name="Close" type="TextureButton" parent="Global movement/Propriety/Vbox/Hbox"]
-margin_left = 257.0
-margin_right = 290.0
-margin_bottom = 33.0
-mouse_default_cursor_shape = 2
-texture_normal = ExtResource( 4 )
-
-[node name="Vector" parent="Global movement/Propriety/Vbox" instance=ExtResource( 8 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 37.0
-margin_right = 290.0
-margin_bottom = 117.0
-size_flags_horizontal = 11
-
-[node name="X" parent="Global movement/Propriety/Vbox/Vector" index="0"]
-margin_right = 290.0
-
-[node name="x" parent="Global movement/Propriety/Vbox/Vector/X" index="0"]
-margin_right = 100.0
-rect_min_size = Vector2( 100, 0 )
-size_flags_horizontal = 1
-
-[node name="X" parent="Global movement/Propriety/Vbox/Vector/X" index="1"]
-margin_left = 104.0
-margin_right = 290.0
-size_flags_horizontal = 3
-
-[node name="Y" parent="Global movement/Propriety/Vbox/Vector" index="1"]
-margin_right = 290.0
-
-[node name="y" parent="Global movement/Propriety/Vbox/Vector/Y" index="0"]
-margin_right = 100.0
-rect_min_size = Vector2( 100, 0 )
-size_flags_horizontal = 1
-
-[node name="Y" parent="Global movement/Propriety/Vbox/Vector/Y" index="1"]
-margin_left = 104.0
-margin_right = 290.0
-size_flags_horizontal = 3
-
-[node name="Z" parent="Global movement/Propriety/Vbox/Vector" index="2"]
-margin_right = 290.0
-
-[node name="z" parent="Global movement/Propriety/Vbox/Vector/Z" index="0"]
-margin_right = 100.0
-rect_min_size = Vector2( 100, 0 )
-size_flags_horizontal = 1
-
-[node name="Z" parent="Global movement/Propriety/Vbox/Vector/Z" index="1"]
-margin_left = 104.0
-margin_right = 290.0
-size_flags_horizontal = 3
-
-[node name="Apply_Movement" type="Button" parent="Global movement/Propriety/Vbox"]
-margin_top = 121.0
-margin_right = 290.0
-margin_bottom = 145.0
-mouse_default_cursor_shape = 2
-text = "Apply"
-script = ExtResource( 10 )
 
 [connection signal="pressed" from="Vbox/Hbox/Close" to="." method="_on_Close_pressed"]
 [connection signal="mouse_entered" from="Vbox/Screen/Hbox/Vbox" to="." method="_on_Vbox_mouse_entered"]
@@ -1088,20 +779,7 @@ script = ExtResource( 10 )
 [connection signal="pressed" from="Vbox/Screen/Hbox/Vbox/Hbox/Save" to="." method="_on_Save_pressed"]
 [connection signal="pressed" from="Vbox/Screen/Hbox/Vbox/Hbox/Close" to="." method="_on_Close_pressed"]
 [connection signal="gui_input" from="Vbox/Screen/Hbox/Vbox/View/View2/Eixo/View/Center/Rot" to="Vbox/Screen/Hbox/Vbox/View/View2/Eixo/View/View/Pivot/Camera" method="_on_Rot_gui_input"]
-[connection signal="pressed" from="Vbox/Screen/Hbox/Vbox/Options/Separater" to="Separater" method="_on_Separater_pressed"]
-[connection signal="pressed" from="Vbox/Screen/Hbox/Vbox/Options/Global_scaled" to="Global Scale" method="_on_Global_scaled_pressed"]
-[connection signal="pressed" from="Vbox/Screen/Hbox/Vbox/Options/Global_movement" to="Global movement" method="_on_Global_movement_pressed"]
 [connection signal="pressed" from="Vbox/Screen/Hbox/TreePanel/Vbox/Buttons_add/Hbox/Add" to="." method="_on_Add_pressed"]
 [connection signal="pressed" from="Vbox/Screen/Hbox/TreePanel/Vbox/Buttons_add/Hbox/Delete" to="." method="_on_Delete_pressed"]
-[connection signal="pressed" from="Separater/Propriety/Vbox/Hbox/Close" to="Separater" method="_on_Close_pressed"]
-[connection signal="pressed" from="Separater/Propriety/Vbox/Ok" to="Separater" method="_on_Button_pressed"]
-[connection signal="pressed" from="Global Scale/Propriety/Vbox/Hbox/Close" to="Global Scale" method="_on_Close_pressed"]
-[connection signal="pressed" from="Global Scale/Propriety/Vbox/Ok" to="Global Scale" method="_on_Button_pressed"]
-[connection signal="pressed" from="Global Scale/Propriety/Vbox/Apply_Scale" to="Global Scale" method="_on_Apply_Scale_pressed"]
-[connection signal="pressed" from="Global movement/Propriety/Vbox/Hbox/Close" to="Global movement" method="_on_Close_pressed"]
-[connection signal="pressed" from="Global movement/Propriety/Vbox/Apply_Movement" to="Global movement" method="_on_Apply_Movement_pressed"]
 
 [editable path="Vbox/Screen/Hbox/Vbox/View/Viewport/World3D/3D_View"]
-[editable path="Separater/Propriety/Vbox/Vector"]
-[editable path="Global Scale/Propriety/Vbox/Vector"]
-[editable path="Global movement/Propriety/Vbox/Vector"]

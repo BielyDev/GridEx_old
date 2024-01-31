@@ -83,9 +83,15 @@ func gradient(_ready = null) -> void:
 	Tex.add_child(texture)
 	Options.text = "[Gradient2D Texture]"
 
-func set_texture(texture) -> void:
+func set_texture(set_texture) -> void:
 	if mat is SpatialMaterial:
-		mat.albedo_texture = texture
+		mat.albedo_texture = set_texture
 	else:
-		mat.set(propriety_value,texture)
+		mat.set(propriety_value,set_texture)
 
+
+onready var Filter: CheckBox = $Vbox/Filter
+
+func _on_Filter_pressed() -> void:
+	if texture != null:
+		texture.filter(Filter.pressed)

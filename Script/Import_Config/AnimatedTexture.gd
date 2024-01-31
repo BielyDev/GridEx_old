@@ -23,6 +23,15 @@ func _ready() -> void:
 			Frames.add_child(frame)
 
 
+func filter(value:bool) -> void:
+	if value:
+		animated.flags = ImageTexture.FLAG_FILTER
+	else:
+		animated.flags = ImageTexture.FLAG_MIPMAPS
+	
+	emit_signal("texture_chaged",animated)
+
+
 func _on_Add_pressed() -> void:
 	animated.frames += 1
 	var frame = frame_new.instance()

@@ -10,7 +10,7 @@ func _on_Open_pressed() -> void:
 		return
 	
 	IndexLayer.file_explore(
-		["*.obj"],
+		["*.obj","*.tscn"],
 		self,
 		"file_ok",
 		"file_null",
@@ -23,8 +23,8 @@ func open_confirm() -> void:
 
 
 func file_ok(dir: String,file_name: String) -> void:
-	if dir.get_extension() != "obj":
-		IndexLayer.popup_one('The file type must be "obj"!')
+	if (dir.get_extension() == "obj" or dir.get_extension() == "tscn") == false:
+		IndexLayer.popup_one('The file type must be "obj, tscn"!')
 		return
 	
 	var file_import

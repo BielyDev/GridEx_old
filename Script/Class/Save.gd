@@ -25,7 +25,7 @@ static func save_project(dir: String) -> void:
 		var group_scene: PackedScene = PackedScene.new()
 		group_scene.pack(groups.group_scene)
 		
-		Export.file_tile_create(path,group_scene,groups.group_scene,false)
+		Export.file_tile_create(path,group_scene,groups.group_scene,false,true)
 	
 	
 	var open_scenes = [] #{Basic_tile = cena}
@@ -68,12 +68,14 @@ static func open_project(dir: String) -> void:
 static func loader_tiles_and_layers(load_file: Dictionary,dir: String) -> void:
 	
 	for groups in load_file.tiles_groups:
+		
 		var path = str(dir,int(randi()),".tscn")
 		var file = File.new()
 		
 		file.open(path,File.WRITE)
 		file.store_string(groups)
 		file.close()
+		
 		
 		Import.import_group_tile_automatic(path,true)
 		
@@ -86,16 +88,16 @@ static func loader_tiles_and_layers(load_file: Dictionary,dir: String) -> void:
 		
 		Index.block.add_child(new_layer)
 	
-	
 	for tiles in (load_file.tiles):
 		var mesh = Tile.new()
 		
 		for groups in Index.edit_node.Tile_groups.get_children():
-			
+			#print(tiles)
 			if groups.group_scene.id_group == tiles.id_group:
 				for tile in groups.group_scene.get_children():
 					
 					if tile.id_tile == tiles.id_tile:
+						
 						mesh = tile.duplicate()
 		
 		

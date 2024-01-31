@@ -11,8 +11,8 @@ export(bool) var parent_desabilit: bool = false
 
 onready var no := get_node(Node_effect)
 
-var show_arrow: AtlasTexture = preload("res://Assets/2D/Atlas/UI/Show_Arrow.tres")
-var hide_arrow: AtlasTexture = preload("res://Assets/2D/Atlas/UI/Hide_Arrow.tres")
+var show_arrow: AtlasTexture = preload("res://Assets/2D/Atlas/UI/Down.tres")
+var hide_arrow: AtlasTexture = preload("res://Assets/2D/Atlas/UI/Right.tres")
 
 var TwUI: TweenUI = TweenUI.new()
 
@@ -22,6 +22,8 @@ func _ready() -> void:
 	
 	if visivel:
 		call_deferred("show_animated")
+	else:
+		call_deferred("hide_animated")
 
 
 func touch() -> void:

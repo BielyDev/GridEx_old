@@ -3,6 +3,7 @@ extends Node
 onready var All: Spatial = $"../All"
 onready var Preview: MeshInstance = $"../Selection3D/Preview"
 onready var Add: Node = $"../AddBlock"
+onready var Par: Spatial = $".."
 
 var path: Array
 var inital_pos: Vector3
@@ -28,7 +29,7 @@ func draw_path(point_a: Vector3,point_b: Vector3) -> void:
 	for distance in int(po_a.distance_to(point_b)):
 		po_a = po_a.direction_to(point_b) + po_a
 		
-		path.push_back(po_a.snapped(Vector3(2,2,2)) - Vector3(0,1,0))
+		path.push_back(po_a.snapped(Par.grid_space) - Vector3(0,1,0))
 	
 	
 	for i in range(3):

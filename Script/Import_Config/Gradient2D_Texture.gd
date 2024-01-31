@@ -29,7 +29,13 @@ func _ready() -> void:
 	
 	emit_signal("texture_chaged",gradient2d)
 
-
+func filter(value:bool) -> void:
+	if value:
+		gradient2d.flags = ImageTexture.FLAG_FILTER
+	else:
+		gradient2d.flags = ImageTexture.FLAG_MIPMAPS
+	
+	emit_signal("texture_chaged",gradient2d)
 
 func loader_texture() -> void:
 	if tex_ready != null:

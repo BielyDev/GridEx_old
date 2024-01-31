@@ -17,6 +17,12 @@ func _ready() -> void:
 	y.value = vector.y
 	z.value = vector.z
 
+func update_vec() -> void:
+	vector = node.get(propriety)
+	x.value = vector.x
+	y.value = vector.y
+	z.value = vector.z
+
 func _on_X_value_changed(_value: float) -> void:
 	vector.x = _value
 	node.set(propriety,vector)

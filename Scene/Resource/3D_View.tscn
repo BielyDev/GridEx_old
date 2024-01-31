@@ -20,7 +20,7 @@ skeleton = NodePath("../Pos")
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 1.68645e-08, 2.57766e-07, -1.94193e-07, 0.707107, 0.707107, -1.70343e-07, -0.707107, 0.707107, 1.0677e-06, 7.07107, 7.07107 )
-cull_mask = 524287
+cull_mask = 1
 
 [node name="Pos_Lock" type="Position3D" parent="Camera"]
 transform = Transform( 1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0, 2.5332e-07, -9.822 )

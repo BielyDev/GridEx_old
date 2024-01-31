@@ -10,6 +10,7 @@ onready var View: Viewport = $Create_preview/View
 onready var Show_button: Button = $Hbox/Info/Hbox/Hide_and_show
 onready var Id_button: CheckBox = $Hbox/Info/Hbox/Id
 onready var Cam: Spatial = $Create_preview/View/Cam
+onready var Camera3D: Camera = $Create_preview/View/Cam/Camera
 
 var group_scene
 
@@ -46,16 +47,24 @@ func generate_tile_button() -> void:
 		
 		item_tile.Tile = child
 		Tiles.add_child(item_tile)
-		item_tile.rect_min_size = Vector2(32,32)
+		item_tile.hide()
+	
+	var layer_cam = int(rand_range(2,32))
 	
 	for buttons in Tiles.get_children():
 		yield(self,"create_thumbnail") #Generate to time
 		
-		generate_icon(buttons.Tile,buttons)
+		generate_icon(buttons.Tile,buttons,layer_cam)
 	
 
 
-func generate_icon(mesh_ins: Tile,item_tile: TileButton) -> void:
+func generate_icon(mesh_ins: Tile,item_tile: TileButton,layer_cam) -> void:
+	
+	#Configure camera
+	for x in range(layer_cam):
+		Camera3D.set_cull_mask_bit(x,false)
+	Camera3D.set_cull_mask_bit(layer_cam,true)
+	
 	
 	#Configure_button
 	item_tile.expand_icon = true
@@ -63,13 +72,21 @@ func generate_icon(mesh_ins: Tile,item_tile: TileButton) -> void:
 	
 	#Instance preview
 	
-	var model_preview = mesh_ins.duplicate()
+	var model_preview: Tile = mesh_ins.duplicate()
 	CreatePreview.add_child(model_preview)
+	model_preview.set_layer_mask_bit(0,false)
+	model_preview.set_layer_mask_bit(layer_cam,true)
+	
 	model_preview.transform.origin = Vector3()
 	yield(get_tree().create_timer(0.2),"timeout")
 	
 	#Apply
 	item_tile.set("icon", create_image())
+	yield(get_tree().create_timer(0.1),"timeout")
+	
+	item_tile.center_pivot()
+	item_tile.show()
+	UI.ready_animated(item_tile)
 	
 	model_preview.call_deferred("queue_free")
 	call_deferred("emit_signal","create_thumbnail")

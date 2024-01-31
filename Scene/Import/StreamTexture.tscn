@@ -19,4 +19,12 @@ texture_normal = ExtResource( 1 )
 expand = true
 stretch_mode = 5
 
+[node name="Tittle" type="Label" parent="."]
+margin_left = 3.0
+margin_top = 101.0
+margin_right = 125.0
+margin_bottom = 121.0
+size_flags_vertical = 8
+text = "void"
+
 [connection signal="pressed" from="Texture" to="." method="_on_Texture_pressed"]

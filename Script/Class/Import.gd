@@ -64,8 +64,7 @@ static func import_group_tile_automatic(path: String,loader_id: bool = false) ->
 		
 		scene = scene_descompact
 		no = scene.instance()
-		
-		
+		#
 		var save_data = {id = load_data.id,id_tile = load_data.id_tile,id_group = load_data.id_group}
 		
 		
@@ -82,12 +81,12 @@ static func import_group_tile_automatic(path: String,loader_id: bool = false) ->
 	var basic = tile_menu.instance()
 	
 	basic.tittle = no.name
-	basic.name = no.name
+	basic.name = path.get_file().replace(path.get_extension(),"")
 	basic.group_scene = no
 	
 	for child in Index.edit_node.Tile_groups.get_children():
 		if child.name == basic.tittle:
-			basic.name = str(no.name,"_",Index.edit_node.Tile_groups.get_children().size())
+			basic.name = str(path.get_file().replace(path.get_extension(),""),"_",Index.edit_node.Tile_groups.get_children().size())
 	
 	Index.edit_node.Tile_groups.add_child(basic)
 
