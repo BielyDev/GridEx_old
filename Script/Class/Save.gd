@@ -12,12 +12,11 @@ static func save_project(dir: String) -> void:
 	save_layers_and_tile(Index.block,save_array.layers,save_array.tiles)
 	
 	#Scene------------------
-	var save_scenes = [] #{Basic_tile = cena}
+	#var save_scenes = [] #{Basic_tile = cena}
 	var paths = []
 	
 	for groups in Index.edit_node.Tile_groups.get_children():
 		yield(create_time(0.2),"timeout")
-		
 		
 		var path = str(dir,int(randi()),".tscn")
 		paths.append(path)
@@ -46,6 +45,8 @@ static func save_project(dir: String) -> void:
 	
 	file.store_string(to_json(save_array))
 	file.close()
+	
+	Index.emit_signal("save_project",dir.get_file().replacen(dir.get_extension(),"").replacen(".",""))
 
 
 static func open_project(dir: String) -> void:
@@ -87,6 +88,7 @@ static func loader_tiles_and_layers(load_file: Dictionary,dir: String) -> void:
 		new_layer.name = layers.name
 		
 		Index.block.add_child(new_layer)
+		new_layer.global_transform.origin = string_to_vector(layers.position)
 	
 	for tiles in (load_file.tiles):
 		var mesh = Tile.new()
@@ -97,28 +99,23 @@ static func loader_tiles_and_layers(load_file: Dictionary,dir: String) -> void:
 				for tile in groups.group_scene.get_children():
 					
 					if tile.id_tile == tiles.id_tile:
-						
 						mesh = tile.duplicate()
 		
 		
 		Index.block.get_child(tiles.layer).add_child(mesh)
-		var sem_aspas: String = (tiles.position.replace("(","").replace(")",""))
-		var pos_string = sem_aspas.replace(",","")
 		
-		var pos_vect = Vector3(
-			float(pos_string.split(" ")[0]),
-			float(pos_string.split(" ")[1]),
-			float(pos_string.split(" ")[2])
-			)
-		
-		mesh.global_transform.origin = pos_vect
+		mesh.global_transform.origin = string_to_vector(tiles.position)
 
 
 
 static func save_layers_and_tile(Models: Spatial,array_layers: Array,array_tile: Array) -> void:
 	for layers in Models.get_children():
 		array_layers.push_back(
-			{id = layers.get_index(),name = layers.name}
+			{
+				id = layers.get_index(),
+				name = layers.name,
+				position =  str(layers.global_transform.origin)
+			}
 		)
 		
 		for child in layers.get_children():

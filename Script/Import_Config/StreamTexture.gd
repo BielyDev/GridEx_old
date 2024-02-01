@@ -38,6 +38,7 @@ func confirm_path(dir: String,file_name: String) -> void:
 	
 	image.load(dir)
 	image_tex.create_from_image(image)
+	image_tex.resource_path = dir
 	
 	Tex.texture_normal = image_tex
 	

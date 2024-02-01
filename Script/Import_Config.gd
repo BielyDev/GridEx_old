@@ -9,6 +9,7 @@ onready var ProprietyPanel: PanelContainer = $Vbox/Screen/Hbox/TreePanel/Vbox/Pr
 onready var Make_materials: Node = $Make_Materials
 onready var Screen: PanelContainer = $Vbox/Screen
 onready var view3d: Spatial = $"Vbox/Screen/Hbox/Vbox/View/Viewport/World3D/3D_View"
+onready var Selection: MeshInstance = $Vbox/Screen/Hbox/Vbox/View/Viewport/World3D/Settings/Selection
 
 var tile_icon: AtlasTexture = load("res://Assets/2D/Atlas/UI/Tile.tres")
 var group_tile_icon: AtlasTexture = load("res://Assets/2D/Atlas/UI/Group_tile.tres")
@@ -47,6 +48,8 @@ func _input(_event: InputEvent) -> void:
 			Make_materials.make(item_select.node)
 			ProprietyPanel.translation_value(true)
 		
+		Selection.global_transform.origin = item_select.node.global_transform.origin
+		Selection.scale = item_select.node.scale/1.5
 		
 		limpar = true
 	else:
@@ -205,3 +208,19 @@ func _on_Vbox_mouse_entered() -> void:
 func _on_Vbox_mouse_exited() -> void:
 	view3d.Pos.block_view = true
 
+
+
+func _on_All_filters_toggled(button_pressed: bool) -> void:
+	for groups in Models.get_children():
+		for childs in groups.get_children():
+			
+			for mat in range(childs.mesh.get_surface_count()):
+				if childs.mesh.surface_get_material(mat) != null:
+					#yield(get_tree().create_timer(0.1),"timeout")
+					var image: Texture = childs.mesh.surface_get_material(mat).albedo_texture
+					
+					if image != null:
+						if button_pressed:
+							image.flags = Texture.FLAGS_DEFAULT
+						else:
+							image.flags = Texture.FLAG_MIRRORED_REPEAT

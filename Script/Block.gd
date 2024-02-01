@@ -1,6 +1,12 @@
 extends Spatial
 
+signal tile_added()
+
+enum MODE {REPLACE,STOP,MIX,JUST_UP}
+
+
 onready var Anima: AnimationPlayer = $"../Selection3D/Anima"
+
 var Option: OptionButton
 
 var block_pos: Array = []
@@ -23,40 +29,60 @@ func _ready() -> void:
 		Index.layer_select = 0
 
 
+
 func add_block(pos: Vector3,rot: Vector3,id_tile: int,undo: bool = true) -> bool:
 	match mode:
-		0:
-			for blocos in get_child(Index.layer_select).get_children():
-				if blocos.global_transform.origin == pos:
-					blocos.queue_free()
-					block_pos.erase(pos)
-			
-			instance_block(id_tile,pos,rot,undo)
-		1:
-			for pos_array in block_pos:
-				if pos_array.pos == pos:
-					return false
-			
-			instance_block(id_tile,pos,rot,undo)
-		2:
-			instance_block(id_tile,pos,rot,undo)
-		3:
-			for blocos in get_child(Index.layer_select).get_children():
-				if blocos.global_transform.origin == pos:
-					blocos.queue_free()
-					block_pos.erase(pos)
-					
-					instance_block(id_tile,pos,rot,undo)
-	
-	Anima.stop()
-	Anima.play("Add")
+		MODE.REPLACE:
+			_replace(pos,rot,id_tile,undo)
+		MODE.STOP:
+			if _stop(pos,rot,id_tile,undo) == false: return false
+		MODE.MIX:
+			_mix(pos,rot,id_tile,undo)
+		MODE.JUST_UP:
+			_just_up(pos,rot,id_tile,undo)
 	
 	return true
 
 
 func remove_block(pos: Vector3,undo: bool = true) -> void:
+	loop_get_tile(self,pos,undo)
+
+
+func instance_block(id_tile: int,pos_in: Vector3,rot: Vector3,undo: bool) -> void:
+	#Search_tile================================================================
+	var tile
 	
-	var tile = loop_get_tile(self,pos,undo)
+	for groups_tiles in Index.edit_node.Tile_groups.get_children():
+		if Index.tile.id_group == groups_tiles.group_scene.id_group:
+			tile = groups_tiles.get_tile(id_tile)
+	
+	if tile == null:
+		print("null selection")
+		return
+	#===========================================================================
+	
+	_started_layer() # Caso não exista layer para por tiles
+	
+	#Tile settings==============================================================
+	get_child(Index.layer_select).add_child(tile)
+	
+	
+	tile.global_transform.origin = pos_in
+	tile.rotation_degrees = rot
+	
+	block_pos.push_back({pos = pos_in, tile = tile})
+	#===========================================================================
+	
+	
+	#Additional=================================================================
+	if undo: Index.undo.append({pos = pos_in,add = true,tile = tile})
+	
+	emit_signal("tile_added")
+	
+	Anima.stop()
+	Anima.play("Add")
+	#===========================================================================
+
 
 func delete_block(tile,pos,undo) -> bool:
 	var tile_undo
@@ -87,13 +113,13 @@ func delete_block(tile,pos,undo) -> bool:
 	return false
 
 
+
 func verific_is_layer(tile: Tile) -> bool:
 	for search in Index.block.get_child(Index.layer_select).get_children():
 		if search == tile:
 			return true
 	
 	return false
-
 
 func loop_get_tile(node,pos: Vector3,undo):
 	for pos_array in node.get_children():
@@ -107,21 +133,7 @@ func loop_get_tile(node,pos: Vector3,undo):
 			if pos_array.global_transform.origin == pos:
 				delete_block(pos_array,pos,undo)
 
-
-
-func instance_block(id_tile: int,pos_in: Vector3,rot: Vector3,undo: bool) -> void:
-	var tile
-	
-	for groups_tiles in Index.edit_node.Tile_groups.get_children():
-		if Index.tile.id_group == groups_tiles.group_scene.id_group:
-			tile = groups_tiles.get_tile(id_tile)
-	if tile == null:
-		print("null selection")
-		return
-	
-	var num: int = 0
-	var name_staterd: String = tile.name
-	
+func _started_layer() -> void:
 	if get_child_count() == 0:
 		var new_layer = Spatial.new()
 		
@@ -129,18 +141,35 @@ func instance_block(id_tile: int,pos_in: Vector3,rot: Vector3,undo: bool) -> voi
 		add_child(new_layer)
 		
 		Index.layer_select = 0
-	
-	get_child(Index.layer_select).add_child(tile)
-	
-	
-	tile.global_transform.origin = pos_in
-	tile.rotation_degrees = rot
-	
-	block_pos.push_back({pos = pos_in, tile = tile})
-	
-	if undo: Index.undo.append({pos = pos_in,add = true,tile = tile})
-
 
 func mode_selected(index: int) -> void:
 	mode = index
+
+
+
+
+#Functions Mode =========
+func _replace(pos: Vector3,rot: Vector3,id_tile: int,undo: bool = true) -> void:
+	for blocos in get_child(Index.layer_select).get_children():
+		if blocos.global_transform.origin == pos:
+			blocos.queue_free()
+			block_pos.erase(pos)
+	
+	instance_block(id_tile,pos,rot,undo)
+func _stop(pos: Vector3,rot: Vector3,id_tile: int,undo: bool = true) -> bool:
+	for pos_array in block_pos:
+		if pos_array.pos == pos:
+			return false
+	
+	instance_block(id_tile,pos,rot,undo)
+	return true
+func _just_up(pos: Vector3,rot: Vector3,id_tile: int,undo: bool = true) -> void:
+	for blocos in get_child(Index.layer_select).get_children():
+		if blocos.global_transform.origin == pos:
+			blocos.queue_free()
+			block_pos.erase(pos)
+			
+			instance_block(id_tile,pos,rot,undo)
+func _mix(pos: Vector3,rot: Vector3,id_tile: int,undo: bool = true) -> void:
+	instance_block(id_tile,pos,rot,undo)
 

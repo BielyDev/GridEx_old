@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scene/Resource/Vector.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Script/UI/Geral/Global_space.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Script/UI/Buttons/Hide_and_show.gd" type="Script" id=4]
 [ext_resource path="res://Assets/2D/Atlas/UI/Right.tres" type="Texture" id=5]
 [ext_resource path="res://Script/UI/Geral/Grid/Layer_Position.gd" type="Script" id=6]
+[ext_resource path="res://Script/UI/Geral/Grid/Layer_Scale.gd" type="Script" id=7]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -18,7 +19,7 @@ scroll_horizontal_enabled = false
 
 [node name="Vbox" type="VBoxContainer" parent="."]
 margin_right = 151.0
-margin_bottom = 260.0
+margin_bottom = 392.0
 size_flags_horizontal = 3
 __meta__ = {
 "_edit_use_anchors_": true
@@ -143,6 +144,47 @@ margin_bottom = 116.0
 size_flags_horizontal = 1
 
 [node name="Hs" type="HSeparator" parent="Vbox/PanelLayer_Position/Layer_Position/Vector"]
+margin_top = 84.0
+margin_right = 145.0
+margin_bottom = 88.0
+
+[node name="PanelLayer_Scale" type="PanelContainer" parent="Vbox"]
+margin_top = 264.0
+margin_right = 151.0
+margin_bottom = 392.0
+
+[node name="Layer_Scale" type="VBoxContainer" parent="Vbox/PanelLayer_Scale"]
+margin_left = 3.0
+margin_top = 5.0
+margin_right = 148.0
+margin_bottom = 121.0
+script = ExtResource( 7 )
+
+[node name="Layer_Scale" type="Button" parent="Vbox/PanelLayer_Scale/Layer_Scale"]
+margin_right = 145.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 145, 0 )
+mouse_default_cursor_shape = 2
+custom_styles/focus = SubResource( 1 )
+text = "Layer Scale"
+icon = ExtResource( 5 )
+icon_align = 2
+expand_icon = true
+script = ExtResource( 4 )
+Node_effect = NodePath("../Vector")
+Vec_max = Vector2( 50, 74 )
+visivel = false
+child_hide = true
+
+[node name="Vector" parent="Vbox/PanelLayer_Scale/Layer_Scale" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 28.0
+margin_right = 145.0
+margin_bottom = 116.0
+size_flags_horizontal = 1
+
+[node name="Hs" type="HSeparator" parent="Vbox/PanelLayer_Scale/Layer_Scale/Vector"]
 margin_top = 84.0
 margin_right = 145.0
 margin_bottom = 88.0

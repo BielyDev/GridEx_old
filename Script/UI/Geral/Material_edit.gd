@@ -68,9 +68,9 @@ func create_propriety() -> void:
 	])
 
 
-func propriety(tittle: String,propriety: Array) -> void:
+func propriety(_tittle: String,propriety: Array) -> void:
 	var prop = propriety_new.instance()
-	prop.tittle = tittle
+	prop.tittle = _tittle
 	prop.mat = mat
 	prop.types = propriety
 	

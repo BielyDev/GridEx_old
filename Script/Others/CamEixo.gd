@@ -2,6 +2,7 @@ extends Camera
 
 export(NodePath) var Cam_path: NodePath
 export(NodePath) var Pos_path: NodePath
+export(bool) var Index_value: bool
 
 onready var Cam: Camera = get_node(Cam_path)
 onready var Pos: Spatial = get_node(Pos_path)
@@ -22,8 +23,9 @@ onready var eixo_x_2: Position3D = $"../../Model/Eixo_x/Pos2"
 
 
 func _ready() -> void:
-	Index.view2d.axis = $"../../../.."
-	Index.view2d.viewport = $"../../../../../View/Viewport"
+	if Index_value:
+		Index.view2d.axis = $"../../../.."
+		Index.view2d.viewport = $"../../../../../View/Viewport"
 
 
 func _process(_delta: float) -> void:

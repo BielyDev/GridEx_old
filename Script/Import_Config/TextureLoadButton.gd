@@ -10,15 +10,13 @@ var AnimatedTexture_new: PackedScene = preload("res://Scene/Import/AnimatedTextu
 var GradientTexture_new: PackedScene = preload("res://Scene/Import/Gradient2D_Texture.tscn")
 
 var texture
-var stream: bool = true
+var _stream: bool = true
 
 var mat
 var mat_propriety: String
 
 func _ready() -> void:
-	yield(get_tree().create_timer(0.2),"timeout")
-	
-	loader_texture()
+	call_deferred("loader_texture")
 
 
 func loader_texture():

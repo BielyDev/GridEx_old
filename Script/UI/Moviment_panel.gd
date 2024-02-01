@@ -28,24 +28,24 @@ func _input(_event: InputEvent) -> void:
 
 
 
-func movement(mouse: Vector2) -> void:
+func movement(_mouse: Vector2) -> void:
 	if Y:
 		if save_pos == true:
 			Panel_node.rect_min_size.y = Panel_node.rect_size.y
 			save_pos = false
 		
-		if Negative: Panel_node.rect_min_size.y = Panel_node.rect_min_size.y + mouse.y
-		else:Panel_node.rect_min_size.y = Panel_node.rect_min_size.y - mouse.y
+		if Negative: Panel_node.rect_min_size.y = Panel_node.rect_min_size.y + _mouse.y
+		else:Panel_node.rect_min_size.y = Panel_node.rect_min_size.y - _mouse.y
 		
 	else:
 		if save_pos == true:
 			Panel_node.rect_min_size.x = Panel_node.rect_size.x
 			save_pos = false
 		
-		if Negative:Panel_node.rect_min_size.x = Panel_node.rect_min_size.x + mouse.x #Mouse are event.relative 
+		if Negative:Panel_node.rect_min_size.x = Panel_node.rect_min_size.x + _mouse.x #Mouse are event.relative 
 		
 		
-		else: Panel_node.rect_min_size.x = Panel_node.rect_min_size.x - mouse.x
+		else: Panel_node.rect_min_size.x = Panel_node.rect_min_size.x - _mouse.x
 
 
 func mouse_enter() -> void:

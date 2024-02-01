@@ -51,11 +51,11 @@ func _on_Tex_pressed() -> void:
 
 
 
-func _child_exited(node:Spatial) -> void:
+func _child_exited(_node:Spatial) -> void:
 	if Layer3d.get_child_count() == 1:
 		Layer.icon = Layout_void
 		Layer.hint_tooltip = "Void"
-func _child_entered(node:Spatial) -> void:
+func _child_entered(_node:Spatial) -> void:
 	if Layer3d.get_child_count() >= 1:
 		Layer.icon = Layout_item
 		Layer.hint_tooltip = str(Layer3d.get_child_count()," Tiles")

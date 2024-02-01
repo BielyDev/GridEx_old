@@ -21,6 +21,14 @@ var tittle: String = "Basic Tile"
 
 func _ready() -> void:
 	
+	var group_str = str(group_scene.id_group)
+	group_str = group_str.substr(0,group_str.length() - 5)
+	
+	hint_tooltip = str(
+		"Tiles amount: ",group_scene.get_child_count(),"\n",
+		"Id group: ",group_str,"..."
+	)
+	
 	Tittle_node.text = tittle
 	
 	generate_tile_button()

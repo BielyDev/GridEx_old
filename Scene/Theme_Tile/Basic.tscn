@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/2D/Atlas/UI/Show_Arrow.tres" type="Texture" id=2]
 [ext_resource path="res://Script/UI/Buttons/Hide_and_show.gd" type="Script" id=3]
@@ -6,6 +6,8 @@
 [ext_resource path="res://Script/Basic.gd" type="Script" id=19]
 
 [sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
 
 [node name="Base" type="PanelContainer"]
 anchor_right = 0.134363
@@ -22,17 +24,17 @@ __meta__ = {
 [node name="Hbox" type="HBoxContainer" parent="."]
 margin_left = 3.0
 margin_top = 5.0
-margin_right = 165.0
+margin_right = 187.0
 margin_bottom = 250.0
 
 [node name="Info" type="VBoxContainer" parent="Hbox"]
-margin_right = 154.0
+margin_right = 176.0
 margin_bottom = 245.0
 mouse_filter = 2
 size_flags_horizontal = 3
 
 [node name="Hbox" type="HBoxContainer" parent="Hbox/Info"]
-margin_right = 154.0
+margin_right = 176.0
 margin_bottom = 26.0
 
 [node name="Hide_and_show" type="Button" parent="Hbox/Info/Hbox"]
@@ -60,22 +62,24 @@ text = "Basic tile"
 
 [node name="Id" type="CheckBox" parent="Hbox/Info/Hbox"]
 margin_left = 134.0
-margin_right = 154.0
+margin_right = 176.0
 margin_bottom = 26.0
+custom_styles/focus = SubResource( 4 )
+text = "Id"
 
 [node name="Scroll" type="ScrollContainer" parent="Hbox/Info"]
 margin_top = 30.0
-margin_right = 154.0
+margin_right = 176.0
 margin_bottom = 237.0
 size_flags_vertical = 3
 
 [node name="Tiles" type="HFlowContainer" parent="Hbox/Info/Scroll"]
-margin_right = 154.0
+margin_right = 176.0
 size_flags_horizontal = 3
 
 [node name="HS_Down" type="HSeparator" parent="Hbox/Info"]
 margin_top = 241.0
-margin_right = 154.0
+margin_right = 176.0
 margin_bottom = 245.0
 mouse_default_cursor_shape = 9
 script = ExtResource( 4 )
@@ -84,8 +88,8 @@ Y = true
 Negative = true
 
 [node name="Vs" type="VSeparator" parent="Hbox"]
-margin_left = 158.0
-margin_right = 162.0
+margin_left = 180.0
+margin_right = 184.0
 margin_bottom = 245.0
 mouse_default_cursor_shape = 10
 script = ExtResource( 4 )

@@ -19,7 +19,6 @@ func create_preview(pos: Vector3) -> void:
 
 
 func draw_path(point_a: Vector3,point_b: Vector3) -> void:
-	
 	for child in All.get_children():
 		child.queue_free()
 	
@@ -29,11 +28,12 @@ func draw_path(point_a: Vector3,point_b: Vector3) -> void:
 	for distance in int(po_a.distance_to(point_b)):
 		po_a = po_a.direction_to(point_b) + po_a
 		
-		path.push_back(po_a.snapped(Par.grid_space) - Vector3(0,1,0))
+		path.push_back(po_a.snapped(Par.grid_space))
 	
 	
 	for i in range(3):
 		var ult_pos: Vector3
+		
 		for cam in path:
 			if cam == ult_pos:
 				path.erase(cam)

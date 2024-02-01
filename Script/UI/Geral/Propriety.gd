@@ -81,9 +81,9 @@ func add(text: String):
 	list.size_flags_horizontal = SIZE_EXPAND_FILL
 	List.add_child(list)
 	
-	var tittle: Label = Label.new()
-	tittle.text = text
+	var _tittle: Label = Label.new()
+	_tittle.text = text
 	
-	list.add_child(tittle)
+	list.add_child(_tittle)
 	return list
 

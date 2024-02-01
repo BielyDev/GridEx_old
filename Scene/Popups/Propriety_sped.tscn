@@ -25,21 +25,18 @@ margin_left = 3.0
 margin_top = 5.0
 margin_right = 293.0
 margin_bottom = 155.0
+mouse_filter = 2
+
+[node name="Tittle" type="Label" parent="Propriety/Vbox"]
+margin_right = 290.0
+margin_bottom = 20.0
 
 [node name="Ok" type="Button" parent="Propriety/Vbox"]
+margin_top = 24.0
 margin_right = 290.0
-margin_bottom = 24.0
+margin_bottom = 48.0
 mouse_default_cursor_shape = 2
 text = "Apply"
 script = ExtResource( 1 )
 
-[node name="Mouse" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 1
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
 [connection signal="pressed" from="Propriety/Vbox/Ok" to="." method="_on_Ok_pressed"]
-[connection signal="mouse_entered" from="Mouse" to="." method="_on_Mouse_mouse_entered"]
-[connection signal="mouse_exited" from="Mouse" to="." method="_on_Mouse_mouse_exited"]

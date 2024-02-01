@@ -144,7 +144,7 @@ static func loop_get_tile(node,Worlds: Spatial,collision_save: Array):
 #Todas as funções que criam arquivos =================================================
 static func file_tscn_create(Worlds: Spatial,collision_save: Array,scene: PackedScene,path: String) -> void:
 	scene.pack(Worlds)
-	var error = ResourceSaver.save(path ,scene)
+	ResourceSaver.save(path ,scene)
 	Worlds.queue_free()
 	collision_save = []
 
@@ -152,7 +152,7 @@ static func file_tile_create(path: String,group_scene: PackedScene,Groups,import
 	
 	#Cria o arquivo da cena
 	var file_name = str(path,Groups.name,".tscn")
-	var erro = ResourceSaver.save(file_name,group_scene)
+	ResourceSaver.save(file_name,group_scene)
 	
 	#Ler
 	var file = File.new()

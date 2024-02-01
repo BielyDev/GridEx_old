@@ -12,6 +12,7 @@ var exporting: bool = false
 func _ready() -> void:
 	UI.ready_animated_complex(Filex,$Background)
 	
+	Filex.current_path = Index.save_path_explorer
 	Filex.show()
 	Filex.filters = files
 	Filex.show_hidden_files = false
@@ -44,6 +45,9 @@ func _selection_file_and_dir(path) -> void:
 	if path is PoolStringArray:
 		for paths in path:
 			emit_path(paths)
+	
+	Index.save_path_explorer = Filex.current_path
+
 
 func emit_path(path: String) -> void:
 	var extension = path.get_extension()
@@ -69,8 +73,6 @@ func _on_FileDialog_popup_hide() -> void:
 	_cancel()
 func _on_FileDialog_hide() -> void:
 	_cancel()
-
-
 
 func _on_FileDialog_files_selected(paths: PoolStringArray) -> void:
 	_selection_file_and_dir(paths)

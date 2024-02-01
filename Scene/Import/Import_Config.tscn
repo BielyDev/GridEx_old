@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://Script/Import_Config.gd" type="Script" id=1]
 [ext_resource path="res://Scene/Resource/3D_View.tscn" type="PackedScene" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://Assets/2D/Atlas/UI/Closed.tres" type="Texture" id=4]
 [ext_resource path="res://Script/Import_Config/ProprietyPanel/Position.gd" type="Script" id=5]
 [ext_resource path="res://Script/ProprietyPanel.gd" type="Script" id=6]
+[ext_resource path="res://Script/MenuBttScripts/Transform/All_the_positions.gd" type="Script" id=7]
+[ext_resource path="res://Script/MenuBttScripts/Transform/All_rotations.gd" type="Script" id=8]
 [ext_resource path="res://Script/Import_Config/Menu_Import_Models.gd" type="Script" id=9]
 [ext_resource path="res://Script/Class/AnimationButtonClass.gd" type="Script" id=10]
 [ext_resource path="res://Script/Import_Config/Make_Materials.gd" type="Script" id=11]
@@ -16,6 +18,7 @@
 [ext_resource path="res://Assets/Models/OBJ/Eixo.obj" type="ArrayMesh" id=16]
 [ext_resource path="res://Script/Menu_button_propriety.gd" type="Script" id=17]
 [ext_resource path="res://Script/MenuBttScripts/Transform/Separator.gd" type="Script" id=18]
+[ext_resource path="res://Script/MenuBttScripts/Transform/All_size.gd" type="Script" id=19]
 
 [sub_resource type="CubeMesh" id=22]
 
@@ -89,6 +92,17 @@ corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
+
+[sub_resource type="CubeMesh" id=40]
+
+[sub_resource type="SpatialMaterial" id=41]
+flags_transparent = true
+flags_unshaded = true
+albedo_color = Color( 1, 0.560784, 0, 1 )
+albedo_texture = ExtResource( 3 )
+uv1_scale = Vector3( 0.5, 0.5, 0.5 )
+uv1_offset = Vector3( 0.5, 0.5, 0.5 )
+uv1_triplanar = true
 
 [sub_resource type="SpatialMaterial" id=35]
 flags_transparent = true
@@ -352,7 +366,13 @@ unique_name_in_owner = true
 
 [node name="Settings" type="Spatial" parent="Vbox/Screen/Hbox/Vbox/View/Viewport/World3D"]
 
-[node name="DirectionalLight" type="DirectionalLight" parent="Vbox/Screen/Hbox/Vbox/View/Viewport/World3D/Settings"]
+[node name="Selection" type="MeshInstance" parent="Vbox/Screen/Hbox/Vbox/View/Viewport/World3D/Settings"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 73.9097, -1034.16, 432.559 )
+mesh = SubResource( 40 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 41 )
+
+[node name="Light" type="DirectionalLight" parent="Vbox/Screen/Hbox/Vbox/View/Viewport/World3D/Settings"]
 transform = Transform( 0.866025, 0.25, 0.433013, -0.5, 0.433013, 0.75, 0, -0.866025, 0.5, 0, 2.72987, 0 )
 light_cull_mask = 4293918721
 
@@ -633,6 +653,7 @@ margin_left = 136.0
 margin_right = 268.0
 margin_bottom = 33.0
 mouse_default_cursor_shape = 2
+pressed = true
 text = "All filters"
 script = ExtResource( 10 )
 
@@ -640,10 +661,12 @@ script = ExtResource( 10 )
 margin_left = 272.0
 margin_right = 466.0
 margin_bottom = 33.0
+mouse_default_cursor_shape = 2
 text = "Edit all transforms"
+flat = false
 items = [ "Separate everyone", null, 0, false, false, 0, 0, null, "", false, "", null, 0, false, true, 1, 0, null, "", true, "All the positions", null, 0, false, false, 2, 0, null, "", false, "All rotations", null, 0, false, false, 3, 0, null, "", false, "All sizes", null, 0, false, false, 4, 0, null, "", false ]
 script = ExtResource( 17 )
-Scripts = [ ExtResource( 18 ), null, null, null, null ]
+Scripts = [ ExtResource( 18 ), null, ExtResource( 7 ), ExtResource( 8 ), ExtResource( 19 ) ]
 
 [node name="TreePanel" type="PanelContainer" parent="Vbox/Screen/Hbox"]
 margin_left = 966.0
@@ -662,11 +685,11 @@ unique_name_in_owner = true
 margin_right = 244.0
 margin_bottom = 431.0
 rect_min_size = Vector2( 200, 0 )
+focus_mode = 0
 size_flags_vertical = 3
 column_titles_visible = true
 allow_reselect = true
 hide_root = true
-drop_mode_flags = 1
 
 [node name="ProprietyPanel" type="PanelContainer" parent="Vbox/Screen/Hbox/TreePanel/Vbox"]
 margin_top = 435.0
@@ -779,6 +802,8 @@ Color_pressed_back = Color( 1, 0.337255, 0.407843, 1 )
 [connection signal="pressed" from="Vbox/Screen/Hbox/Vbox/Hbox/Save" to="." method="_on_Save_pressed"]
 [connection signal="pressed" from="Vbox/Screen/Hbox/Vbox/Hbox/Close" to="." method="_on_Close_pressed"]
 [connection signal="gui_input" from="Vbox/Screen/Hbox/Vbox/View/View2/Eixo/View/Center/Rot" to="Vbox/Screen/Hbox/Vbox/View/View2/Eixo/View/View/Pivot/Camera" method="_on_Rot_gui_input"]
+[connection signal="pressed" from="Vbox/Screen/Hbox/Vbox/Options/All_filters" to="." method="_on_All_filters_pressed"]
+[connection signal="toggled" from="Vbox/Screen/Hbox/Vbox/Options/All_filters" to="." method="_on_All_filters_toggled"]
 [connection signal="pressed" from="Vbox/Screen/Hbox/TreePanel/Vbox/Buttons_add/Hbox/Add" to="." method="_on_Add_pressed"]
 [connection signal="pressed" from="Vbox/Screen/Hbox/TreePanel/Vbox/Buttons_add/Hbox/Delete" to="." method="_on_Delete_pressed"]
 

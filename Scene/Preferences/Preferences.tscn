@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Script/UI/Buttons/Hide_and_show.gd" type="Script" id=1]
 [ext_resource path="res://Assets/2D/Atlas/UI/Hide_Arrow.tres" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Script/Spin_Config.gd" type="Script" id=7]
 [ext_resource path="res://Script/Class/AnimationButtonClass.gd" type="Script" id=8]
 [ext_resource path="res://Script/Class/SpinBoxControlClass.gd" type="Script" id=9]
+[ext_resource path="res://Script/Preferences/Save_settings.gd" type="Script" id=10]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 23
@@ -183,7 +184,7 @@ margin_bottom = 514.0
 
 [node name="Propriety" type="VBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll"]
 margin_right = 745.0
-margin_bottom = 992.0
+margin_bottom = 1072.0
 size_flags_horizontal = 3
 
 [node name="World" type="VBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety"]
@@ -300,16 +301,16 @@ propriety = "ss_reflections_enabled"
 [node name="Viewport" type="VBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety"]
 margin_top = 112.0
 margin_right = 745.0
-margin_bottom = 176.0
+margin_bottom = 164.0
 
 [node name="CamSensi" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Viewport"]
 margin_right = 745.0
-margin_bottom = 30.0
+margin_bottom = 24.0
 script = ExtResource( 7 )
 ValueNode_Path = NodePath("SpinBox")
 
 [node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Viewport/CamSensi"]
-margin_right = 595.0
+margin_right = 681.0
 margin_bottom = 24.0
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 3
@@ -320,24 +321,24 @@ text = "Camera sensi"
 align = 0
 
 [node name="SpinBox" type="SpinBox" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Viewport/CamSensi"]
-margin_left = 599.0
+margin_left = 685.0
 margin_right = 745.0
-margin_bottom = 30.0
+margin_bottom = 24.0
 size_flags_horizontal = 9
 step = 0.5
 value = 50.0
 script = ExtResource( 9 )
 
 [node name="CamMovSensi" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Viewport"]
-margin_top = 34.0
+margin_top = 28.0
 margin_right = 745.0
-margin_bottom = 64.0
+margin_bottom = 52.0
 script = ExtResource( 7 )
 ValueNode_Path = NodePath("SpinBox")
 propriety = 1
 
 [node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Viewport/CamMovSensi"]
-margin_right = 595.0
+margin_right = 681.0
 margin_bottom = 24.0
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 3
@@ -348,18 +349,18 @@ text = "Camera movement sensi"
 align = 0
 
 [node name="SpinBox" type="SpinBox" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Viewport/CamMovSensi"]
-margin_left = 599.0
+margin_left = 685.0
 margin_right = 745.0
-margin_bottom = 30.0
+margin_bottom = 24.0
 size_flags_horizontal = 9
 step = 0.5
 value = 50.0
 script = ExtResource( 9 )
 
 [node name="Theme" type="VBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety"]
-margin_top = 180.0
+margin_top = 168.0
 margin_right = 745.0
-margin_bottom = 428.0
+margin_bottom = 444.0
 
 [node name="Tittle" type="Label" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Theme"]
 visible = false
@@ -474,7 +475,7 @@ step = 0.01
 [node name="Background_texture" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Theme"]
 margin_top = 144.0
 margin_right = 745.0
-margin_bottom = 184.0
+margin_bottom = 212.0
 
 [node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Theme/Background_texture"]
 margin_right = 591.0
@@ -492,13 +493,13 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 595.0
 margin_right = 745.0
-margin_bottom = 40.0
+margin_bottom = 68.0
 size_flags_horizontal = 9
 
 [node name="Background_edit" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Theme"]
-margin_top = 188.0
+margin_top = 216.0
 margin_right = 745.0
-margin_bottom = 212.0
+margin_bottom = 240.0
 
 [node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Theme/Background_edit"]
 margin_right = 591.0
@@ -521,14 +522,14 @@ items = [ "Scale", null, false, 0, null, "Tile", null, false, 1, null, "Centered
 selected = 0
 
 [node name="Hs2" type="HSeparator" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Theme"]
-margin_top = 216.0
-margin_right = 745.0
-margin_bottom = 220.0
-
-[node name="Theme_color" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Theme"]
-margin_top = 224.0
+margin_top = 244.0
 margin_right = 745.0
 margin_bottom = 248.0
+
+[node name="Theme_color" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Theme"]
+margin_top = 252.0
+margin_right = 745.0
+margin_bottom = 276.0
 
 [node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Theme/Theme_color"]
 margin_right = 591.0
@@ -547,13 +548,13 @@ margin_right = 745.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 150, 0 )
 text = "GridEx"
-items = [ "GridEx", null, false, 0, null, "GridEx Alpha", null, false, 1, null, "Godot", null, false, 1, null, "Rose Dark", null, false, 3, null, "Rose White", null, false, 4, null ]
+items = [ "GridEx", null, false, 0, null, "GridEx Alpha", null, false, 1, null, "Godot", null, false, 1, null, "Rose Dark", null, false, 3, null, "Alien", null, false, 4, null ]
 selected = 0
 
 [node name="Keywords" type="VBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety"]
-margin_top = 432.0
+margin_top = 448.0
 margin_right = 745.0
-margin_bottom = 992.0
+margin_bottom = 1072.0
 custom_constants/separation = 8
 
 [node name="Action2" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords"]
@@ -655,15 +656,65 @@ size_flags_horizontal = 8
 disabled = true
 text = "Shift+F"
 
-[node name="Hs3" type="HSeparator" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords"]
+[node name="Action18" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords"]
 margin_top = 128.0
 margin_right = 745.0
-margin_bottom = 132.0
+margin_bottom = 152.0
+
+[node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action18"]
+margin_right = 541.0
+margin_bottom = 24.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+custom_styles/focus = SubResource( 2 )
+shortcut_in_tooltip = false
+text = "Movement grid up"
+align = 0
+
+[node name="Input" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action18"]
+margin_left = 545.0
+margin_right = 745.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 200, 0 )
+mouse_default_cursor_shape = 8
+size_flags_horizontal = 8
+disabled = true
+text = "Ctrl+Middle Up"
+
+[node name="Action19" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords"]
+margin_top = 160.0
+margin_right = 745.0
+margin_bottom = 184.0
+
+[node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action19"]
+margin_right = 541.0
+margin_bottom = 24.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+custom_styles/focus = SubResource( 2 )
+shortcut_in_tooltip = false
+text = "Movement grid down"
+align = 0
+
+[node name="Input" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action19"]
+margin_left = 545.0
+margin_right = 745.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 200, 0 )
+mouse_default_cursor_shape = 8
+size_flags_horizontal = 8
+disabled = true
+text = "Ctrl+Middle Down"
+
+[node name="Hs3" type="HSeparator" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords"]
+margin_top = 192.0
+margin_right = 745.0
+margin_bottom = 196.0
 
 [node name="Action12" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords"]
-margin_top = 140.0
+margin_top = 204.0
 margin_right = 745.0
-margin_bottom = 164.0
+margin_bottom = 228.0
 
 [node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action12"]
 margin_right = 537.0
@@ -686,9 +737,9 @@ disabled = true
 text = "Middle click + Shift"
 
 [node name="Action17" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords"]
-margin_top = 172.0
+margin_top = 236.0
 margin_right = 745.0
-margin_bottom = 196.0
+margin_bottom = 260.0
 
 [node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action17"]
 margin_right = 541.0
@@ -711,9 +762,9 @@ disabled = true
 text = "Middle click"
 
 [node name="Action16" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords"]
-margin_top = 204.0
+margin_top = 268.0
 margin_right = 745.0
-margin_bottom = 228.0
+margin_bottom = 292.0
 
 [node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action16"]
 margin_right = 541.0
@@ -736,9 +787,9 @@ disabled = true
 text = "Right click"
 
 [node name="Action15" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords"]
-margin_top = 236.0
+margin_top = 300.0
 margin_right = 745.0
-margin_bottom = 260.0
+margin_bottom = 324.0
 
 [node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action15"]
 margin_right = 541.0
@@ -761,9 +812,9 @@ disabled = true
 text = "W"
 
 [node name="Action3" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords"]
-margin_top = 268.0
+margin_top = 332.0
 margin_right = 745.0
-margin_bottom = 292.0
+margin_bottom = 356.0
 
 [node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action3"]
 margin_right = 541.0
@@ -786,9 +837,9 @@ disabled = true
 text = "S"
 
 [node name="Action4" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords"]
-margin_top = 300.0
+margin_top = 364.0
 margin_right = 745.0
-margin_bottom = 324.0
+margin_bottom = 388.0
 
 [node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action4"]
 margin_right = 541.0
@@ -811,9 +862,9 @@ disabled = true
 text = "A"
 
 [node name="Action5" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords"]
-margin_top = 332.0
+margin_top = 396.0
 margin_right = 745.0
-margin_bottom = 356.0
+margin_bottom = 420.0
 
 [node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action5"]
 margin_right = 541.0
@@ -836,9 +887,9 @@ disabled = true
 text = "D"
 
 [node name="Action7" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords"]
-margin_top = 364.0
+margin_top = 428.0
 margin_right = 745.0
-margin_bottom = 388.0
+margin_bottom = 452.0
 
 [node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action7"]
 margin_right = 541.0
@@ -861,9 +912,9 @@ disabled = true
 text = "Q"
 
 [node name="Action8" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords"]
-margin_top = 396.0
+margin_top = 460.0
 margin_right = 745.0
-margin_bottom = 420.0
+margin_bottom = 484.0
 
 [node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action8"]
 margin_right = 541.0
@@ -886,9 +937,9 @@ disabled = true
 text = "E"
 
 [node name="Action" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords"]
-margin_top = 428.0
+margin_top = 492.0
 margin_right = 745.0
-margin_bottom = 452.0
+margin_bottom = 516.0
 
 [node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action"]
 margin_right = 541.0
@@ -908,12 +959,12 @@ rect_min_size = Vector2( 200, 0 )
 mouse_default_cursor_shape = 8
 size_flags_horizontal = 8
 disabled = true
-text = "Shit+R"
+text = "Ctrl+R"
 
 [node name="Action9" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords"]
-margin_top = 460.0
+margin_top = 524.0
 margin_right = 745.0
-margin_bottom = 484.0
+margin_bottom = 548.0
 
 [node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action9"]
 margin_right = 541.0
@@ -936,14 +987,14 @@ disabled = true
 text = "Shit"
 
 [node name="Hs2" type="HSeparator" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords"]
-margin_top = 492.0
+margin_top = 556.0
 margin_right = 745.0
-margin_bottom = 496.0
+margin_bottom = 560.0
 
 [node name="Action6" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords"]
-margin_top = 504.0
+margin_top = 568.0
 margin_right = 745.0
-margin_bottom = 528.0
+margin_bottom = 592.0
 
 [node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action6"]
 margin_right = 541.0
@@ -966,9 +1017,9 @@ disabled = true
 text = "Ctrl+Z"
 
 [node name="Action10" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords"]
-margin_top = 536.0
+margin_top = 600.0
 margin_right = 745.0
-margin_bottom = 560.0
+margin_bottom = 624.0
 
 [node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords/Action10"]
 margin_right = 541.0
@@ -1005,6 +1056,10 @@ mouse_default_cursor_shape = 2
 size_flags_horizontal = 6
 text = "Back"
 script = ExtResource( 8 )
+
+[node name="Save" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource( 10 )
 
 [connection signal="pressed" from="Panel/Vbox/PanelContainer/TopBar/Button" to="." method="_on_Button_pressed"]
 [connection signal="value_changed" from="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Theme/Font_size/Size" to="." method="_on_Size_value_changed"]

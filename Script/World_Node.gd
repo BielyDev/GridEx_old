@@ -53,6 +53,7 @@ func _input(_event: InputEvent) -> void:
 func _selection_moviment() -> void:
 	var mouse2d = View.get_local_mouse_position() #+ Vector2(-40,0)
 	var project: Vector3 = Index.view3d.cam.project_position(mouse2d,40)
+	
 	if Index.view3d.cam.projection == Camera.PROJECTION_ORTHOGONAL:
 		project = Index.view3d.cam.project_position(mouse2d,Index.view3d.cam.size)
 	
@@ -65,15 +66,19 @@ func _selection_moviment() -> void:
 		
 		emit_signal("move_block",pos)
 	
+	var layer_select =  Index.block.get_child(Index.layer_select)
 	var mouse = Index.view3d.ray.get_collision_point().snapped(grid_space)
-	var vetor = Index.block.get_child(Index.layer_select).transform.origin
-	var caculate = Vector3(
-		vetor.x,
-		vetor.y,
-		vetor.z
-	)
+	var vetor
 	
-	pos = (caculate) + (mouse) - Index.block.get_child(Index.layer_select).transform.origin
+	if layer_select != null:
+		vetor = layer_select.transform.origin
+	else:
+		vetor = Vector3()
+	
+	var set_vec = Vector3(round(vetor.x),round(vetor.y),round(vetor.z)).snapped(grid_space)
+	print(round(mouse.x))
+	pos = ((vetor - set_vec) + mouse) * layer_select.scale
+	
 	Selection.global_transform.origin = pos
 
 

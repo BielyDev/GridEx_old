@@ -4,12 +4,13 @@ signal finished()
 
 var propriety = preload("res://Scene/Popups/Propriety_sped.tscn")
 
-var separator:Vector3
+var separator: Vector3
 
 func start() -> void:
 	var new_p = propriety.instance()
 	new_p.node = self
 	new_p.Type = new_p.TYPE.VECTOR
+	new_p.Propriety_name = "separator"
 	new_p.call_func = "confirm"
 	
 	add_child(new_p)

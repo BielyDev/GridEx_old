@@ -61,7 +61,10 @@ func _rotation_selection() -> void:
 	if Input.is_action_just_pressed("rot_z"):
 		rot.z += 90
 	
-	rot = rot.snapped(Vector3(90,90,90))
+	if Index.snapped.rot:
+		rot = rot.snapped(Vector3(90,90,90))
+	else:
+		rot = rot
 	
 	Selection.rotation_degrees = rot
 

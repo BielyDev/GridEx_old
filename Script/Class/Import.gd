@@ -79,14 +79,15 @@ static func import_group_tile_automatic(path: String,loader_id: bool = false) ->
 	
 	
 	var basic = tile_menu.instance()
+	var group_name_filter = path.get_file().replace(path.get_extension(),"").replace(".","")
 	
-	basic.tittle = no.name
-	basic.name = path.get_file().replace(path.get_extension(),"")
+	basic.tittle = group_name_filter
+	basic.name = group_name_filter
 	basic.group_scene = no
 	
 	for child in Index.edit_node.Tile_groups.get_children():
 		if child.name == basic.tittle:
-			basic.name = str(path.get_file().replace(path.get_extension(),""),"_",Index.edit_node.Tile_groups.get_children().size())
+			basic.name = str(group_name_filter	,"_",Index.edit_node.Tile_groups.get_children().size())
 	
 	Index.edit_node.Tile_groups.add_child(basic)
 
@@ -108,6 +109,7 @@ static func _load_file_config(no,save_data: Dictionary,loader_id: bool) -> void:
 	
 	if loader_id == false:
 		if no.id_group == -1:
+			randomize()
 			no.id_group = int(randi())
 		
 		for tiles in no.get_children():

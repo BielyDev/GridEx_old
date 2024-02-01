@@ -3,14 +3,12 @@ extends CanvasLayer
 var tile
 var popup_quit: bool = false
 
-
 onready var World3D = $World
 onready var Edit: VBoxContainer = $Local/Vbox/Hbox/Edit
 onready var View: ViewportContainer = $Local/Vbox/Hbox/View/ViewPanel/View
 onready var TexPanel := $Local/Vbox/Hbox/View/ViewPanel/Screen_Mouse/Preview2D/TexPanel
 onready var Tile_groups: FlowContainer = $"%Tile Groups"
 onready var Layer_panel: PanelContainer = $"%LayerPanel"
-onready var Node_2d: Node2D = $"2d"
 onready var Local: MarginContainer = $Local
 onready var Background: PanelContainer = $Background
 onready var Background_texture: TextureRect = $Texture
