@@ -12,6 +12,7 @@ func apply_axis(_vector: Vector3) -> void:
 	Par.Cam.projection = Camera.PROJECTION_ORTHOGONAL
 	Par.Pos.global_transform.origin = Vector3()
 	Par.Pos.rotation_degrees.x = _vector.x
+	Par.Pos.rotation_degrees.y = _vector.y
 	
 	Par.Cam.call_deferred("look_at",Par.Pos.global_transform.origin,Vector3.UP)
 	

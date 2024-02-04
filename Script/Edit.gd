@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 var tile
+var save_dir: String
 var popup_quit: bool = false
 
 onready var World3D = $World
@@ -13,8 +14,11 @@ onready var Local: MarginContainer = $Local
 onready var Background: PanelContainer = $Background
 onready var Background_texture: TextureRect = $Texture
 onready var Tab_Tilemain: TabContainer = $Local/Vbox/Hbox/Edit/TileMain/Tab
+onready var Autosave: Node = $Functions/Autosave
+
 
 func _ready() -> void:
+	
 	Index.edit_node = self
 	IndexLayer.connect("theme",self,"theme_changed")
 	Import.import_group_tile_automatic("res://Scene/Tiles/Basic_Tile.tscn")

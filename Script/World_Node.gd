@@ -72,14 +72,11 @@ func _selection_moviment() -> void:
 	
 	if layer_select != null:
 		vetor = layer_select.transform.origin
-	else:
-		vetor = Vector3()
-	
-	var set_vec = Vector3(round(vetor.x),round(vetor.y),round(vetor.z)).snapped(grid_space)
-	print(round(mouse.x))
-	pos = ((vetor - set_vec) + mouse) * layer_select.scale
-	
-	Selection.global_transform.origin = pos
+		
+		var set_vec = Vector3(round(vetor.x),round(vetor.y),round(vetor.z)).snapped(grid_space)
+		pos = ((vetor - set_vec) + mouse) * layer_select.scale
+		
+		Selection.global_transform.origin = pos
 
 
 func selection_move():

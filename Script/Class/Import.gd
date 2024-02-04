@@ -44,6 +44,7 @@ static func import_group_tile_automatic(path: String,loader_id: bool = false) ->
 	var tile_menu: PackedScene = preload("res://Scene/Theme_Tile/Basic.tscn")
 	var scene
 	var no
+	var name_real: String = "" #Caso o grupo ja tenha um nome
 	
 	if loader_id:
 		var file = File.new()
@@ -66,7 +67,7 @@ static func import_group_tile_automatic(path: String,loader_id: bool = false) ->
 		no = scene.instance()
 		#
 		var save_data = {id = load_data.id,id_tile = load_data.id_tile,id_group = load_data.id_group}
-		
+		name_real = no.name
 		
 		_load_file_config(no,save_data,true)
 		
@@ -80,6 +81,9 @@ static func import_group_tile_automatic(path: String,loader_id: bool = false) ->
 	
 	var basic = tile_menu.instance()
 	var group_name_filter = path.get_file().replace(path.get_extension(),"").replace(".","")
+	
+	if name_real != "":
+		group_name_filter = name_real
 	
 	basic.tittle = group_name_filter
 	basic.name = group_name_filter

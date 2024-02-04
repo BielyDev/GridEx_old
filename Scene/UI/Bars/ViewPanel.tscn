@@ -262,7 +262,7 @@ position = Vector2( 16.0006, 16 )
 scale = Vector2( 0.8, 0.8 )
 
 [node name="X" type="TextureButton" parent="Eixo/View/X"]
-modulate = Color( 1, 0, 0, 1 )
+self_modulate = Color( 1, 0, 0, 1 )
 margin_left = -16.0
 margin_top = -16.0
 margin_right = 16.0
@@ -274,11 +274,9 @@ expand = true
 script = ExtResource( 5 )
 axis = Vector3( 0, -90, 0 )
 
-[node name="Text" type="Label" parent="Eixo/View/X"]
-margin_left = -5.00073
-margin_top = -10.0
-margin_right = 4.99927
-margin_bottom = 10.0
+[node name="Text" type="Label" parent="Eixo/View/X/X"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 text = "X"
 align = 1
 valign = 1
@@ -288,7 +286,7 @@ position = Vector2( 16.0006, 16 )
 scale = Vector2( 0.8, 0.8 )
 
 [node name="Y" type="TextureButton" parent="Eixo/View/Y"]
-modulate = Color( 0, 1, 0.0627451, 1 )
+self_modulate = Color( 0, 1, 0.0627451, 1 )
 margin_left = -16.0
 margin_top = -16.0
 margin_right = 16.0
@@ -300,11 +298,9 @@ expand = true
 script = ExtResource( 5 )
 axis = Vector3( 90, 0, 0 )
 
-[node name="Text" type="Label" parent="Eixo/View/Y"]
-margin_left = -5.00073
-margin_top = -10.0
-margin_right = 4.99927
-margin_bottom = 10.0
+[node name="Text" type="Label" parent="Eixo/View/Y/Y"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 text = "Y"
 align = 1
 valign = 1
@@ -314,7 +310,7 @@ position = Vector2( 16.0006, 16 )
 scale = Vector2( 0.8, 0.8 )
 
 [node name="Z" type="TextureButton" parent="Eixo/View/Z"]
-modulate = Color( 0, 0.454902, 1, 1 )
+self_modulate = Color( 0, 0.454902, 1, 1 )
 margin_left = -16.0
 margin_top = -16.0
 margin_right = 16.0
@@ -326,11 +322,9 @@ expand = true
 script = ExtResource( 5 )
 axis = Vector3( 0, 180, 0 )
 
-[node name="Text" type="Label" parent="Eixo/View/Z"]
-margin_left = -5.00073
-margin_top = -10.0
-margin_right = 4.99927
-margin_bottom = 10.0
+[node name="Text" type="Label" parent="Eixo/View/Z/Z"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 text = "Z"
 align = 1
 valign = 1

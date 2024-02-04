@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Script/UI/Resource/Settings_Popup.gd" type="Script" id=7]
+
+[node name="Settings_Popup" type="CanvasLayer"]
+script = ExtResource( 7 )
+
+[node name="Settings_Popup" type="Popup" parent="."]
+margin_right = 236.0
+margin_bottom = 169.0
+rect_min_size = Vector2( 236, 169 )
+mouse_filter = 2
+
+[node name="Panel" type="PanelContainer" parent="Settings_Popup"]
+margin_right = 234.0
+margin_bottom = 26.0
+mouse_filter = 2
+
+[node name="Vbox" type="VBoxContainer" parent="Settings_Popup/Panel"]
+margin_left = 3.0
+margin_top = 5.0
+margin_right = 231.0
+margin_bottom = 19.0
+mouse_filter = 2
+
+[connection signal="popup_hide" from="Settings_Popup" to="." method="_on_Settings_Popup_popup_hide"]

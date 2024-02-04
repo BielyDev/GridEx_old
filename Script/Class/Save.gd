@@ -47,6 +47,7 @@ static func save_project(dir: String) -> void:
 	file.close()
 	
 	Index.emit_signal("save_project",dir.get_file().replacen(dir.get_extension(),"").replacen(".",""))
+	Index.edit_node.save_dir = dir
 
 
 static func open_project(dir: String) -> void:
@@ -64,28 +65,33 @@ static func open_project(dir: String) -> void:
 	
 	loader_tiles_and_layers(load_file,dir)
 	
+	file.open(str(Index.system_path,"/log.txt"),File.WRITE)
+	
+	file.store_string(JSON.print(load_file.tiles,"	"))
+	file.close()
+	Index.emit_signal("save_project",dir.get_file().replacen(dir.get_extension(),"").replacen(".",""))
+	Index.edit_node.save_dir = dir
 
 
 static func loader_tiles_and_layers(load_file: Dictionary,dir: String) -> void:
 	
 	for groups in load_file.tiles_groups:
 		
-		var path = str(dir,int(randi()),".tscn")
+		var path = str(Index.system_path,"/",dir.get_file(),".tscn")
 		var file = File.new()
 		
 		file.open(path,File.WRITE)
 		file.store_string(groups)
 		file.close()
 		
-		
 		Import.import_group_tile_automatic(path,true)
 		
 		delete_file(path)
 	
-	
 	for layers in load_file.layers:
 		var new_layer = Spatial.new()
 		new_layer.name = layers.name
+		new_layer.visible = layers.visible
 		
 		Index.block.add_child(new_layer)
 		new_layer.global_transform.origin = string_to_vector(layers.position)
@@ -104,7 +110,11 @@ static func loader_tiles_and_layers(load_file: Dictionary,dir: String) -> void:
 		
 		Index.block.get_child(tiles.layer).add_child(mesh)
 		
+		mesh.id_tile = (tiles.id_tile)
+		mesh.id_group = (tiles.id_group)
 		mesh.global_transform.origin = string_to_vector(tiles.position)
+		mesh.rotation_degrees = string_to_vector(tiles.rotation)
+		mesh.scale = string_to_vector(tiles.scale)
 
 
 
@@ -114,6 +124,7 @@ static func save_layers_and_tile(Models: Spatial,array_layers: Array,array_tile:
 			{
 				id = layers.get_index(),
 				name = layers.name,
+				visible = layers.visible,
 				position =  str(layers.global_transform.origin)
 			}
 		)
@@ -126,6 +137,8 @@ static func save_layers_and_tile(Models: Spatial,array_layers: Array,array_tile:
 						id_tile = child.id_tile,
 						id_group = child.id_group,
 						position = str(child.global_transform.origin),
+						rotation = str(child.rotation_degrees),
+						scale = str(child.scale),
 						layer = layers.get_index()
 					}
 				)

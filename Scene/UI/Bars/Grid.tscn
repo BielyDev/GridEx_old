@@ -19,7 +19,7 @@ scroll_horizontal_enabled = false
 
 [node name="Vbox" type="VBoxContainer" parent="."]
 margin_right = 151.0
-margin_bottom = 392.0
+margin_bottom = 524.0
 size_flags_horizontal = 3
 __meta__ = {
 "_edit_use_anchors_": true
@@ -42,7 +42,7 @@ margin_bottom = 24.0
 rect_min_size = Vector2( 145, 0 )
 mouse_default_cursor_shape = 2
 custom_styles/focus = SubResource( 1 )
-text = "Grid size"
+text = "Grid division"
 icon = ExtResource( 5 )
 icon_align = 2
 expand_icon = true
@@ -66,7 +66,6 @@ margin_right = 145.0
 margin_bottom = 88.0
 
 [node name="PanelGrid_Space" type="PanelContainer" parent="Vbox"]
-visible = false
 margin_top = 132.0
 margin_right = 151.0
 margin_bottom = 260.0
@@ -108,9 +107,9 @@ margin_right = 145.0
 margin_bottom = 88.0
 
 [node name="PanelLayer_Position" type="PanelContainer" parent="Vbox"]
-margin_top = 132.0
+margin_top = 264.0
 margin_right = 151.0
-margin_bottom = 260.0
+margin_bottom = 392.0
 
 [node name="Layer_Position" type="VBoxContainer" parent="Vbox/PanelLayer_Position"]
 margin_left = 3.0
@@ -149,9 +148,9 @@ margin_right = 145.0
 margin_bottom = 88.0
 
 [node name="PanelLayer_Scale" type="PanelContainer" parent="Vbox"]
-margin_top = 264.0
+margin_top = 396.0
 margin_right = 151.0
-margin_bottom = 392.0
+margin_bottom = 524.0
 
 [node name="Layer_Scale" type="VBoxContainer" parent="Vbox/PanelLayer_Scale"]
 margin_left = 3.0

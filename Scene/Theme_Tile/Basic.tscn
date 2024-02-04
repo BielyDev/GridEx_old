@@ -1,13 +1,110 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=12 format=2]
 
+[ext_resource path="res://Scene/UI/Resources/Settings_Popup.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/2D/Atlas/UI/Show_Arrow.tres" type="Texture" id=2]
 [ext_resource path="res://Script/UI/Buttons/Hide_and_show.gd" type="Script" id=3]
 [ext_resource path="res://Script/UI/Moviment_panel.gd" type="Script" id=4]
+[ext_resource path="res://Assets/2D/Atlas/UI/Three_points.tres" type="Texture" id=5]
 [ext_resource path="res://Script/Basic.gd" type="Script" id=19]
 
 [sub_resource type="StyleBoxEmpty" id=3]
 
 [sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="GDScript" id=7]
+script/source = "extends AnimationButtonClass
+
+onready var PopupSe: CanvasLayer = $Settings_Popup
+onready var camera: Camera = $\"../../../../Create_preview/View/Cam/Camera\"
+onready var Par: PanelContainer = $\"../../../..\"
+onready var Tiles: HFlowContainer = $\"../../Scroll/Tiles\"
+onready var Rename_node: LineEdit = $\"../Tittle/Rename\"
+onready var Tittle: Label = $\"../Tittle\"
+
+var icon_distance: float = 4
+var Reload: AtlasTexture = preload(\"res://Assets/2D/Atlas/UI/Reload_icon_tile.tres\")
+var Rename: AtlasTexture = preload(\"res://Assets/2D/Atlas/UI/Rename.tres\")
+var propriety: PackedScene = preload(\"res://Scene/Popups/Propriety_sped.tscn\")
+
+
+func _ready() -> void:
+	PopupSe.create_button(self,\"Reload all icons\",\"reload_icon\",Reload)
+	PopupSe.create_button(self,\"Rename\",\"rename\",Rename)
+	PopupSe.delete = false
+
+
+func _input(_event: InputEvent) -> void:
+	if _event is InputEventMouseButton:
+		if mouse == false:
+			Rename_node.hide()
+
+
+func _pressed() -> void:
+	PopupSe.popup_mouse()
+
+func reload_icon() -> void:
+	Par.stop_generator = true
+	
+	var new_p = propriety.instance()
+	new_p.node = self
+	new_p.Type = new_p.TYPE.NUM
+	new_p.Propriety_name = \"icon_distance\"
+	new_p.others = [\"values\",[2,16]]
+	new_p.call_func = \"confirm\"
+	
+	IndexLayer.add_child(new_p)
+	PopupSe.hide()
+	
+	
+
+func rename() -> void:
+	
+	Rename_node.show()
+	Rename_node.text = Tittle.text
+	Rename_node.select_all()
+	
+	PopupSe.hide()
+	yield(get_tree().create_timer(0.1),\"timeout\")
+	Rename_node.grab_focus()
+
+
+func confirm() -> void:
+	Par.stop_generator = false
+	camera.size = icon_distance
+	
+	var layer_cam = int(rand_range(2,32))
+	
+	
+	for tiles in Tiles.get_children():
+		if Par.stop_generator:
+			Par.set_deferred(\"stop_generator\",false)
+			break
+		
+		yield(get_tree().create_timer(0.2),\"timeout\")
+		
+		Par.generate_icon(tiles.Tile,tiles,layer_cam)
+
+
+func _on_Rename_text_entered(new_text: String) -> void:
+	Par.group_scene.name = new_text
+	Tittle.text = new_text
+	
+	Rename_node.hide()
+
+
+var mouse: bool = false
+func _on_Rename_mouse_entered() -> void:
+	mouse = true
+func _on_Rename_mouse_exited() -> void:
+	mouse = false
+"
+
+[sub_resource type="Environment" id=5]
+background_mode = 1
+background_color = Color( 0.0117647, 0.0117647, 0.137255, 1 )
+tonemap_mode = 3
 
 [node name="Base" type="PanelContainer"]
 anchor_right = 0.134363
@@ -24,17 +121,17 @@ __meta__ = {
 [node name="Hbox" type="HBoxContainer" parent="."]
 margin_left = 3.0
 margin_top = 5.0
-margin_right = 187.0
+margin_right = 217.0
 margin_bottom = 250.0
 
 [node name="Info" type="VBoxContainer" parent="Hbox"]
-margin_right = 176.0
+margin_right = 206.0
 margin_bottom = 245.0
 mouse_filter = 2
 size_flags_horizontal = 3
 
 [node name="Hbox" type="HBoxContainer" parent="Hbox/Info"]
-margin_right = 176.0
+margin_right = 206.0
 margin_bottom = 26.0
 
 [node name="Hide_and_show" type="Button" parent="Hbox/Info/Hbox"]
@@ -60,6 +157,12 @@ margin_right = 130.0
 margin_bottom = 23.0
 text = "Basic tile"
 
+[node name="Rename" type="LineEdit" parent="Hbox/Info/Hbox/Tittle"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+
 [node name="Id" type="CheckBox" parent="Hbox/Info/Hbox"]
 margin_left = 134.0
 margin_right = 176.0
@@ -67,19 +170,34 @@ margin_bottom = 26.0
 custom_styles/focus = SubResource( 4 )
 text = "Id"
 
+[node name="Options" type="Button" parent="Hbox/Info/Hbox"]
+margin_left = 180.0
+margin_right = 206.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 26, 26 )
+mouse_default_cursor_shape = 2
+size_flags_vertical = 0
+custom_styles/focus = SubResource( 6 )
+icon = ExtResource( 5 )
+expand_icon = true
+script = SubResource( 7 )
+
+[node name="Settings_Popup" parent="Hbox/Info/Hbox/Options" instance=ExtResource( 1 )]
+delete = false
+
 [node name="Scroll" type="ScrollContainer" parent="Hbox/Info"]
 margin_top = 30.0
-margin_right = 176.0
+margin_right = 206.0
 margin_bottom = 237.0
 size_flags_vertical = 3
 
 [node name="Tiles" type="HFlowContainer" parent="Hbox/Info/Scroll"]
-margin_right = 176.0
+margin_right = 206.0
 size_flags_horizontal = 3
 
 [node name="HS_Down" type="HSeparator" parent="Hbox/Info"]
 margin_top = 241.0
-margin_right = 176.0
+margin_right = 206.0
 margin_bottom = 245.0
 mouse_default_cursor_shape = 9
 script = ExtResource( 4 )
@@ -88,8 +206,8 @@ Y = true
 Negative = true
 
 [node name="Vs" type="VSeparator" parent="Hbox"]
-margin_left = 180.0
-margin_right = 184.0
+margin_left = 210.0
+margin_right = 214.0
 margin_bottom = 245.0
 mouse_default_cursor_shape = 10
 script = ExtResource( 4 )
@@ -110,11 +228,17 @@ transform = Transform( 0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.
 
 [node name="OmniLight" type="OmniLight" parent="Create_preview/View/Cam"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.90815, 0.0216675, 2.6993 )
+layers = 16
 
 [node name="Camera" type="Camera" parent="Create_preview/View/Cam"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.615 )
+transform = Transform( 1, 0, 0, 0, 1, -2.98023e-07, 0, 2.98023e-08, 1, 0, 0, 9.60181 )
+cull_mask = 16
+environment = SubResource( 5 )
 projection = 1
-size = 3.699
-far = 10.0
+size = 5.0
+far = 50.0
 
+[connection signal="mouse_entered" from="Hbox/Info/Hbox/Tittle/Rename" to="Hbox/Info/Hbox/Options" method="_on_Rename_mouse_entered"]
+[connection signal="mouse_exited" from="Hbox/Info/Hbox/Tittle/Rename" to="Hbox/Info/Hbox/Options" method="_on_Rename_mouse_exited"]
+[connection signal="text_entered" from="Hbox/Info/Hbox/Tittle/Rename" to="Hbox/Info/Hbox/Options" method="_on_Rename_text_entered"]
 [connection signal="pressed" from="Hbox/Info/Hbox/Id" to="." method="_on_Id_pressed"]

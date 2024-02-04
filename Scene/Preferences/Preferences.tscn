@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Script/UI/Buttons/Hide_and_show.gd" type="Script" id=1]
 [ext_resource path="res://Assets/2D/Atlas/UI/Hide_Arrow.tres" type="Texture" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://Script/Class/AnimationButtonClass.gd" type="Script" id=8]
 [ext_resource path="res://Script/Class/SpinBoxControlClass.gd" type="Script" id=9]
 [ext_resource path="res://Script/Preferences/Save_settings.gd" type="Script" id=10]
+[ext_resource path="res://Script/UI/Geral/Slider_value_enviroment.gd" type="Script" id=11]
+[ext_resource path="res://Script/Preferences/Save_GridEx.gd" type="Script" id=12]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 23
@@ -91,13 +93,31 @@ margin_bottom = 514.0
 
 [node name="Buttons" type="VBoxContainer" parent="Panel/Vbox/Hbox/List/Scroll"]
 margin_right = 294.0
-margin_bottom = 117.0
+margin_bottom = 148.0
 size_flags_horizontal = 3
 custom_constants/separation = 7
 
-[node name="World" type="Button" parent="Panel/Vbox/Hbox/List/Scroll/Buttons"]
+[node name="Save" type="Button" parent="Panel/Vbox/Hbox/List/Scroll/Buttons"]
 margin_right = 294.0
 margin_bottom = 24.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+text = "Save"
+icon = ExtResource( 2 )
+icon_align = 2
+expand_icon = true
+script = ExtResource( 1 )
+Scale_pressed_up = Vector2( 1, 1.1 )
+Scale_pressed_down = Vector2( 1, 0.8 )
+Node_effect = NodePath("../../../../Propriety/Scroll/Propriety/Save")
+visivel = false
+child_hide = true
+parent_desabilit = true
+
+[node name="World" type="Button" parent="Panel/Vbox/Hbox/List/Scroll/Buttons"]
+margin_top = 31.0
+margin_right = 294.0
+margin_bottom = 55.0
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 3
 text = "World"
@@ -113,9 +133,9 @@ child_hide = true
 parent_desabilit = true
 
 [node name="Viewport" type="Button" parent="Panel/Vbox/Hbox/List/Scroll/Buttons"]
-margin_top = 31.0
+margin_top = 62.0
 margin_right = 294.0
-margin_bottom = 55.0
+margin_bottom = 86.0
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 3
 text = "Viewport"
@@ -131,9 +151,9 @@ child_hide = true
 parent_desabilit = true
 
 [node name="Theme" type="Button" parent="Panel/Vbox/Hbox/List/Scroll/Buttons"]
-margin_top = 62.0
+margin_top = 93.0
 margin_right = 294.0
-margin_bottom = 86.0
+margin_bottom = 117.0
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 3
 text = "Theme"
@@ -148,9 +168,9 @@ child_hide = true
 parent_desabilit = true
 
 [node name="Keywords" type="Button" parent="Panel/Vbox/Hbox/List/Scroll/Buttons"]
-margin_top = 93.0
+margin_top = 124.0
 margin_right = 294.0
-margin_bottom = 117.0
+margin_bottom = 148.0
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 3
 text = "Keywords"
@@ -184,16 +204,102 @@ margin_bottom = 514.0
 
 [node name="Propriety" type="VBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll"]
 margin_right = 745.0
-margin_bottom = 1072.0
+margin_bottom = 1328.0
 size_flags_horizontal = 3
 
-[node name="World" type="VBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety"]
+[node name="Save" type="VBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety"]
 margin_right = 745.0
-margin_bottom = 108.0
+margin_bottom = 52.0
+script = ExtResource( 12 )
 
-[node name="Glow" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/World"]
+[node name="Save" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Save"]
 margin_right = 745.0
 margin_bottom = 24.0
+
+[node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Save/Save"]
+margin_right = 591.0
+margin_bottom = 24.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+custom_styles/focus = SubResource( 2 )
+shortcut_in_tooltip = false
+text = "Autosave"
+align = 0
+
+[node name="Bool" type="CheckBox" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Save/Save"]
+margin_left = 595.0
+margin_right = 745.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 150, 0 )
+script = ExtResource( 8 )
+
+[node name="Save_time" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Save"]
+margin_top = 28.0
+margin_right = 745.0
+margin_bottom = 52.0
+
+[node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Save/Save_time"]
+margin_right = 591.0
+margin_bottom = 24.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+custom_styles/focus = SubResource( 2 )
+shortcut_in_tooltip = false
+text = "Time save"
+align = 0
+
+[node name="Bool" type="SpinBox" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Save/Save_time"]
+margin_left = 595.0
+margin_right = 745.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 150, 0 )
+min_value = 1.0
+max_value = 60.0
+value = 5.0
+suffix = "min"
+script = ExtResource( 9 )
+
+[node name="World" type="VBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety"]
+margin_top = 56.0
+margin_right = 745.0
+margin_bottom = 364.0
+
+[node name="Tonemap" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/World"]
+margin_right = 745.0
+margin_bottom = 24.0
+
+[node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/World/Tonemap"]
+margin_right = 591.0
+margin_bottom = 24.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+custom_styles/focus = SubResource( 2 )
+shortcut_in_tooltip = false
+text = "Tonemap"
+align = 0
+
+[node name="Tonemap" type="OptionButton" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/World/Tonemap"]
+margin_left = 595.0
+margin_right = 745.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 150, 0 )
+mouse_default_cursor_shape = 2
+pressed = true
+text = "Linear"
+items = [ "Linear", null, false, 0, null, "Reinhard", null, false, 1, null, "Filmic", null, false, 2, null, "Aces", null, false, 3, null ]
+selected = 0
+script = ExtResource( 6 )
+propriety = "tonemap_mode"
+my_propriety = "selected"
+my_signal = "item_selected"
+
+[node name="Glow" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/World"]
+margin_top = 28.0
+margin_right = 745.0
+margin_bottom = 52.0
 
 [node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/World/Glow"]
 margin_right = 591.0
@@ -217,10 +323,64 @@ text = "On"
 script = ExtResource( 6 )
 propriety = "glow_enabled"
 
-[node name="Filter" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/World"]
-margin_top = 28.0
+[node name="Glow_intensity" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/World"]
+margin_top = 56.0
 margin_right = 745.0
-margin_bottom = 52.0
+margin_bottom = 88.0
+
+[node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/World/Glow_intensity"]
+margin_right = 591.0
+margin_bottom = 24.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+custom_styles/focus = SubResource( 2 )
+shortcut_in_tooltip = false
+text = "Glow intensity"
+align = 0
+
+[node name="Glow" type="HSlider" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/World/Glow_intensity"]
+margin_left = 595.0
+margin_right = 745.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 150, 0 )
+mouse_default_cursor_shape = 2
+max_value = 8.0
+step = 0.1
+script = ExtResource( 11 )
+propriety = "glow_intensity"
+
+[node name="Glow_strength" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/World"]
+margin_top = 92.0
+margin_right = 745.0
+margin_bottom = 124.0
+
+[node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/World/Glow_strength"]
+margin_right = 591.0
+margin_bottom = 24.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+custom_styles/focus = SubResource( 2 )
+shortcut_in_tooltip = false
+text = "Glow strength"
+align = 0
+
+[node name="Glow" type="HSlider" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/World/Glow_strength"]
+margin_left = 595.0
+margin_right = 745.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 150, 0 )
+mouse_default_cursor_shape = 2
+max_value = 2.0
+step = 0.1
+script = ExtResource( 11 )
+propriety = "glow_strength"
+
+[node name="Filter" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/World"]
+margin_top = 128.0
+margin_right = 745.0
+margin_bottom = 152.0
 
 [node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/World/Filter"]
 margin_right = 591.0
@@ -245,9 +405,9 @@ script = ExtResource( 6 )
 propriety = "adjustment_enabled"
 
 [node name="Fog" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/World"]
-margin_top = 56.0
+margin_top = 156.0
 margin_right = 745.0
-margin_bottom = 80.0
+margin_bottom = 180.0
 
 [node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/World/Fog"]
 margin_right = 591.0
@@ -271,10 +431,90 @@ text = "On"
 script = ExtResource( 6 )
 propriety = "fog_enabled"
 
-[node name="Reflections" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/World"]
-margin_top = 84.0
+[node name="Fog_color" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/World"]
+margin_top = 184.0
 margin_right = 745.0
-margin_bottom = 108.0
+margin_bottom = 208.0
+
+[node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/World/Fog_color"]
+margin_right = 591.0
+margin_bottom = 24.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+custom_styles/focus = SubResource( 2 )
+shortcut_in_tooltip = false
+text = "Fog color"
+align = 0
+
+[node name="Fog" type="ColorPickerButton" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/World/Fog_color"]
+margin_left = 595.0
+margin_right = 745.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 150, 0 )
+mouse_default_cursor_shape = 2
+pressed = true
+text = "On"
+script = ExtResource( 6 )
+propriety = "fog_color"
+my_propriety = "color"
+
+[node name="Fog_depht_begin" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/World"]
+margin_top = 212.0
+margin_right = 745.0
+margin_bottom = 244.0
+
+[node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/World/Fog_depht_begin"]
+margin_right = 591.0
+margin_bottom = 24.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+custom_styles/focus = SubResource( 2 )
+shortcut_in_tooltip = false
+text = "Fog begin"
+align = 0
+
+[node name="Fog" type="HSlider" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/World/Fog_depht_begin"]
+margin_left = 595.0
+margin_right = 745.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 150, 0 )
+mouse_default_cursor_shape = 2
+max_value = 4000.0
+script = ExtResource( 11 )
+propriety = "fog_depth_begin"
+
+[node name="Fog_depht_end" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/World"]
+margin_top = 248.0
+margin_right = 745.0
+margin_bottom = 280.0
+
+[node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/World/Fog_depht_end"]
+margin_right = 591.0
+margin_bottom = 24.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+custom_styles/focus = SubResource( 2 )
+shortcut_in_tooltip = false
+text = "Fog end"
+align = 0
+
+[node name="Fog" type="HSlider" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/World/Fog_depht_end"]
+margin_left = 595.0
+margin_right = 745.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 150, 0 )
+mouse_default_cursor_shape = 2
+max_value = 4000.0
+script = ExtResource( 11 )
+propriety = "fog_depth_end"
+
+[node name="Reflections" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/World"]
+margin_top = 284.0
+margin_right = 745.0
+margin_bottom = 308.0
 
 [node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/World/Reflections"]
 margin_right = 591.0
@@ -299,9 +539,9 @@ script = ExtResource( 6 )
 propriety = "ss_reflections_enabled"
 
 [node name="Viewport" type="VBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety"]
-margin_top = 112.0
+margin_top = 368.0
 margin_right = 745.0
-margin_bottom = 164.0
+margin_bottom = 420.0
 
 [node name="CamSensi" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Viewport"]
 margin_right = 745.0
@@ -358,9 +598,9 @@ value = 50.0
 script = ExtResource( 9 )
 
 [node name="Theme" type="VBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety"]
-margin_top = 168.0
+margin_top = 424.0
 margin_right = 745.0
-margin_bottom = 444.0
+margin_bottom = 700.0
 
 [node name="Tittle" type="Label" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Theme"]
 visible = false
@@ -552,9 +792,9 @@ items = [ "GridEx", null, false, 0, null, "GridEx Alpha", null, false, 1, null, 
 selected = 0
 
 [node name="Keywords" type="VBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety"]
-margin_top = 448.0
+margin_top = 704.0
 margin_right = 745.0
-margin_bottom = 1072.0
+margin_bottom = 1328.0
 custom_constants/separation = 8
 
 [node name="Action2" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords"]
@@ -1062,6 +1302,8 @@ unique_name_in_owner = true
 script = ExtResource( 10 )
 
 [connection signal="pressed" from="Panel/Vbox/PanelContainer/TopBar/Button" to="." method="_on_Button_pressed"]
+[connection signal="toggled" from="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Save/Save/Bool" to="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Save" method="_on_Bool_toggled"]
+[connection signal="value_changed" from="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Save/Save_time/Bool" to="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Save" method="_on_Bool_value_changed"]
 [connection signal="value_changed" from="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Theme/Font_size/Size" to="." method="_on_Size_value_changed"]
 [connection signal="color_changed" from="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Theme/Font_border/Font_border_color" to="." method="_on_Font_border_color_color_changed"]
 [connection signal="value_changed" from="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Theme/Font_border_size/Border_size" to="." method="_on_Border_size_value_changed"]

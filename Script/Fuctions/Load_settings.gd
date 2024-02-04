@@ -21,7 +21,7 @@ func loader() -> void:
 		var image = Image.new()
 		
 		settings.font_size(arq.font_size)
-		settings.outline_font_color(arq.font_outline_color)
+		settings.outline_font_color(GridEx.string_to_color(arq.font_outline_color))
 		
 		image.load(arq.background_texture)
 		imagetex.create_from_image(image)

@@ -35,7 +35,6 @@ static func export_new_tiles(Models: Spatial ,path: String ,import:bool = true) 
 	for child in Models.get_children():
 		var group_scene: PackedScene = PackedScene.new()
 		group_scene.pack(child)
-		
 		file_tile_create(path,group_scene,child,import)
 
 
@@ -145,6 +144,7 @@ static func loop_get_tile(node,Worlds: Spatial,collision_save: Array):
 static func file_tscn_create(Worlds: Spatial,collision_save: Array,scene: PackedScene,path: String) -> void:
 	scene.pack(Worlds)
 	ResourceSaver.save(path ,scene)
+	
 	Worlds.queue_free()
 	collision_save = []
 
@@ -183,6 +183,7 @@ static func file_tile_create(path: String,group_scene: PackedScene,Groups,import
 	
 	
 	delete_file(file_name)
+	
 	
 	if import:
 		Import.import_group_tile_automatic(path_save,true)

@@ -1,22 +1,124 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Assets/2D/Atlas/UI/Eyes.tres" type="Texture" id=1]
 [ext_resource path="res://Assets/2D/Atlas/UI/Unlock.tres" type="Texture" id=2]
 [ext_resource path="res://Script/UI/Geral/LayerButton.gd" type="Script" id=3]
 [ext_resource path="res://Script/Class/AnimationButtonClass.gd" type="Script" id=4]
-[ext_resource path="res://Assets/2D/Atlas/UI/Delete.tres" type="Texture" id=5]
+[ext_resource path="res://Scene/UI/Resources/Settings_Popup.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/2D/Atlas/UI/Star.tres" type="Texture" id=6]
-[ext_resource path="res://Assets/2D/Atlas/UI/Rename.tres" type="Texture" id=7]
-[ext_resource path="res://Assets/2D/Atlas/UI/Down.tres" type="Texture" id=8]
-[ext_resource path="res://Assets/2D/Atlas/UI/Duplicate.tres" type="Texture" id=9]
-[ext_resource path="res://Assets/2D/Atlas/UI/Up.tres" type="Texture" id=10]
 [ext_resource path="res://Assets/2D/Atlas/UI/Layout_void.tres" type="Texture" id=11]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
-[sub_resource type="StyleBoxEmpty" id=3]
+[sub_resource type="GDScript" id=2]
+script/source = "extends Node
 
-[sub_resource type="StyleBoxEmpty" id=4]
+
+onready var PopupOptions: CanvasLayer = $\"../Layer/Popup\"
+onready var Par: HBoxContainer = $\"..\"
+onready var Name: LineEdit = $\"../Layer/Name\"
+onready var Vbox: VBoxContainer = $\"../Layer/Popup/Panel/Vbox\"
+onready var Fav: TextureButton = $\"../Layer/Favorite\"
+onready var Favorite_button: Button
+
+var Eyes: AtlasTexture = preload(\"res://Assets/2D/Atlas/UI/Eyes.tres\")
+var EyesClosed: AtlasTexture = preload(\"res://Assets/2D/Atlas/UI/EyesClosed.tres\")
+var Layout_void: AtlasTexture = preload(\"res://Assets/2D/Atlas/UI/Layout_void.tres\")
+var Layout_item: AtlasTexture = preload(\"res://Assets/2D/Atlas/UI/Layout_item.tres\")
+var Up: AtlasTexture = preload(\"res://Assets/2D/Atlas/UI/Up.tres\")
+var Down: AtlasTexture = preload(\"res://Assets/2D/Atlas/UI/Down.tres\")
+var Favorite: AtlasTexture = preload(\"res://Assets/2D/Atlas/UI/Star.tres\")
+var Rename: AtlasTexture = preload(\"res://Assets/2D/Atlas/UI/Rename.tres\")
+var Duplicate: AtlasTexture = preload(\"res://Assets/2D/Atlas/UI/Duplicate.tres\")
+var Delete: AtlasTexture = preload(\"res://Assets/2D/Atlas/UI/Delete.tres\")
+
+
+func _ready() -> void:
+	PopupOptions.delete = false
+	PopupOptions.create_button(self,\"Up\",\"Up_pressed\",Up)
+	PopupOptions.create_button(self,\"Down\",\"Down_pressed\",Down)
+	PopupOptions.new_separator()
+	
+	Favorite_button = PopupOptions.create_button(self,\"Favorite\",\"Favorite_pressed\",Favorite)
+	PopupOptions.create_button(self,\"Rename\",\"Rename_pressed\",Rename)
+	PopupOptions.new_separator()
+	
+	PopupOptions.create_button(self,\"Duplicate\",\"Duplicate_pressed\",Duplicate)
+	PopupOptions.create_button(self,\"Delete\",\"Delete_pressed\",Delete)
+
+
+#Popup==========================================================
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if mouse_name == false:
+			Name.hide()
+
+
+func _on_Layer_gui_input(_event: InputEvent) -> void:
+	if _event is InputEventMouseButton:
+		if Input.is_mouse_button_pressed(BUTTON_RIGHT):
+			Par._on_Layer_pressed()
+			
+			PopupOptions.popup_mouse()
+
+
+
+
+
+func _on_Name_gui_input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		if Input.is_key_pressed(KEY_ENTER):
+			if Name.text.length() >= 1:
+				Par.Layer3d.name = Name.text
+				Par.Layer.text = Name.text
+			
+			Name.hide()
+
+
+
+var mouse_name = false
+func _on_Name_mouse_exited() -> void:
+	mouse_name = false
+func _on_Name_mouse_entered() -> void:
+	mouse_name = true
+
+func Up_pressed() -> void:
+	Par.get_parent().move_child(Par,Par.get_index()-1)
+	PopupOptions.Settings_popup.hide()
+func Down_pressed() -> void:
+	Par.get_parent().move_child(Par,Par.get_index()+1)
+	PopupOptions.Settings_popup.hide()
+
+func Favorite_pressed() -> void:
+	Fav.visible = !Fav.visible
+	
+	if Fav.visible:
+		Favorite_button.text = \"Remove from favorites\"
+	else:
+		Favorite_button.text = \"Add favorites\"
+	
+	PopupOptions.Settings_popup.hide()
+
+func Rename_pressed() -> void:
+	Name.show()
+	Name.text = Par.Layer3d.name
+	Name.select_all()
+	
+	PopupOptions.Settings_popup.hide()
+	Name.call_deferred(\"grab_focus\")
+
+func Duplicate_pressed() -> void:
+	var new_layer = Par.Layer3d.duplicate()
+	new_layer.name = str(Par.Layer3d.name,\" \",\"duplicate\")
+	Index.block.add_child(new_layer)
+	
+	PopupOptions.Settings_popup.hide()
+
+func Delete_pressed() -> void:
+	Par.delete()
+
+"
 
 [node name="LayerButton" type="HBoxContainer"]
 margin_right = 276.0
@@ -38,104 +140,9 @@ script = ExtResource( 4 )
 Scale_pressed_up = Vector2( 1, 1.1 )
 Scale_pressed_down = Vector2( 0.85, 0.8 )
 
-[node name="Popup" type="Popup" parent="Layer"]
-margin_left = 15.0
-margin_top = -117.0
-margin_right = 262.0
-margin_bottom = -6.0
-mouse_filter = 2
-
-[node name="Panel" type="PanelContainer" parent="Layer/Popup"]
-margin_right = 234.0
-margin_bottom = 120.0
-
-[node name="Vbox" type="VBoxContainer" parent="Layer/Popup/Panel"]
-margin_left = 3.0
-margin_top = 5.0
-margin_right = 231.0
-margin_bottom = 161.0
-mouse_filter = 2
-
-[node name="Up" type="Button" parent="Layer/Popup/Panel/Vbox"]
-margin_right = 228.0
-margin_bottom = 20.0
-mouse_default_cursor_shape = 2
-custom_styles/focus = SubResource( 3 )
-custom_styles/normal = SubResource( 4 )
-text = "Up"
-icon = ExtResource( 10 )
-align = 0
-expand_icon = true
-
-[node name="Down" type="Button" parent="Layer/Popup/Panel/Vbox"]
-margin_top = 24.0
-margin_right = 228.0
-margin_bottom = 44.0
-mouse_default_cursor_shape = 2
-custom_styles/focus = SubResource( 3 )
-custom_styles/normal = SubResource( 4 )
-text = "Down"
-icon = ExtResource( 8 )
-align = 0
-expand_icon = true
-
-[node name="hs2" type="HSeparator" parent="Layer/Popup/Panel/Vbox"]
-margin_top = 48.0
-margin_right = 228.0
-margin_bottom = 52.0
-
-[node name="Favorite" type="Button" parent="Layer/Popup/Panel/Vbox"]
-margin_top = 56.0
-margin_right = 228.0
-margin_bottom = 76.0
-mouse_default_cursor_shape = 2
-custom_styles/focus = SubResource( 3 )
-custom_styles/normal = SubResource( 4 )
-text = "Add favorites"
-icon = ExtResource( 6 )
-align = 0
-expand_icon = true
-
-[node name="Rename" type="Button" parent="Layer/Popup/Panel/Vbox"]
-margin_top = 80.0
-margin_right = 228.0
-margin_bottom = 100.0
-mouse_default_cursor_shape = 2
-custom_styles/focus = SubResource( 3 )
-custom_styles/normal = SubResource( 4 )
-text = "Rename"
-icon = ExtResource( 7 )
-align = 0
-expand_icon = true
-
-[node name="hs" type="HSeparator" parent="Layer/Popup/Panel/Vbox"]
-margin_top = 104.0
-margin_right = 228.0
-margin_bottom = 108.0
-
-[node name="Duplicate" type="Button" parent="Layer/Popup/Panel/Vbox"]
-margin_top = 112.0
-margin_right = 228.0
-margin_bottom = 132.0
-mouse_default_cursor_shape = 2
-custom_styles/focus = SubResource( 3 )
-custom_styles/normal = SubResource( 4 )
-text = "Duplicate"
-icon = ExtResource( 9 )
-align = 0
-expand_icon = true
-
-[node name="Delete" type="Button" parent="Layer/Popup/Panel/Vbox"]
-margin_top = 136.0
-margin_right = 228.0
-margin_bottom = 156.0
-mouse_default_cursor_shape = 2
-custom_styles/focus = SubResource( 3 )
-custom_styles/normal = SubResource( 4 )
-text = "Delete"
-icon = ExtResource( 5 )
-align = 0
-expand_icon = true
+[node name="Popup" parent="Layer" instance=ExtResource( 5 )]
+layer = 3
+delete = false
 
 [node name="Name" type="LineEdit" parent="Layer"]
 visible = false
@@ -187,19 +194,16 @@ stretch_mode = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
-[connection signal="gui_input" from="Layer" to="." method="_on_Layer_gui_input"]
-[connection signal="pressed" from="Layer" to="." method="_on_Button_pressed"]
-[connection signal="pressed" from="Layer/Popup/Panel/Vbox/Up" to="." method="_on_Up_pressed"]
-[connection signal="pressed" from="Layer/Popup/Panel/Vbox/Down" to="." method="_on_Down_pressed"]
-[connection signal="pressed" from="Layer/Popup/Panel/Vbox/Favorite" to="." method="_on_Favorite_pressed"]
-[connection signal="focus_exited" from="Layer/Popup/Panel/Vbox/Rename" to="." method="_on_Rename_focus_exited"]
-[connection signal="pressed" from="Layer/Popup/Panel/Vbox/Rename" to="." method="_on_Rename_pressed"]
-[connection signal="pressed" from="Layer/Popup/Panel/Vbox/Duplicate" to="." method="_on_Duplicate_pressed"]
-[connection signal="pressed" from="Layer/Popup/Panel/Vbox/Delete" to="." method="_on_Delete_pressed"]
-[connection signal="gui_input" from="Layer/Name" to="." method="_on_Name_gui_input"]
-[connection signal="mouse_entered" from="Layer/Name" to="." method="_on_Name_mouse_entered"]
-[connection signal="mouse_exited" from="Layer/Name" to="." method="_on_Name_mouse_exited"]
-[connection signal="text_changed" from="Layer/Name" to="." method="_on_Name_text_changed"]
+[node name="Settings_Popup" type="Node" parent="."]
+script = SubResource( 2 )
+
+[connection signal="gui_input" from="Layer" to="Settings_Popup" method="_on_Layer_gui_input"]
+[connection signal="pressed" from="Layer" to="." method="_on_Layer_pressed"]
+[connection signal="gui_input" from="Layer/Name" to="Settings_Popup" method="_on_Name_gui_input"]
+[connection signal="mouse_entered" from="Layer/Name" to="Settings_Popup" method="_on_Name_mouse_entered"]
+[connection signal="mouse_exited" from="Layer/Name" to="Settings_Popup" method="_on_Name_mouse_exited"]
 [connection signal="pressed" from="Layer/Favorite" to="." method="_on_Favorite_pressed"]
 [connection signal="pressed" from="Lock" to="." method="_on_Lock_pressed"]
 [connection signal="pressed" from="Visible" to="." method="_on_Tex_pressed"]
+
+[editable path="Layer/Popup"]

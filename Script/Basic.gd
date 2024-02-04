@@ -12,6 +12,7 @@ onready var Id_button: CheckBox = $Hbox/Info/Hbox/Id
 onready var Cam: Spatial = $Create_preview/View/Cam
 onready var Camera3D: Camera = $Create_preview/View/Cam/Camera
 
+var stop_generator: bool = false
 var group_scene
 
 var script_tile: Script = load("res://Script/Button_Tile.gd")
@@ -60,6 +61,10 @@ func generate_tile_button() -> void:
 	var layer_cam = int(rand_range(2,32))
 	
 	for buttons in Tiles.get_children():
+		if stop_generator:
+			set_deferred("stop_generator",false)
+			break
+		
 		yield(self,"create_thumbnail") #Generate to time
 		
 		generate_icon(buttons.Tile,buttons,layer_cam)
