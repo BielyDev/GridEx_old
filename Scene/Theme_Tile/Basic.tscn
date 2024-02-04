@@ -27,11 +27,18 @@ var icon_distance: float = 4
 var Reload: AtlasTexture = preload(\"res://Assets/2D/Atlas/UI/Reload_icon_tile.tres\")
 var Rename: AtlasTexture = preload(\"res://Assets/2D/Atlas/UI/Rename.tres\")
 var propriety: PackedScene = preload(\"res://Scene/Popups/Propriety_sped.tscn\")
-
+var Up: AtlasTexture = preload(\"res://Assets/2D/Atlas/UI/Up.tres\")
+var Down: AtlasTexture = preload(\"res://Assets/2D/Atlas/UI/Down.tres\")
+var Delete: AtlasTexture = preload(\"res://Assets/2D/Atlas/UI/Delete.tres\")
 
 func _ready() -> void:
+	PopupSe.create_button(self,\"Up\",\"up_pressed\",Up)
+	PopupSe.create_button(self,\"Down\",\"down_pressed\",Down)
+	PopupSe.new_separator()
 	PopupSe.create_button(self,\"Reload all icons\",\"reload_icon\",Reload)
 	PopupSe.create_button(self,\"Rename\",\"rename\",Rename)
+	PopupSe.create_button(self,\"Delete\",\"delete\",Delete)
+	
 	PopupSe.delete = false
 
 
@@ -55,9 +62,7 @@ func reload_icon() -> void:
 	new_p.call_func = \"confirm\"
 	
 	IndexLayer.add_child(new_p)
-	PopupSe.hide()
-	
-	
+	PopupSe.Settings_popup.hide()
 
 func rename() -> void:
 	
@@ -65,7 +70,7 @@ func rename() -> void:
 	Rename_node.text = Tittle.text
 	Rename_node.select_all()
 	
-	PopupSe.hide()
+	PopupSe.Settings_popup.hide()
 	yield(get_tree().create_timer(0.1),\"timeout\")
 	Rename_node.grab_focus()
 
@@ -85,6 +90,17 @@ func confirm() -> void:
 		yield(get_tree().create_timer(0.2),\"timeout\")
 		
 		Par.generate_icon(tiles.Tile,tiles,layer_cam)
+
+
+func up_pressed() -> void:
+	Par.get_parent().move_child(Par,Par.get_index()-1)
+	PopupSe.Settings_popup.hide()
+func down_pressed() -> void:
+	Par.get_parent().move_child(Par,Par.get_index()+1)
+	PopupSe.Settings_popup.hide()
+func delete() -> void:
+	Par.queue_free()
+	PopupSe.Settings_popup.hide()
 
 
 func _on_Rename_text_entered(new_text: String) -> void:
@@ -183,6 +199,7 @@ expand_icon = true
 script = SubResource( 7 )
 
 [node name="Settings_Popup" parent="Hbox/Info/Hbox/Options" instance=ExtResource( 1 )]
+layer = 3
 delete = false
 
 [node name="Scroll" type="ScrollContainer" parent="Hbox/Info"]

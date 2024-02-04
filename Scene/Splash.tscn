@@ -160,7 +160,7 @@ margin_top = 2.0
 margin_right = 544.0
 margin_bottom = 22.0
 size_flags_horizontal = 14
-text = "version 0.2.1"
+text = "version 0.5.0"
 
 [connection signal="pressed" from="Panel/VBoxContainer/Buttons/New_project" to="." method="_on_New_project_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/Buttons/what" to="." method="_on_what_pressed"]
