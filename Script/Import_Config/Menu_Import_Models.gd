@@ -41,25 +41,34 @@ func file_ok(dir: String,file_name: String) -> void:
 		extension_file = ".obj"
 	if dir.ends_with("gltf"):
 		extension_file = ".gltf"
+	if dir.ends_with("tscn"):
+		extension_file = ".tscn"
 	
 	dir = dir.substr(0,dir.length() - extension_file.length())
 	file_name = file_name.substr(0,file_name.length() - extension_file.length())
 	
-	#if extension_file == ".obj":
-	#	save_mtl(dir,file_name)
 	
-	save = str(path,file_name,extension_file)
 	
-	#file.open(save,File.WRITE)
-	#file.store_string(file_import)
-	#file.close()
-	
-	var mesh = ObjParse.load_obj(str(dir,extension_file))
-	
-	var MeshIns = MeshInstance.new()
-	
-	Par.add_item(MeshIns,file_name)
-	MeshIns.mesh = mesh
+	if extension_file == ".obj":
+		var MeshIns = MeshInstance.new()
+		save = str(path,file_name,extension_file)
+		
+		var mesh = ObjParse.load_obj(str(dir,extension_file))
+		
+		Par.add_item(MeshIns,file_name)
+		MeshIns.mesh = mesh
+	if extension_file == ".tscn":
+		var tiles: Array = Import.import_tscn_tile(str(dir,extension_file))
+		
+		if tiles.size() == 0:
+			print("erro")
+			return
+		for ti in tiles:
+			
+			var MeshIns = MeshInstance.new()
+			MeshIns.mesh = ti.mesh
+			
+			Par.add_item(MeshIns,file_name)
 
 
 func save_mtl(dir,file_name: String) -> void:

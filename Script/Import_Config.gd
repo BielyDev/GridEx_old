@@ -130,18 +130,6 @@ func delete_itens() -> void:
 		return
 
 
-func delete_nodes() -> void:
-	#if is_tree_selection():
-	#	 delete_groups()
-	var _item = get_item_selection()
-	print(_item)
-	if _item != null:
-		for node in group:
-			if node.tree == Tree_models.get_selected():
-				delete_itens_selected(node,node.node)
-				return
-
-
 func delete_itens_selected(group_selected:Dictionary ,item_selected: MeshInstance):
 	for i in group_selected.node.get_children():
 		if i == item_selected:
@@ -196,7 +184,7 @@ func _on_Add_pressed() -> void:
 	confirm_add_group()
 
 func _on_Delete_pressed() -> void:
-	delete_nodes()
+	delete_itens()
 
 func _on_Save_pressed() -> void:
 	IndexLayer.file_explore(["*.tile"],self,"save_groups","cancel",FileDialog.MODE_OPEN_DIR)

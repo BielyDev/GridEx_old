@@ -3,6 +3,34 @@ extends GridEx
 class_name Import
 
 
+
+static func import_tscn_tile(path: String) -> Array:
+	var scene = load(path)
+	var tiles: Array = []
+	
+	if scene == null:
+		IndexLayer.popup_one("Dependency error!")
+		return []
+	
+	var no = scene.instance()
+	
+	loop_get_tile(no,tiles)
+	
+	return tiles
+
+
+static func loop_get_tile(block_0,tiles) -> void:
+	if block_0.get_child_count() >= 1:
+		for block_1 in block_0.get_children():
+			
+			block_1.global_transform.origin = Vector3()
+			
+			if block_1 is MeshInstance:
+				tiles.append(block_1)
+			
+			loop_get_tile(block_1,tiles)
+
+
 static func import_tscn(path: String):
 	
 	var scene = load(path)
@@ -14,7 +42,7 @@ static func import_tscn(path: String):
 	
 	Index.edit_node.World3D.Block.add_child(no)
 	
-	yield(create_time(1),"timeout")
+	yield(create_time(0.5),"timeout")
 	
 	loop_child_importer(no)
 
@@ -128,4 +156,5 @@ static func _load_file_config(no,save_data: Dictionary,loader_id: bool) -> void:
 					tiles.id_tile = save_data.id_tile[id]
 					tiles.id_group = save_data.id_group
 					#tiles.id = save_data.id[id]
+
 

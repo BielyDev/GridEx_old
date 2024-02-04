@@ -25,6 +25,9 @@ func create_surface_material_menu(item_select: MeshInstance) -> void:
 	for passos in item_select.mesh.get_surface_count():
 		var Material_menu = Material_edit_new.instance()
 		var mat: SpatialMaterial = item_select.mesh.surface_get_material(passos)
+		if mat == null:
+			mat = SpatialMaterial.new()
+			item_select.mesh.surface_set_material(passos,mat)
 		
 		Material_menu.tittle = str("Surface Material/",passos)
 		Material_menu.mat = mat

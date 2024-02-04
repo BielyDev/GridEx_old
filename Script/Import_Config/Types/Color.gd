@@ -1,6 +1,6 @@
 extends ColorPickerButton
 
-var mat: SpatialMaterial
+var mat
 var mat_propriety: String
 
 func _ready() -> void:
