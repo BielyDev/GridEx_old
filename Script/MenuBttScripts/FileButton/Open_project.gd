@@ -9,7 +9,8 @@ func start() -> void:
 		["*.gridex"],
 		self,
 		"ok",
-		"cancel"
+		"cancel",
+		FileDialog.MODE_OPEN_FILE
 	)
 
 func ok(dir: String, file:String):

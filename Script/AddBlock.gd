@@ -72,63 +72,55 @@ func add_mirror_x_y(pre_pos: Vector3,id_tile: int) -> void:
 	var pos_z_neg_x_neg = Vector3(-pre_pos.z,pre_pos.y,-pre_pos.x)
 	var pos_z_neg_x = Vector3(-pre_pos.z,pre_pos.y,pre_pos.x)
 	
-	var rot_x_neg
-	var rot_x_z_neg
-	var rot_x_neg_z_neg
-	var rot_z_x
-	var rot_z_x_neg
-	var rot_z_neg_x_neg
-	var rot_z_neg_x
+	var rot_x_neg = Cont.rot
+	var rot_x_z_neg = Cont.rot
+	var rot_x_neg_z_neg = Cont.rot
+	var rot_z_x = Cont.rot
+	var rot_z_x_neg = Cont.rot
+	var rot_z_neg_x_neg = Cont.rot
+	var rot_z_neg_x = Cont.rot
 	
 	match Rotation.selected:
-		0:
-			rot_x_neg = Cont.rot
-			rot_x_z_neg = Cont.rot
-			rot_x_neg_z_neg = Cont.rot
-			rot_z_x = Cont.rot
-			rot_z_x_neg = Cont.rot
-			rot_z_neg_x_neg = Cont.rot
-			rot_z_neg_x = Cont.rot
 		1:
-			rot_x_neg = Vector3(Cont.rot.x,-Cont.rot.y-90,Cont.rot.z)
-			rot_x_z_neg = Vector3(Cont.rot.x,-Cont.rot.y+90,Cont.rot.z)
-			rot_x_neg_z_neg = Vector3(Cont.rot.x,Cont.rot.y+180,Cont.rot.z)
+			rot_x_neg.y = -Cont.rot.y-90
+			rot_x_z_neg.y = -Cont.rot.y+90
+			rot_x_neg_z_neg.y = Cont.rot.y+180
 			
-			rot_z_x = Vector3(Cont.rot.x,Cont.rot.y,Cont.rot.z)
+			rot_z_x.y = Cont.rot.y
 			
-			rot_z_x_neg = Vector3(Cont.rot.x,-Cont.rot.y+90,Cont.rot.z)
-			rot_z_neg_x_neg = Vector3(Cont.rot.x,Cont.rot.y+180,Cont.rot.z)
-			rot_z_neg_x = Vector3(Cont.rot.x,-Cont.rot.y-90,Cont.rot.z)
+			rot_z_x_neg.y = -Cont.rot.y+90
+			rot_z_neg_x_neg.y = Cont.rot.y+180
+			rot_z_neg_x.y = -Cont.rot.y-90
 		2:
-			rot_x_neg = Vector3(Cont.rot.x,-Cont.rot.y,Cont.rot.z)
-			rot_x_z_neg = Vector3(Cont.rot.x,-Cont.rot.y+180,Cont.rot.z)
-			rot_x_neg_z_neg = Vector3(Cont.rot.x,Cont.rot.y+180,Cont.rot.z)
+			rot_x_neg.y = -Cont.rot.y
+			rot_x_z_neg.y = -Cont.rot.y+180
+			rot_x_neg_z_neg.y = Cont.rot.y+180
 			
-			rot_z_x = Vector3(Cont.rot.x,Cont.rot.y,Cont.rot.z)
+			rot_z_x.y = Cont.rot.y
 			
-			rot_z_x_neg = Vector3(Cont.rot.x,-Cont.rot.y+180,Cont.rot.z)
-			rot_z_neg_x_neg = Vector3(Cont.rot.x,Cont.rot.y+180,Cont.rot.z)
-			rot_z_neg_x = Vector3(Cont.rot.x,-Cont.rot.y,Cont.rot.z)
+			rot_z_x_neg.y = -Cont.rot.y+180
+			rot_z_neg_x_neg.y = Cont.rot.y+180
+			rot_z_neg_x.y = -Cont.rot.y
 		3:
-			rot_x_neg = Vector3(Cont.rot.x,Cont.rot.y+270,Cont.rot.z)
-			rot_x_z_neg = Vector3(Cont.rot.x,Cont.rot.y+270,Cont.rot.z)
-			rot_x_neg_z_neg = Vector3(Cont.rot.x,Cont.rot.y,Cont.rot.z)
+			rot_x_neg.y = Cont.rot.y+270
+			rot_x_z_neg.y = Cont.rot.y+270
+			rot_x_neg_z_neg.y = Cont.rot.y
 			
-			rot_z_x = Vector3(Cont.rot.x,Cont.rot.y+90,Cont.rot.z)
+			rot_z_x.y = Cont.rot.y+90
 			
-			rot_z_x_neg = Vector3(Cont.rot.x,Cont.rot.y+180,Cont.rot.z)
-			rot_z_neg_x_neg = Vector3(Cont.rot.x,Cont.rot.y+90,Cont.rot.z)
-			rot_z_neg_x = Vector3(Cont.rot.x,Cont.rot.y+180,Cont.rot.z)
+			rot_z_x_neg.y = Cont.rot.y+180
+			rot_z_neg_x_neg.y = Cont.rot.y+90
+			rot_z_neg_x.y = Cont.rot.y+180
 		4:
-			rot_x_neg = Vector3(Cont.rot.x,-Cont.rot.y-180,Cont.rot.z)
-			rot_x_z_neg = Vector3(Cont.rot.x,-Cont.rot.y+90,Cont.rot.z)
-			rot_x_neg_z_neg = Vector3(Cont.rot.x,Cont.rot.y+180,Cont.rot.z)
+			rot_x_neg.y = -Cont.rot.y-180
+			rot_x_z_neg.y = -Cont.rot.y+90
+			rot_x_neg_z_neg.y = Cont.rot.y+180
 			
-			rot_z_x = Vector3(Cont.rot.x,Cont.rot.y,Cont.rot.z)
+			rot_z_x.y = Cont.rot.y
 			
-			rot_z_x_neg = Vector3(Cont.rot.x,-Cont.rot.y+180,Cont.rot.z)
-			rot_z_neg_x_neg = Vector3(Cont.rot.x,Cont.rot.y+180,Cont.rot.z)
-			rot_z_neg_x = Vector3(Cont.rot.x,-Cont.rot.y,Cont.rot.z)
+			rot_z_x_neg.y = -Cont.rot.y+180
+			rot_z_neg_x_neg.y = Cont.rot.y+180
+			rot_z_neg_x.y = -Cont.rot.y
 	
 	
 	Block.add_block(pre_pos,Cont.rot,id_tile)

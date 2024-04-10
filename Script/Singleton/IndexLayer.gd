@@ -7,6 +7,7 @@ var popup_one_new: PackedScene = preload("res://Scene/Popups/Popup_OK.tscn")
 var file_explore_new: PackedScene = preload("res://Scene/Popups/File_explore.tscn")
 var importer_new: PackedScene = preload("res://Scene/Import/Import_Config.tscn")
 var preference_new: PackedScene = preload("res://Scene/Preferences/Preferences.tscn")
+var create_image_new: PackedScene = preload("res://Scene/ImageTile/ImageTile_Creator.tscn")
 var light_panel_new: PackedScene = preload("res://Scene/Popups/Light_Control.tscn")
 
 onready var Global: Control = $Global
@@ -46,6 +47,12 @@ func importer_menu(object: Node,OK: String) -> void:
 	
 	Global.add_child(importer)
 	importer.connect("OK",object,OK)
+
+func create_image_menu(object: Node,OK: String) -> void:
+	var create_image = create_image_new.instance()
+	
+	Global.add_child(create_image)
+	create_image.connect("OK",object,OK)
 
 func preferences_menu(object: Node,OK: String) -> void:
 	var preference = preference_new.instance()

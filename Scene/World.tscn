@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://Scene/World_Node.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scene/UI/Bars/ViewPanel.tscn" type="PackedScene" id=2]
@@ -40,6 +40,7 @@
 [ext_resource path="res://Assets/2D/Atlas/UI/New_tile.tres" type="Texture" id=38]
 [ext_resource path="res://Script/Fuctions/Load_settings.gd" type="Script" id=39]
 [ext_resource path="res://Script/Fuctions/Autosave.gd" type="Script" id=40]
+[ext_resource path="res://Script/MenuBttScripts/FileButton/Create_image_tile.gd" type="Script" id=41]
 
 [sub_resource type="Gradient" id=3979]
 colors = PoolColorArray( 0.0941176, 0, 0.333333, 1, 0.492188, 0, 0.253784, 1 )
@@ -509,15 +510,18 @@ margin_right = 301.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 
-[node name="Add" type="Button" parent="Local/Vbox/Hbox/Edit/TileMain/Tab/Tiles/Tile_configPanel/Scroll/Tile_config"]
+[node name="Add" type="MenuButton" parent="Local/Vbox/Hbox/Edit/TileMain/Tab/Tiles/Tile_configPanel/Scroll/Tile_config"]
 margin_right = 64.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 64, 32 )
 mouse_default_cursor_shape = 2
 text = "New"
 icon = ExtResource( 38 )
+flat = false
 expand_icon = true
-script = ExtResource( 5 )
+items = [ "Import Models", null, 0, false, false, 0, 0, null, "", false, "Create image", null, 0, false, false, 1, 0, null, "", false ]
+script = ExtResource( 16 )
+Scripts = [ ExtResource( 3 ), ExtResource( 41 ) ]
 
 [node name="Edit" type="Button" parent="Local/Vbox/Hbox/Edit/TileMain/Tab/Tiles/Tile_configPanel/Scroll/Tile_config"]
 visible = false
@@ -706,7 +710,6 @@ script = ExtResource( 40 )
 [connection signal="tab_changed" from="Local/Vbox/Hbox/LeftBar/Options/Options" to="Local/Vbox/Hbox/LeftBar/Options/Options" method="_on_Options_tab_changed"]
 [connection signal="value_changed" from="Local/Vbox/Hbox/View/ModePanel/ModePanel/Modes/Height_tile/Spin" to="Local/Vbox/Hbox/View/ModePanel/ModePanel/Modes/Height_tile" method="_on_Spin_value_changed"]
 [connection signal="tab_selected" from="Local/Vbox/Hbox/Edit/TileMain/Tab" to="Local/Vbox/Hbox/Edit/TileMain/Tab" method="_on_Tab_tab_selected"]
-[connection signal="pressed" from="Local/Vbox/Hbox/Edit/TileMain/Tab/Tiles/Tile_configPanel/Scroll/Tile_config/Add" to="Local/Vbox/Hbox/Edit/TileMain/Tab/Tiles/Tile_configPanel" method="_on_Add_pressed"]
 [connection signal="pressed" from="Local/Vbox/Hbox/Edit/TileMain/Tab/Tiles/Tile_configPanel/Scroll/Tile_config/Edit" to="Local/Vbox/Hbox/Edit/TileMain/Tab/Tiles/Tile_configPanel" method="_on_Edit_pressed"]
 [connection signal="pressed" from="Local/Vbox/Hbox/Edit/TileMain/Tab/Tiles/Tile_configPanel/Scroll/Tile_config/Import" to="Local/Vbox/Hbox/Edit/TileMain/Tab/Tiles/Tile_configPanel" method="_on_Import_pressed"]
 [connection signal="tab_selected" from="Local/Vbox/Hbox/Edit/Camadas/Tab" to="Local/Vbox/Hbox/Edit/Camadas/Tab" method="_on_Tab_tab_selected"]

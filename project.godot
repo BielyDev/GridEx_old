@@ -258,6 +258,12 @@ void={
  ]
 }
 
+[layer_names]
+
+3d_render/layer_1="Main"
+3d_render/layer_2="ImportTile"
+3d_render/layer_3="ImageTile"
+
 [physics]
 
 common/enable_pause_aware_picking=true
