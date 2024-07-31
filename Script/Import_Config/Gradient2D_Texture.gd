@@ -1,6 +1,7 @@
 extends PanelContainer
 
-signal texture_chaged(texture)
+signal texture_change(texture)
+signal change_value(texture)
 
 onready var Controls: Control = $Vbox/Gradient/Tex/Controls
 onready var GradTex: TextureButton = $Vbox/Gradient/Tex
@@ -36,6 +37,7 @@ func filter(value:bool) -> void:
 		gradient2d.flags = ImageTexture.FLAG_MIPMAPS
 	
 	emit_signal("texture_chaged",gradient2d)
+	emit_signal("change_value",gradient2d)
 
 func loader_texture() -> void:
 	if tex_ready != null:
@@ -62,6 +64,7 @@ func add_button_color(id: int = 0) -> Control:
 	
 	Controls.add_child(new_button)
 	
+	emit_signal("change_value",gradient2d)
 	return new_button
 
 

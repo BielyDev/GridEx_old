@@ -11,6 +11,8 @@ var Tile: Tile
 var id_text = Label.new()
 var popup = true
 var new_popup
+var parent
+
 
 func _ready() -> void:
 	connect("gui_input",self,"_settings_popup")
@@ -56,3 +58,33 @@ func first_tile() -> void:
 func reload_icon() -> void:
 	get_parent().get_parent().get_parent().get_parent().get_parent().generate_icon(Tile,self,5)
 	new_popup.hide()
+
+
+# Drag drop ===============
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion or event is InputEventMouseButton:
+		if pressed:
+			rect_global_position = get_global_mouse_position() - (rect_size/2)
+			parent.slot = self
+			
+		else:
+			if Input.is_action_just_released("click_left") and is_instance_valid(parent.slot):
+				
+				if parent.slot != self:
+					if (parent.slot.rect_global_position - (parent.slot.rect_size/2)).distance_to(rect_global_position - (rect_size/2)) < rect_size.x:
+						var index = get_index()
+						get_parent().move_child(self,parent.slot.get_index())
+						get_parent().move_child(parent.slot,index)
+						
+						get_parent().queue_sort()
+						
+						parent.slot = null
+				
+		
+		if pressed:
+			if Input.is_action_just_released("click_left"):
+				yield(get_tree(),"idle_frame")
+				if parent.slot == self:
+						get_parent().queue_sort()
+						parent.slot = null

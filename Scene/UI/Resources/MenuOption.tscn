@@ -1,0 +1,76 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Script/UI/Resource/MenuOption.gd" type="Script" id=3]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends PanelContainer
+
+var button: Button
+var mouse_entered: bool
+var is_visible: bool
+
+var range_security:int = 40
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion and is_visible:
+		var x = event.position.x > rect_global_position.x-range_security and event.position.x < (rect_global_position.x + rect_size.x + range_security)
+		var y = event.position.y > rect_global_position.y-range_security and event.position.y < (rect_global_position.y + rect_size.y + range_security)
+		
+		if mouse_entered:
+			visible = x and y
+		else:
+			if !visible:
+				is_visible = false
+		
+		mouse_entered = x and y
+
+
+
+func connected() -> void:
+	button.connect(\"pressed\",self,\"pressed\")
+	button.connect(\"mouse_entered\",self,\"button_mouse_entered\")
+	button.connect(\"mouse_exited\",self,\"button_mouse_exited\")
+	#connect(\"pressed\",self,\"pressed\")
+
+func button_mouse_entered() -> void:
+	rect_global_position = Vector2(button.rect_global_position.x+button.rect_size.x,button.rect_global_position.y)
+	show()
+
+func button_mouse_exited() -> void:
+	var mouse = get_global_mouse_position()
+	
+	if mouse.x > button.rect_global_position.x + button.rect_size.x == false:
+		hide()
+	else:
+		is_visible = true
+
+func pressed() -> void:
+	rect_global_position = Vector2(button.rect_global_position.x+button.rect_size.x,button.rect_global_position.y)
+	
+	visible = !visible
+	is_visible = visible
+"
+
+[node name="MenuOption" type="Button"]
+margin_right = 120.0
+margin_bottom = 31.0
+text = "MenuOption"
+script = ExtResource( 3 )
+
+[node name="Z" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Panel" type="PanelContainer" parent="Z"]
+visible = false
+margin_left = 1.0
+margin_top = 35.0
+margin_right = 169.0
+margin_bottom = 149.0
+script = SubResource( 1 )
+
+[node name="Vbox" type="VBoxContainer" parent="Z/Panel"]
+margin_left = 3.0
+margin_top = 5.0
+margin_right = 165.0
+margin_bottom = 107.0
+mouse_filter = 2

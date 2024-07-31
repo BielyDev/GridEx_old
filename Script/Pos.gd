@@ -78,7 +78,7 @@ func _input(_event: InputEvent) -> void:
 func _unhandled_key_input(event: InputEventKey) -> void:
 	reset_transform()
 
-func _physics_process(_delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Cam.projection == Camera.PROJECTION_ORTHOGONAL:
 		Cam.size = Cam.global_transform.origin.distance_to(Vector3())
 		

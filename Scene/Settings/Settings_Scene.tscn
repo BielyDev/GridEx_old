@@ -13,13 +13,13 @@ __meta__ = {
 
 [node name="ControllerPanel" type="PanelContainer" parent="."]
 margin_right = 336.0
-margin_bottom = 108.0
+margin_bottom = 96.0
 
 [node name="Controller" type="VBoxContainer" parent="ControllerPanel"]
 margin_left = 3.0
 margin_top = 5.0
 margin_right = 333.0
-margin_bottom = 101.0
+margin_bottom = 89.0
 
 [node name="Tittle" type="Label" parent="ControllerPanel/Controller"]
 margin_right = 330.0
@@ -34,54 +34,54 @@ margin_bottom = 28.0
 [node name="Options" type="VBoxContainer" parent="ControllerPanel/Controller"]
 margin_top = 32.0
 margin_right = 330.0
-margin_bottom = 96.0
+margin_bottom = 84.0
 
 [node name="CamSensi" type="HBoxContainer" parent="ControllerPanel/Controller/Options"]
 margin_right = 330.0
-margin_bottom = 30.0
+margin_bottom = 24.0
 script = ExtResource( 4 )
 ValueNode_Path = NodePath("SpinBox")
 
 [node name="Tittle" type="Label" parent="ControllerPanel/Controller/Options/CamSensi"]
-margin_top = 5.0
+margin_top = 2.0
 margin_right = 120.0
-margin_bottom = 25.0
+margin_bottom = 22.0
 text = "Camera sensi"
 
 [node name="SpinBox" type="SpinBox" parent="ControllerPanel/Controller/Options/CamSensi"]
-margin_left = 184.0
+margin_left = 270.0
 margin_right = 330.0
-margin_bottom = 30.0
+margin_bottom = 24.0
 size_flags_horizontal = 10
 step = 0.5
 value = 50.0
 
 [node name="CamMovSensi" type="HBoxContainer" parent="ControllerPanel/Controller/Options"]
-margin_top = 34.0
+margin_top = 28.0
 margin_right = 330.0
-margin_bottom = 64.0
+margin_bottom = 52.0
 script = ExtResource( 4 )
 ValueNode_Path = NodePath("SpinBox")
 propriety = 1
 
 [node name="Tittle" type="Label" parent="ControllerPanel/Controller/Options/CamMovSensi"]
-margin_top = 5.0
+margin_top = 2.0
 margin_right = 180.0
-margin_bottom = 25.0
+margin_bottom = 22.0
 text = "Cam movement sensi"
 
 [node name="SpinBox" type="SpinBox" parent="ControllerPanel/Controller/Options/CamMovSensi"]
-margin_left = 184.0
+margin_left = 270.0
 margin_right = 330.0
-margin_bottom = 30.0
+margin_bottom = 24.0
 size_flags_horizontal = 10
 step = 0.5
 value = 50.0
 
 [node name="GraphicPanel" type="PanelContainer" parent="."]
-margin_top = 112.0
+margin_top = 100.0
 margin_right = 336.0
-margin_bottom = 264.0
+margin_bottom = 252.0
 
 [node name="Graphic" type="VBoxContainer" parent="GraphicPanel"]
 margin_left = 3.0

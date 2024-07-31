@@ -26,10 +26,12 @@ func _input(_event: InputEvent) -> void:
 			
 			Par.gradient2d.fill_to.x = position.x * 0.0065
 			Par.gradient2d.fill_to.y = position.y * 0.0065
+			
 
 
 func _on_Point_button_down() -> void:
 	mouse = true
 func _on_Point_button_up() -> void:
 	mouse = false
+	Par.emit_signal("change_value",Par.gradient2d)
 

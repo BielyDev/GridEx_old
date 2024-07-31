@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Script/Class/GraphNode.gd" type="Script" id=1]
+[ext_resource path="res://Script/ScriptGridEx/Nodes/Codify.gd" type="Script" id=2]
+
+[node name="Codify" type="GraphNode"]
+margin_right = 329.0
+margin_bottom = 204.0
+rect_min_size = Vector2( 220, 136 )
+mouse_filter = 1
+title = "Codify"
+show_close = true
+resizable = true
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color( 1, 1, 1, 1 )
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color( 1, 1, 1, 1 )
+script = ExtResource( 1 )
+
+[node name="Text" type="TextEdit" parent="."]
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 313.0
+margin_bottom = 198.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Settings" type="Node" parent="."]
+script = ExtResource( 2 )
+
+[connection signal="slot_updated" from="." to="Settings" method="_on_Codify_slot_updated"]
+[connection signal="text_changed" from="Text" to="Settings" method="_on_Text_text_changed"]

@@ -1,0 +1,231 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Script/Class/SpinBoxControlClass.gd" type="Script" id=1]
+[ext_resource path="res://Script/ScriptGridEx/Nodes/AddPoints.gd" type="Script" id=3]
+[ext_resource path="res://Scene/Resource/Vector.tscn" type="PackedScene" id=4]
+
+[node name="AddPoints" type="GraphNode"]
+margin_right = 260.0
+margin_bottom = 251.0
+rect_min_size = Vector2( 220, 136 )
+mouse_filter = 1
+title = "AddPoints"
+show_close = true
+resizable = true
+slot/0/left_enabled = true
+slot/0/left_type = 1
+slot/0/left_color = Color( 0, 0.952941, 1, 1 )
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color( 1, 1, 1, 1 )
+slot/1/left_enabled = true
+slot/1/left_type = 5
+slot/1/left_color = Color( 1, 0.823529, 0.482353, 1 )
+slot/1/right_enabled = false
+slot/1/right_type = 0
+slot/1/right_color = Color( 1, 1, 1, 1 )
+slot/2/left_enabled = true
+slot/2/left_type = 5
+slot/2/left_color = Color( 1, 0.823529, 0.482353, 1 )
+slot/2/right_enabled = false
+slot/2/right_type = 0
+slot/2/right_color = Color( 1, 1, 1, 1 )
+slot/3/left_enabled = false
+slot/3/left_type = 0
+slot/3/left_color = Color( 1, 1, 1, 1 )
+slot/3/right_enabled = false
+slot/3/right_type = 0
+slot/3/right_color = Color( 1, 1, 1, 1 )
+slot/4/left_enabled = true
+slot/4/left_type = 3
+slot/4/left_color = Color( 0.482353, 1, 0.537255, 1 )
+slot/4/right_enabled = false
+slot/4/right_type = 0
+slot/4/right_color = Color( 1, 1, 1, 1 )
+slot/5/left_enabled = true
+slot/5/left_type = 3
+slot/5/left_color = Color( 0.482353, 1, 0.537255, 1 )
+slot/5/right_enabled = false
+slot/5/right_type = 0
+slot/5/right_color = Color( 1, 1, 1, 1 )
+slot/6/left_enabled = true
+slot/6/left_type = 3
+slot/6/left_color = Color( 0.482353, 1, 0.537255, 1 )
+slot/6/right_enabled = false
+slot/6/right_type = 0
+slot/6/right_color = Color( 1, 1, 1, 1 )
+script = ExtResource( 3 )
+
+[node name="Model" type="PanelContainer" parent="."]
+margin_left = 10.0
+margin_top = 21.0
+margin_right = 304.0
+margin_bottom = 53.0
+
+[node name="Object" type="Label" parent="Model"]
+margin_left = 3.0
+margin_top = 5.0
+margin_right = 291.0
+margin_bottom = 25.0
+text = "No tiles"
+
+[node name="Density" type="PanelContainer" parent="."]
+margin_left = 10.0
+margin_top = 63.0
+margin_right = 304.0
+margin_bottom = 99.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Density" type="HBoxContainer" parent="Density"]
+margin_left = 3.0
+margin_top = 5.0
+margin_right = 291.0
+margin_bottom = 29.0
+
+[node name="Tittle" type="Label" parent="Density/Density"]
+margin_top = 2.0
+margin_right = 80.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 70, 0 )
+text = "Density:"
+
+[node name="DensityValue" type="SpinBox" parent="Density/Density"]
+margin_left = 84.0
+margin_right = 288.0
+margin_bottom = 24.0
+size_flags_horizontal = 11
+max_value = 9999.0
+script = ExtResource( 1 )
+
+[node name="Seed" type="PanelContainer" parent="."]
+margin_left = 10.0
+margin_top = 109.0
+margin_right = 304.0
+margin_bottom = 145.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Seed" type="HBoxContainer" parent="Seed"]
+margin_left = 3.0
+margin_top = 5.0
+margin_right = 291.0
+margin_bottom = 29.0
+
+[node name="Tittle" type="Label" parent="Seed/Seed"]
+margin_top = 2.0
+margin_right = 70.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 70, 0 )
+text = "Seed:"
+
+[node name="SeedValue" type="SpinBox" parent="Seed/Seed"]
+margin_left = 74.0
+margin_right = 288.0
+margin_bottom = 24.0
+size_flags_horizontal = 11
+script = ExtResource( 1 )
+
+[node name="Points" type="Node" parent="."]
+
+[node name="HSeparator" type="HSeparator" parent="."]
+margin_left = 10.0
+margin_top = 155.0
+margin_right = 304.0
+margin_bottom = 159.0
+
+[node name="Vector" type="PanelContainer" parent="."]
+margin_left = 10.0
+margin_top = 169.0
+margin_right = 304.0
+margin_bottom = 261.0
+
+[node name="Position" type="HBoxContainer" parent="Vector"]
+margin_left = 3.0
+margin_top = 5.0
+margin_right = 291.0
+margin_bottom = 85.0
+
+[node name="Tittle" type="Label" parent="Vector/Position"]
+margin_top = 30.0
+margin_right = 90.0
+margin_bottom = 50.0
+text = "Size area"
+
+[node name="Vector" parent="Vector/Position" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 164.0
+margin_right = 288.0
+margin_bottom = 80.0
+
+[node name="Rotation" type="PanelContainer" parent="."]
+margin_left = 10.0
+margin_top = 271.0
+margin_right = 304.0
+margin_bottom = 391.0
+
+[node name="Vbox" type="VBoxContainer" parent="Rotation"]
+margin_left = 3.0
+margin_top = 5.0
+margin_right = 291.0
+margin_bottom = 113.0
+
+[node name="Rotation" type="HBoxContainer" parent="Rotation/Vbox"]
+margin_right = 288.0
+margin_bottom = 80.0
+
+[node name="Tittle" type="Label" parent="Rotation/Vbox/Rotation"]
+margin_top = 30.0
+margin_right = 160.0
+margin_bottom = 50.0
+text = "Rotation degrees"
+
+[node name="Rotation" parent="Rotation/Vbox/Rotation" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 164.0
+margin_right = 288.0
+margin_bottom = 80.0
+
+[node name="pick_instance_rotation" type="CheckBox" parent="Rotation/Vbox"]
+margin_top = 84.0
+margin_right = 288.0
+margin_bottom = 108.0
+text = "pick_instance"
+
+[node name="Offset" type="PanelContainer" parent="."]
+margin_left = 10.0
+margin_top = 401.0
+margin_right = 304.0
+margin_bottom = 493.0
+
+[node name="Position" type="HBoxContainer" parent="Offset"]
+margin_left = 3.0
+margin_top = 5.0
+margin_right = 291.0
+margin_bottom = 85.0
+
+[node name="Label" type="Label" parent="Offset/Position"]
+margin_top = 30.0
+margin_right = 150.0
+margin_bottom = 50.0
+text = "Offset position"
+
+[node name="Offset_control" parent="Offset/Position" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 164.0
+margin_right = 288.0
+margin_bottom = 80.0
+
+[node name="Offset3d" type="Spatial" parent="."]
+
+[connection signal="change_is_output" from="." to="." method="_on_AddPoints_change_is_output"]
+[connection signal="connected" from="." to="." method="_on_AddPoints_connected"]
+[connection signal="connected_from" from="." to="." method="_on_AddPoints_connected_from"]
+[connection signal="disconnect_from" from="." to="." method="_on_AddPoints_disconnect_from"]
+[connection signal="from_value" from="." to="." method="_on_AddPoints_from_value"]
+[connection signal="value_changed" from="Density/Density/DensityValue" to="." method="_on_DensityValue_value_changed"]
+[connection signal="value_changed" from="Seed/Seed/SeedValue" to="." method="_on_SeedValue_value_changed"]
+[connection signal="pressed" from="Rotation/Vbox/pick_instance_rotation" to="." method="_on_pick_instance_rotation_pressed"]

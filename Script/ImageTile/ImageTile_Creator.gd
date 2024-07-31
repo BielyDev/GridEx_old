@@ -8,11 +8,12 @@ onready var Preview_2d: TextureRect = $Panel/Up/Preview2D
 onready var Ray: RayCast = $"View/View_Container/Viewport/3D_View/Camera/Ray"
 onready var Cam: Camera = $"View/View_Container/Viewport/3D_View/Camera"
 onready var Pos: Spatial = $"View/View_Container/Viewport/3D_View/Pos"
+onready var x = $"%x"
 
-
+export var distance: float = 0.05
 var image = Image.new()
 var image_tex = ImageTexture.new()
-
+var resolution_selection: Vector2 = Vector2(8,8)
 
 func _ready() -> void:
 	Pos.block_view = true
@@ -21,8 +22,17 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if Tex.pressed:
-		var pos =  Tex.get_local_mouse_position() - (Seletor.rect_size/2)
-		Seletor.rect_position = pos.snapped(Vector2(57.4,57.4))
+		var mouse_position = Tex.get_local_mouse_position()
+		var scale = calculate_scale() * distance
+		
+		mouse_position.x = clamp(mouse_position.x,0,Tex.rect_size.x)
+		mouse_position.y = clamp(mouse_position.y,0,Tex.rect_size.y)
+		
+		var pos =  mouse_position - (Seletor.rect_size/2)
+		#Seletor.rect_position = pos.snapped(Vector2(57.4,57.4))
+		
+		Seletor.rect_position = pos.snapped(Vector2(x.value * scale,x.value * scale))
+		
 	
 	var mouse3d = Cam.project_position(get_global_mouse_position(),40)
 	Ray.look_at(mouse3d,Vector3.UP)
@@ -69,21 +79,23 @@ func _on_Tex_button_up() -> void:
 	var image_texture_selected = ImageTexture.new()
 	
 	
-	image_selected.create(8,8,false,Image.FORMAT_RGBA8)
+	image_selected.create(resolution_selection.x,resolution_selection.y,false,Image.FORMAT_RGBA8)
 	
 	image.lock()
 	image_selected.lock()
 	
+	var scale = calculate_scale()
 	
-	for pixel_x in range(8):
-		for pixel_y in range(8):
+	
+	for pixel_x in range(resolution_selection.x):
+		for pixel_y in range(resolution_selection.y):
 			image_selected.set_pixel(
 				pixel_x,
 				pixel_y,
 				image.get_pixel(
-					int(Seletor.rect_position.x * 0.14)+pixel_x,
-					int(Seletor.rect_position.y * 0.14)+pixel_y)
-			)
+					int(Seletor.rect_position.x * (scale))+pixel_x,
+					int(Seletor.rect_position.y * (scale))+pixel_y)
+			)#VOLTAR AQUI
 	
 	image.unlock()
 	image_selected.unlock()
@@ -100,3 +112,25 @@ func _on_View_Container_mouse_entered() -> void:
 
 func _on_View_Container_mouse_exited() -> void:
 	Pos.block_view = true
+
+
+func _on_x_value_changed(value):
+	x.max_value = image.get_width()
+	
+	resolution_selection = Vector2(value,value)
+	
+	var scale = calculate_scale()
+	
+	Seletor.rect_size = (resolution_selection * scale)
+	#print(image.get_size() - Tex.rect_size)
+
+
+func calculate_scale() -> float:
+	var scales = Vector2(
+		image.get_size().x / image.get_width(),
+		image.get_size().y / image.get_height()
+	)
+	var scale = min(scales.x,scales.y)
+	
+	return scale
+

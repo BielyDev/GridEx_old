@@ -29,6 +29,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Script/Class/Export.gd"
 }, {
+"base": "GraphNode",
+"class": "GNode",
+"language": "GDScript",
+"path": "res://Script/Class/GraphNode.gd"
+}, {
+"base": "GraphEdit",
+"class": "GraphTiles",
+"language": "GDScript",
+"path": "res://Script/ScriptGridEx/GraphTiles.gd"
+}, {
 "base": "Node",
 "class": "GridEx",
 "language": "GDScript",
@@ -93,12 +103,19 @@ _global_script_classes=[ {
 "class": "UI",
 "language": "GDScript",
 "path": "res://Script/Class/UI.gd"
+}, {
+"base": "Resource",
+"class": "popmenu",
+"language": "GDScript",
+"path": "res://Script/ResourceScript/popmenu.gd"
 } ]
 _global_script_class_icons={
 "Action_other_button": "",
 "AnimationButtonClass": "",
 "Camera_Controller": "",
 "Export": "",
+"GNode": "",
+"GraphTiles": "",
 "GridEx": "res://Assets/2D/Program/Icon/icon.svg",
 "Hide_and_show_animated": "",
 "Import": "",
@@ -111,7 +128,8 @@ _global_script_class_icons={
 "TileButton": "",
 "Tile_Group": "",
 "TweenUI": "",
-"UI": ""
+"UI": "",
+"popmenu": ""
 }
 
 [application]
@@ -128,12 +146,12 @@ config/auto_accept_quit=false
 
 Index="*res://Script/Singleton/Index.gd"
 IndexLayer="*res://Scene/Singleton/IndexLayer.tscn"
+gridex="*res://Script/Singleton/Gridex.gd"
 
 [debug]
 
 gdscript/warnings/unused_argument=false
 gdscript/warnings/unused_signal=false
-gdscript/warnings/return_value_discarded=false
 
 [display]
 
@@ -194,17 +212,22 @@ reset_cam={
 }
 middle_down={
 "deadzone": 0.5,
-"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":5,"pressed":false,"doubleclick":false,"script":null)
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":5,"canceled":false,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
 middle_up={
 "deadzone": 0.5,
-"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":4,"pressed":false,"doubleclick":false,"script":null)
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":4,"canceled":false,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+click_right={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"canceled":false,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
 click_left={
 "deadzone": 0.5,
-"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"canceled":false,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
 erase={

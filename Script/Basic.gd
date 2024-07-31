@@ -18,7 +18,7 @@ var group_scene
 var script_tile: Script = load("res://Script/Button_Tile.gd")
 
 var tittle: String = "Basic Tile"
-
+var slot
 
 func _ready() -> void:
 	
@@ -55,6 +55,7 @@ func generate_tile_button() -> void:
 		item_tile.set_script(script_tile)
 		
 		item_tile.Tile = child
+		item_tile.parent = self
 		Tiles.add_child(item_tile)
 		item_tile.hide()
 	

@@ -1,0 +1,104 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Script/ResourceScript/popmenu.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Theme/New_main.tres" type="Theme" id=2]
+[ext_resource path="res://Scene/UI/Resources/MenuOption.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scene/ScriptGridex/Nodes/Output.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Script/Class/AnimationButtonClass.gd" type="Script" id=5]
+[ext_resource path="res://Script/ScriptGridEx/GraphEdit.gd" type="Script" id=6]
+[ext_resource path="res://Script/ScriptGridEx/TileScript.gd" type="Script" id=7]
+[ext_resource path="res://Script/ScriptGridEx/Script.gd" type="Script" id=8]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 1 )
+group_name = "Vector"
+node = PoolStringArray( "res://Scene/ScriptGridex/Nodes/Vector3.tscn", "res://Scene/ScriptGridex/Nodes/Snapped.tscn", "res://Scene/ScriptGridex/Nodes/AreaVector.tscn", "res://Scene/ScriptGridex/Nodes/Texture_to_Vector3.tscn" )
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 1 )
+group_name = "Instance"
+node = PoolStringArray( "res://Scene/ScriptGridex/Nodes/AddPoints.tscn", "res://Scene/ScriptGridex/Nodes/Multiple_Instances.tscn", "res://Scene/ScriptGridex/Nodes/Snapped_instance.tscn" )
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 1 )
+group_name = "Selection"
+node = PoolStringArray( "res://Scene/ScriptGridex/Nodes/Tile.tscn" )
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 1 )
+group_name = "Others"
+node = PoolStringArray( "res://Scene/ScriptGridex/Nodes/Int.tscn", "res://Scene/ScriptGridex/Nodes/Output.tscn", "res://Scene/ScriptGridex/Nodes/Codify.tscn", "res://Scene/ScriptGridex/Nodes/TextureNode.tscn" )
+
+[node name="TileScript" type="PanelContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 3.0
+margin_top = 35.0
+margin_right = -3.0
+margin_bottom = -7.0
+size_flags_horizontal = 3
+theme = ExtResource( 2 )
+script = ExtResource( 7 )
+Nodes_class = [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ]
+
+[node name="Vbox" type="VBoxContainer" parent="."]
+margin_left = 3.0
+margin_top = 5.0
+margin_right = 1271.0
+margin_bottom = 671.0
+size_flags_horizontal = 3
+
+[node name="Buttons" type="HBoxContainer" parent="Vbox"]
+margin_right = 1268.0
+margin_bottom = 24.0
+
+[node name="Run" type="Button" parent="Vbox/Buttons"]
+visible = false
+margin_right = 34.0
+margin_bottom = 24.0
+text = "Run"
+script = ExtResource( 5 )
+
+[node name="MenuOption" parent="Vbox/Buttons" instance=ExtResource( 3 )]
+margin_right = 54.0
+margin_bottom = 24.0
+text = "Nodes"
+
+[node name="Hbox" type="HBoxContainer" parent="Vbox"]
+margin_top = 28.0
+margin_right = 1268.0
+margin_bottom = 666.0
+size_flags_vertical = 3
+alignment = 1
+
+[node name="GraphEdit" type="GraphEdit" parent="Vbox/Hbox"]
+margin_right = 1268.0
+margin_bottom = 638.0
+size_flags_horizontal = 3
+right_disconnects = true
+scroll_offset = Vector2( 0, -32 )
+show_zoom_label = true
+minimap_enabled = false
+script = ExtResource( 6 )
+
+[node name="Output" parent="Vbox/Hbox/GraphEdit" instance=ExtResource( 4 )]
+margin_left = 800.0
+margin_top = 282.0
+margin_right = 996.0
+margin_bottom = 427.0
+offset = Vector2( 800, 250 )
+
+[node name="Script" type="Node" parent="."]
+script = ExtResource( 8 )
+
+[connection signal="pressed" from="Vbox/Buttons/Run" to="." method="_on_Run_pressed"]
+[connection signal="child_exiting_tree" from="Vbox/Hbox/GraphEdit" to="Vbox/Hbox/GraphEdit" method="_on_GraphEdit_child_exiting_tree"]
+[connection signal="connection_request" from="Vbox/Hbox/GraphEdit" to="Vbox/Hbox/GraphEdit" method="_on_GraphEdit_connection_request"]
+[connection signal="copy_nodes_request" from="Vbox/Hbox/GraphEdit" to="Vbox/Hbox/GraphEdit" method="_on_GraphEdit_copy_nodes_request"]
+[connection signal="delete_nodes_request" from="Vbox/Hbox/GraphEdit" to="Vbox/Hbox/GraphEdit" method="_on_GraphEdit_delete_nodes_request"]
+[connection signal="disconnection_request" from="Vbox/Hbox/GraphEdit" to="Vbox/Hbox/GraphEdit" method="_on_GraphEdit_disconnection_request"]
+[connection signal="duplicate_nodes_request" from="Vbox/Hbox/GraphEdit" to="Vbox/Hbox/GraphEdit" method="_on_GraphEdit_duplicate_nodes_request"]
+[connection signal="node_selected" from="Vbox/Hbox/GraphEdit" to="Vbox/Hbox/GraphEdit" method="_on_GraphEdit_node_selected"]
+[connection signal="node_unselected" from="Vbox/Hbox/GraphEdit" to="Vbox/Hbox/GraphEdit" method="_on_GraphEdit_node_unselected"]
+[connection signal="paste_nodes_request" from="Vbox/Hbox/GraphEdit" to="Vbox/Hbox/GraphEdit" method="_on_GraphEdit_paste_nodes_request"]
+[connection signal="popup_request" from="Vbox/Hbox/GraphEdit" to="Vbox/Hbox/GraphEdit" method="_on_GraphEdit_popup_request"]

@@ -40,7 +40,6 @@ func add_block(pos: Vector3,rot: Vector3,id_tile: int,undo: bool = true) -> bool
 			_mix(pos,rot,id_tile,undo)
 		MODE.JUST_UP:
 			_just_up(pos,rot,id_tile,undo)
-	
 	return true
 
 

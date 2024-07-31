@@ -1,0 +1,88 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/2D/Program/Icon/icon.png" type="Texture" id=2]
+[ext_resource path="res://Script/Class/GraphNode.gd" type="Script" id=3]
+[ext_resource path="res://Script/ScriptGridEx/Nodes/Tile.gd" type="Script" id=4]
+[ext_resource path="res://Script/Class/AnimationButtonClass.gd" type="Script" id=5]
+
+[node name="Tile" type="GraphNode"]
+margin_right = 222.0
+margin_bottom = 169.0
+rect_min_size = Vector2( 220, 136 )
+mouse_filter = 1
+title = "Tile"
+show_close = true
+resizable = true
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color( 1, 1, 1, 1 )
+slot/0/right_enabled = true
+slot/0/right_type = 1
+slot/0/right_color = Color( 0, 0.952941, 1, 1 )
+script = ExtResource( 3 )
+
+[node name="Settings" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[node name="Panel" type="PanelContainer" parent="."]
+margin_left = 10.0
+margin_top = 21.0
+margin_right = 218.0
+margin_bottom = 162.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Hbox" type="VBoxContainer" parent="Panel"]
+margin_left = 3.0
+margin_top = 5.0
+margin_right = 205.0
+margin_bottom = 134.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Info" type="HBoxContainer" parent="Panel/Hbox"]
+margin_right = 202.0
+margin_bottom = 24.0
+
+[node name="Tittle_group" type="Label" parent="Panel/Hbox/Info"]
+margin_top = 2.0
+margin_right = 60.0
+margin_bottom = 22.0
+text = "Group:"
+
+[node name="Groups" type="OptionButton" parent="Panel/Hbox/Info"]
+margin_left = 64.0
+margin_right = 114.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 50, 0 )
+script = ExtResource( 5 )
+
+[node name="Tittle_id" type="Label" parent="Panel/Hbox/Info"]
+margin_left = 118.0
+margin_top = 2.0
+margin_right = 148.0
+margin_bottom = 22.0
+text = "ID:"
+
+[node name="Tile" type="OptionButton" parent="Panel/Hbox/Info"]
+margin_left = 152.0
+margin_right = 202.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 50, 0 )
+expand_icon = true
+script = ExtResource( 5 )
+
+[node name="IconTile" type="TextureRect" parent="Panel/Hbox"]
+margin_top = 28.0
+margin_right = 202.0
+margin_bottom = 129.0
+rect_min_size = Vector2( 84, 84 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 6
+
+[connection signal="slot_updated" from="." to="Settings" method="_on_Codify_slot_updated"]
+[connection signal="item_selected" from="Panel/Hbox/Info/Groups" to="Settings" method="_on_Groups_item_selected"]
+[connection signal="item_selected" from="Panel/Hbox/Info/Tile" to="Settings" method="_on_Tile_item_selected"]

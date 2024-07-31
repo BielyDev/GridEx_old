@@ -58,7 +58,6 @@ func expand(enter: bool) -> void:
 		else:
 			child.size_flags_horizontal = Control.SIZE_FILL
 			child.rect_min_size.x = 0
-			print("oi")
 		
 		
 		if Expand_y:

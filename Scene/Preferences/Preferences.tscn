@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Script/UI/Buttons/Hide_and_show.gd" type="Script" id=1]
 [ext_resource path="res://Assets/2D/Atlas/UI/Hide_Arrow.tres" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Script/Preferences/Save_settings.gd" type="Script" id=10]
 [ext_resource path="res://Script/UI/Geral/Slider_value_enviroment.gd" type="Script" id=11]
 [ext_resource path="res://Script/Preferences/Save_GridEx.gd" type="Script" id=12]
+[ext_resource path="res://Script/Preferences/Resolution.gd" type="Script" id=13]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 23
@@ -204,7 +205,7 @@ margin_bottom = 514.0
 
 [node name="Propriety" type="VBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll"]
 margin_right = 745.0
-margin_bottom = 1328.0
+margin_bottom = 1376.0
 size_flags_horizontal = 3
 
 [node name="Save" type="VBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety"]
@@ -541,7 +542,7 @@ propriety = "ss_reflections_enabled"
 [node name="Viewport" type="VBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety"]
 margin_top = 368.0
 margin_right = 745.0
-margin_bottom = 420.0
+margin_bottom = 468.0
 
 [node name="CamSensi" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Viewport"]
 margin_right = 745.0
@@ -597,10 +598,39 @@ step = 0.5
 value = 50.0
 script = ExtResource( 9 )
 
-[node name="Theme" type="VBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety"]
-margin_top = 424.0
+[node name="Resolution" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Viewport"]
+margin_top = 56.0
 margin_right = 745.0
-margin_bottom = 700.0
+margin_bottom = 100.0
+script = ExtResource( 13 )
+
+[node name="Tittle" type="Button" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Viewport/Resolution"]
+margin_right = 591.0
+margin_bottom = 44.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+custom_styles/focus = SubResource( 2 )
+shortcut_in_tooltip = false
+text = "Resolution
+"
+align = 0
+
+[node name="Resolutions_options" type="OptionButton" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Viewport/Resolution"]
+margin_left = 595.0
+margin_right = 745.0
+margin_bottom = 44.0
+rect_min_size = Vector2( 150, 0 )
+mouse_default_cursor_shape = 2
+pressed = true
+text = "1280x720"
+items = [ "1024x576", null, false, 0, null, "1280x720", null, false, 1, null, "1920x1080", null, false, 2, null, "2560x1440", null, false, 3, null ]
+selected = 1
+
+[node name="Theme" type="VBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety"]
+margin_top = 472.0
+margin_right = 745.0
+margin_bottom = 748.0
 
 [node name="Tittle" type="Label" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Theme"]
 visible = false
@@ -792,9 +822,9 @@ items = [ "GridEx", null, false, 0, null, "GridEx Alpha", null, false, 1, null, 
 selected = 0
 
 [node name="Keywords" type="VBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety"]
-margin_top = 704.0
+margin_top = 752.0
 margin_right = 745.0
-margin_bottom = 1328.0
+margin_bottom = 1376.0
 custom_constants/separation = 8
 
 [node name="Action2" type="HBoxContainer" parent="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Keywords"]
@@ -1304,6 +1334,7 @@ script = ExtResource( 10 )
 [connection signal="pressed" from="Panel/Vbox/PanelContainer/TopBar/Button" to="." method="_on_Button_pressed"]
 [connection signal="toggled" from="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Save/Save/Bool" to="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Save" method="_on_Bool_toggled"]
 [connection signal="value_changed" from="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Save/Save_time/Bool" to="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Save" method="_on_Bool_value_changed"]
+[connection signal="item_selected" from="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Viewport/Resolution/Resolutions_options" to="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Viewport/Resolution" method="_on_Resolutions_options_item_selected"]
 [connection signal="value_changed" from="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Theme/Font_size/Size" to="." method="_on_Size_value_changed"]
 [connection signal="color_changed" from="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Theme/Font_border/Font_border_color" to="." method="_on_Font_border_color_color_changed"]
 [connection signal="value_changed" from="Panel/Vbox/Hbox/Propriety/Scroll/Propriety/Theme/Font_border_size/Border_size" to="." method="_on_Border_size_value_changed"]

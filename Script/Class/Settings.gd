@@ -19,12 +19,14 @@ var settings = {
 	"ss_reflections_enabled": false,
 	"background_texture": "",
 	"background_opacity": 1,
+	"background_size": 1,
 	"theme": 0,
 	"font_outline_size": 0,
 	"font_size": 18,
 	"font_outline_color": "1,1,1,1",
+	"settings": 0,
 	"0": 50,
-	"1": 50
+	"1": 50,
 }
 
 

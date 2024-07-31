@@ -3,7 +3,6 @@ extends GridEx
 class_name Import
 
 
-
 static func import_tscn_tile(path: String) -> Array:
 	var scene = load(path)
 	var tiles: Array = []

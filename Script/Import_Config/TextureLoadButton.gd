@@ -1,5 +1,7 @@
 extends PanelContainer
 
+signal change_texture(texture)
+
 onready var Tex: VBoxContainer = $Vbox/Textures
 onready var Options: MenuButton = $Vbox/Options
 
@@ -68,7 +70,7 @@ func animated(_ready = null) -> void:
 	texture = AnimatedTexture_new.instance()
 	texture.tex_ready = _ready
 	
-	texture.connect("texture_chaged",self,"set_texture")
+	texture.connect("texture_change",self,"set_texture")
 	Tex.add_child(texture)
 	Options.text = "[Animated Texture]"
 
@@ -77,7 +79,10 @@ func gradient(_ready = null) -> void:
 	texture = GradientTexture_new.instance()
 	texture.tex_ready = _ready
 	
-	texture.connect("texture_chaged",self,"set_texture")
+	texture.connect("texture_change",self,"set_texture")
+	texture.connect("texture_change",self,"call_change_texture")
+	texture.connect("change_value",self,"call_change_texture")
+	
 	Tex.add_child(texture)
 	Options.text = "[Gradient2D Texture]"
 
@@ -89,6 +94,9 @@ func set_texture(set_texture) -> void:
 
 
 onready var Filter: CheckBox = $Vbox/Filter
+
+func call_change_texture(_texture) -> void:
+	emit_signal("change_texture",_texture)
 
 func _on_Filter_pressed() -> void:
 	if texture != null:
