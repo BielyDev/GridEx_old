@@ -36,9 +36,9 @@ func _input(_event: InputEvent) -> void:
 	if Index.block_view:
 		return
 	
-	if _event is InputEventMouseMotion or _event is InputEventMouseButton:
-		
-		button_pressed = Input.is_action_pressed("click_left")
+	if (_event is InputEventMouseMotion or _event is InputEventMouseButton):
+		#is_action_pressed("click_left")
+		button_pressed = Input.is_mouse_button_pressed(1)
 		_selection_moviment()
 	
 	if Input.is_action_just_released("click_left"):
@@ -60,7 +60,7 @@ func _selection_moviment() -> void:
 	Index.view3d.ray.look_at(project,Vector3.UP)
 	
 	if pos != pos_save:
-		if Input.is_action_pressed("click_left"):
+		if Input.is_mouse_button_pressed(1):
 			selection_move()
 			pos_save = pos
 		

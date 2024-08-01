@@ -63,6 +63,13 @@ func reload_icon() -> void:
 # Drag drop ===============
 
 func _input(event: InputEvent) -> void:
+	if event is InputEventScreenTouch:
+		if event.pressed == false:
+			if pressed:
+				reset_slot()
+			else:
+				move_slot()
+	
 	if event is InputEventMouseMotion or event is InputEventMouseButton:
 		if pressed:
 			rect_global_position = get_global_mouse_position() - (rect_size/2)
@@ -70,21 +77,28 @@ func _input(event: InputEvent) -> void:
 			
 		else:
 			if Input.is_action_just_released("click_left") and is_instance_valid(parent.slot):
-				
-				if parent.slot != self:
-					if (parent.slot.rect_global_position - (parent.slot.rect_size/2)).distance_to(rect_global_position - (rect_size/2)) < rect_size.x:
-						var index = get_index()
-						get_parent().move_child(self,parent.slot.get_index())
-						get_parent().move_child(parent.slot,index)
-						
-						get_parent().queue_sort()
-						
-						parent.slot = null
-				
+				move_slot()
 		
 		if pressed:
 			if Input.is_action_just_released("click_left"):
-				yield(get_tree(),"idle_frame")
-				if parent.slot == self:
-						get_parent().queue_sort()
-						parent.slot = null
+				reset_slot()
+
+
+func move_slot() -> void:
+	if parent.slot != self:
+		if (parent.slot.rect_global_position - (parent.slot.rect_size/2)).distance_to(rect_global_position - (rect_size/2)) < rect_size.x:
+			var index = get_index()
+			
+			get_parent().move_child(self,parent.slot.get_index())
+			get_parent().move_child(parent.slot,index)
+			
+			get_parent().queue_sort()
+			
+			parent.slot = null
+
+func reset_slot() -> void:
+	yield(get_tree(),"idle_frame")
+	
+	if parent.slot == self:
+		get_parent().queue_sort()
+		parent.slot = null

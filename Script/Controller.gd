@@ -68,3 +68,9 @@ func _rotation_selection() -> void:
 	
 	Selection.rotation_degrees = rot
 
+
+
+
+
+
+

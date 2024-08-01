@@ -18,6 +18,7 @@ albedo_color = Color( 1, 1, 1, 0.419608 )
 albedo_texture = ExtResource( 5 )
 uv1_offset = Vector3( 0.5, 0, 0.5 )
 uv1_triplanar = true
+uv1_triplanar_sharpness = 1.0
 proximity_fade_enable = true
 proximity_fade_distance = 1.0
 distance_fade_mode = 2

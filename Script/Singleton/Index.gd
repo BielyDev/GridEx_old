@@ -45,7 +45,9 @@ var settings: Array = [
 
 
 func _ready() -> void:
+	OS.request_permissions()
 	var dic = Directory.new()
+	
 	if dic.dir_exists(system_path) == false:
 		
 		dic.open(OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS))
@@ -53,6 +55,7 @@ func _ready() -> void:
 		dic.list_dir_begin()
 		
 		dic.make_dir(".GridEx")
+
 
 
 func open_project(dir: String) -> void:
@@ -89,3 +92,65 @@ func makelocal(node,owner_node):
 	
 	return node
 
+
+
+
+
+
+
+#-------- ANDROID -------------
+func _input(event: InputEvent) -> void:
+	_mobile_suport(event)
+
+onready var android: bool = OS.get_name() == "Android"
+
+var touch_pos = {}
+var touch_relative = {}
+var save_zoom = 0
+var ready_zoom
+var is_ready_zoom = true
+var is_zoom = false
+
+func _mobile_suport(_event: InputEvent) -> void:
+	
+	if android:
+		if Index.mode == Index.MODE.VOID:
+			
+			if _event is InputEventScreenTouch:
+				if _event.double_tap:
+					Input.action_press("click_right")
+				
+				if _event.pressed:
+					touch_pos[_event.index] = _event.position
+					touch_relative[_event.index] = _event.relative
+				
+				else:
+					Input.action_release("click_left")
+					touch_pos.erase(_event.index)
+					touch_relative.erase(_event.index)
+					is_ready_zoom = true
+					is_zoom = false
+			
+			if _event is InputEventScreenDrag:
+				touch_pos[_event.index] = _event.position
+				touch_relative[_event.index] = _event.relative
+				
+				match touch_pos.size():
+					1:
+						Index.view3d.pos._rotation_cam(_event.relative)
+						Index.view3d.pos._reset_pos_cam()
+					2:
+						
+						var zoom = touch_pos[0].distance_to(touch_pos[1])
+						
+						if is_ready_zoom:
+							ready_zoom = zoom
+							is_ready_zoom = false
+						
+						if (zoom > (ready_zoom + 120) or zoom < (ready_zoom - 120)) or is_zoom:
+							is_zoom = true
+							Index.view3d.pos.CamLock.transform.origin.z += -(int(save_zoom > zoom)-0.5)
+							
+							save_zoom = touch_pos[0].distance_to(touch_pos[1])
+						else:
+							Index.view3d.pos._moviment_mouse_local(touch_relative[0] * 1.5)
