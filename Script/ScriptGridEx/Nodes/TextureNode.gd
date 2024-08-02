@@ -10,13 +10,13 @@ func _ready() -> void:
 
 func _texture(tex) -> void:
 	texture = tex
-	self.value = texture
 	
-	yield(get_tree().create_timer(0.5),"timeout")
+	yield(get_tree().create_timer(0.3),"timeout")
+	
+	self.value = texture
 	emit_signal("change_value",texture)
 
 
 
 func _on_TextureLoadButton_change_texture(_texture) -> void:
 	self.texture = _texture
-	print("as")

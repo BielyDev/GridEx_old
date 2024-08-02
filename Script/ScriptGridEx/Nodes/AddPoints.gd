@@ -1,6 +1,7 @@
 extends GNode
 
 signal completed_start()
+signal completed_add_mesh()
 
 onready var points: Node = $Points
 onready var vector_node: VBoxContainer = $Vector/Position/Vector
@@ -11,14 +12,17 @@ onready var pick_instance_rotation_node: CheckBox = $Rotation/Vbox/pick_instance
 onready var density_node: SpinBox = $Density/Density/DensityValue
 
 
-var density: int = 0 setget _density
-var seed_value: int = 0
-var vector: Vector3 = Vector3() setget _vector
-var vector_array: Array = [] setget _vector_array
-var rotation_value: Vector3 = Vector3() setget _rotation
-var offset_value: Vector3 = Vector3() setget _offset
 var pick_instance_rotation: bool = false
 var new_vector: bool = false
+var density: int = 0 setget _density
+var seed_value: int = 0
+var pass_size: int
+var vector: Vector3 = Vector3() setget _vector
+var rotation_value: Vector3 = Vector3() setget _rotation
+var offset_value: Vector3 = Vector3() setget _offset
+var vector_array: Array = [] setget _vector_array
+var thread: Thread = Thread.new()
+
 
 func _ready() -> void:
 	emit_from_value_null = true
@@ -40,15 +44,39 @@ func _process(delta: float) -> void:
 func _start() -> void: # Function
 	generator(density)
 	
+	yield(self,"completed_add_mesh")
 	_update_vector()
 	_update_model()
 	
 	call_deferred("emit_signal","completed_start")
 
 
-func generator(_amount) -> void:
+func generator(_density: int) -> void:
+	points_queue(_density,300,"add_mesh")
+
+
+func points_queue(_amount: int,_number_loop: int,_callabre: String) -> void:
+	var run: int = 0
+	var value: int = 0
+	
 	for i in _amount:
-		add_mesh()
+		value += 1
+		if value == _number_loop:
+			run += 1
+			value = 0
+	
+	if _amount < _number_loop:
+		for i in _amount:
+			call(_callabre)
+	else:
+		for ready in run:
+			yield(get_tree().create_timer(0.5),"timeout")
+			
+			for i in _amount/run:
+				call(_callabre)
+	
+	emit_signal("completed_add_mesh")
+
 
 #Instances change=========================================
 func add_mesh() -> void:
@@ -60,10 +88,9 @@ func clear() -> void:
 		child.queue_free()
 #=========================================================
 
-var pass_size: int
-
 func _update_vector() -> void:
 	seed(seed_value)
+	
 	var apply_vector = vector_array
 
 	pass_size = 0
@@ -74,6 +101,7 @@ func _update_vector() -> void:
 		set_position_point(child,apply_vector)
 
 func _update_model() -> void:
+	
 	var from
 	
 	for _from in from_value:
@@ -92,21 +120,20 @@ func _update_model() -> void:
 				child.set_surface_material(surfaces, model.get_surface_material(surfaces))
 	
 	else:
+		
 		var ball = SphereMesh.new()
 		var mat = SpatialMaterial.new()
+		mat.flags_unshaded = true
+		
+		ball.material = mat
+		ball.surface_set_material(0,null)
+		
+		ball.radius = 0.2
+		ball.height = 0.4
+		ball.radial_segments = 8
+		ball.rings = 4
 		
 		for child in points.get_children():
-			
-			mat.flags_unshaded = true
-			
-			ball.material = mat
-			ball.surface_set_material(0,null)
-			
-			ball.radius = 0.2
-			ball.height = 0.4
-			ball.radial_segments = 8
-			ball.rings = 4
-			
 			child.mesh = ball
 
 func _update_from_value(_node) -> void:
@@ -182,7 +209,10 @@ func _density(_value:int) -> void:
 	clear()
 	
 	if is_output:
-		_start()
+		if thread.is_active():
+			_start()
+		else:
+			thread.start(self,"_start")
 		
 		yield(self,"completed_start")
 		self.value = points
@@ -242,7 +272,13 @@ func _on_AddPoints_connected() -> void:
 	yield(self,"change_is_output")
 	
 	if is_output:
-		_start()
+		if thread.is_active():
+			_start()
+		else:
+			thread.start(self,"_start")
+		
+		yield(self,"completed_start")
+		#thread.wait_to_finish()
 	
 	self.value = points
 
@@ -289,3 +325,6 @@ func _on_AddPoints_connected_from(_node) -> void:
 func _on_pick_instance_rotation_pressed() -> void:
 	pick_instance_rotation = pick_instance_rotation_node.pressed
 	_update_vector()
+
+func _exit_tree() -> void:
+	thread.wait_to_finish()

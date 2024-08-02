@@ -23,7 +23,7 @@ var pos_save: Vector3 = Vector3(999,99,999)
 var pos: Vector3 
 var grid_space: Vector3 = Vector3(2,2,2)
 var save_line: Vector3
-
+var thread = Thread.new()
 
 func _input(_event: InputEvent) -> void:
 	Selection.visible = (Index.mode != Index.MODE.VOID) and Index.block_view == false
@@ -88,7 +88,10 @@ func _start_mode() -> void:
 	match Index.mode:
 		Index.MODE.ADD:
 			if Index.tile.id_tile != -1:
-				Add.add_block_settings()
+				if thread.is_active():
+					Add.add_block_settings()
+				else:
+					thread.start(Add,"add_block_settings")
 				
 				if IndexLayer.edit.enabled == true:
 					IndexLayer.call_edit()

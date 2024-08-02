@@ -22,6 +22,7 @@ margin_top = -256.0
 margin_right = 388.5
 margin_bottom = 256.0
 rect_min_size = Vector2( 176, 61.6 )
+window_title = "Salvar um Arquivo"
 access = 2
 show_hidden_files = true
 

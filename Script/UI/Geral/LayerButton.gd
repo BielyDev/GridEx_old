@@ -4,7 +4,6 @@ onready var Layer: Button = $Layer
 onready var Lock: TextureButton = $Lock
 onready var Visible: TextureButton = $Visible
 onready var PopupOptions: CanvasLayer = $Layer/Popup
-onready var Vbox: VBoxContainer = $Layer/Popup/Panel/Vbox
 onready var Name: LineEdit = $Layer/Name
 
 var Layer3d: Spatial
