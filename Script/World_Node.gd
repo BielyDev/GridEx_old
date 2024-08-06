@@ -24,6 +24,7 @@ var pos: Vector3
 var grid_space: Vector3 = Vector3(2,2,2)
 var save_line: Vector3
 var thread = Thread.new()
+var undo_local: Array = []
 
 func _input(_event: InputEvent) -> void:
 	Selection.visible = (Index.mode != Index.MODE.VOID) and Index.block_view == false
@@ -42,12 +43,19 @@ func _input(_event: InputEvent) -> void:
 		_selection_moviment()
 	
 	if Input.is_action_just_released("click_left"):
+		_append_undo()
+		
 		if Index.mode == Index.MODE.LINE:
 			if Input.is_action_just_released("click_left"):
 				Line.add_block()
 		
 		pos_save = Vector3(0,999,0)
 
+
+
+func _append_undo() -> void:
+	Index.undo.append(undo_local)
+	undo_local = []
 
 
 func _selection_moviment() -> void:

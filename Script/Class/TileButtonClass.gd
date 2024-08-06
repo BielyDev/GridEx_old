@@ -12,11 +12,20 @@ var id_text = Label.new()
 var popup = true
 var new_popup
 var parent
-
+var is_pressed: bool = false
+var timer: Timer = Timer.new()
 
 func _ready() -> void:
 	connect("gui_input",self,"_settings_popup")
 	connect("child_exiting_tree",self,"reset_pop")
+	connect("button_down",self,"_down_button")
+	connect("button_up",self,"_up_button")
+	
+	add_child(timer)
+	
+	timer.wait_time = 0.2
+	timer.one_shot = true
+	timer.connect("timeout",self,"_timer_pressed")
 	
 	
 	center_pivot()
@@ -25,6 +34,7 @@ func _ready() -> void:
 	add_child(id_text)
 	id_text.hide()
 	id_text.text =  str(Tile.id_tile)
+
 
 func index() -> void:
 	Index.tile.id_tile = Tile.id_tile
@@ -63,30 +73,33 @@ func reload_icon() -> void:
 # Drag drop ===============
 
 func _input(event: InputEvent) -> void:
+	#Android ===============================
 	if event is InputEventScreenTouch:
 		if event.pressed == false:
 			if pressed:
 				reset_slot()
 			else:
 				move_slot()
+	#========================================
 	
 	if event is InputEventMouseMotion or event is InputEventMouseButton:
-		if pressed:
+		if is_pressed:
 			rect_global_position = get_global_mouse_position() - (rect_size/2)
 			parent.slot = self
-			
+		
 		else:
+			
 			if Input.is_action_just_released("click_left") and is_instance_valid(parent.slot):
 				move_slot()
 		
-		if pressed:
+		if is_pressed:
 			if Input.is_action_just_released("click_left"):
 				reset_slot()
 
 
 func move_slot() -> void:
 	if parent.slot != self:
-		if (parent.slot.rect_global_position - (parent.slot.rect_size/2)).distance_to(rect_global_position - (rect_size/2)) < rect_size.x:
+		if (parent.slot.rect_global_position - (parent.slot.rect_size/2)).distance_to(rect_global_position - (rect_size/2)) < (rect_size.x-20):
 			var index = get_index()
 			
 			get_parent().move_child(self,parent.slot.get_index())
@@ -102,3 +115,16 @@ func reset_slot() -> void:
 	if parent.slot == self:
 		get_parent().queue_sort()
 		parent.slot = null
+
+
+func _down_button() -> void:
+	timer.start()
+
+func _up_button() -> void:
+	
+	timer.stop()
+	is_pressed = false
+
+
+func _timer_pressed() -> void:
+	is_pressed = true

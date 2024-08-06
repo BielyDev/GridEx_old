@@ -404,6 +404,9 @@ margin_bottom = 571.0
 margin_right = 763.0
 margin_bottom = 571.0
 
+[node name="CameraOption" parent="Local/Vbox/Hbox/View/ViewPanel/Settings" index="0"]
+items = [ "Default", null, 0, false, false, 0, 0, null, "", false, "Unshaded", null, 0, false, false, 1, 0, null, "", false, "Overdrive", null, 0, false, false, 2, 0, null, "", false ]
+
 [node name="Eixo" parent="Local/Vbox/Hbox/View/ViewPanel" index="3"]
 margin_right = 763.0
 margin_bottom = 571.0

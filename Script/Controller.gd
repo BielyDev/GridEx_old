@@ -14,7 +14,7 @@ func _input(_event: InputEvent) -> void:
 	if Index.block_view:
 		return
 	
-	if Input.is_action_pressed("undo"):
+	if Input.is_action_just_pressed("undo"):
 		_undo()
 		return
 	
@@ -42,14 +42,15 @@ func _others_buttons() -> void:
 
 func _undo() -> void:
 	if Index.undo.size() >= 1:
-		var id = Index.undo[Index.undo.size()-1]
+		var group_undo = Index.undo[Index.undo.size()-1]
 		
-		if id.add == true:
-			Block.remove_block(id.pos,false)
-		else:
-			Block.add_block(id.pos,id.tile,false)
+		for undo in group_undo:
+			if undo.add == true:
+				Block.remove_block(undo.pos,false)
+			else:
+				Block.add_block(undo.pos,undo.rot,undo.tile,false)
 		
-		Index.undo.erase(id)
+		Index.undo.erase(group_undo)
 
 
 

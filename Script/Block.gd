@@ -6,6 +6,7 @@ enum MODE {REPLACE,STOP,MIX,JUST_UP}
 
 
 onready var Anima: AnimationPlayer = $"../Selection3D/Anima"
+onready var World_node: Spatial = $".."
 
 var Option: OptionButton
 
@@ -74,7 +75,7 @@ func instance_block(id_tile: int,pos_in: Vector3,rot: Vector3,undo: bool) -> voi
 	
 	
 	#Additional=================================================================
-	if undo: Index.undo.append({pos = pos_in,add = true,tile = tile})
+	if undo: World_node.undo_local.append({pos = pos_in,add = true,tile = tile}) #Index.undo.append({pos = pos_in,add = true,tile = tile})
 	
 	emit_signal("tile_added")
 	
@@ -85,6 +86,8 @@ func instance_block(id_tile: int,pos_in: Vector3,rot: Vector3,undo: bool) -> voi
 
 func delete_block(tile,pos,undo) -> bool:
 	var tile_undo
+	var rot = tile.rotation_degrees
+	var id_tile = tile.id_tile
 	
 	if tile != null:
 		
@@ -99,11 +102,13 @@ func delete_block(tile,pos,undo) -> bool:
 		else:
 			for block in block_pos:
 				if block.pos == Index.block.get_child(Index.layer_select).to_local(pos):
+					
 					var dic = {pos = pos,tile = block.tile}
+					
 					block_pos.erase(dic)
 					tile_undo = block.tile
 		
-		if undo: Index.undo.append({pos = pos,add = false,tile = tile_undo})
+		if undo: World_node.undo_local.append({pos = pos,rot = rot,add = false,tile = id_tile})
 		
 		Anima.stop()
 		Anima.play("Remove")
