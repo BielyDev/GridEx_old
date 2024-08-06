@@ -4,6 +4,7 @@ signal change_texture(texture)
 
 onready var Tex: VBoxContainer = $Vbox/Textures
 onready var Options: MenuButton = $Vbox/Options
+onready var Filter: CheckBox = $Vbox/Filter
 
 export(String) var propriety_value: String = "texture"
 
@@ -92,8 +93,6 @@ func set_texture(set_texture) -> void:
 	else:
 		mat.set(propriety_value,set_texture)
 
-
-onready var Filter: CheckBox = $Vbox/Filter
 
 func call_change_texture(_texture) -> void:
 	emit_signal("change_texture",_texture)

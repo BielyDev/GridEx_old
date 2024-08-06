@@ -77,8 +77,10 @@ func file_explore(files : Array,object: Node,OK: String,CANCEL: String, mode = F
 	var explore = file_explore_new.instance()
 	
 	explore.files = files
+	
 	explore.connect("CANCEL",object,CANCEL)
 	explore.connect("OK",object,OK)
 	
 	Global.add_child(explore)
 	explore.Filex.mode = mode
+

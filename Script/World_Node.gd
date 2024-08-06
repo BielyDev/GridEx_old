@@ -43,12 +43,12 @@ func _input(_event: InputEvent) -> void:
 		_selection_moviment()
 	
 	if Input.is_action_just_released("click_left"):
-		_append_undo()
 		
 		if Index.mode == Index.MODE.LINE:
 			if Input.is_action_just_released("click_left"):
 				Line.add_block()
 		
+		_append_undo()
 		pos_save = Vector3(0,999,0)
 
 

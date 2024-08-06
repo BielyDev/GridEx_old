@@ -4,15 +4,25 @@ signal OK(dir)
 signal CANCEL()
 
 onready var Filex: FileDialog = $FileDialog
+onready var Save_path: PanelContainer = $Save_path
+onready var vbox: VBoxContainer = $Save_path/Vbox
 
 var files: Array = []
 var exporting: bool = false
 
 
 func _ready() -> void:
-	UI.ready_animated_complex(Filex,$Background)
+	_create_button_path()
 	
-	Filex.current_path = Index.save_path_explorer
+	Save_path.rect_position.x = Filex.rect_position.x + (Save_path.rect_size.x + 10)
+	Save_path.rect_position.y = Filex.rect_position.y
+	
+	UI.ready_animated_complex(Filex,$Background)
+	UI.ready_animated_complex(Save_path,$Background)
+	
+	if Index.save_path_explorer.size() >= 1:
+		Filex.current_path = Index.save_path_explorer[Index.save_path_explorer.size()-1]
+	
 	Filex.show()
 	Filex.filters = files
 	Filex.show_hidden_files = false
@@ -21,9 +31,13 @@ func _ready() -> void:
 
 
 func _input(_event: InputEvent) -> void:
+	Save_path.rect_position.x = Filex.rect_position.x - (Save_path.rect_size.x + 10)
+	Save_path.rect_position.y = Filex.rect_position.y
+	
 	var extension = Filex.current_file.get_extension()
 	var file_name_filter = Filex.current_file.replace(".","").replace(Filex.current_file.get_extension(),"")
 	var file_name
+	
 	if extension == "":
 		file_name = str(file_name_filter,files[0].replace("*",""))
 	else:
@@ -32,13 +46,20 @@ func _input(_event: InputEvent) -> void:
 	Filex.dialog_text = file_name
 
 
+func _create_button_path() -> void:
+	for path in Index.save_path_explorer:
+		var button = ButtonPath.new()
+		
+		button.path = path
+		button.FileDialogPath = Filex.get_path()
+		vbox.add_child(button)
+
 
 func _selection_file_and_dir(path) -> void:
 	if exporting:
 		return
 	exporting = true
 	
-	yield(UI.queue_animated_complex(self,Filex,$Background),"completed")
 	
 	if path is String:
 		emit_path(path)
@@ -46,7 +67,17 @@ func _selection_file_and_dir(path) -> void:
 		for paths in path:
 			emit_path(paths)
 	
-	Index.save_path_explorer = Filex.current_path
+	print(Filex.current_dir)
+	
+	for i in Index.save_path_explorer:
+		if i == str(Filex.current_dir,"/"):
+			Index.save_path_explorer.erase(i)
+	
+	Index.save_path_explorer.insert(0,str(Filex.current_dir,"/"))
+	
+	
+	yield(UI.queue_animated_complex(self,Save_path,$Background),"completed")
+	yield(UI.queue_animated_complex(self,Filex,$Background),"completed")
 
 
 func emit_path(path: String) -> void:
@@ -59,6 +90,7 @@ func emit_path(path: String) -> void:
 
 
 func _cancel() -> void:
+	yield(UI.queue_animated_complex(self,Save_path,$Background),"completed")
 	yield(UI.queue_animated_complex(self,Filex,$Background),"completed")
 	
 	emit_signal("CANCEL")

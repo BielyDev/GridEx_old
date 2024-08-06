@@ -14,7 +14,7 @@ var edit_node
 var block
 var mode
 var layer_select: int
-var save_path_explorer: String
+var save_path_explorer: Array
 var env : Environment = preload("res://default_env.tres")
 var undo: Array = []
 var system_path: String = str(OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS),"/.GridEx")
