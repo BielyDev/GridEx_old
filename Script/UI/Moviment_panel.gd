@@ -10,6 +10,7 @@ onready var Panel_node := get_node(Panel_Path)
 
 var mouse: bool = false
 var mouse_tab: int = -1
+var is_mouse_pressed: bool = false
 
 var save_pos: bool
 
@@ -19,10 +20,14 @@ func _ready() -> void:
 
 
 func _input(_event: InputEvent) -> void:
-	if mouse:
-		if Input.is_mouse_button_pressed(BUTTON_LEFT):
-			if _event is InputEventMouseMotion:
-				movement(_event.relative)
+	if Input.is_action_just_pressed("click_left"):
+		is_mouse_pressed = mouse
+	if Input.is_action_just_released("click_left"):
+		is_mouse_pressed = false
+	
+	if is_mouse_pressed:
+		if _event is InputEventMouseMotion:
+			movement(_event.relative)
 	
 	if Input.is_action_just_released("click_left"):
 		save_pos = true

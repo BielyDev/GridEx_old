@@ -1,0 +1,17 @@
+[gd_scene format=2]
+
+[node name="Empty_window" type="PanelContainer"]
+margin_right = 249.0
+margin_bottom = 267.0
+hint_tooltip = "Add some window by dragging."
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="."]
+margin_left = 3.0
+margin_top = 122.0
+margin_right = 246.0
+margin_bottom = 142.0
+text = "EMPTY WINDOW"
+align = 1
+valign = 1

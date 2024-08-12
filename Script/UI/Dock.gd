@@ -21,15 +21,34 @@ func _ready() -> void:
 
 
 func _child_exit(node: Node):
-	if get_child_count() == 1:
+	if node.name == "Empty_window":
+		return
+	
+	yield(get_tree().create_timer(0.1),"timeout")
+	
+	if get_child_count() == 0:
+		var new_win = Index.window_empty.instance()
+		add_child(new_win)
+		
 		rect_min_size.x = 0
 		rect_min_size.y = 0
 		rect_size.x = 0
 		rect_size.y = 0
+		#hide()
+	
 	if parents != 0:call("expand",false)
+
 func _child_show(node: Node):
+	if node.name == "Empty_window":
+		return
+	
+	for child in get_children():
+		if child.name == "Empty_window":
+			child.queue_free()
+	
+	yield(get_tree().create_timer(0.1),"timeout")
+	
 	if get_child_count() == 1:
-		yield(get_tree().create_timer(0.1),"timeout")
 		rect_min_size.x = 200
 		rect_min_size.y = 200
 	

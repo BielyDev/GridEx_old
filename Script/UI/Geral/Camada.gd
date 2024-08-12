@@ -8,6 +8,8 @@ var new_layerbutton: PackedScene = preload("res://Scene/UI/Resources/LayerButton
 func _ready() -> void:
 	yield(get_tree().create_timer(0.2),"timeout")
 	Index.block.connect("child_entered_tree",self,"add_layer")
+	
+	#selected(Layers.get_child(0))
 
 func add_layer(node: Node) -> void:
 	if node is Spatial:

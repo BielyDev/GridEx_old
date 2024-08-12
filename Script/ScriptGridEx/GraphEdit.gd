@@ -39,8 +39,10 @@ func _on_GraphEdit_duplicate_nodes_request() -> void:
 
 
 func _on_GraphEdit_delete_nodes_request(nodes: Array) -> void:
-	for i in nodes:
-		i.queue_free()
+	#print(nodes)
+	pass
+	#for i in nodes:
+	#	i.queue_free()
 
 
 #Popup click_right config ===========================

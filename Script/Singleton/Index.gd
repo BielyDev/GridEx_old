@@ -16,6 +16,7 @@ var mode
 var layer_select: int
 var save_path_explorer: Array
 var env : Environment = preload("res://default_env.tres")
+var window_empty : PackedScene = preload("res://Scene/Resource/Empty_window.tscn")
 var undo: Array = []
 var system_path: String = str(OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS),"/.GridEx")
 
