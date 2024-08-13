@@ -111,6 +111,9 @@ var save_zoom = 0
 var ready_zoom
 var is_ready_zoom = true
 var is_zoom = false
+var mouse_motion: InputEventMouseMotion = InputEventMouseMotion.new()
+var mouse_button: InputEventMouseButton = InputEventMouseButton.new()
+var action: InputEventAction = InputEventAction.new()
 
 func _mobile_suport(_event: InputEvent) -> void:
 	
@@ -119,9 +122,26 @@ func _mobile_suport(_event: InputEvent) -> void:
 			
 			if _event is InputEventScreenTouch:
 				if _event.double_tap:
-					Input.action_press("click_right")
+					mouse_button.pressed = true
+					mouse_button.button_index = 2
+					
+					action.action = "click_right"
+					#Input.action_press("click_right")
+					
+					_event.parse_input_event(action)
+					_event.parse_input_event(mouse_button)
+				
 				
 				if _event.pressed:
+					mouse_button.pressed = true
+					mouse_button.button_index = 1
+					
+					action.action = "click_left"
+					#Input.action_press("click_left")
+					
+					_event.parse_input_event(action)
+					_event.parse_input_event(mouse_button)
+					
 					touch_pos[_event.index] = _event.position
 					touch_relative[_event.index] = _event.relative
 				
@@ -155,3 +175,9 @@ func _mobile_suport(_event: InputEvent) -> void:
 							save_zoom = touch_pos[0].distance_to(touch_pos[1])
 						else:
 							Index.view3d.pos._moviment_mouse_local(touch_relative[0] * 1.5)
+			
+
+
+
+
+
