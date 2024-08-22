@@ -8,9 +8,11 @@ signal grid_size(size)
 
 enum SETT {CAM_SENSI,CAM_SENSI_MOVE}
 enum MODE {VOID,ADD,REMOVE,LINE,BUCKET,LIGHT}
+enum UNDOTYPE {ADD,REMOVE,SET}
 
 var block_view: bool = false
 var edit_node
+var lock_mouse: bool = false
 var block
 var mode
 var layer_select: int
@@ -116,32 +118,12 @@ var mouse_button: InputEventMouseButton = InputEventMouseButton.new()
 var action: InputEventAction = InputEventAction.new()
 
 func _mobile_suport(_event: InputEvent) -> void:
-	
 	if android:
 		if Index.mode == Index.MODE.VOID:
 			
 			if _event is InputEventScreenTouch:
-				if _event.double_tap:
-					mouse_button.pressed = true
-					mouse_button.button_index = 2
-					
-					action.action = "click_right"
-					#Input.action_press("click_right")
-					
-					_event.parse_input_event(action)
-					_event.parse_input_event(mouse_button)
-				
 				
 				if _event.pressed:
-					mouse_button.pressed = true
-					mouse_button.button_index = 1
-					
-					action.action = "click_left"
-					#Input.action_press("click_left")
-					
-					_event.parse_input_event(action)
-					_event.parse_input_event(mouse_button)
-					
 					touch_pos[_event.index] = _event.position
 					touch_relative[_event.index] = _event.relative
 				
@@ -151,6 +133,7 @@ func _mobile_suport(_event: InputEvent) -> void:
 					touch_relative.erase(_event.index)
 					is_ready_zoom = true
 					is_zoom = false
+				
 			
 			if _event is InputEventScreenDrag:
 				touch_pos[_event.index] = _event.position
@@ -175,9 +158,3 @@ func _mobile_suport(_event: InputEvent) -> void:
 							save_zoom = touch_pos[0].distance_to(touch_pos[1])
 						else:
 							Index.view3d.pos._moviment_mouse_local(touch_relative[0] * 1.5)
-			
-
-
-
-
-

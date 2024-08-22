@@ -48,7 +48,7 @@ func remove_block(pos: Vector3,undo: bool = true) -> void:
 	loop_get_tile(self,pos,undo)
 
 
-func instance_block(id_tile: int,pos_in: Vector3,rot: Vector3,undo: bool) -> void:
+func instance_block(id_tile: int,pos_in: Vector3,rot: Vector3,undo: bool,undo_type: int = Index.UNDOTYPE.ADD) -> void:
 	#Search_tile================================================================
 	var tile
 	
@@ -67,7 +67,7 @@ func instance_block(id_tile: int,pos_in: Vector3,rot: Vector3,undo: bool) -> voi
 	get_child(Index.layer_select).add_child(tile)
 	
 	
-	tile.global_transform.origin = pos_in
+	tile.global_position = pos_in
 	tile.rotation_degrees = rot
 	
 	block_pos.push_back({pos = pos_in, tile = tile})
@@ -75,7 +75,8 @@ func instance_block(id_tile: int,pos_in: Vector3,rot: Vector3,undo: bool) -> voi
 	
 	
 	#Additional=================================================================
-	if undo: World_node.undo_local.append({pos = pos_in,add = true,tile = tile}) #Index.undo.append({pos = pos_in,add = true,tile = tile})
+	if undo:
+		World_node.undo_local.append({pos = pos_in,rot = rot,type = Index.UNDOTYPE.ADD,tile = tile.id_tile}) #Index.undo.append({pos = pos_in,add = true,tile = tile})
 	
 	emit_signal("tile_added")
 	
@@ -108,7 +109,7 @@ func delete_block(tile,pos,undo) -> bool:
 					block_pos.erase(dic)
 					tile_undo = block.tile
 		
-		if undo: World_node.undo_local.append({pos = pos,rot = rot,add = false,tile = id_tile})
+		if undo: World_node.undo_local.append({pos = pos,rot = rot,type = Index.UNDOTYPE.REMOVE,tile = id_tile})
 		
 		Anima.stop()
 		Anima.play("Remove")
@@ -129,12 +130,12 @@ func loop_get_tile(node,pos: Vector3,undo):
 	for pos_array in node.get_children():
 		if pos_array.get_child_count() >= 1:
 			if pos_array is OmniLight:
-				if pos_array.global_transform.origin == pos:
+				if pos_array.global_position == pos:
 					delete_block(pos_array,pos,undo)
 			else:
 				loop_get_tile(pos_array,pos,undo)
 		else:
-			if pos_array.global_transform.origin == pos:
+			if pos_array.global_position == pos:
 				delete_block(pos_array,pos,undo)
 
 func _started_layer() -> void:
@@ -154,12 +155,13 @@ func mode_selected(index: int) -> void:
 
 #Functions Mode =========
 func _replace(pos: Vector3,rot: Vector3,id_tile: int,undo: bool = true) -> void:
-	for blocos in get_child(Index.layer_select).get_children():
-		if blocos.global_transform.origin == pos:
-			blocos.queue_free()
-			block_pos.erase(pos)
 	
-	instance_block(id_tile,pos,rot,undo)
+	for blocos in get_child(Index.layer_select).get_children():
+		if blocos.global_position == pos:
+			delete_block(blocos,blocos.global_position,undo)
+	
+	call_deferred("instance_block",id_tile,pos,rot,undo)
+
 func _stop(pos: Vector3,rot: Vector3,id_tile: int,undo: bool = true) -> bool:
 	for pos_array in block_pos:
 		if pos_array.pos == pos:
@@ -169,11 +171,11 @@ func _stop(pos: Vector3,rot: Vector3,id_tile: int,undo: bool = true) -> bool:
 	return true
 func _just_up(pos: Vector3,rot: Vector3,id_tile: int,undo: bool = true) -> void:
 	for blocos in get_child(Index.layer_select).get_children():
-		if blocos.global_transform.origin == pos:
+		if blocos.global_position == pos:
 			blocos.queue_free()
 			block_pos.erase(pos)
 			
-			instance_block(id_tile,pos,rot,undo)
+			instance_block(id_tile,pos,rot,undo,Index.UNDOTYPE.SET)
 func _mix(pos: Vector3,rot: Vector3,id_tile: int,undo: bool = true) -> void:
 	instance_block(id_tile,pos,rot,undo)
 

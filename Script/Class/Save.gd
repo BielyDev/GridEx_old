@@ -3,6 +3,10 @@ extends GridEx
 class_name Save
 
 static func save_project(dir: String) -> void:
+	if Index.android:
+		dir = str(OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS),"/",dir.get_file())
+		OS.alert(str(OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS),"/",dir.get_file()),"Save")
+	
 	var file = File.new()
 	
 	file.open(dir,File.WRITE)

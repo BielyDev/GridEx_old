@@ -48,4 +48,3 @@ func button_animated_up() -> void:
 	
 	Tw.interpolate_property(self,"modulate", Color_pressed_back,Color_pressed_front,speed,transition)
 	Tw.start()
-

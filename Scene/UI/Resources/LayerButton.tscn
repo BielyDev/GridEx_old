@@ -61,6 +61,12 @@ func _on_Layer_gui_input(_event: InputEvent) -> void:
 			Par._on_Layer_pressed()
 			
 			PopupOptions.popup_mouse()
+	
+	if _event is InputEventScreenTouch:
+		if _event.double_tap:
+			Par._on_Layer_pressed()
+			
+			PopupOptions.popup_mouse()
 
 
 

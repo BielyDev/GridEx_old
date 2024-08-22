@@ -20,6 +20,7 @@ func _input(_event: InputEvent) -> void:
 	
 	_rotation_selection()
 	
+	
 	if Input.is_key_pressed(KEY_CONTROL):
 		if Input.is_action_just_pressed("middle_up"):
 			Index.view3d.pos.state = Index.view3d.pos.STATE.BLOCK
@@ -41,14 +42,20 @@ func _others_buttons() -> void:
 
 
 func _undo() -> void:
+	for itens in Index.undo:
+		if itens == []:
+			Index.undo.erase(itens)
+	
 	if Index.undo.size() >= 1:
+		
 		var group_undo = Index.undo[Index.undo.size()-1]
 		
 		for undo in group_undo:
-			if undo.add == true:
-				Block.remove_block(undo.pos,false)
-			else:
-				Block.add_block(undo.pos,undo.rot,undo.tile,false)
+			match undo.type:
+				Index.UNDOTYPE.ADD:
+					Block.remove_block(undo.pos,false)
+				Index.UNDOTYPE.REMOVE:
+					Block.add_block(undo.pos,undo.rot,undo.tile,false)
 		
 		Index.undo.erase(group_undo)
 
@@ -68,10 +75,5 @@ func _rotation_selection() -> void:
 		rot = rot
 	
 	Selection.rotation_degrees = rot
-
-
-
-
-
 
 
