@@ -34,7 +34,7 @@ func selected(node: Control) -> void:
 
 
 func _on_Add_pressed() -> void:
-	var new_layer = Spatial.new()
+	var new_layer = CSGCombiner.new()
 	var num: int = Index.block.get_child_count()
 	var nome = str("Layer ", num)
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://Script/Class/Tile.gd" type="Script" id=1]
 
@@ -118,15 +118,6 @@ surfaces/2 = {
 "vertex_count": 72
 }
 
-[sub_resource type="SpatialMaterial" id=49]
-albedo_color = Color( 1, 0.517647, 0.219608, 1 )
-
-[sub_resource type="SpatialMaterial" id=50]
-albedo_color = Color( 1, 0.643137, 0.219608, 1 )
-
-[sub_resource type="SpatialMaterial" id=18]
-albedo_color = Color( 0.839216, 0.313726, 0.137255, 1 )
-
 [sub_resource type="ArrayMesh" id=51]
 resource_name = "Map_Cubo005"
 surfaces/0 = {
@@ -162,15 +153,6 @@ surfaces/2 = {
 "skeleton_aabb": [  ],
 "vertex_count": 72
 }
-
-[sub_resource type="SpatialMaterial" id=52]
-albedo_color = Color( 0.839216, 1, 0.984314, 1 )
-
-[sub_resource type="SpatialMaterial" id=53]
-albedo_color = Color( 0.647059, 1, 0.909804, 1 )
-
-[sub_resource type="SpatialMaterial" id=54]
-albedo_color = Color( 0.266667, 0.560784, 0.784314, 1 )
 
 [sub_resource type="SpatialMaterial" id=3]
 resource_name = "Materiais.003"
@@ -441,11 +423,6 @@ surfaces/0 = {
 "vertex_count": 120
 }
 
-[sub_resource type="SpatialMaterial" id=42]
-params_cull_mode = 2
-params_line_width = 8.5
-albedo_color = Color( 1, 0.788235, 0.0745098, 1 )
-
 [sub_resource type="ArrayMesh" id=43]
 resource_name = "Map_Plano001"
 surfaces/0 = {
@@ -459,11 +436,6 @@ surfaces/0 = {
 "skeleton_aabb": [  ],
 "vertex_count": 120
 }
-
-[sub_resource type="SpatialMaterial" id=44]
-params_cull_mode = 2
-params_line_width = 8.5
-albedo_color = Color( 0.278431, 0.772549, 1, 1 )
 
 [sub_resource type="SpatialMaterial" id=22]
 resource_name = "Materiais.017"
@@ -687,19 +659,11 @@ script = ExtResource( 1 )
 [node name="Terrain" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0 )
 mesh = SubResource( 48 )
-skeleton = NodePath("")
-material/0 = SubResource( 49 )
-material/1 = SubResource( 50 )
-material/2 = SubResource( 18 )
 script = ExtResource( 1 )
 
 [node name="Terrain_ice" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0 )
 mesh = SubResource( 51 )
-skeleton = NodePath("")
-material/0 = SubResource( 52 )
-material/1 = SubResource( 53 )
-material/2 = SubResource( 54 )
 script = ExtResource( 1 )
 
 [node name="Loot" type="MeshInstance" parent="."]
@@ -730,13 +694,11 @@ script = ExtResource( 1 )
 [node name="Plant" type="MeshInstance" parent="."]
 transform = Transform( 2.98023e-08, 0, -1, 0, 1, 0, 1, 0, 2.98023e-08, 0, 0, -4 )
 mesh = SubResource( 41 )
-material/0 = SubResource( 42 )
 script = ExtResource( 1 )
 
 [node name="Plant_ice" type="MeshInstance" parent="."]
 transform = Transform( 2.98023e-08, 0, -1, 0, 1, 0, 1, 0, 2.98023e-08, -2, 0, -4 )
 mesh = SubResource( 43 )
-material/0 = SubResource( 44 )
 script = ExtResource( 1 )
 
 [node name="Cano_liso" type="MeshInstance" parent="."]
